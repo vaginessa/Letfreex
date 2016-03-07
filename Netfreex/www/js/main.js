@@ -49,6 +49,22 @@ String.prototype.replaceAll = function (search, replacement) {
 var arrayFilm = [];
 var mySwiper;
 
+function openPage(url, isSerieTv, section, mostPopular) {
+    /*if (localStorage.getItem(url) != undefined &&
+        localStorage.getItem(url).split('|')[0] > new Date().getTime()) {
+        
+        arrayFilm = openFromCache(url);
+        printPage(isSerieTv, section);
+    }
+    else {*/
+    if (!mostPopular)
+        scrapePage(url, isSerieTv, section)
+    else
+        scrapeMostPopular(url, isSerieTv, section)
+    //}
+
+}
+
 function printPage(isSerieTv, section) {
     var htmlFilm = "";
     var viewPage = "";

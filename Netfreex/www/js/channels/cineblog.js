@@ -58,31 +58,6 @@ function search() {
     openPage(url, $('#serieTv').prop('checked'), 'searchResultContainer', false)
 }
 
-$('#search').keypress(function (e) {
-    if (e.which == 13) {
-        $('#searchResultContainer').html('');
-        $('#loadingSearch').removeClass('hidden');
-        search()
-        return false;  
-    }
-});
-
-function openPage(url, isSerieTv, section, mostPopular) {
-    /*if (localStorage.getItem(url) != undefined &&
-        localStorage.getItem(url).split('|')[0] > new Date().getTime()) {
-        
-        arrayFilm = openFromCache(url);
-        printPage(isSerieTv, section);
-    }
-    else {*/
-        if(!mostPopular)
-            scrapePage(url, isSerieTv, section)
-        else
-            scrapeMostPopular(url, isSerieTv, section)
-    //}
-        
-}
-
 function extractLinkCineblog(url) {
     console.log(url)
     $.getJSON("http://query.yahooapis.com/v1/public/yql?" +
@@ -200,9 +175,5 @@ function scrapeMostPopular(url, isSerieTv, section) {
     );
 }
 
-function nextPage(url, isSerieTv, section) {
-    console.log(url)
-    $('.nextPage' + section).html("<i class=\"fa fa-cogs fa-spin fa-3x\"></i>");
-    scrapePage(url, isSerieTv, section)
-}
+
 

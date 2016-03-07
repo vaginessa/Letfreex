@@ -1,14 +1,3 @@
-var movie = {
-    titolo: "",
-    backgroundImg: "",
-    trama: "",
-    attori: "",
-    anno: "",
-    durata: "",
-    urls: [],
-
-};
-
 function openMovie(url, titolo, isSerieTv) {
     changeTab(0);
     titolo = unescape(titolo);

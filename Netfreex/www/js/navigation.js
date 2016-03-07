@@ -62,3 +62,18 @@ function changeTab(num) {
             break;
     }
 }
+
+function nextPage(url, isSerieTv, section) {
+    console.log(url)
+    $('.nextPage' + section).html("<i class=\"fa fa-cogs fa-spin fa-3x\"></i>");
+    scrapePage(url, isSerieTv, section)
+}
+
+$('#search').keypress(function (e) {
+    if (e.which == 13) {
+        $('#searchResultContainer').html('');
+        $('#loadingSearch').removeClass('hidden');
+        search()
+        return false;
+    }
+});
