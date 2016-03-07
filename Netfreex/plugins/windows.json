@@ -1,0 +1,21 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "com.phonegap.plugins.videoplayer": {
+            "PACKAGE_NAME": "Netfreex"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "Netfreex"
+        },
+        "com.example.hello": {
+            "PACKAGE_NAME": "Netfreex"
+        }
+    },
+    "dependent_plugins": {}
+}

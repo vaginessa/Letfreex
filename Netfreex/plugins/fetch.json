@@ -10,24 +10,57 @@
     "cordova-plugin-file": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-file"
+            "id": "cordova-plugin-file@~4.1.0"
         },
-        "is_top_level": false,
+        "is_top_level": true,
         "variables": {}
     },
     "cordova-plugin-file-transfer": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-file-transfer"
+            "id": "cordova-plugin-file-transfer@~1.5.0"
         },
-        "is_top_level": false,
+        "is_top_level": true,
         "variables": {}
     },
-    "com.phonegap.plugins.videoplayer": {
+    "cordova-plugin-device": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-device@~1.1.1"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "com.example.hello": {
+        "source": {
+            "type": "local",
+            "path": "C:\\Users\\Tommy\\Desktop\\Netfreex\\com.example.hello"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "com.moust.cordova.videoplayer": {
         "source": {
             "type": "git",
-            "url": "https://github.com/raulduran/VideoPlayer.git",
+            "url": "https://github.com/moust/cordova-plugin-videoplayer.git",
             "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "com.dawsonloudon.videoplayer": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/dawsonloudon/VideoPlayer.git",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "com.dawsonloudon.videoplayer.custom": {
+        "source": {
+            "type": "local",
+            "path": "C:\\Users\\Tommy\\Desktop\\com.dawsonloudon.videoplayer.custom"
         },
         "is_top_level": true,
         "variables": {}

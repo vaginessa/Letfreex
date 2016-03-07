@@ -6,11 +6,16 @@
   <content src="index.html" />
   <access origin="*" />
   <vs:features />
+  <preference name="loadUrlTimeoutValue" value="700000" />
+  <preference name="Fullscreen" value="true" />
+  <preference name="orientation" value="landscape" />
   <preference name="SplashScreen" value="screen" />
   <preference name="windows-target-version" value="8.1" />
   <!-- Support for Cordova 5.0.0 plugin system -->
   <plugin name="cordova-plugin-whitelist" version="1" />
   <allow-intent href="http://*/*" />
+  <access origin="cdvfile://*" />
+  <allow-intent href="cdvfile://*" />
   <allow-intent href="https://*/*" />
   <allow-intent href="tel:*" />
   <allow-intent href="sms:*" />
@@ -108,4 +113,21 @@
   <preference name="ShowTitle" value="True" />
   <preference name="InAppBrowserStorageEnabled" value="True" />
   <preference name="SuppressesIncrementalRendering" value="True" />
+  <plugin name="cordova-plugin-file" version="4.1.1" />
+  <plugin name="cordova-plugin-device" version="1.1.1" />
+  <plugin name="cordova-plugin-file-transfer" version="1.5.0" />
+  <feature name="Device">
+    <param name="ios-package" value="CDVDevice" />
+    <param name="android-package" value="org.apache.cordova.device.Device" />
+  </feature>
+  <feature name="File">
+    <param name="ios-package" value="CDVFile" />
+    <param name="android-package" value="org.apache.cordova.file.FileUtils" />
+  </feature>
+  <feature name="FileTransfer">
+    <param name="ios-package" value="CDVFileTransfer" />
+    <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer" />
+  </feature>
+  <plugin name="com.dawsonloudon.videoplayer.custom" version="1.0.0" src="C:\Users\Tommy\Desktop\com.dawsonloudon.videoplayer.custom" />
+  <plugin name="com.example.hello" version="0.7.0" src="C:\Users\Tommy\Desktop\Netfreex\com.example.hello" />
 </widget>

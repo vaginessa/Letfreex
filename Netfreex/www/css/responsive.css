@@ -1,0 +1,93 @@
+/*smartphone*/
+@media (max-width: 768px){
+  .content {
+    background-color: rgba(0, 0, 0, 0.79);
+	}
+  #tf-menu {
+    padding: 0px !important;
+    transition: all 0.8s;
+}
+  .posterImg {
+    width: 133px;
+    height: 200px;
+}
+  .poster{
+     width: 113px;
+}
+  #boxInfo{
+    width: 240px;
+}
+  #moviePlot{
+    width: 240px;
+}
+  #dettagli{
+    width: 240px;
+}
+  .posterContainer {
+    padding: 0px;
+}
+
+ .rightBlockView { 
+    top: 97px;
+    left: 274px;
+     width: 48%;
+}
+
+.form {
+    margin-top: 21px;
+    margin-left: -45px;
+}
+.ricerca {
+    margin-top: 0 !important;
+    padding-top: 0 !important; 
+}
+}
+
+/*Tablet, iPad*/
+@media (min-width: 768px) and (max-width: 1024px){
+    .posterImg{
+       width: 176px;
+        height: 242px;
+    }
+    .posterContainer {
+    padding: 9px;
+    padding-right: 178px;
+}
+}
+
+@media (min-width: 1200px){
+    .container {
+    width: 86%;
+}
+}
+
+
+@media (max-width: 603px){
+#tf-menu.navbar-default {
+	background-image: -webkit-linear-gradient(bottom, rgba(255, 255, 255, 0) 0%, #000 100%);
+    border: none;
+	}
+#tf-works li.pull-right, #tf-works li.pull-left {
+    margin-top: 10px;
+    float: none !important;
+    text-align: center;
+    display: block;
+}
+label{
+    float: none !important
+}
+.pull-left.fnav,
+.pull-right.fnav {
+    float: none !important;
+    text-align: center;
+}
+
+.hover-bg .hover-text {
+    padding: 12% 10%;
+}
+}
+@media (max-width: 360px){
+.hover-bg .hover-text {
+    padding: 22% 10%;
+}
+}
