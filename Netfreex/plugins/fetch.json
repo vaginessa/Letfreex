@@ -64,5 +64,13 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "com.netfreex.nowvideo": {
+        "source": {
+            "type": "local",
+            "path": "C:\\Users\\Tommy\\Desktop\\Netfreex\\com.netfreex.nowvideo"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }
