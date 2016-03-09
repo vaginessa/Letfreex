@@ -34,7 +34,7 @@ function openVideo(url) {
     if (url.length < 6)
         extractLinkCineblog("http://swzz.xyz/link/" + url+"/");
     else
-        hello.greet(url, success, error);
+        nowvideo.extract(url, success, error);
 }
 
 var success = function (url) {

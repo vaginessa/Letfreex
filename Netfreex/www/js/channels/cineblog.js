@@ -70,7 +70,7 @@ function extractLinkCineblog(url) {
               console.log('ok')
               var url = html.split("/video/")[1].split('"')[0];
               console.log(url)
-              hello.greet(url, success, error);
+              nowvideo.extract(url, success, error);
           }
       }
     );

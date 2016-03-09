@@ -7,19 +7,19 @@
         "files": {}
     },
     "installed_plugins": {
-        "com.dawsonloudon.videoplayer.custom": {
-            "PACKAGE_NAME": "io.cordova.myapp614df5"
-        },
-        "com.netfreex.nowvideo": {
+        "cordova-plugin-file": {
             "PACKAGE_NAME": "io.cordova.myapp614df5"
         },
         "cordova-plugin-device": {
             "PACKAGE_NAME": "io.cordova.myapp614df5"
         },
-        "cordova-plugin-file": {
+        "cordova-plugin-file-transfer": {
             "PACKAGE_NAME": "io.cordova.myapp614df5"
         },
-        "cordova-plugin-file-transfer": {
+        "com.dawsonloudon.videoplayer.custom": {
+            "PACKAGE_NAME": "io.cordova.myapp614df5"
+        },
+        "com.netfreex.nowvideo": {
             "PACKAGE_NAME": "io.cordova.myapp614df5"
         },
         "cordova-plugin-whitelist": {

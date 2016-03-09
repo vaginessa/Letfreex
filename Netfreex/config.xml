@@ -129,5 +129,4 @@
     <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer" />
   </feature>
   <plugin name="com.dawsonloudon.videoplayer.custom" version="1.0.0" src="C:\Users\Tommy\Desktop\com.dawsonloudon.videoplayer.custom" />
-  <plugin name="com.example.hello" version="0.7.0" src="C:\Users\Tommy\Desktop\Netfreex\com.example.hello" />
 </widget>
