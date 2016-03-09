@@ -126,22 +126,6 @@ function printPage(isSerieTv, section) {
 
 main();
 
-//scrapeMostPopular("http://www.italia-film.co/category/film-streaming-2016/", false, 'movieMostPopularSliderContainer');
-//scrapeMostPopular("http://www.italia-film.co/category/film-streaming-2016/", true, 'serieTvMostPopularSliderContainer');
-//scrapePage("http://www.italia-film.co/category/film-streaming-2016/", false, 'movieSliderContainer');
-//scrapePage("http://www.italia-film.co/category/film-streaming-2016/page/2/", false, 'movieSliderContainer');
-//scrapePage("http://www.italia-film.co/category/telefilm/", true, 'serieTvSliderContainer');
-//scrapePage("http://www.italia-film.co/category/telefilm/page/2/", true, 'serieTvSliderContainer');
-
-//Most popular
-openPage("http://www.cb01.co/", false, 'movieMostPopularSliderContainer', true);
-openPage("http://www.cb01.co/serietv/", true, 'serieTvMostPopularSliderContainer', true);
-
-//Ultime uscite
-openPage("http://www.cb01.co/", false, 'movieSliderContainer', false);
-openPage("http://www.cb01.co/page/2/", false, 'movieSliderContainer', false);
-openPage("http://www.cb01.co/serietv/", true, 'serieTvSliderContainer', false);
-openPage("http://www.cb01.co/serietv/page/2/", true, 'serieTvSliderContainer', false);
 
 
 

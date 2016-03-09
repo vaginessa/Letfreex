@@ -175,5 +175,14 @@ function scrapeMostPopular(url, isSerieTv, section) {
     );
 }
 
+//CINEBLOG
+//Most popular
+openPage("http://www.cb01.co/", false, 'movieMostPopularSliderContainer', true);
+openPage("http://www.cb01.co/serietv/", true, 'serieTvMostPopularSliderContainer', true);
 
+//Ultime uscite
+openPage("http://www.cb01.co/", false, 'movieSliderContainer', false);
+openPage("http://www.cb01.co/page/2/", false, 'movieSliderContainer', false);
+openPage("http://www.cb01.co/serietv/", true, 'serieTvSliderContainer', false);
+openPage("http://www.cb01.co/serietv/page/2/", true, 'serieTvSliderContainer', false);
 

@@ -68,7 +68,7 @@
               <li><a  tabindex="0" onclick="goToSearch()"><i class="fa fa-search" style="padding-right: 10px"></i>Cerca</a></li>
             <!--<li><a tabindex="0" class="page-scroll">Film</a></li>
             <li><a tabindex="0" class="page-scroll" style="white-space:nowrap">Serie TV</a></li>-->
-            <li><a tabindex="0" class="page-scroll">Impostazioni</a></li>
+            <li><a tabindex="0" onclick="changeChannel('cineblog')" class="page-scroll">Impostazioni</a></li>
           </ul>
         </div>
       </div>
@@ -350,23 +350,28 @@
     <script src="js/cacheTool.js"></script>
     <script src="js/view.js"></script>
     <script src="js/navigation.js"></script>
-    <script type="text/javascript" src="js/channels/cineblog.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
 
-  <script>
+  <script type="text/javascript" src="js/main.js"></script>
+
+      <!--<script type="text/javascript" src="js/channels/cineblog.js"></script>-->
+  <div id="channel">
+      <script type="text/javascript" src="js/channels/italiafilm.js"></script>
+  </div>
+      
+      <script>
       if ($(window).width() > 768) {
           var options = { $AutoPlay: true, $ArrowKeyNavigation: 0, $Idle: 3000 };
           var jssor_slider1 = new $JssorSlider$('tf-home', options);
       }
-      
+
 
       $(window).on("load", function () {
           $('#loading').addClass('hidden');
       })
-        
+
       $(document).keydown(
           function (e) {
-                
+
               if (e.keyCode == 13) {
                   $(":focus").click();
               }
@@ -374,11 +379,20 @@
                   $.emulateTab(-1);
               }
               if (e.keyCode == 39) {
-                  $.emulateTab();           
+                  $.emulateTab();
               }
-              
+
           }
       )
+
+      function changeChannel(name) {
+          $('#movieSliderContainer').html('');
+          $('#serieTvSliderContainer').html('');
+          $('#movieMostPopularSliderContainer').html('');
+          $('#serieTvMostPopularSliderContainer').html('');
+          localStorage.clear();
+          $('#channel').html('<scr' + 'ipt type="text/javascript" src="js/channels/'+name+'.js"></scr' + 'ipt>');
+      }
   </script>     
   </body>
 </html>

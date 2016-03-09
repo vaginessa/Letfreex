@@ -46,7 +46,7 @@ var success = function (url) {
 
 var error = function (ex) {
     console.log(ex);
-    alert("Error calling Hello Plugin");
+    alert("Error calling Nowvideo Plugin");
 }
 
 var log = function (ex) {
