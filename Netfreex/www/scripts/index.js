@@ -39,14 +39,12 @@ function openVideo(url) {
 
 var success = function (url) {
     console.log(url);
-    console.log('ok')
-    //cordova.plugins.videoPlayer.play(url);
     VideoPlayer.play(url)
 }
 
 var error = function (ex) {
     console.log(ex);
-    alert("Error calling Nowvideo Plugin");
+    alert("Il link è offline");
 }
 
 var log = function (ex) {

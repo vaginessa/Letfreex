@@ -8,17 +8,17 @@
     <meta charset="utf-8">
     <!--[if IE]><meta http-equiv="x-ua-compatible" content="IE=9" /><![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Netfreex - Digital Agency One Page Template</title>
+    <title>Netfreex</title>
     <meta name="description" content="Spirit8 is a Digital agency one page template built based on bootstrap framework. This template is design by Robert Berki and coded by Jenn Pereira. It is simple, mobile responsive, perfect for portfolio and agency websites. Get this for free exclusively at ThemeForces.com">
     <meta name="keywords" content="bootstrap theme, portfolio template, digital agency, onepage, mobile responsive, spirit8, free website, free theme, themeforces themes, themeforces wordpress themes, themeforces bootstrap theme">
     <meta name="author" content="ThemeForces.com">
     
     <!-- Favicons
     ================================================== -->
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <!--<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
     <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">-->
 
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css"  href="css/bootstrap.css">
@@ -68,7 +68,19 @@
               <li><a  tabindex="0" onclick="goToSearch()"><i class="fa fa-search" style="padding-right: 10px"></i>Cerca</a></li>
             <!--<li><a tabindex="0" class="page-scroll">Film</a></li>
             <li><a tabindex="0" class="page-scroll" style="white-space:nowrap">Serie TV</a></li>-->
-            <li><a tabindex="0" onclick="changeChannel('cineblog')" class="page-scroll">Impostazioni</a></li>
+            <li><a tabindex="0"  class="page-scroll">Impostazioni</a></li>
+              <li>
+                  <div class="dropdown" style="position: relative;top: 9px; left: 5px; margin-bottom: 5px;">
+                      <button class="btn btn-primary dropdown-toggle text-uppercase" type="button" data-toggle="dropdown" style="font-size: 12px; background-color: rgba(240, 248, 255, 0); border: none" >
+                          ItaliaFilm
+                          <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu">
+                          <li><a onclick="changeChannel('cineblog')">Cineblog</a></li>
+                          <li><a onclick="changeChannel('italiafilm')">ItaliaFilm</a></li>
+                      </ul>
+                  </div>
+              </li>
           </ul>
         </div>
       </div>
@@ -353,9 +365,10 @@
 
   <script type="text/javascript" src="js/main.js"></script>
 
-      <!--<script type="text/javascript" src="js/channels/cineblog.js"></script>-->
+      
   <div id="channel">
-      <script type="text/javascript" src="js/channels/italiafilm.js"></script>
+      <!--<script type="text/javascript" src="js/channels/italiafilm.js"></script>-->
+      <script type="text/javascript" src="js/channels/cineblog.js"></script>
   </div>
       
       <script>
@@ -363,10 +376,12 @@
           var options = { $AutoPlay: true, $ArrowKeyNavigation: 0, $Idle: 3000 };
           var jssor_slider1 = new $JssorSlider$('tf-home', options);
       }
-
+      console.log()
+      
 
       $(window).on("load", function () {
           $('#loading').addClass('hidden');
+          $('#tf-home').height($('#jssor_1').height());
       })
 
       $(document).keydown(
@@ -393,6 +408,11 @@
           localStorage.clear();
           $('#channel').html('<scr' + 'ipt type="text/javascript" src="js/channels/'+name+'.js"></scr' + 'ipt>');
       }
+
+      $(".dropdown-menu").on('click', 'li a', function () {
+          $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
+          $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+      });
   </script>     
   </body>
 </html>
