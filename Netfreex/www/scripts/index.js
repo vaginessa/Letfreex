@@ -1,8 +1,4 @@
-﻿// Per un'introduzione al modello vuoto, vedere la seguente documentazione:
-// http://go.microsoft.com/fwlink/?LinkID=397704
-// Per eseguire il debug del codice al caricamento della pagina in Ripple o in dispositivi/emulatori Android: avviare l'app, impostare i punti di interruzione, 
-// quindi eseguire "window.location.reload()" nella console JavaScript.
-(function () {
+﻿(function () {
     "use strict";
 
     document.addEventListener( 'deviceready', onDeviceReady.bind( this ), false );
@@ -30,7 +26,8 @@
 })();
 
 function openVideo(url) {
-    console.log(url)
+    $('#loading').removeClass('hidden');
+    console.log(url);
     if (url.length < 6)
         extractLinkCineblog("http://swzz.xyz/link/" + url+"/");
     else
@@ -38,15 +35,13 @@ function openVideo(url) {
 }
 
 var success = function (url) {
+    $('#loading').addClass('hidden');
     console.log(url);
-    VideoPlayer.play(url)
+    VideoPlayer.play(url);
 }
 
 var error = function (ex) {
+    $('#loading').addClass('hidden');
     console.log(ex);
     alert("Il link è offline");
-}
-
-var log = function (ex) {
-    console.log(ex);
 }

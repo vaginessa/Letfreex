@@ -28,9 +28,21 @@
 }
 
  .rightBlockView { 
-    top: 97px;
+    top: 130px;
     left: 274px;
      width: 48%;
+}
+
+ .play {
+     margin-top: -7% !important;
+ }
+
+#sfumato {
+    background-image: -webkit-linear-gradient(right, rgba(255, 255, 255, 0) 0%, #000 60%);
+}
+
+#boxInfoContainer {
+    padding-top: 8%;
 }
 
 .form {

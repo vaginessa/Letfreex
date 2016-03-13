@@ -7,6 +7,7 @@ function goToHome(backBtn) {
     eraseViewMode();
     if (!backBtn)
         $('#bs-example-navbar-collapse-1').collapse('hide');
+
 }
 
 function goToSearch() {
@@ -17,19 +18,11 @@ function goToSearch() {
     eraseViewMode();
 
     $('#bs-example-navbar-collapse-1').collapse('hide');
+
 }
 
 function eraseViewMode() {
-    movie = {
-        titolo: "",
-        backgroundImg: "",
-        trama: "",
-        attori: "",
-        anno: "",
-        durata: "",
-        urls: [],
-
-    };
+    localStorage.downloadEpisodeInfo = false;
     $('#moviePlot').html("");
     $("#locandina").attr("src", "");
     $("#movieTitle").html("");
@@ -41,9 +34,12 @@ function eraseViewMode() {
     $('#votoValue').html("");
     $('#generi').html("");
     $('#produzione').html("");
+    $('.listaStagioni').html("");
     $('#loadingLink').removeClass('hidden');
     $('#playButton').addClass('hidden');
+    $('#dropDownStagioni').addClass('hidden');
     $('#playButton').removeClass('backgroundBlack');
+
 }
 
 function changeTab(num) {
@@ -77,3 +73,8 @@ $('#search').keypress(function (e) {
         return false;
     }
 });
+
+function showSeason(seasonId) {
+    $('.season').addClass('hidden');
+    $('#' + seasonId).removeClass('hidden');
+}

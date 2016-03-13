@@ -21,10 +21,10 @@ function main() {
             $('.navbar-default').removeClass('on');
         }
     });
-    $('body').scrollspy({ 
+    $('body').scrollspy({
         target: '.navbar-default',
         offset: 80
-    })
+    });
 }());
 }
 
@@ -66,15 +66,8 @@ function openPage(url, isSerieTv, section, mostPopular) {
 }
 
 function printPage(isSerieTv, section) {
-    var htmlFilm = "";
-    var viewPage = "";
-
-    if (isSerieTv)
-        viewPage = "viewSerie.html";
-    else
-        viewPage = "viewMovie.html";
-
-    var firstTime = true;
+    var htmlFilm;
+    var firstTime;
 
     if (isEmpty($("#" + section)))
         firstTime = true;
@@ -93,20 +86,19 @@ function printPage(isSerieTv, section) {
             htmlFilm = "<div class=\"swiper-slide text-center nextPage" + section + "\" tabindex=\"0\" onclick=\"nextPage('" + arrayFilm[i] + "'," + isSerieTv + ",'" + section + "')\"><img class='posterImg arrow' src='img/arrow-right.png'></div>";
         $("#" + section).html($("#" + section).html() + htmlFilm)
     }
-    
-        
+          
     var slidePerView = 0;
     var windowLength = $(window).width();
     if (windowLength>=1024 && windowLength <= 1350)
         slidePerView = 5;
-    if (windowLength>=1350 && windowLength <= 1700)
-        slidePerView = 6
-    if (windowLength >= 1800 )
-        slidePerView = 8
+    if (windowLength >= 1350 && windowLength <= 1700)
+        slidePerView = 6;
+    if (windowLength >= 1800)
+        slidePerView = 8;
     if (windowLength < 1024 && windowLength >= 768)
         slidePerView = windowLength / 176;
     if (windowLength < 768)
-        slidePerView = windowLength / 133 ;
+        slidePerView = windowLength / 140 ;
 
     if ($('.' + section)[0].swiper)
         $('.' + section)[0].swiper.destroy();
@@ -115,9 +107,7 @@ function printPage(isSerieTv, section) {
         slidesPerView: Math.floor(slidePerView),
         spaceBetween: 30,
         freeMode: true,
-        //keyboardControl: true,
-        
-        
+        //keyboardControl: true,  
 })
 
     $('#loadingSearch').addClass('hidden');

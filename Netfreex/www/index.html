@@ -66,13 +66,11 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a  tabindex="0" onclick="goToHome()">Home</a></li>
               <li><a  tabindex="0" onclick="goToSearch()"><i class="fa fa-search" style="padding-right: 10px"></i>Cerca</a></li>
-            <!--<li><a tabindex="0" class="page-scroll">Film</a></li>
-            <li><a tabindex="0" class="page-scroll" style="white-space:nowrap">Serie TV</a></li>-->
             <li><a tabindex="0"  class="page-scroll">Impostazioni</a></li>
               <li>
-                  <div class="dropdown" style="position: relative;top: 9px; left: 5px; margin-bottom: 5px;">
-                      <button class="btn btn-primary dropdown-toggle text-uppercase" type="button" data-toggle="dropdown" style="font-size: 12px; background-color: rgba(240, 248, 255, 0); border: none" >
-                          ItaliaFilm
+                  <div  class="dropdown" style="position: relative;top: 9px; left: 5px; margin-bottom: 5px;">
+                      <button  class="btn btn-primary dropdown-toggle text-uppercase" type="button" data-toggle="dropdown" style="font-size: 12px; background-color: rgba(240, 248, 255, 0); border: none" >
+                          Cineblog
                           <span class="caret"></span>
                       </button>
                       <ul class="dropdown-menu">
@@ -152,8 +150,8 @@
 
           <!-- Film - Più popolari
         ==========================================-->
-          <h1 class="sliderTitle">Film - Più popolari</h1>
-          <div id="homeFilmMostPopular" class="paddingUpDown40">
+          <h1 class="sliderTitle movieMostPopularTitle">Film - Più popolari</h1>
+          <div id="homeFilmMostPopular" class="paddingUpDown40">  
               <div class="container">
                   <div class="row">
                       <div class="col-md-12" id="movieMostPopularSlider">
@@ -170,7 +168,7 @@
 
           <!-- Serie TV - Più popolari
         ==========================================-->
-          <h1 class="sliderTitle">Serie TV - Più popolari</h1>
+          <h1 class="sliderTitle serieMostPopularTitle">Serie TV - Più popolari</h1>
           <div id="homeSerieTvMostPopular" class="paddingUpDown40">
               <div class="container">
                   <div class="row">
@@ -188,8 +186,9 @@
 
           <!-- Film - Ultime uscite
         ==========================================-->
-          <h1 class="sliderTitle">Film - Ultime uscite</h1>
+          <h1 class="sliderTitle movieLastTitle">Film - Ultime uscite</h1>
           <div id="homeFilm">
+              
               <div class="container move">
                   <div class="row">
                       <div class="col-md-12" id="movieSlider">
@@ -206,7 +205,7 @@
 
           <!-- Serie TV - Ultime uscite
         ==========================================-->
-          <h1 class="sliderTitle">Serie TV - Ultime uscite</h1>
+          <h1 class="sliderTitle serieLastTitle">Serie TV - Ultime uscite</h1>
           <div id="homeSerieTv" class="paddingUpDown40">
               <div class="container">
                   <div class="row">
@@ -247,16 +246,30 @@
               <div id="boxInfoContainer" class="container">
                   <h2 id="movieTitle"></h2>
                   <div id="boxInfo" class="text-center ">
-                      <img id="locandina" class="poster" src="" />
+                      <img id="locandina" class="poster" src=""/>
+
+                      <!-- Riepilogo -->
                       <div id="riepilogo" class="colonnaSx ">
                           <div id="moviePlot"class="scroll">
                           </div>
-                          <div id="loadingLink" class="rightBlockView" style="opacity: 0.7; font-size: 2em; ">
+                          <div id="loadingLink" class="rightBlockView play" style="opacity: 0.7; font-size: 2em;">
                               <i class="fa fa-spinner fa-spin fa-5x"></i>
                           </div>
-                          <div id="playButton" class="rightBlockView scroll" style="opacity: 0.8;">
+
+                          <!-- Lista Stagioni -->
+                          <div id="dropDownStagioni" class="rightBlockView hidden" style="overflow: visible; text-align: initial;" >
+                              <div class="dropdown" style="margin-top: -40px; margin-left: -10px; text-shadow: none">
+                                  <button id="currentSeason" class="btn btn-primary dropdown-toggle text-uppercase" type="button" data-toggle="dropdown" style="font-size: 12px;background-color: rgba(0, 0, 0, 0.43); border: none">
+                                      <!--Stagione 1 <span class="caret"></span>-->
+                                  </button><ul class="dropdown-menu listaStagioni"></ul>
+                              </div>
+                          </div>
+
+                          <div id="playButton" class="rightBlockView scroll" style="padding-top: 26px;">
                           </div>
                       </div>
+
+                      <!--Dettagli-->
                       <div id="dettagli" class="colonnaSx hidden scroll">
                           <div id="durata" class="marginBottom10">
                               <span class="colorOrange">Durata</span><br />
@@ -290,14 +303,11 @@
 
 
           <div id="viewButtons">
-              <div id="riepilogoButton" class="col-sm-2 col-sm-offset-4 col-xs-3 col-xs-offset-3  text-center viewButtonActive" onclick="changeTab(0)">
+              <div id="riepilogoButton" tabindex="1" class="col-sm-2 col-sm-offset-4 col-xs-3 col-xs-offset-3  text-center viewButtonActive" onclick="changeTab(0)">
                   <h4>Riepilogo</h4>
               </div>
-              <div id="dettagliButton" class="col-sm-2 col-xs-3 text-center" onclick="changeTab(1)">
+              <div id="dettagliButton" tabindex="1" class="col-sm-2 col-xs-3 text-center" onclick="changeTab(1)">
                   <h4>Dettagli</h4>
-              </div>
-              <div id="episodiButton" class="col-sm-2 col-xs-3 text-center hidden" onclick="changeTab(2)">
-                  <h4>Episodi</h4>
               </div>
           </div>
 
@@ -323,9 +333,9 @@
                   <div class="row">
                       <div class="col-md-12" id="searchResult">
                           <!-- Slider main container -->
-                          <div class="swiper-container searchResultContainer" style="width: 100%;">
+                          <div class="swiper-container searchResultContainer" style="width: 100%; ">
                               <!-- Additional required wrapper -->
-                              <div id="searchResultContainer" class="swiper-wrapper">
+                              <div id="searchResultContainer" class="swiper-wrapper marginBottom30">
                                   
                               </div>
                               <div id="loadingSearch"  >
@@ -338,40 +348,30 @@
           
       </div>
 
-      <!-- Movie view
-        ================================================== -->
-      <div id="movieContainer" class="hidden">
 
-      </div>
 
-      <!-- Serie view
-        ================================================== -->
-      <div id="serieTvContainer" class="hidden">
-
-      </div>
-
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script type="text/javascript" src="js/lib/bootstrap.js"></script>
     <script type="text/javascript" src="js/lib/SmoothScroll.js"></script>
     <script type="text/javascript" src="js/lib/jquery.isotope.js"></script>
     <script src="js/lib/owl.carousel.js"></script>
-      <script src="js/lib/emulatetab.joelpurra.js"></script>
+    <script src="js/lib/emulatetab.joelpurra.js"></script>
+    <script src="js/lib/fastclick.js"></script>
+
     <!-- Core -->
     <script src="js/tmdbApi.js"></script>
     <script src="scripts/index.js"></script>
     <script src="js/cacheTool.js"></script>
     <script src="js/view.js"></script>
     <script src="js/navigation.js"></script>
+    <script type="text/javascript" src="js/main.js"></script> 
+    <div id="channel" class="hidden">
+        <!--<script type="text/javascript" src="js/channels/italiafilm.js"></script>-->
+        <script type="text/javascript" src="js/channels/cineblog.js"></script>
+        <<!--<script type="text/javascript" src="js/channels/piratestreaming.js"></script>-->
+    </div>
 
-  <script type="text/javascript" src="js/main.js"></script>
-
-      
-  <div id="channel">
-      <!--<script type="text/javascript" src="js/channels/italiafilm.js"></script>-->
-      <script type="text/javascript" src="js/channels/cineblog.js"></script>
-  </div>
-      
-      <script>
+  <script>
+      FastClick.attach(document.body);
       if ($(window).width() > 768) {
           var options = { $AutoPlay: true, $ArrowKeyNavigation: 0, $Idle: 3000 };
           var jssor_slider1 = new $JssorSlider$('tf-home', options);
@@ -405,6 +405,12 @@
           $('#serieTvSliderContainer').html('');
           $('#movieMostPopularSliderContainer').html('');
           $('#serieTvMostPopularSliderContainer').html('');
+
+          $('.movieMostPopularTitle').removeClass('hidden');
+          $('.serieMostPopularTitle').removeClass('hidden');
+          $('#homeFilmMostPopular').removeClass('hidden');
+          $('#homeSerieTvMostPopular').removeClass('hidden');
+
           localStorage.clear();
           $('#channel').html('<scr' + 'ipt type="text/javascript" src="js/channels/'+name+'.js"></scr' + 'ipt>');
       }
@@ -413,6 +419,8 @@
           $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
           $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
       });
+
+
   </script>     
   </body>
 </html>

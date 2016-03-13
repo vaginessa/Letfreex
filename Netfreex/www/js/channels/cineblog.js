@@ -14,15 +14,16 @@ function scrapePage(url, isSerieTv, section) {
 
                 var articoli = html.split("filmbox");               
 
-                var start;
-                //if (isSerieTv)
-                //    start = 2;
-                //else
-                    start = 1;
+                var start = 1;
 
                 for (var i = start; i < articoli.length; i++) {
+                    var anno = "";
+                    if (isSerieTv) {
+                        var plot = articoli[i].split('span8')[1].split('<div class="rating">')[0];
+                        anno = "(" + plot.split('(')[1].substr(0,4) +")";
+                    }
                     var movie = {
-                        title: articoli[i].split('"title": "')[1].split('"')[0],
+                        title: articoli[i].split('"title": "')[1].split('"')[0] + anno,
                         img: articoli[i].split("src=\"")[1].split('"')[0],
                         url: articoli[i].split('href="')[1].split('"')[0]
                     };
@@ -30,13 +31,12 @@ function scrapePage(url, isSerieTv, section) {
                 }
 
                 //Prossima pagina
-                //if (section != "searchResultContainer")
+
                     var patt = new RegExp('<li><a href="([a-z0-9A-Z' + escapeRegExp(':/.') + ']*)">&gt;</a>', 'gi');
                     while (res = patt.exec(html)) {
                         console.log(res[1])
                         arrayFilm.push(res[1])
                     }
-                    //arrayFilm.push(html.split("first_last_page")[1].split('href="')[2].split('"')[0]);
 
                 console.log(arrayFilm)
                 //cachePage(url, arrayFilm)
@@ -47,7 +47,7 @@ function scrapePage(url, isSerieTv, section) {
 }
 
 function search() {
-    var input = $('#search').val();
+    var input = encodeURI($('#search').val());
 
     var url;
     if ($('#serieTv').prop('checked'))
@@ -85,17 +85,13 @@ function getVideoLink(url, isSerieTv) {
       function (data) {
           if (data.results[0]) {
               var html = data.results[0];
-              var counter = 0;
-
               if (!isSerieTv) {
                   //Estrae link nowvideo (link unico)
                   var patt = new RegExp('xyz/link/([a-z0-9A-Z]*)/" target="_blank">Nowvideo', 'gi');
                   while (res = patt.exec(html)) {
                       console.log('trovato ' + res[1])
-                      $('#playButton').html($('#playButton').html() + "<div class=\"guarda hidden\"  onclick=\"openVideo('" + res[1] + "')\"> <img class=\"poster\" src=\"img/play_button.png\" /></div>")
-       
+                      $('#playButton').html($('#playButton').html() + "<div class=\"guarda hidden\"  onclick=\"openVideo('" + res[1] + "')\"> <img class=\"poster play\" src=\"img/play_button.png\" /></div>");
                   }
-
 
                   //Estrae link nowvideo (link multipli)
                   try {
@@ -103,17 +99,18 @@ function getVideoLink(url, isSerieTv) {
                       var patt = new RegExp('xyz/link/([a-z0-9A-Z]*)/"', 'gi');
 
                       while (res = patt.exec(linkCode)) {
-                          $('#playButton').html($('#playButton').html() + "<div class=\"guarda hidden\"  onclick=\"openVideo('" + res[1] + "')\"><img class=\"poster\" src=\"img/play_button.png\" /></div>")
+                          $('#playButton').html($('#playButton').html() + "<div class=\"guarda hidden\"  onclick=\"openVideo('" + res[1] + "')\"><img class=\"poster play\" src=\"img/play_button.png\" /></div>");
                       }
                   } catch (e) {
-                      console.error(e)
+                      console.error(e);
                   }
 
                   //Estrae link nowvideo normale
                   var pattern = new RegExp("nowvideo.../video/([0-9a-zA-Z]*)", 'gi');
                   while (res = pattern.exec(html)) {
-                      console.log('trovato ' + res[1])
-                      $('#playButton').html($('#playButton').html() + "<div class=\"guarda hidden\"  onclick=\"openVideo('" + res[1] + "')\"> <img class=\"poster\" src=\"img/play_button.png\" /></div>")
+                      console.log('trovato ' + res[1]);
+
+                      $('#playButton').html($('#playButton').html() + "<div class=\"guarda hidden\"  onclick=\"openVideo('" + res[1] + "')\"> <img class=\"poster play\" src=\"img/play_button.png\" /></div>")
                       $('.guarda').removeClass('hidden');
                       $('#playButton').removeClass('hidden');
                       $('#loadingLink').addClass('hidden');
@@ -125,23 +122,52 @@ function getVideoLink(url, isSerieTv) {
                   
               } else {
                   var html = data.results[0];
-                  console.log(html)
-                  //Estrae link nowvideo con titolo (template nuovo)
-                  //var patt = new RegExp('([0-9]+.{1,6}[0-9]+[^<]*).*<a href="http://swzz.xyz/link/([a-z0-9A-Z]*)/" target="_blank">Nowvideo', 'gi');
+                  //Estrae link nowvideo con titolo 
                   var regex = '([0-9]{1,3}(?:[^0-9A-Za-z]|&#[0-9]{4};)[0-9]{1,3}[0-9A-Za-z –אשלעטי]*).*http:\/\/.*\/([a-z0-9A-Z]+).*Nowv';
                   var patt = new RegExp(regex, 'gi');
                   html = html.split('post_content')[1].split('disqus_thread')[0];
 
-                  var link = ""
+                  var link = "";
+                  var stagione = "0";
+                  var episodio = "0";
+
                   while (res = patt.exec(html)) {
-                      console.log('trovato ' + res[1] + " - " + res[2])
-                      link += "<div class=\"guarda col-md-4 col-xs-12 hidden\"  onclick=\"openVideo('" + res[2] + "')\"> <img class=\"poster play\" src=\"img/play_button.png\" /><h4>" + res[1].replace('-', '') + "</h4></div>"                 
+                      console.log('trovato ' + res[1] + " - " + res[2]);
+
+                      //Preparo la divisione in stagioni 
+                      var seasonEpisodeRegex = "([0-9]{1,3})(?:[^0-9A-Za-z\.]+|&#[0-9]{4};)([0-9]{1,3}).*";
+                      var seasonEpisodePattern = new RegExp(seasonEpisodeRegex, 'gi');
+
+                      while (response = seasonEpisodePattern.exec(res[1])) {
+                          console.log('stagione ' + response[1] + " episodio " + response[2]);
+
+                          //Se la stagione inizia con 0, lo tolgo per non creare problemi
+                          if (response[1][0] == "0")
+                              response[1] = response[1].substr(1, response[1].length);
+
+                          if (stagione != response[1]) {
+                              if(stagione != "0")
+                                  link += "</div><div id=\"stagione" + response[1] + "\" class=\"season hidden\">";
+                              else
+                                  link += "<div id=\"stagione" + response[1] + "\" class=\"season\">";
+                              stagione = response[1];
+                              
+                          }
+                          episodio = response[2];
+                      }
+                      link += "<div info=\"" + stagione + "x" + episodio + "\"  class=\"guarda col-md-4 col-xs-12 hidden\"> <div tabindex=\"0\" onclick=\"openVideo('" + res[2] + "')\"> <div class=\"playContainer\" style=\"background-position: center;background-repeat: no-repeat;\"><img class=\"playSeries\" src=\"img/playSeries.png\" /></div><h4>" + res[1].replace('-', '') + "</h4></div></div>";
                   }
-                  $('#playButton').html(link)
+                  link += "</div>";
+
+                  //Mostro i link
+                  $('#playButton').html(link);
                   $('.guarda').removeClass('hidden');
-                    $('#loadingLink').addClass('hidden');
-                    $('#playButton').removeClass('hidden');
-                    $('#playButton').addClass('backgroundBlack');
+                  $('#loadingLink').addClass('hidden');
+                  $('#playButton').removeClass('hidden');
+                  $('#playButton').addClass('backgroundBlack');
+
+                  getEpisodesInfo();
+
               }
               
           }
