@@ -28,10 +28,13 @@
 function openVideo(url) {
     $('#loading').removeClass('hidden');
     console.log(url);
+
     if (url.length < 6)
         extractLinkCineblog("http://swzz.xyz/link/" + url+"/");
-    else
+    else if (url.length == 13)
         nowvideo.extract(url, success, error);
+    else if (url.length == 12)
+        rapidvideo.extract(url, success, error);
 }
 
 var success = function (url) {

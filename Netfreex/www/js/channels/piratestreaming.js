@@ -9,7 +9,7 @@ function scrapePage(url, isSerieTv, section) {
           if (data.results[0]) {
               var html = data.results[0];
 
-              var articoli = html.split('featuredItem')
+              var articoli = html.split('featuredItem');
               for (var i = 1; i < articoli.length; i = i + 2) {
                   try {
                       var movie = {
@@ -19,7 +19,7 @@ function scrapePage(url, isSerieTv, section) {
                       };
                       arrayFilm.push(movie);
                   } catch (e) {
-                      console.log(e)
+                      console.log(e);
                   }
                   
               }
@@ -29,7 +29,7 @@ function scrapePage(url, isSerieTv, section) {
               arrayFilm.push(url.substr(0, url.length - 1) + n );
 
               console.log(arrayFilm)
-              printPage(isSerieTv, section)
+              printPage(isSerieTv, section);
           }
       }
     );
@@ -51,7 +51,7 @@ function getVideoLink(url, isSerieTv) {
 
               if (!isSerieTv) {
                   //Estrae link nowvideo normale
-                  var pattern = new RegExp("nowvideo.../video/([0-9a-zA-Z]*)", 'gi');
+                  var pattern = new RegExp("nowvideo....?/video/([0-9a-zA-Z]*)", 'gi');
                   while (res = pattern.exec(html)) {
                       console.log('trovato ' + res[1])
                       $('#playButton').html($('#playButton').html() + "<div class=\"guarda hidden\"  onclick=\"openVideo('" + res[1] + "')\"> <img class=\"poster play\" src=\"img/play_button.png\" /></div>")
@@ -67,7 +67,7 @@ function getVideoLink(url, isSerieTv) {
               } else {
                   var html = data.results[0];
                   //Estrae link nowvideo con titolo
-                  var regex = '([0-9]{1,3}x[0-9]{1,3}[0-9A-Za-z –אשלעטי]*).*(http:\/\/[a-z0-9A-Z\/._-]+)/.*?Rapidvideo';
+                  var regex = '([0-9]{1,3}x[0-9]{1,3}[0-9A-Za-z –אשלעטי]*).*http:\/\/www.rapidvideo.org/([a-z0-9A-Z\/._-]+)/.*?Rapidvideo';
                   var patt = new RegExp(regex, 'gi');
 
                   //Levo la roba che non serve

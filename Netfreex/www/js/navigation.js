@@ -67,6 +67,8 @@ function nextPage(url, isSerieTv, section) {
 
 $('#search').keypress(function (e) {
     if (e.which == 13) {
+        Keyboard.hide();
+        StatusBar.hide();
         $('#searchResultContainer').html('');
         $('#loadingSearch').removeClass('hidden');
         search()
