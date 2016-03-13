@@ -30,7 +30,7 @@ Al momento supporta:
 
 ### Host
 
-Al momento Netfreex riesce a comprendere e a visializzare i link verso i seguenti host:
+Al momento Netfreex riesce a comprendere e a visualizzare i link verso i seguenti host:
 
 - Nowvideo
 - Rapidvideo
