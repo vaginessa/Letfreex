@@ -19,6 +19,22 @@ L'interfaccia è responsive e si adatta facilmente sia agli schermi più piccoli
 
 Netfreex non ha un database interno, ma si collega ed estrae i dati in tempo reale direttamente dai siti di streaming (utilizzando appositi meccanismi di caching per ottimizzare le prestazioni), visualizzandoli SENZA PUBBLICITA' e con una grafica chiara, touch friendly e molto simile a quella di Netflix.
 
+## Canali
+
+Netfreex si connette a diversi siti di streaming, con la possibilità di switchare da uno all'altro in qualsiasi momento.
+Al momento supporta:
+
+- Cineblog
+- ItaliaFilm
+- Piratestreaming
+
+### Host
+
+Al momento Netfreex riesce a comprendere e a visializzare i link verso i seguenti host:
+
+- Nowvideo
+- Rapidvideo
+
 ## Work in progress
 
 Il progetto è appena nato, nonostante qualcosa funzioni e sia già testabile, è ancora in fase di sviluppo.
