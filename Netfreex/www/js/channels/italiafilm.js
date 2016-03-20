@@ -165,3 +165,4 @@ openPage("http://www.italia-film.co/category/film-streaming-2016/", false, 'movi
 openPage("http://www.italia-film.co/category/film-streaming-2016/page/2/", false, 'movieSliderContainer', false);
 openPage("http://www.italia-film.co/category/telefilm/", true, 'serieTvSliderContainer', false);
 openPage("http://www.italia-film.co/category/telefilm/page/2/", true, 'serieTvSliderContainer', false);
+

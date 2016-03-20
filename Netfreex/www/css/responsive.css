@@ -19,6 +19,7 @@
 }
   #moviePlot{
     width: 240px;
+    margin-bottom: 60px;
 }
   #dettagli{
     width: 240px;
@@ -33,6 +34,10 @@
      width: 48%;
 }
 
+ .carouselPlot {
+     font-size: 20px;
+ }
+
  .play {
      margin-top: -7% !important;
  }
@@ -41,9 +46,11 @@
     background-image: -webkit-linear-gradient(right, rgba(255, 255, 255, 0) 0%, #000 60%);
 }
 
-#boxInfoContainer {
-    padding-top: 8%;
+#boxInfoContainer, #carouselPoster {
+    padding-top: 8% !important;
 }
+
+
 
 .form {
     margin-top: 21px;

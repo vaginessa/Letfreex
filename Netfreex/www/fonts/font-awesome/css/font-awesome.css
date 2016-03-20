@@ -555,7 +555,7 @@
   content: "\f084";
 }
 .fa-gears:before,
-.fa-cogs:before {
+.fa-spinner:before {
   content: "\f085";
 }
 .fa-comments:before {

@@ -1,8 +1,10 @@
 //TheMovieDB API
 var apiKey = "f7f51775877e0bb6703520952b3c7840";
 var id;
-function searchMovieInfo(input, isSerie) {
+function searchMovieInfo(obj, isSerie, isCarousel) {
     id = "";
+    var input = obj.title;
+
     var aux = input.replace(new RegExp('\\[.*\\]', 'g'), ' ').split('(');
     input = encodeURI(aux[0].split('\'')[0].split('-')[0]);
     console.log(input);
@@ -21,14 +23,32 @@ function searchMovieInfo(input, isSerie) {
     $.ajax({
         type: 'GET',
         url: url + mode + input + key + language + year,
-        async: false,
-        jsonpCallback: 'testing',
         contentType: 'application/json',
         dataType: 'jsonp',
         success: function (json) {
-            console.dir(json);
-            localStorage.setItem(input, JSON.stringify(json));
-            fillPageWithMovieDetails(json, isSerie);
+            if (isCarousel) {
+                //Se le api non hanno trovato niente, cerco un altro elemento a caso finchè non ne trovo uno
+                if (json.total_results == 0 || json.results[0].backdrop_path == null) {
+                    obj = arrayFilm[Math.floor(Math.random() * arrayFilm.length-1) + 0];
+                    searchMovieInfo(obj, isSerie, true);
+                } else {
+                    json.info = obj;
+                    console.log(json);
+                    arrayCarousel.push(json);
+                }
+                    
+            } else {
+                if (json.total_results == 0) {
+                    fillPageWithMovieDetails(json, isSerie, obj, false);
+                } else {
+                    console.dir(json);
+                    localStorage.setItem(input, JSON.stringify(json));
+                    fillPageWithMovieDetails(json, isSerie, obj, true);
+                }
+            }
+            
+            
+            
         },
         error: function (e) {
             console.log(e.message);
@@ -36,15 +56,7 @@ function searchMovieInfo(input, isSerie) {
     });
 }
 
-function fillPageWithMovieDetails(json, isSerie) {
-     id = json.results[0].id;
-
-    //Base info
-    $('#moviePlot').html(json.results[0].overview);
-    $("#locandina").attr("src", "https://image.tmdb.org/t/p/w500" + json.results[0].poster_path);
-    $("#movieTitle").html(isSerie ? json.results[0].name : json.results[0].title);
-
-    $("#movieDetails").css("background-image", "url('" + selectBackgroundSize() + json.results[0].backdrop_path + "')");
+function fillPageWithMovieDetails(json, isSerie, obj, foundByAPI) {
 
     if ($(window).width() > 700) {
         $('.rightBlockView').css('width', $(window).width() - ($('#boxInfoContainer').outerWidth(true) - $('#boxInfoContainer').outerWidth() + 340 + 30) + 'px')
@@ -55,8 +67,25 @@ function fillPageWithMovieDetails(json, isSerie) {
     }
     $('#loadingLink').css('height', '200px');
 
-    //General info
-    getGeneralInfo(id, isSerie);
+    if (foundByAPI) {
+        id = json.results[0].id;
+
+        //Base info
+        $('#moviePlot').html(json.results[0].overview);
+        $("#locandina").attr("src", "https://image.tmdb.org/t/p/w500" + json.results[0].poster_path);
+        $("#movieTitle").html(isSerie ? json.results[0].name : json.results[0].title);
+
+        $("#movieDetails").css("background-image", "url('" + selectBackgroundSize() + json.results[0].backdrop_path + "')");
+
+        //General info
+        getGeneralInfo(id, isSerie);
+    } else {
+        //$('#moviePlot').html(obj.plot);
+        $("#locandina").attr("src", obj.img);
+        $("#movieTitle").html(obj.title);
+    }
+
+    
 }
 
 function getCast(id, isSerie) {

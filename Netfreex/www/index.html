@@ -48,7 +48,7 @@
   <body id="body">
     <!-- Navigation
     ==========================================-->
-    <nav id="tf-menu" class="navbar navbar-default navbar-fixed-top">
+    <nav id="tf-menu" class="navbar navbar-default navbar-fixed-top hidden">
       <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -66,17 +66,17 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a  tabindex="0" onclick="goToHome()">Home</a></li>
               <li><a  tabindex="0" onclick="goToSearch()"><i class="fa fa-search" style="padding-right: 10px"></i>Cerca</a></li>
-            <li><a tabindex="0"  class="page-scroll">Impostazioni</a></li>
+            <!--<li><a tabindex="0"  class="page-scroll">Impostazioni</a></li>-->
               <li>
                   <div  class="dropdown" style="position: relative;top: 9px; left: 5px; margin-bottom: 5px;">
                       <button  class="btn btn-primary dropdown-toggle text-uppercase" type="button" data-toggle="dropdown" style="font-size: 12px; background-color: rgba(240, 248, 255, 0); border: none" >
-                          Cineblog
+                          <span id="channelName"></span>
                           <span class="caret"></span>
                       </button>
                       <ul class="dropdown-menu">
-                          <li><a onclick="changeChannel('cineblog')">Cineblog</a></li>
-                          <li><a onclick="changeChannel('italiafilm')">ItaliaFilm</a></li>
-                          <li><a onclick="changeChannel('piratestreaming')">Piratestreaming</a></li>
+                          <li><a href="index.html?channel=cineblog">Cineblog</a></li>
+                          <li><a href="index.html?channel=italiafilm">ItaliaFilm</a></li>
+                          <li><a href="index.html?channel=piratestreaming">Piratestreaming</a></li>
                       </ul>
                   </div>
               </li>
@@ -89,51 +89,41 @@
           <i class="fa fa-spinner fa-spin fa-5x"></i>
       </div>
 
-      <!-- Home view
+      <div id="error" class="hidden">
+          Sembra ci sia un problema di rete. Controlla di essere connesso ad internet e riprova. <br/>Potrebbe anche essere un problema del canale, prova a cambiarlo.
+            <br/><br/><a class="btn btn-warning" href="index.html">Riprova</a>
+      </div>
+
+  <!-- Home view
           ================================================== -->
       <div id="homeContainer" >
           <!-- Home Page slider
         ==========================================-->
-          <div id="tf-home" class="text-center">
+          <div id="tf-home" class="text-center hidden">
               <div class="overlay">
                   <div class="content">
                       <div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 1300px; height: 700px; overflow: hidden; visibility: hidden;">
                           <!-- Loading Screen -->
                           <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
                               <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
-                              <div style="position:absolute;display:block;background:url('img/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
+                              <div style="position:absolute;display:block;top:0px;left:0px;width:100%;height:100%;"><i class="fa fa-spinner fa-spin"></i></div>
                           </div>
-                          <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 1300px; height: 700px; overflow: hidden;">
+                          <div id="carouselItems" data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 1300px; height: 700px; overflow: hidden;">
+                              
                               <!--<div data-p="225.00" style="display: none;">
-                                <img data-u="image" src="img/red.jpg" />
-                                <div style="position: absolute; top: 30px; left: 30px; width: 480px; height: 120px; font-size: 50px; color: #ffffff; line-height: 60px;">TOUCH SWIPE SLIDER</div>
-                                <div style="position: absolute; top: 300px; left: 30px; width: 480px; height: 120px; font-size: 30px; color: #ffffff; line-height: 38px;">Build your slider with anything, includes image, content, text, html, photo, picture</div>
-                                <div data-u="caption" data-t="0" style="position: absolute; top: 100px; left: 600px; width: 445px; height: 300px;">
-                                    <img src="img/c-phone.png" style="position: absolute; top: 0px; left: 0px; width: 445px; height: 300px;" />
-                                    <img src="img/c-jssor-slider.png" data-u="caption" data-t="1" style="position: absolute; top: 70px; left: 130px; width: 102px; height: 78px;" />
-                                    <img src="img/c-text.png" data-u="caption" data-t="2" style="position: absolute; top: 153px; left: 163px; width: 80px; height: 53px;" />
-                                    <img src="img/c-fruit.png" data-u="caption" data-t="3" style="position: absolute; top: 60px; left: 220px; width: 140px; height: 90px;" />
-                                    <img src="img/c-navigator.png" data-u="caption" data-t="4" style="position: absolute; top: -123px; left: 121px; width: 200px; height: 155px;" />
-                                </div>
-                                <div data-u="caption" data-t="5" style="position: absolute; top: 120px; left: 650px; width: 470px; height: 220px;">
-                                    <img src="img/c-phone-horizontal.png" style="position: absolute; top: 0px; left: 0px; width: 470px; height: 220px;" />
-                                    <div style="position: absolute; top: 4px; left: 45px; width: 379px; height: 213px; overflow: hidden;">
-                                        <img src="img/c-slide-1.jpg" data-u="caption" data-t="6" style="position: absolute; top: 0px; left: 0px; width: 379px; height: 213px;" />
-                                        <img src="img/c-slide-3.jpg" data-u="caption" data-t="7" style="position: absolute; top: 0px; left: 379px; width: 379px; height: 213px;" />
-                                    </div>
-                                    <img src="img/c-navigator-horizontal.png" style="position: absolute; top: 4px; left: 45px; width: 379px; height: 213px;" />
-                                    <img src="img/c-finger-pointing.png" data-u="caption" data-t="8" style="position: absolute; top: 740px; left: 1600px; width: 257px; height: 300px;" />
-                                </div>
-                            </div>-->
-                              <div data-p="225.00" style="display: none;">
-                                  <img data-u="image" src="img/slider1.jpg" />
-                              </div>
-                              <div data-p="225.00" style="display: none;">
-                                  <img data-u="image" src="img/slider2.jpg" />
-                              </div>
-                              <div data-p="225.00" style="display: none;">
-                                  <img data-u="image" src="img/slider3.jpg" />
-                              </div>
+                                  <img data-u="image" src="img/slider1.jpg"/>
+                                  <img style="position: absolute;top: 26%;left: 55%;" src="img/play_button.png" />
+
+                                  <div id="carouselPoster" class="sfumato" style="height: 100%; padding-top: 6% !important; padding: 55px;">
+                                      <h2 style="color:white">The Big bang theory</h2>
+                                      <img class="poster" src="https://image.tmdb.org/t/p/w500/wQoosZYg9FqPrmI4zeCLRdEbqAB.jpg">
+                                      <div id="carouselPlot">The Big Bang Theory è una sitcom statunitense ideata da Chuck Lorre e Bill Prady e prodotta dalla Warner Bros. Television in collaborazione con la Chuck Lorre Productions. L'episodio pilota è andato in onda il 24 settembre 2007 sul canale CBS.
+                                          In Italia (dove per le prime sei stagioni era intitolata Big Bang Theory) la serie viene trasmessa in prima visione pay dalla piattaforma Mediaset Premium dal 19 gennaio 2008, e resa disponibile dal servizio di streaming on demand Mediaset Infinity dal 16 ottobre 2015,
+                                          mentre in chiaro è trasmessa dai canali Mediaset dal 20 settembre 2010.</div>
+
+                                  </div>
+
+                              </div>-->
                           </div>
                           <!-- Bullet Navigator -->
                           <div data-u="navigator" class="jssorb05" style="bottom:16px;right:16px;" data-autocenter="1">
@@ -225,16 +215,8 @@
           <nav id="footer">
               <div class="container">
                   <div class="pull-left fnav">
-                      <p>NETFREEX © 2015. Developed by <a href="https://www.facebook.com/tommy92.54">Thomas Traverso</a></p>
+                      <p>NETFREEX © 2016. Developed by <a href="https://github.com/Be4t5">Be4t5</a></p>
                   </div>
-                  <!--<div class="pull-right fnav">
-                <ul class="footer-social">
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                </ul>
-            </div>-->
               </div>
           </nav>
 
@@ -251,7 +233,7 @@
 
                       <!-- Riepilogo -->
                       <div id="riepilogo" class="colonnaSx ">
-                          <div id="moviePlot"class="scroll">
+                          <div id="moviePlot" class="scroll">
                           </div>
                           <div id="loadingLink" class="rightBlockView play" style="opacity: 0.7; font-size: 2em;">
                               <i class="fa fa-spinner fa-spin fa-5x"></i>
@@ -298,7 +280,7 @@
                   </div>               
               </div>
 
-              <div id="sfumato">
+              <div id="sfumato" class="sfumato">
               </div>
           </div>
 
@@ -340,7 +322,7 @@
                                   
                               </div>
                               <div id="loadingSearch"  >
-                                  <i class="fa fa-cogs fa-spin fa-5x"></i>
+                                  <i class="fa fa-spinner fa-spin fa-5x"></i>
                               </div>
                           </div>
                       </div>
@@ -360,34 +342,43 @@
 
     <!-- Core -->
     <script src="js/tmdbApi.js"></script>
-    <script src="scripts/index.js"></script>
-    <script src="js/cacheTool.js"></script>
-    <script src="js/view.js"></script>
-    <script src="js/navigation.js"></script>
+    <script src="js/view.js"></script> 
     <script type="text/javascript" src="js/main.js"></script> 
     <div id="channel" class="hidden">
         <!--<script type="text/javascript" src="js/channels/italiafilm.js"></script>-->
-        <script type="text/javascript" src="js/channels/cineblog.js"></script>
-        <<!--<script type="text/javascript" src="js/channels/piratestreaming.js"></script>-->
+        <!--<script type="text/javascript" src="js/channels/cineblog.js"></script>-->
+        <!--<script type="text/javascript" src="js/channels/piratestreaming.js"></script>-->
     </div>
+  <script src="js/navigation.js"></script>
 
   <script>
       FastClick.attach(document.body);
-      if ($(window).width() > 768) {
-          var options = { $AutoPlay: true, $ArrowKeyNavigation: 0, $Idle: 3000 };
-          var jssor_slider1 = new $JssorSlider$('tf-home', options);
+
+
+      var channel = getURLParameters('channel');
+      if (channel != null) {
+          changeChannel(channel);
+          $('#channelName').html(channel);
+      }  
+      else {
+          changeChannel('cineblog');
+          $('#channelName').html('cineblog');
       }
-      console.log()
-      
 
       $(window).on("load", function () {
           $('#loading').addClass('hidden');
-          $('#tf-home').height($('#jssor_1').height());
-      })
+          $('#tf-menu').removeClass('hidden');
+          if (isEmpty($('#movieSliderContainer')) && isEmpty($('#serieTvSliderContainer')) && isEmpty($('#serieTvMostPopularSliderContainer')) && isEmpty($('#movieMostPopularSliderContainer'))) {
+              $('#error').removeClass('hidden');
+          }
+          
+          //Carousel
+          fillCarousel();
+      });
 
+      //Eventi per navigazione tramite tastiera/telecomando
       $(document).keydown(
-          function (e) {
-
+          function(e) {
               if (e.keyCode == 13) {
                   $(":focus").click();
               }
@@ -397,30 +388,8 @@
               if (e.keyCode == 39) {
                   $.emulateTab();
               }
-
           }
-      )
-
-      function changeChannel(name) {
-          $('#movieSliderContainer').html('');
-          $('#serieTvSliderContainer').html('');
-          $('#movieMostPopularSliderContainer').html('');
-          $('#serieTvMostPopularSliderContainer').html('');
-
-          $('.movieMostPopularTitle').removeClass('hidden');
-          $('.serieMostPopularTitle').removeClass('hidden');
-          $('#homeFilmMostPopular').removeClass('hidden');
-          $('#homeSerieTvMostPopular').removeClass('hidden');
-
-          localStorage.clear();
-          $('#channel').html('<scr' + 'ipt type="text/javascript" src="js/channels/'+name+'.js"></scr' + 'ipt>');
-      }
-
-      $(".dropdown-menu").on('click', 'li a', function () {
-          $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
-          $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
-      });
-
+      );
 
   </script>     
   </body>

@@ -38,6 +38,7 @@ function eraseViewMode() {
     $('#loadingLink').removeClass('hidden');
     $('#playButton').addClass('hidden');
     $('#dropDownStagioni').addClass('hidden');
+    $('#currentSeason').html("");
     $('#playButton').removeClass('backgroundBlack');
 
 }
@@ -61,14 +62,16 @@ function changeTab(num) {
 
 function nextPage(url, isSerieTv, section) {
     console.log(url)
-    $('.nextPage' + section).html("<i class=\"fa fa-cogs fa-spin fa-3x\"></i>");
+    $('.nextPage' + section).html("<i class=\"fa fa-spinner fa-spin fa-3x\"></i>");
     scrapePage(url, isSerieTv, section)
 }
 
 $('#search').keypress(function (e) {
     if (e.which == 13) {
-        Keyboard.hide();
-        StatusBar.hide();
+        if (window.cordova) {
+            Keyboard.hide();
+            StatusBar.hide();
+        } 
         $('#searchResultContainer').html('');
         $('#loadingSearch').removeClass('hidden');
         search()
@@ -79,4 +82,22 @@ $('#search').keypress(function (e) {
 function showSeason(seasonId) {
     $('.season').addClass('hidden');
     $('#' + seasonId).removeClass('hidden');
+}
+
+function changeChannel(name) {
+    $('#movieSliderContainer').html('');
+    $('#serieTvSliderContainer').html('');
+    $('#movieMostPopularSliderContainer').html('');
+    $('#serieTvMostPopularSliderContainer').html('');
+
+    $('#carouselItems').html('');
+
+    $('.movieMostPopularTitle').removeClass('hidden');
+    $('.serieMostPopularTitle').removeClass('hidden');
+    $('#homeFilmMostPopular').removeClass('hidden');
+    $('#homeSerieTvMostPopular').removeClass('hidden');
+
+
+    localStorage.clear();
+    $('#channel').html('<scr' + 'ipt type="text/javascript" src="js/channels/' + name + '.js"></scr' + 'ipt>');
 }

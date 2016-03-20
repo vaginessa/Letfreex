@@ -19,8 +19,13 @@ function scrapePage(url, isSerieTv, section) {
                 for (var i = start; i < articoli.length; i++) {
                     var anno = "";
                     if (isSerieTv) {
-                        var plot = articoli[i].split('span8')[1].split('<div class="rating">')[0];
-                        anno = "(" + plot.split('(')[1].substr(0,4) +")";
+                        try {
+                            var plot = articoli[i].split('span8')[1].split('<div class="rating">')[0];
+                            anno = "(" + plot.split('(')[1].substr(0, 4) + ")";
+                        } catch (e) {
+                            anno = "";
+                        }
+                        
                     }
                     var movie = {
                         title: articoli[i].split('"title": "')[1].split('"')[0] + anno,
@@ -31,16 +36,14 @@ function scrapePage(url, isSerieTv, section) {
                 }
 
                 //Prossima pagina
-
-                    var patt = new RegExp('<li><a href="([a-z0-9A-Z' + escapeRegExp(':/.') + ']*)">&gt;</a>', 'gi');
-                    while (res = patt.exec(html)) {
-                        console.log(res[1])
-                        arrayFilm.push(res[1])
-                    }
+                var patt = new RegExp('<li><a href="([a-z0-9A-Z' + escapeRegExp(':/.') + ']*)">&gt;</a>', 'gi');
+                while (res = patt.exec(html)) {
+                    console.log(res[1])
+                    arrayFilm.push(res[1]);
+                }
 
                 console.log(arrayFilm)
-                //cachePage(url, arrayFilm)
-                printPage(isSerieTv, section)
+                printPage(isSerieTv, section);
             }
         }
       );
@@ -157,16 +160,26 @@ function getVideoLink(url, isSerieTv) {
                       }
                       link += "<div info=\"" + stagione + "x" + episodio + "\"  class=\"guarda col-md-4 col-xs-12 hidden\"> <div tabindex=\"0\" onclick=\"openVideo('" + res[2] + "')\"> <div class=\"playContainer\" style=\"background-position: center;background-repeat: no-repeat;\"><img class=\"playSeries\" src=\"img/playSeries.png\" /></div><h4>" + res[1].replace('-', '') + "</h4></div></div>";
                   }
-                  link += "</div>";
 
-                  //Mostro i link
-                  $('#playButton').html(link);
+                  if (link != "") {
+                      link += "</div>";
+
+                      //Mostro i link
+                      $('#playButton').html(link);
+                      getEpisodesInfo();
+                  } else {
+                      link = "<i class='fa fa-warning fa-2x'></i><br>Nessun link disponibile su questo canale. Prova su un altro.";
+                      $('#playButton').html(link);
+                  }
+
                   $('.guarda').removeClass('hidden');
                   $('#loadingLink').addClass('hidden');
                   $('#playButton').removeClass('hidden');
                   $('#playButton').addClass('backgroundBlack');
+                  
+                  
 
-                  getEpisodesInfo();
+                  
 
               }
               

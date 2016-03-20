@@ -624,7 +624,7 @@ color:white;
     z-index:2;
 }
 
-#sfumato{
+.sfumato{
     background-image: linear-gradient(top right, #fff 0%, #000 100%);
 background-image: -o-linear-gradient(top right, #fff 0%, #000 100%);
 background-image: -moz-linear-gradient(top right, #fff 0%, #000 100%);
@@ -678,6 +678,18 @@ background-image: -ms-linear-gradient(top right, #fff 0%, #000 100%);
 }
 
 #loading{
+    position: fixed;
+    z-index: 99;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    text-align: center;
+    padding-top: 16%;
+    font-size: 2vw;
+    color: #F2A542;
+}
+
+#error {
     position: fixed;
     z-index: 99;
     height: 100%;
@@ -832,7 +844,7 @@ label {
 
 .play {
     margin: 0 !important;
-    width: 100px;
+    /*width: 100px;*/
 }
 
 .playContainer {
@@ -843,3 +855,11 @@ label {
 .marginBottom30 {
     margin-bottom: 30px !important;
 }
+
+ #carouselPoster {
+    padding-top: 6% !important;
+}
+ .carouselImg {
+     margin-top: 20px;
+         width: 300px;
+ }
