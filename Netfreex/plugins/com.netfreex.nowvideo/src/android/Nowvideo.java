@@ -45,11 +45,25 @@ public class Nowvideo extends CordovaPlugin {
 				try{
 					HttpURLConnection huc = (HttpURLConnection) urlVideo.openConnection();
 					huc.setRequestMethod("HEAD");
+					huc.setConnectTimeout(2000); 
 					responseCode = huc.getResponseCode();
+					if (responseCode != 200)
+							throw new Exception();
 					callbackContext.success("http://" + server + "." + restOfLink);
 				}
 				catch(Exception e){
-					callbackContext.success("http://" + originalServer + "." + restOfLink);
+					try{
+						urlVideo = new URL("http://s150." + restOfLink);
+						HttpURLConnection huc = (HttpURLConnection) urlVideo.openConnection();
+						huc.setRequestMethod("HEAD");
+						huc.setConnectTimeout(2000); 
+						responseCode = huc.getResponseCode();
+						if (responseCode != 200)
+							throw new Exception();
+						callbackContext.success("http://s150." + restOfLink);
+					}catch(Exception exx){
+						callbackContext.success("http://" + originalServer + "." + restOfLink);
+					}
 				}
 				
 			}catch(Exception ex)

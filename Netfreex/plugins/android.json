@@ -19,19 +19,16 @@
         "cordova-plugin-device": {
             "PACKAGE_NAME": "io.cordova.myapp614df5"
         },
-        "cordova-plugin-file": {
-            "PACKAGE_NAME": "io.cordova.myapp614df5"
-        },
-        "cordova-plugin-file-transfer": {
-            "PACKAGE_NAME": "io.cordova.myapp614df5"
-        },
-        "cordova-plugin-whitelist": {
+        "cordova-plugin-keyboard": {
             "PACKAGE_NAME": "io.cordova.myapp614df5"
         },
         "cordova-plugin-statusbar-custom": {
             "PACKAGE_NAME": "io.cordova.myapp614df5"
         },
-        "cordova-plugin-keyboard": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "io.cordova.myapp614df5"
+        },
+        "com.netfreex.flashx": {
             "PACKAGE_NAME": "io.cordova.myapp614df5"
         }
     },
