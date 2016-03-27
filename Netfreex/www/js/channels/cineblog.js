@@ -61,20 +61,33 @@ function search() {
     openPage(url, $('#serieTv').prop('checked'), 'searchResultContainer', false);
 }
 
-function extractLinkCineblog(url, host) {
+function extractLinkSwzz(url, host) {
     console.log(url)
     $.getJSON("http://query.yahooapis.com/v1/public/yql?" +
               "q=select%20*%20from%20html%20where%20url%3D%22" +
               encodeURIComponent(url) +
               "%22&format=xml'&callback=?",
       function (data) {
-          if (data.results[0]) {
+          try {
               var html = data.results[0];
               console.log('ok')
-              var url = html.split("/video/")[1].split('"')[0];
+              var url;
+              switch (host) {
+              case 'nowvideo':
+                  url = html.split("/video/")[1].split('"')[0];
+                  break;
+              case 'openload':
+                  url = html.split("openload.co/f/")[1].split('/')[0];
+                  break;
+              }
+
               console.log(url)
               openVideo(host, url);
+          } catch (e) {
+              error(e);
           }
+              
+          
       }
     );
 }

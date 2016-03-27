@@ -75,33 +75,45 @@ function openVideo(host, url) {
     host = host.split('|');
 
     if (host[0] == 'swzz')
-        extractLinkCineblog("http://swzz.xyz/link/" + url + "/", host[1]);
+        extractLinkSwzz("http://swzz.xyz/link/" + url + "/", host[1]);
     else if (host[0] == 'nowvideo')
         nowvideo.extract(url, success, error);
     else if (host[0] == 'rapidvideo')
         rapidvideo.extract(url, success, error);
     else if (host[0] == 'flashx')
         flashx.extract(url, success, error);
+    else if (host[0] == 'openload')
+        openload.extract(url, success, error);
+
 }
 
 //Riproduce il video
 var success = function (url) {
     $('#loading').addClass('hidden');
     console.log(url);
+ 
     try {
-        if (url.split("(")[0] == "eval") {
+        //Unpack packed url (flashx)
+        if (url.indexOf("eval") > -1) {
             url = unpack(url);
         }
+
+        //Decode url Openload
+        if (url.indexOf('openload') > -1) {
+            url = decodeOpenload(url.split('|')[1]);
+        }
+
     } catch (e) {
         error(e);
     }
+
     VideoPlayer.play(url);
 }
 
 var error = function (ex) {
     $('#loading').addClass('hidden');
     console.log(ex);
-    alert("Il link è offline");
+    alert("Il link e' offline");
 }
 
 function unpack(p) {
@@ -128,5 +140,66 @@ function unpack(p) {
      } else { c = p };
 
     return c;
+}function decodeOpenload(decodestring) {
+
+    function decode(text) {
+        var evalPreamble = "(\uFF9F\u0414\uFF9F) ['_'] ( (\uFF9F\u0414\uFF9F) ['_'] (";
+        var decodePreamble = "( (\uFF9F\u0414\uFF9F) ['_'] (";
+        var evalPostamble = ") (\uFF9F\u0398\uFF9F)) ('_');";
+        var decodePostamble = ") ());";
+
+        // strip beginning/ending space.
+        text = text.replace(/^\s*/, "").replace(/\s*$/, "");
+
+        // returns empty text for empty input.
+        if (/^\s*$/.test(text)) {
+            return "";
+        }
+        // check if it is encoded.
+        if (text.lastIndexOf(evalPreamble) < 0) {
+            throw new Error("Given code is not encoded as aaencode.");
+        }
+        if (text.lastIndexOf(evalPostamble) != text.length - evalPostamble.length) {
+            throw new Error("Given code is not encoded as aaencode.");
+        }
+
+        var decodingScript = text.replace(evalPreamble, decodePreamble)
+								 .replace(evalPostamble, decodePostamble);
+        return eval(decodingScript);
+    }
+
+    decodestring = decode(decodestring);
+
+    if (decodestring.indexOf('toString') > -1) {
+        var baseRegex = "toString\\(a\\+(\\d+)"
+        var basePattern = new RegExp(baseRegex, 'gi');
+        var base;
+        while (res = basePattern.exec(decodestring)) {
+            base = res[1];
+        }
+
+        var numsRegex = "(\\d+), ?(\\d+)"
+        var numsPattern = new RegExp(numsRegex, 'gi');
+        var nums = [];
+
+        while (res = numsPattern.exec(decodestring)) {
+            nums.push(res)
+        }
+
+        for (var i = 0; i < nums.length; i++) {
+            var base2 = parseInt(base) + parseInt(nums[i][1]);
+            var rep12 = (parseInt(nums[i][2])).toString(base2);
+            decodestring = decodestring.replace("(" + nums[i][0] + ")", rep12)
+        }
+
+        decodestring = decodestring.replace(/[^a-zA-Z0-9\/\.:-_@}]/gi, "");
+
+        var url = "http" + decodestring.split('http')[1].split('}')[0];
+
+        console.log(url);
+
+        return url;
+
+    }
 }
 
