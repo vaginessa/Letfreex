@@ -34,6 +34,7 @@ Al momento Netfreex riesce a comprendere e a visualizzare i link verso i seguent
 
 - Nowvideo
 - Rapidvideo
+- Flashx
 
 ## Work in progress
 
