@@ -97,5 +97,13 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "com.netfreex.openload": {
+        "source": {
+            "type": "local",
+            "path": "C:\\Users\\Tommy\\Desktop\\Netfreex\\com.netfreex.openload"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

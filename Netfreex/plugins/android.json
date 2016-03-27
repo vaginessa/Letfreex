@@ -10,7 +10,13 @@
         "com.dawsonloudon.videoplayer.custom": {
             "PACKAGE_NAME": "io.cordova.myapp614df5"
         },
+        "com.netfreex.flashx": {
+            "PACKAGE_NAME": "io.cordova.myapp614df5"
+        },
         "com.netfreex.nowvideo": {
+            "PACKAGE_NAME": "io.cordova.myapp614df5"
+        },
+        "com.netfreex.openload": {
             "PACKAGE_NAME": "io.cordova.myapp614df5"
         },
         "com.netfreex.rapidvideo": {
@@ -26,9 +32,6 @@
             "PACKAGE_NAME": "io.cordova.myapp614df5"
         },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "io.cordova.myapp614df5"
-        },
-        "com.netfreex.flashx": {
             "PACKAGE_NAME": "io.cordova.myapp614df5"
         }
     },
