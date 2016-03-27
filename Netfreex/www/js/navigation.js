@@ -40,6 +40,7 @@ function eraseViewMode() {
     $('#dropDownStagioni').addClass('hidden');
     $('#currentSeason').html("");
     $('#playButton').removeClass('backgroundBlack');
+    $('img').imageReloader();
 
 }
 
@@ -97,7 +98,8 @@ function changeChannel(name) {
     $('#homeFilmMostPopular').removeClass('hidden');
     $('#homeSerieTvMostPopular').removeClass('hidden');
 
+    $('img').imageReloader();
 
-    localStorage.clear();
+    //localStorage.clear();
     $('#channel').html('<scr' + 'ipt type="text/javascript" src="js/channels/' + name + '.js"></scr' + 'ipt>');
 }

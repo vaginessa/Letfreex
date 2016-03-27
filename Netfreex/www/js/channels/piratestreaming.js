@@ -50,59 +50,22 @@ function getVideoLink(url, isSerieTv) {
               var html = data.results[0];
 
               if (!isSerieTv) {
-                  //Estrae link nowvideo normale
-                  var pattern = new RegExp("nowvideo....?/video/([0-9a-zA-Z]*)", 'gi');
-                  while (res = pattern.exec(html)) {
-                      console.log('trovato ' + res[1])
-                      $('#playButton').html($('#playButton').html() + "<div class=\"guarda hidden\"  onclick=\"openVideo('" + res[1] + "')\"> <img class=\"poster play\" src=\"img/play_button.png\" /></div>")
-                      $('.guarda').removeClass('hidden');
-                      $('#playButton').removeClass('hidden');
-                      $('#loadingLink').addClass('hidden');
+                  manageMovieLinks(html);
 
-                  }
                   $('.guarda').removeClass('hidden');
                   $('#playButton').removeClass('hidden');
                   $('#loadingLink').addClass('hidden');
 
               } else {
                   var html = data.results[0];
-                  //Estrae link nowvideo con titolo
-                  var regex = '([0-9]{1,3}x[0-9]{1,3}[0-9A-Za-z –אשלעטי]*).*http:\/\/www.rapidvideo.org/([a-z0-9A-Z\/._-]+)/.*?Rapidvideo';
-                  var patt = new RegExp(regex, 'gi');
+        
 
                   //Levo la roba che non serve
                   html = html.split('Guarda L')[0];
 
-                  var link = "";
-                  var stagione = "0";
-                  var episodio = "0";
-                  while (res = patt.exec(html)) {
-                      console.log('trovato ' + res[1] + " - " + res[2]);
-                      var seasonEpisodeRegex = "([0-9]{1,3})(?:[^0-9A-Za-z]+|&#[0-9]{4};|x|X)([0-9]{1,3}).*";
-                      var seasonEpisodePattern = new RegExp(seasonEpisodeRegex, 'gi');
+                  var regexStagione = '(STAGIONE.*ITA)(?:<?|\W*\n)';
 
-                      while (response = seasonEpisodePattern.exec(res[1])) {
-                          console.log('stagione ' + response[1] + " episodio " + response[2]);
-                          if (stagione != response[1]) {
-                              if (stagione != "0")
-                                  link += "</div><div id=\"stagione" + response[1] + "\" class=\"season hidden\">";
-                              else
-                                  link += "<div id=\"stagione" + response[1] + "\" class=\"season\">";
-                              stagione = response[1];
-
-                          }
-                          episodio = response[2];
-                      }
-                      link += "<div info=\"" + stagione + "x" + episodio + "\"  class=\"guarda col-md-4 col-xs-12 hidden\"> <div tabindex=\"0\" onclick=\"openVideo('" + res[2] + "')\"> <div class=\"playContainer\" style=\"background-position: center;background-repeat: no-repeat;\"><img class=\"playSeries\" src=\"img/playSeries.png\" /></div><h4>" + res[1].replace('-', '') + "</h4></div></div>";
-                  }
-                  link += "</div>";
-                  $('#playButton').html(link);
-                  $('.guarda').removeClass('hidden');
-                  $('#loadingLink').addClass('hidden');
-                  $('#playButton').removeClass('hidden');
-                  $('#playButton').addClass('backgroundBlack');
-
-                  getEpisodesInfo();
+                  manageSerieTvLinks(html, regexStagione);
               }
 
           }

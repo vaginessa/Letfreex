@@ -308,15 +308,18 @@ function getEpisodesInfo() {
 
         var seasonNumber = $(this).attr('id').replace("stagione", "");
 
+        if (!new RegExp('ITA').test(seasonNumber)) {
+            seasonNumber = seasonNumber + " ITA";
+        }
         if (seasonNumber[0] == '0')
             seasonNumber = seasonNumber.substr(1, seasonNumber.length);
 
         if (first) {
-            $('#currentSeason').html('Stagione ' + seasonNumber + ' <span class="caret"></span>');
+            $('#currentSeason').html('Stagione ' + seasonNumber.replaceAll('_', ' ') + ' <span class="caret"></span>');
             first = false;
         }
 
-        listaStagioni += "<li><a onclick=\"showSeason('" + $(this).attr('id') + "')\">Stagione " + seasonNumber + "</a></li>";
+        listaStagioni += "<li><a onclick=\"showSeason('" + $(this).attr('id') + "')\">Stagione " + seasonNumber.replaceAll('_', ' ') + "</a></li>";
 
         $("#" + $(this).attr('id')).children().each(function () {
             //Episodio

@@ -22,7 +22,7 @@ function openMovie(url,titolo, img, isSerieTv) {
 
     console.log(titolo);
     if (localStorage.getItem(titolo) != undefined)
-        fillPageWithMovieDetails(JSON.parse(localStorage.getItem(titolo)), isSerieTv);
+        fillPageWithMovieDetails(JSON.parse(localStorage.getItem(titolo)), isSerieTv, obj, true);
     else
         searchMovieInfo(obj, isSerieTv);
 }
@@ -53,24 +53,48 @@ function openMovie(url,titolo, img, isSerieTv) {
     };
 })();
 
+function chooseHost(video) {
+    console.log(video); 
+    swal({
+        title: 'Guarda su',
+        html: video.clone().find('[host]').removeClass('hidden'),
+        background: 'rgba(0, 0, 0, 0.82)',
+        padding: 30,
+        showConfirmButton: false
+    })
+}
 
 //Estrae il video di film/serie tv
-function openVideo(url) {
+function openVideo(host, url) {
+    swal.closeModal();
+
     $('#loading').removeClass('hidden');
     console.log(url);
 
-    if (url.length < 6)
-        extractLinkCineblog("http://swzz.xyz/link/" + url + "/");
-    else if (url.length == 13)
+
+    host = host.split('|');
+
+    if (host[0] == 'swzz')
+        extractLinkCineblog("http://swzz.xyz/link/" + url + "/", host[1]);
+    else if (host[0] == 'nowvideo')
         nowvideo.extract(url, success, error);
-    else if (url.length == 12)
+    else if (host[0] == 'rapidvideo')
         rapidvideo.extract(url, success, error);
+    else if (host[0] == 'flashx')
+        flashx.extract(url, success, error);
 }
 
 //Riproduce il video
 var success = function (url) {
     $('#loading').addClass('hidden');
     console.log(url);
+    try {
+        if (url.split("(")[0] == "eval") {
+            url = unpack(url);
+        }
+    } catch (e) {
+        error(e);
+    }
     VideoPlayer.play(url);
 }
 
@@ -79,4 +103,30 @@ var error = function (ex) {
     console.log(ex);
     alert("Il link è offline");
 }
+
+function unpack(p) {
+    var c = p;
+    var a = 5, x = 1;
+    while (x < a) {
+        c = unescape(c);
+        if (/eval\(+function\(/.test(c)) {
+            c = depack(c);
+            x++;
+        } else { break }
+    };
+    c = unescape(c);
+
+    c = c.split('file:"')[1].split('"')[0];
+
+    return c;
+}
+function depack(p) {
+     if (p != "") {
+         c = unescape(p);
+         var _e = eval, s = "eval=function(v){c=v;};" + c + ";eval=_e;";
+         eval(s);
+     } else { c = p };
+
+    return c;
+}
 
