@@ -105,5 +105,13 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "com.netfreex.italiaFilmLinks": {
+        "source": {
+            "type": "local",
+            "path": "C:\\Users\\Tommy\\Desktop\\Netfreex\\com.netfreex.italiafilmlinks"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }
