@@ -2,6 +2,7 @@
 var serieTvHosts = [
     'swzz|nowvideo',
     'swzz|openload',
+    'italiaFilmLinks|openload',
     'nowvideo',
     'openload',
     'rapidvideo',
@@ -10,22 +11,25 @@ var serieTvHosts = [
 
 var serieTvRegexHosts = [
     //Nowvideo redirect swzz (cineblog)
-    '([0-9]{1,3}(?:[^0-9A-Za-z]|&#[0-9]{4};)[0-9]{1,3}).*xyz\/link\/([a-z0-9A-Z]+)[^<]*Nowvideo',
+    '([0-9]{1,3}(?:[^0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*xyz\/link\/([a-z0-9A-Z]+)[^<]*Nowvideo',
 
     //Openload redirect swzz (cineblog)
-    '([0-9]{1,3}(?:[^0-9A-Za-z]|&#[0-9]{4};)[0-9]{1,3}).*xyz\/link\/([a-z0-9A-Z]+)[^<]*Openload',
+    '([0-9]{1,3}(?:[^0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*xyz\/link\/([a-z0-9A-Z]+)[^<]*Openload',
+
+    //Openload redirect Italia-Film Links (ItaliaFilm)
+    '([0-9]{1,3}(?:[^0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*hdlink.video\/l\/([a-z0-9A-Z]+)[^<]*Italia-Film Links',
 
     //Nowvideo
-    '([0-9]{1,3}(?:[^0-9A-Za-z]|&#[0-9]{4};)[0-9]{1,3}).*www.nowvideo.*/video/([a-z0-9A-Z]+)[^<]*Nowvideo',
+    '([0-9]{1,3}(?:[^0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*www.nowvideo.*/video/([a-z0-9A-Z]+)[^<]*Nowvideo',
 
     //Openload
-    '([0-9]{1,3}(?:[^0-9A-Za-z]|&#[0-9]{4};)[0-9]{1,3}).*openload.*/f/([a-z0-9A-Z]+)[^<]*Openload',
+    '([0-9]{1,3}(?:[^0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*openload.*/f/([a-z0-9A-Z]+)[^<]*Openload',
 
     //Rapidvideo
     '([0-9]{1,3}x[0-9]{1,3}).*http:\/\/www.rapidvideo.org/([a-z0-9A-Z\/._-]+)/.*?Rapidvideo',
 
     //FlashX
-    '([0-9]{1,3}(?:[^0-9A-Za-z]|&#[0-9]{4};)[0-9]{1,3}).*http:\/\/.*\/([a-z0-9A-Z]+)[^<]*Flashx'
+    '([0-9]{1,3}(?:[^0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*http:\/\/.*\/([a-z0-9A-Z]+)[^<]*Flashx'
 ];
 
 
@@ -33,6 +37,7 @@ var serieTvRegexHosts = [
 var movieHostsOneLink = [
     'swzz|nowvideo',
     'swzz|openload',
+    'italiaFilmLinks|openload',
     'openload',
     'nowvideo',
     'rapidvideo',
@@ -45,6 +50,9 @@ var movieRegexHostsOneLink = [
 
     //Openload redirect swzz (cineblog)
     'xyz/link/([a-z0-9A-Z]*)/" target="_blank">Openload',
+
+    //Openload redirect ItaliaFilmLinks (italia film)
+    'hdlink.video/l/([0-9a-zA-Z]*)',
 
     //Openload
     'openload....?/f/([0-9a-zA-Z]*)',

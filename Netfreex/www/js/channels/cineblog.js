@@ -102,6 +102,10 @@ function getVideoLink(url, isSerieTv) {
           if (data.results[0]) {
               var html = data.results[0];
               if (!isSerieTv) {
+
+                  if (html.indexOf('Download:<') > -1)
+                      html = html.split('Download:<')[0];
+
                   manageMovieLinks(html);
 
                   $('.guarda').removeClass('hidden');

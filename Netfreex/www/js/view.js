@@ -76,12 +76,19 @@ function openVideo(host, url) {
 
     if (host[0] == 'swzz')
         extractLinkSwzz("http://swzz.xyz/link/" + url + "/", host[1]);
+
+    else if (host[0] == 'italiaFilmLinks')
+        italiaFilmLinks.extract(url, success, error);
+
     else if (host[0] == 'nowvideo')
         nowvideo.extract(url, success, error);
+
     else if (host[0] == 'rapidvideo')
         rapidvideo.extract(url, success, error);
+
     else if (host[0] == 'flashx')
         flashx.extract(url, success, error);
+
     else if (host[0] == 'openload')
         openload.extract(url, success, error);
 
@@ -92,19 +99,20 @@ var success = function (url) {
     $('#loading').addClass('hidden');
     console.log(url);
  
-    try {
-        //Unpack packed url (flashx)
-        if (url.indexOf("eval") > -1) {
-            url = unpack(url);
-        }
+    //Apri link openload estratto da italiaFilmLinks
+    if (url.indexOf("italiaFilmLinks") > -1) {
+        openVideo('openload', url.split('|')[1]);
+        return;
+    }
+   
+    //Unpack packed url (flashx)
+    if (url.indexOf("eval") > -1) {
+        url = unpack(url);
+    }
 
-        //Decode url Openload
-        if (url.indexOf('openload') > -1) {
-            url = decodeOpenload(url.split('|')[1]);
-        }
-
-    } catch (e) {
-        error(e);
+    //Decode url Openload
+    if (url.indexOf('openload') > -1) {
+        url = decodeOpenload(url.split('|')[1]);
     }
 
     VideoPlayer.play(url);
@@ -132,7 +140,8 @@ function unpack(p) {
 
     return c;
 }
-function depack(p) {
+
+function depack(p) {
      if (p != "") {
          c = unescape(p);
          var _e = eval, s = "eval=function(v){c=v;};" + c + ";eval=_e;";
@@ -140,7 +149,9 @@ function unpack(p) {
      } else { c = p };
 
     return c;
-}function decodeOpenload(decodestring) {
+}
+
+function decodeOpenload(decodestring) {
 
     function decode(text) {
         var evalPreamble = "(\uFF9F\u0414\uFF9F) ['_'] ( (\uFF9F\u0414\uFF9F) ['_'] (";
@@ -189,7 +200,7 @@ function unpack(p) {
         for (var i = 0; i < nums.length; i++) {
             var base2 = parseInt(base) + parseInt(nums[i][1]);
             var rep12 = (parseInt(nums[i][2])).toString(base2);
-            decodestring = decodestring.replace("(" + nums[i][0] + ")", rep12)
+            decodestring = decodestring.replace("(" + nums[i][0] + ")", rep12);
         }
 
         decodestring = decodestring.replace(/[^a-zA-Z0-9\/\.:-_@}]/gi, "");
@@ -201,5 +212,6 @@ function unpack(p) {
         return url;
 
     }
-}
+}
+
 
