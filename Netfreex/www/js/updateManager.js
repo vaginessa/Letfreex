@@ -29,20 +29,25 @@ function updateVersion() {
     console.log("update");
     var fileTransfer = new FileTransfer();
 
-    fileTransfer.download(
-            "https://github.com/Be4t5/Netfreex/raw/master/Netfreex.apk",
-            cordova.file.externalDataDirectory + "Netfreex.apk",
-            function (theFile) {
-                console.log("download complete: " + theFile.toURL());
-                cordova.plugins.fileOpener2.open(
-                    cordova.file.externalDataDirectory + "Netfreex.apk",
-                    'application/vnd.android.package-archive'
-                );
-            },
-            function (error) {
-                console.log("download error source " + error.source);
-                console.log("download error target " + error.target);
-                console.log("upload error code: " + error.code);
-            }
-    ); 
+ 
+
+   
+            fileTransfer.download(
+                "https://github.com/Be4t5/Netfreex/raw/master/Netfreex.apk",
+                cordova.file.externalCacheDirectory + "Netfreex.apk",
+                function(theFile) {
+                    console.log("download complete: " + theFile.toURL());
+                    cordova.plugins.fileOpener2.open(
+                        cordova.file.externalCacheDirectory + "Netfreex.apk",
+                        'application/vnd.android.package-archive'
+                    );
+                },
+                function(error) {
+                    console.log("download error source " + error.source);
+                    console.log("download error target " + error.target);
+                    console.log("upload error code: " + error.code);
+                }
+            )
+     
+  
 }
