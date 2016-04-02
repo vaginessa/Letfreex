@@ -64,7 +64,7 @@ function changeTab(num) {
 function nextPage(url, isSerieTv, section) {
     console.log(url)
     $('.nextPage' + section).html("<i class=\"fa fa-spinner fa-spin fa-3x\"></i>");
-    scrapePage(url, isSerieTv, section)
+    scrapePage(url, isSerieTv, section, true);
 }
 
 $('#search').keypress(function (e) {

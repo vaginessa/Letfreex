@@ -48,8 +48,8 @@
   <body id="body">
     <!-- Navigation
     ==========================================-->
-    <nav id="tf-menu" class="navbar navbar-default navbar-fixed-top hidden">
-      <div class="container">
+    <nav id="tf-menu" class="navbar navbar-default navbar-fixed-top ">
+      <div class="container tf-menu hidden">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
           <button  type="button" class="navbar-toggle collapsed" onclick="changeBG()" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -58,7 +58,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.html">Netfreex</a>
+            <a class="navbar-brand" href="index.html"><img src="img/logo.png"/></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -350,6 +350,7 @@
     <!-- Core -->
     <script src="js/utility.js"></script>
     <script src="js/tmdbApi.js"></script>
+    <script src="js/updateManager.js"></script>
     <script src="js/view.js"></script> 
     <script src="js/hosts.js"></script>
     <script type="text/javascript" src="js/main.js"></script> 
@@ -361,6 +362,8 @@
   <script src="js/navigation.js"></script>
 
   <script>
+      var slidePerView = 0;
+
       FastClick.attach(document.body);
       $('img').imageReloader();
 
@@ -376,11 +379,29 @@
 
       $(window).on("load", function () {
           $('#loading').addClass('hidden');
-          $('#tf-menu').removeClass('hidden');
+          $('.tf-menu').removeClass('hidden');
           if (isEmpty($('#movieSliderContainer')) && isEmpty($('#serieTvSliderContainer')) && isEmpty($('#serieTvMostPopularSliderContainer')) && isEmpty($('#movieMostPopularSliderContainer'))) {
               $('#error').removeClass('hidden');
           }
+
+          //Inizializzo gli slider con le copertine
           
+          var windowLength = $(window).width();
+          if (windowLength >= 1024 && windowLength <= 1350)
+              slidePerView = 5;
+          if (windowLength >= 1350 && windowLength <= 1700)
+              slidePerView = 6;
+          if (windowLength >= 1800)
+              slidePerView = 8;
+          if (windowLength < 1024 && windowLength >= 768)
+              slidePerView = windowLength / 176;
+          if (windowLength < 768)
+              slidePerView = windowLength / 140;
+  
+          for (var i = 0; i < sections.length; i++) {
+              initializeSliderPoster(sections[i]);
+          }       
+
           //Carousel
           fillCarousel();
       });

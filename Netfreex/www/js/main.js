@@ -39,7 +39,7 @@ var arrayFilm = [];
 var arrayCarousel = [];
 var mySwiper;
 
-function openPage(url, isSerieTv, section, mostPopular) {
+function openPage(url, isSerieTv, section, mostPopular, nextPage) {
     /*if (localStorage.getItem(url) != undefined &&
         localStorage.getItem(url).split('|')[0] > new Date().getTime()) {
         
@@ -48,14 +48,14 @@ function openPage(url, isSerieTv, section, mostPopular) {
     }
     else {*/
     if (!mostPopular)
-        scrapePage(url, isSerieTv, section)
+        scrapePage(url, isSerieTv, section, nextPage);
     else
-        scrapeMostPopular(url, isSerieTv, section)
+        scrapeMostPopular(url, isSerieTv, section);
     //}
 
 }
 
-function printPage(isSerieTv, section) {
+function printPage(isSerieTv, section, nextPage) {
     $('#loadingSearch').addClass('hidden');
 
     var htmlFilm;
@@ -81,28 +81,10 @@ function printPage(isSerieTv, section) {
 
     //Pusho nel carousel un oggetto random tra quelli nell'array
     pushRandomItemInCarousel(isSerieTv);
-          
-    var slidePerView = 0;
-    var windowLength = $(window).width();
-    if (windowLength>=1024 && windowLength <= 1350)
-        slidePerView = 5;
-    if (windowLength >= 1350 && windowLength <= 1700)
-        slidePerView = 6;
-    if (windowLength >= 1800)
-        slidePerView = 8;
-    if (windowLength < 1024 && windowLength >= 768)
-        slidePerView = windowLength / 176;
-    if (windowLength < 768)
-        slidePerView = windowLength / 140 ;
 
-    if ($('.' + section)[0].swiper)
-        $('.' + section)[0].swiper.destroy();
-
-    mySwiper = new Swiper('.' + section, {
-        slidesPerView: Math.floor(slidePerView),
-        spaceBetween: 30,
-        freeMode: true
-    });
+    if (nextPage) {
+        initializeSliderPoster(section);
+    }   
 }
 
 function pushRandomItemInCarousel(isSerie) {
@@ -139,6 +121,16 @@ function fillCarousel() {
     $('#tf-home').removeClass('hidden');    
 }
 
+function initializeSliderPoster(section) {
+    if ($('.' + section)[0].swiper)
+        $('.' + section)[0].swiper.destroy();
+
+    mySwiper = new Swiper('.' + section, {
+        slidesPerView: Math.floor(slidePerView),
+        spaceBetween: 30,
+        freeMode: true
+    });
+}
 
 main();
 

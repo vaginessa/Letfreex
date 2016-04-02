@@ -1,4 +1,4 @@
-function scrapePage(url, isSerieTv, section) {
+function scrapePage(url, isSerieTv, section, nextPage) {
 
     $.getJSON("http://query.yahooapis.com/v1/public/yql?" +
               "q=select%20*%20from%20html%20where%20url%3D%22" +
@@ -27,7 +27,7 @@ function scrapePage(url, isSerieTv, section) {
               }
 
               console.log(arrayFilm)
-              printPage(isSerieTv, section)
+              printPage(isSerieTv, section, nextPage)
           }
       }
     );
@@ -107,9 +107,15 @@ function search() {
 
     var url = "http://www.italia-film.co/?s=" + input;
 
-    openPage(url, $('#serieTv').prop('checked'), 'searchResultContainer', false);
+    openPage(url, $('#serieTv').prop('checked'), 'searchResultContainer', false, true);
 }
 
+var sections = [
+    "movieMostPopularSliderContainer",
+    "serieTvMostPopularSliderContainer",
+    "movieSliderContainer",
+    "serieTvSliderContainer"
+];
 
 //ITALIAFILM
 //Most popular

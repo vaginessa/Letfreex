@@ -39,6 +39,8 @@ function openMovie(url,titolo, img, isSerieTv) {
         document.addEventListener('pause', onPause.bind(this), false);
         document.addEventListener('resume', onResume.bind(this), false);
 
+        
+
         document.addEventListener("backbutton", function (e) {
             goToHome(true);
         }, false);

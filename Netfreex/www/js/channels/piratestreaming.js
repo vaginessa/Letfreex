@@ -1,4 +1,4 @@
-function scrapePage(url, isSerieTv, section) {
+function scrapePage(url, isSerieTv, section, nextPage) {
 
     $.getJSON("http://query.yahooapis.com/v1/public/yql?" +
               "q=select%20*%20from%20html%20where%20url%3D%22" +
@@ -29,7 +29,7 @@ function scrapePage(url, isSerieTv, section) {
               arrayFilm.push(url.substr(0, url.length - 1) + n );
 
               console.log(arrayFilm)
-              printPage(isSerieTv, section);
+              printPage(isSerieTv, section, nextPage);
           }
       }
     );
@@ -78,9 +78,13 @@ function search() {
 
     var url = "http://www.piratestreaming.news/cerca.php?all=" + input;
 
-    openPage(url, $('#serieTv').prop('checked'), 'searchResultContainer', false);
+    openPage(url, $('#serieTv').prop('checked'), 'searchResultContainer', false, true);
 }
 
+var sections = [
+    "movieSliderContainer",
+    "serieTvSliderContainer"
+];
 
 //ITALIAFILM
 //Most popular

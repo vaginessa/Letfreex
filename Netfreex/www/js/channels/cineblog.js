@@ -1,4 +1,4 @@
-function scrapePage(url, isSerieTv, section) {
+function scrapePage(url, isSerieTv, section, nextPage) {
     console.log(url)
     
     url = "http://query.yahooapis.com/v1/public/yql?" +"q=select%20*%20from%20html%20where%20url%3D%22" +
@@ -43,7 +43,7 @@ function scrapePage(url, isSerieTv, section) {
                 }
 
                 console.log(arrayFilm)
-                printPage(isSerieTv, section);
+                printPage(isSerieTv, section, nextPage);
             }
         }
       );
@@ -58,7 +58,7 @@ function search() {
     else
         url = "http://www.cb01.co/search/" + input
 
-    openPage(url, $('#serieTv').prop('checked'), 'searchResultContainer', false);
+    openPage(url, $('#serieTv').prop('checked'), 'searchResultContainer', false, true);
 }
 
 function extractLinkSwzz(url, host) {
@@ -151,6 +151,13 @@ function scrapeMostPopular(url, isSerieTv, section) {
       }
     );
 }
+
+var sections = [
+    "movieMostPopularSliderContainer",
+    "serieTvMostPopularSliderContainer",
+    "movieSliderContainer",
+    "serieTvSliderContainer"
+];
 
 //CINEBLOG
 //Most popular
