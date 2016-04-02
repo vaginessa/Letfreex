@@ -30,7 +30,7 @@ function updateVersion() {
     var fileTransfer = new FileTransfer();
 
     fileTransfer.download(
-            "http://www.traversocostruzionisrl.it/test.apk",
+            "https://github.com/Be4t5/Netfreex/raw/master/Netfreex.apk",
             cordova.file.externalDataDirectory + "Netfreex.apk",
             function (theFile) {
                 console.log("download complete: " + theFile.toURL());
