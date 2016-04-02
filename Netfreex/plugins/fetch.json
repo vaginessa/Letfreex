@@ -10,15 +10,15 @@
     "cordova-plugin-file": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-file@4.1.1"
+            "id": "cordova-plugin-file"
         },
-        "is_top_level": true,
+        "is_top_level": false,
         "variables": {}
     },
     "cordova-plugin-file-transfer": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-file-transfer@1.5.0"
+            "id": "cordova-plugin-file-transfer@~1.5.0"
         },
         "is_top_level": true,
         "variables": {}
@@ -110,6 +110,58 @@
         "source": {
             "type": "local",
             "path": "C:\\Users\\Tommy\\Desktop\\Netfreex\\com.netfreex.italiafilmlinks"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-app-update": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-app-update"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-app-update-custom": {
+        "source": {
+            "type": "local",
+            "path": "C:\\Users\\Tommy\\Desktop\\Netfreex\\cordova-plugin-app-update-custom"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "com.gttown.plugins": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/gttown/cordova-plugin-app-update.git",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-app-version": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/whiteoctober/cordova-plugin-app-version.git",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "com.borismus.webintent": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Initsogar/cordova-webintent.git",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-file-opener2": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/pwlin/cordova-plugin-file-opener2.git",
+            "subdir": "."
         },
         "is_top_level": true,
         "variables": {}

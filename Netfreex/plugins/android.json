@@ -8,34 +8,46 @@
     },
     "installed_plugins": {
         "com.dawsonloudon.videoplayer.custom": {
-            "PACKAGE_NAME": "io.cordova.myapp614df5"
+            "PACKAGE_NAME": "com.netfreex"
         },
         "com.netfreex.flashx": {
-            "PACKAGE_NAME": "io.cordova.myapp614df5"
+            "PACKAGE_NAME": "com.netfreex"
         },
         "com.netfreex.italiaFilmLinks": {
-            "PACKAGE_NAME": "io.cordova.myapp614df5"
+            "PACKAGE_NAME": "com.netfreex"
         },
         "com.netfreex.nowvideo": {
-            "PACKAGE_NAME": "io.cordova.myapp614df5"
+            "PACKAGE_NAME": "com.netfreex"
         },
         "com.netfreex.openload": {
-            "PACKAGE_NAME": "io.cordova.myapp614df5"
+            "PACKAGE_NAME": "com.netfreex"
         },
         "com.netfreex.rapidvideo": {
-            "PACKAGE_NAME": "io.cordova.myapp614df5"
+            "PACKAGE_NAME": "com.netfreex"
+        },
+        "cordova-plugin-app-version": {
+            "PACKAGE_NAME": "com.netfreex"
         },
         "cordova-plugin-device": {
-            "PACKAGE_NAME": "io.cordova.myapp614df5"
+            "PACKAGE_NAME": "com.netfreex"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.netfreex"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.netfreex"
         },
         "cordova-plugin-keyboard": {
-            "PACKAGE_NAME": "io.cordova.myapp614df5"
+            "PACKAGE_NAME": "com.netfreex"
         },
         "cordova-plugin-statusbar-custom": {
-            "PACKAGE_NAME": "io.cordova.myapp614df5"
+            "PACKAGE_NAME": "com.netfreex"
         },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "io.cordova.myapp614df5"
+            "PACKAGE_NAME": "com.netfreex"
+        },
+        "cordova-plugin-file-opener2": {
+            "PACKAGE_NAME": "com.netfreex"
         }
     },
     "dependent_plugins": {}
