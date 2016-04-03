@@ -1,14 +1,24 @@
-# Netfreex
+![alt tag](https://github.com/Be4t5/Netfreex/blob/master/screenshots/logo.png)
 
 Netfreex è una app ibrida open source sviluppata con il framework Apache Cordova, scritta principalmente in HTML5, Javascript e Java.
 Si tratta di una "versione gratis di Netflix" che raccoglie, cataloga e riproduce film e serie tv, che estrae dai principali siti di streaming. Nonostante il nome e la grafica ricordino molto quelle del vero Netflix, non è assolutamente collegato in alcun modo ad esso.
 Il progetto nasce dalla mia esigenza di avere una app da installare sulla mia tv Android per poter accedere ai siti di streaming in modo comodo e veloce (e figo), ma lo condivido volentieri col web, sperando che qualcuno abbia voglia di contribuire.
 
-![alt tag](https://github.com/Be4t5/Netfreex/blob/master/Netfreex/www/img/netfreex1.png)
+![alt tag](https://github.com/Be4t5/Netfreex/blob/master/screenshots/netfreex1.png)
 
-![alt tag](https://github.com/Be4t5/Netfreex/blob/master/Netfreex/www/img/netfreex2.png)
+![alt tag](https://github.com/Be4t5/Netfreex/blob/master/screenshots/netfreex2.png)
 
-![alt tag](https://github.com/Be4t5/Netfreex/blob/master/Netfreex/www/img/netfreex3.png)
+![alt tag](https://github.com/Be4t5/Netfreex/blob/master/screenshots/netfreex3.png)
+
+![alt tag](https://github.com/Be4t5/Netfreex/blob/master/screenshots/netfreex4.png)
+
+![alt tag](https://github.com/Be4t5/Netfreex/blob/master/screenshots/netfreex5.png)
+
+![alt tag](https://github.com/Be4t5/Netfreex/blob/master/screenshots/netfreex6.png)
+
+![alt tag](https://github.com/Be4t5/Netfreex/blob/master/screenshots/netfreex7.png)
+
+![alt tag](https://github.com/Be4t5/Netfreex/blob/master/screenshots/netfreex8.png)
 
 ## Piattaforme supportate
 
