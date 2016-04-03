@@ -10,9 +10,6 @@
         "com.dawsonloudon.videoplayer.custom": {
             "PACKAGE_NAME": "com.netfreex"
         },
-        "com.netfreex.flashx": {
-            "PACKAGE_NAME": "com.netfreex"
-        },
         "com.netfreex.italiaFilmLinks": {
             "PACKAGE_NAME": "com.netfreex"
         },
@@ -47,6 +44,9 @@
             "PACKAGE_NAME": "com.netfreex"
         },
         "cordova-plugin-file-opener2": {
+            "PACKAGE_NAME": "com.netfreex"
+        },
+        "com.netfreex.flashx": {
             "PACKAGE_NAME": "com.netfreex"
         }
     },

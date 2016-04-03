@@ -17,7 +17,7 @@ public class FlashX extends CordovaPlugin {
 				String id = data.getString(0);
 				
 				
-				String url = "http://www.flashx.host/"+id;
+				String url = "http://www.flash-x.tv/playthis-"+id+".html";
 
 				boolean done = false;
 				int retry = 0;
@@ -49,7 +49,8 @@ public class FlashX extends CordovaPlugin {
 					inn.close();
 					
 					content = sb.toString();
-					
+					String res = content;
+					/*
 					String postUrl = content.split("POST\" action='")[1].split("'")[0];
 					String fname = content.split("fname\" value=\"")[1].split("\"")[0];
 					String referer = content.split("referer\" value=\"")[1].split("\"")[0];
@@ -85,8 +86,9 @@ public class FlashX extends CordovaPlugin {
 						response.append(inputLine);
 					}
 					in.close();
-					
 					String res = response.toString();
+					*/
+					
 					try{
 						res = "eval"+res.split("<script type='text/javascript'>eval")[1].split("</script>")[0];
 						callbackContext.success(res);
