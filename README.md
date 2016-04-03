@@ -40,3 +40,7 @@ Al momento Netfreex riesce a comprendere e a visualizzare i link verso i seguent
 ## Work in progress
 
 Il progetto è appena nato, nonostante qualcosa funzioni e sia già testabile, è ancora in fase di sviluppo.
+
+### Disclaimer
+
+Ricordo che Netfreex è un progetto opensource, gratuito, non a scopo di lucro. Non ha server o database propri, non ospita materiale protetto da copyright. Svolge soltanto una funzione di catalogazione di contenuti presenti su altri siti web. Operando in tempo reale e non salvando informazioni al suo interno, nel momento in cui i siti web a cui si collega venissero messi offline, anche Netfreex smetterà di funzionare.
