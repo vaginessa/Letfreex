@@ -42,8 +42,15 @@ public class OpenLoad extends CordovaPlugin {
 				inn.close();
 				
 				content = sb.toString();
+				content = content.split("welikekodi_ya_rly = ")[1];
+		
+				String[] subs;
 				
-				content = content.split("videooverlay")[1].split("<script type=\"text/javascript\">")[1].split("</script>")[0];
+				//Prendo la sottrazione
+				subs = content.split(";")[0].split(" - ");
+				int index = Integer.parseInt(subs[0]) - Integer.parseInt(subs[1]);
+				
+				content = content.split("<script type=\"text/javascript\">")[index+1].split("</script>")[0];
 				
 				callbackContext.success("openload|" + content);
 					
