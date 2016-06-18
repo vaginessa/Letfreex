@@ -16,9 +16,6 @@
         "com.netfreex.nowvideo": {
             "PACKAGE_NAME": "com.netfreex"
         },
-        "com.netfreex.openload": {
-            "PACKAGE_NAME": "com.netfreex"
-        },
         "com.netfreex.rapidvideo": {
             "PACKAGE_NAME": "com.netfreex"
         },
@@ -47,6 +44,9 @@
             "PACKAGE_NAME": "com.netfreex"
         },
         "com.netfreex.flashx": {
+            "PACKAGE_NAME": "com.netfreex"
+        },
+        "com.netfreex.openload": {
             "PACKAGE_NAME": "com.netfreex"
         }
     },

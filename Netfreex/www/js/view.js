@@ -205,8 +205,8 @@ function decodeOpenload(decodestring) {
             decodestring = decodestring.replace("(" + nums[i][0] + ")", rep12);
         }
 
-        decodestring = decodestring.replace(/[^a-zA-Z0-9\/\.:-_@}]/gi, "");
-
+        decodestring = decodestring.replace(/[^a-zA-Z0-9\/\.:-_@~}]/gi, "");
+        
         var url = "http" + decodestring.split('http')[1].split('}')[0];
 
         console.log(url);
