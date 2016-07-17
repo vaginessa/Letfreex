@@ -50,6 +50,11 @@ public class OpenLoad extends CordovaPlugin {
 				subs = content.split(";")[0].split(" - ");
 				int index = Integer.parseInt(subs[0]) - Integer.parseInt(subs[1]);
 				
+				if(index == 1)
+					index++;
+				else
+					index--;
+				
 				content = content.split("<script type=\"text/javascript\">")[index+1].split("</script>")[0];
 				
 				callbackContext.success("openload|" + content);

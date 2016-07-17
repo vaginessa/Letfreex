@@ -81,14 +81,10 @@ public class Rapidvideo extends CordovaPlugin {
 				in.close();
 				
 				String res = response.toString();
-				String aux = res.split("mp4\\|")[1];
-				String[] pieces = aux.split("\\|");
-
-
-				//print result
-				//System.out.println("http://"+pieces[4]+".7."+pieces[3]+"."+pieces[2]+":"+pieces[1]+"/"+pieces[0]+"/v.mp4");
 				
-				callbackContext.success("http://"+pieces[4]+".7."+pieces[3]+"."+pieces[2]+":"+pieces[1]+"/"+pieces[0]+"/v.mp4");
+				res = "eval"+res.split("<script type='text/javascript'>eval")[1].split("</script>")[0];
+				
+				callbackContext.success(res);
 				
 				
 			}catch(Exception ex)

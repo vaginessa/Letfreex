@@ -43,10 +43,10 @@
         "cordova-plugin-file-opener2": {
             "PACKAGE_NAME": "com.netfreex"
         },
-        "com.netfreex.flashx": {
+        "com.netfreex.openload": {
             "PACKAGE_NAME": "com.netfreex"
         },
-        "com.netfreex.openload": {
+        "com.netfreex.flashx": {
             "PACKAGE_NAME": "com.netfreex"
         }
     },
