@@ -124,7 +124,9 @@ openPage("http://www.italia-film.co/category/film-streaming-2016/", true, 'serie
 
 //Ultime uscite
 openPage("http://www.italia-film.co/category/film-streaming-2016/", false, 'movieSliderContainer', false);
-openPage("http://www.italia-film.co/category/film-streaming-2016/page/2/", false, 'movieSliderContainer', false);
-openPage("http://www.italia-film.co/category/telefilm/", true, 'serieTvSliderContainer', false);
-openPage("http://www.italia-film.co/category/telefilm/page/2/", true, 'serieTvSliderContainer', false);
+openPage("http://www.italia-film.co/category/serie-tv/", true, 'serieTvSliderContainer', false);
+    //openPage("http://www.italia-film.co/category/film-streaming-2016/page/2/", false, 'movieSliderContainer', false);
+    //openPage("http://www.italia-film.co/category/serie-tv/page/2/", true, 'serieTvSliderContainer', false);
+
+
 

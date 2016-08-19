@@ -59,12 +59,6 @@ function printPage(isSerieTv, section, nextPage) {
     $('#loadingSearch').addClass('hidden');
 
     var htmlFilm;
-    var firstTime;
-
-    if (isEmpty($("#" + section)))
-        firstTime = true;
-    else
-        firstTime = false;
 
     //Rimuovo il pulsante pagina successiva
     $('.nextPage' + section).remove();
@@ -74,7 +68,7 @@ function printPage(isSerieTv, section, nextPage) {
             htmlFilm = "<div class=\"swiper-slide\"><a  tabindex=\"0\" onclick=\"openMovie('" + arrayFilm[i].url + "','" + arrayFilm[i].title + "','" + arrayFilm[i].img + "'," + isSerieTv + ")\" ><img class='posterImg' src='" + arrayFilm[i].img + "'></a></div>";
         else
             htmlFilm = "";
-        if ((!firstTime || section == "searchResultContainer") && i == arrayFilm.length - 1 && typeof arrayFilm[i] == "string")
+        if ( i == arrayFilm.length - 1 && typeof arrayFilm[i] == "string")
             htmlFilm = "<div class=\"swiper-slide text-center nextPage" + section + "\" tabindex=\"0\" onclick=\"nextPage('" + arrayFilm[i] + "'," + isSerieTv + ",'" + section + "')\"><img class='posterImg arrow' src='img/arrow-right.png'></div>";
         $("#" + section).html($("#" + section).html() + htmlFilm)
     }

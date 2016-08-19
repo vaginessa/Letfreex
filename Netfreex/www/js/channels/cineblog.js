@@ -70,15 +70,21 @@ function extractLinkSwzz(url, host) {
       function (data) {
           try {
               var html = data.results[0];
-              console.log('ok')
+
               var url;
               switch (host) {
-              case 'nowvideo':
-                  url = html.split("/video/")[1].split('"')[0];
-                  break;
-              case 'openload':
-                  url = html.split("openload.co/f/")[1].split('/')[0];
-                  break;
+                case 'nowvideo':
+                    url = html.split("/video/")[1].split('"')[0];
+                    break;
+                case 'openload':
+                    url = html.split("openload.co/f/")[1].split('/')[0];
+                    break;
+                case 'streaminto':
+                    url = html.split("streamin.to/")[1].split('"')[0];
+                    break;
+                  case 'videomega':
+                      url = html.split("videomega.tv/?ref=")[1].split('"')[0];
+                      break;
               }
 
               console.log(url)
@@ -166,7 +172,9 @@ openPage("http://www.cb01.co/serietv/", true, 'serieTvMostPopularSliderContainer
 
 //Ultime uscite
 openPage("http://www.cb01.co/", false, 'movieSliderContainer', false);
-openPage("http://www.cb01.co/page/2/", false, 'movieSliderContainer', false);
 openPage("http://www.cb01.co/serietv/", true, 'serieTvSliderContainer', false);
-openPage("http://www.cb01.co/serietv/page/2/", true, 'serieTvSliderContainer', false);
+
+    //openPage("http://www.cb01.co/serietv/page/2/", true, 'serieTvSliderContainer', false);
+    //openPage("http://www.cb01.co/page/2/", false, 'movieSliderContainer', false);
+
 

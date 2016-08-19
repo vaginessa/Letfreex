@@ -56,7 +56,7 @@ function openMovie(url,titolo, img, isSerieTv) {
 })();
 
 function chooseHost(video) {
-    console.log(video); 
+    console.log(video);
     swal({
         title: 'Guarda su',
         html: video.clone().find('[host]').removeClass('hidden'),
@@ -69,31 +69,40 @@ function chooseHost(video) {
 //Estrae il video di film/serie tv
 function openVideo(host, url) {
     swal.closeModal();
-
     $('#loading').removeClass('hidden');
-    console.log(url);
 
+    setTimeout(function () {
+        console.log(url);
+        host = host.split('|');
 
-    host = host.split('|');
+        if (host[0] == 'swzz')
+            extractLinkSwzz("http://swzz.xyz/link/" + url + "/", host[1]);
 
-    if (host[0] == 'swzz')
-        extractLinkSwzz("http://swzz.xyz/link/" + url + "/", host[1]);
+        else if (host[0] == 'italiaFilmLinks') {
+            if (host[1] == 'openload')
+                italiaFilmLinks.extract(url + "?host=2", success, error);
+            if (host[1] == 'videomega')
+                italiaFilmLinks.extract(url + "?host=1", success, error);
+        }
 
-    else if (host[0] == 'italiaFilmLinks')
-        italiaFilmLinks.extract(url, success, error);
+        else if (host[0] == 'nowvideo')
+            nowvideo.extract(url, success, error);
 
-    else if (host[0] == 'nowvideo')
-        nowvideo.extract(url, success, error);
+        else if (host[0] == 'rapidvideo')
+            rapidvideo.extract(url, success, error);
 
-    else if (host[0] == 'rapidvideo')
-        rapidvideo.extract(url, success, error);
+        else if (host[0] == 'flashx')
+            flashx.extract(url, success, error);
 
-    else if (host[0] == 'flashx')
-        flashx.extract(url, success, error);
+        else if (host[0] == 'openload')
+            openload.extract(url, success, error);
 
-    else if (host[0] == 'openload')
-        openload.extract(url, success, error);
+        else if (host[0] == 'streaminto')
+            streaminto.extract(url, success, error);
 
+        else if (host[0] == 'videomega')
+            videomega.extract(url, success, error);
+    }, 100);
 }
 
 //Riproduce il video
@@ -103,7 +112,11 @@ var success = function (url) {
  
     //Apri link openload estratto da italiaFilmLinks
     if (url.indexOf("italiaFilmLinks") > -1) {
-        openVideo('openload', url.split('|')[1]);
+        url = url.split('|');
+        if(url[1] == 'openload')
+            openVideo('openload', url[2]);
+        if (url[1] == 'videomega')
+            openVideo('videomega', url[2]);
         return;
     }
    
@@ -114,7 +127,7 @@ var success = function (url) {
 
     //Decode url Openload
     if (url.indexOf('openload') > -1) {
-        url = decodeOpenload(url.split('|')[1]);
+        url = decodeOpenload(url.replace("openload|", ""));
     }
 
     VideoPlayer.play(url);
@@ -137,9 +150,12 @@ function unpack(p) {
         } else { break }
     };
     c = unescape(c);
-
-    c = c.split('file:"')[1].split('"')[0];
-    alert(c)
+    try{
+        c = c.split('file:"')[1].split('"')[0];
+    }
+    catch (e) {
+        c = c.split('src","')[1].split('"')[0];
+    }
     return c;
 }
 
@@ -153,67 +169,21 @@ function depack(p) {
     return c;
 }
 
-function decodeOpenload(decodestring) {
-
-    function decode(text) {
-        var evalPreamble = "(\uFF9F\u0414\uFF9F) ['_'] ( (\uFF9F\u0414\uFF9F) ['_'] (";
-        var decodePreamble = "( (\uFF9F\u0414\uFF9F) ['_'] (";
-        var evalPostamble = ") (\uFF9F\u0398\uFF9F)) ('_');";
-        var decodePostamble = ") ());";
-
-        // strip beginning/ending space.
-        text = text.replace(/^\s*/, "").replace(/\s*$/, "");
-
-        // returns empty text for empty input.
-        if (/^\s*$/.test(text)) {
-            return "";
+function decodeOpenload(x) {
+    x = $("<textarea/>").html(x).text();
+    var s = [];
+    for (var i = 0; i < x.length; i++) {
+        var j = x.charCodeAt(i);
+        if ((j >= 33) && (j <= 126)) {
+            s[i] = String.fromCharCode(33 + ((j + 14) % 94));
         }
-        // check if it is encoded.
-        if (text.lastIndexOf(evalPreamble) < 0) {
-            throw new Error("Given code is not encoded as aaencode.");
+        else {
+            s[i] = String.fromCharCode(j);
         }
-        if (text.lastIndexOf(evalPostamble) != text.length - evalPostamble.length) {
-            throw new Error("Given code is not encoded as aaencode.");
-        }
-
-        var decodingScript = text.replace(evalPreamble, decodePreamble)
-								 .replace(evalPostamble, decodePostamble);
-        return eval(decodingScript);
     }
-
-    decodestring = decode(decodestring);
-
-    if (decodestring.indexOf('toString') > -1) {
-        var baseRegex = "toString\\(a\\+(\\d+)"
-        var basePattern = new RegExp(baseRegex, 'gi');
-        var base;
-        while (res = basePattern.exec(decodestring)) {
-            base = res[1];
-        }
-
-        var numsRegex = "(\\d+), ?(\\d+)"
-        var numsPattern = new RegExp(numsRegex, 'gi');
-        var nums = [];
-
-        while (res = numsPattern.exec(decodestring)) {
-            nums.push(res)
-        }
-
-        for (var i = 0; i < nums.length; i++) {
-            var base2 = parseInt(base) + parseInt(nums[i][1]);
-            var rep12 = (parseInt(nums[i][2])).toString(base2);
-            decodestring = decodestring.replace("(" + nums[i][0] + ")", rep12);
-        }
-
-        decodestring = decodestring.replace(/[^a-zA-Z0-9\/\.:-_@~}]/gi, "");
-        
-        var url = "http" + decodestring.split('http')[1].split('}')[0];
-
-        console.log(url);
-
-        return url;
-
-    }
+    var url = "https://openload.co/stream/" + s.join("") + "?mime=true";
+    console.log(url)
+    return url;
 }
 
 

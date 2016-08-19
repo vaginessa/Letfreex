@@ -97,6 +97,9 @@ $('#homeSerieTvMostPopular').addClass('hidden');
 
 //Ultime uscite
 openPage("http://www.piratestreaming.news/film-aggiornamenti.php?pageNum_lista_film=1", false, 'movieSliderContainer', false);
-openPage("http://www.piratestreaming.news/film-aggiornamenti.php?pageNum_lista_film=2", false, 'movieSliderContainer', false);
+
 openPage("http://www.piratestreaming.news/serietv-aggiornamentii.php?pageNum_lista_film=1", true, 'serieTvSliderContainer', false);
-openPage("http://www.piratestreaming.news/serietv-aggiornamentii.php?pageNum_lista_film=2", true, 'serieTvSliderContainer', false);
+
+    //openPage("http://www.piratestreaming.news/serietv-aggiornamentii.php?pageNum_lista_film=2", true, 'serieTvSliderContainer', false);
+    //openPage("http://www.piratestreaming.news/film-aggiornamenti.php?pageNum_lista_film=2", false, 'movieSliderContainer', false);
+
