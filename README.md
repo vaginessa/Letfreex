@@ -46,6 +46,8 @@ Al momento Netfreex riesce a comprendere e a visualizzare i link verso i seguent
 - Rapidvideo
 - Flashx
 - Openload
+- VideoMega
+- StreamiTo
 
 ## Work in progress
 
