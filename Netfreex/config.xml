@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<widget xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" id="com.netfreex" version="1.0.4" xmlns="http://www.w3.org/ns/widgets" defaultlocale="it-IT">
+<widget xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" id="com.netfreex" version="1.0" xmlns="http://www.w3.org/ns/widgets" defaultlocale="it-IT">
   <name>Netfreex</name>
   <description>Guarda film e serie tv in streaming, gratis.</description>
   <author href="http://cordova.io" email="dev@cordova.apache.org">Be4t5</author>
@@ -127,16 +127,18 @@
     <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer" />
   </feature>
   <plugin name="com.dawsonloudon.videoplayer.custom" version="1.0.0" src="C:\Users\Tommy\Desktop\com.dawsonloudon.videoplayer.custom" />
-  <plugin name="com.netfreex.rapidvideo" version="1.0" src="C:\Users\Tommy\Desktop\Netfreex\com.netfreex.rapidvideo" />
   <plugin name="cordova-plugin-statusbar-custom" version="1.0" src="C:\Users\Tommy\Desktop\Netfreex\cordova-plugin-statusbar-custom" />
   <plugin name="cordova-plugin-keyboard" version="1.1.3" src="https://github.com/cjpearson/cordova-plugin-keyboard.git" />
   <plugin name="com.netfreex.nowvideo" version="0.7.3" src="C:\Users\Tommy\Desktop\Netfreex\com.netfreex.nowvideo" />
-  <plugin name="com.netfreex.italiaFilmLinks" version="1.0" src="C:\Users\Tommy\Desktop\Netfreex\com.netfreex.italiafilmlinks" />
   <preference name="Orientation" value="landscape" />
   <plugin name="cordova-plugin-app-version" version="0.1.8" src="https://github.com/whiteoctober/cordova-plugin-app-version.git" />
   <plugin name="cordova-plugin-file-transfer" version="1.5.0" />
   <plugin name="cordova-plugin-file-opener2" version="2.0.2" src="https://github.com/pwlin/cordova-plugin-file-opener2.git" />
   <plugin name="cordova-plugin-file" version="4.1.1" />
-  <plugin name="com.netfreex.flashx" version="1.1" src="C:\Users\Tommy\Desktop\Netfreex\com.netfreex.flashx" />
-  <plugin name="com.netfreex.openload" version="1.1" src="C:\Users\Tommy\Desktop\Netfreex\com.netfreex.openload" />
+  <plugin name="com.netfreex.rapidvideo" version="1.2" src="C:\Users\Tommy\Desktop\Netfreex\com.netfreex.rapidvideo" />
+  <plugin name="com.netfreex.streaminto" version="1.0" src="C:\Users\Tommy\Desktop\Netfreex\com.netfreex.streaminto" />
+  <plugin name="com.netfreex.videomega" version="1.0" src="C:\Users\Tommy\Desktop\Netfreex\com.netfreex.videomega" />
+  <plugin name="com.netfreex.italiaFilmLinks" version="1.1" src="C:\Users\Tommy\Desktop\Netfreex\com.netfreex.italiafilmlinks" />
+  <plugin name="com.netfreex.openload" version="1.3" src="C:\Users\Tommy\Desktop\Netfreex\com.netfreex.openload" />
+  <plugin name="com.netfreex.flashx" version="1.3" src="C:\Users\Tommy\Desktop\Netfreex\com.netfreex.flashx" />
 </widget>

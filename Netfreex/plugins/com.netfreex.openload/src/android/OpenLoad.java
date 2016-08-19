@@ -7,17 +7,19 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import java.util.Scanner;
 
+
 public class OpenLoad extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
 
         if (action.equals("extract")) {
+			
 			try{
 				String id = data.getString(0);
 
 				URL url = new URL("https://openload.co/f/"+ id );
-				
+		
 				URLConnection connection = null;
 				String content = null;
 				InputStreamReader inn = null;
@@ -42,22 +44,9 @@ public class OpenLoad extends CordovaPlugin {
 				inn.close();
 				
 				content = sb.toString();
-				content = content.split("welikekodi_ya_rly = ")[1];
-		
-				String[] subs;
+				content = content.split("id=\"hiddenurl\">")[1].split("</span>")[0];
 				
-				//Prendo la sottrazione
-				subs = content.split(";")[0].split(" - ");
-				int index = Integer.parseInt(subs[0]) - Integer.parseInt(subs[1]);
-				
-				if(index == 1)
-					index++;
-				else
-					index--;
-				
-				content = content.split("<script type=\"text/javascript\">")[index+1].split("</script>")[0];
-				
-				callbackContext.success("openload|" + content);
+				callbackContext.success("openload|"+content);
 					
 				
 					

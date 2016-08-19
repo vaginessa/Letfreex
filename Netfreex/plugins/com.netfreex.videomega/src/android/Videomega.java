@@ -7,7 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import java.util.Scanner;
 
-public class Rapidvideo extends CordovaPlugin {
+public class Videomega extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
@@ -17,7 +17,7 @@ public class Rapidvideo extends CordovaPlugin {
 				String id = data.getString(0);
 				
 				
-				String url = "http://www.rapidvideo.org/embed-"+id+"-607x360.html";
+				String url = "http://videomega.tv/view.php?ref="+id;
 
 				URL obj = new URL(url);
 				String content = null;
@@ -27,6 +27,7 @@ public class Rapidvideo extends CordovaPlugin {
 				InputStreamReader inn = null;
 				
 				urlConn = obj.openConnection();
+				urlConn.setRequestProperty( "User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0");
 				if (urlConn != null)
 					urlConn.setReadTimeout(60 * 1000);
 				if (urlConn != null && urlConn.getInputStream() != null) {
@@ -44,8 +45,7 @@ public class Rapidvideo extends CordovaPlugin {
 				inn.close();
 				
 				content = sb.toString();
-				
-				content = "eval"+content.split("<script type='text/javascript'>eval")[1].split("</script>")[0];
+				content = "eval"+content.split("eval")[1].split("split")[0]+"split('|'),0,{}))";
 				
 				callbackContext.success(content);
 				

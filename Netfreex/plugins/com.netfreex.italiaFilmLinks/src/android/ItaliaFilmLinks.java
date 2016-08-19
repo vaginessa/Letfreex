@@ -16,7 +16,7 @@ public class ItaliaFilmLinks extends CordovaPlugin {
 			try{
 				String id = data.getString(0);
 
-				URL url = new URL("http://hdlink.video/l/"+ id+"?host=2" );
+				URL url = new URL("http://hdlink.video/l/"+ id );
 				
 				URLConnection connection = null;
 				String content = null;
@@ -43,10 +43,15 @@ public class ItaliaFilmLinks extends CordovaPlugin {
 				inn.close();
 				
 				content = sb.toString();
-
-				content = content.split("/embed/")[1].split("/")[0];
 				
-				callbackContext.success("italiaFilmLinks|" + content);
+				try{
+					content = content.split("/embed/")[1].split("/")[0];
+					callbackContext.success("italiaFilmLinks|openload|" + content);
+				}catch(Exception e){
+					content = content.split("hashkey=")[1].split("\"")[0];
+					callbackContext.success("italiaFilmLinks|videomega|" + content);
+				}
+				
 					
 				
 					

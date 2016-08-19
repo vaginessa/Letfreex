@@ -165,5 +165,30 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "com.netfreex.streaminto": {
+        "source": {
+            "type": "local",
+            "path": "C:\\Users\\Tommy\\Desktop\\Netfreex\\com.netfreex.streaminto"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "com.netfreex.videomega": {
+        "source": {
+            "type": "local",
+            "path": "C:\\Users\\Tommy\\Desktop\\Netfreex\\com.netfreex.videomega"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "me.tonny.cordova.plugins.multidex": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/jwall149/cordova-multidex.git",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }
