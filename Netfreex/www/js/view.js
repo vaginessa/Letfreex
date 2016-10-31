@@ -80,7 +80,7 @@ function openVideo(host, url) {
 
         else if (host[0] == 'italiaFilmLinks') {
             if (host[1] == 'openload')
-                italiaFilmLinks.extract(url + "?host=2", success, error);
+                italiaFilmLinks.extract(url + "?host=1", success, error);
             if (host[1] == 'videomega')
                 italiaFilmLinks.extract(url + "?host=1", success, error);
         }
@@ -154,7 +154,12 @@ function unpack(p) {
         c = c.split('file:"')[1].split('"')[0];
     }
     catch (e) {
-        c = c.split('src","')[1].split('"')[0];
+        try{
+            c = c.split('src","')[1].split('"')[0];
+        } catch (ex) {
+            c = c.split('file:\'')[1].split('\'')[0];
+        }
+        
     }
     return c;
 }
@@ -169,19 +174,29 @@ function depack(p) {
     return c;
 }
 
-function decodeOpenload(x) {
-    x = $("<textarea/>").html(x).text();
-    var s = [];
-    for (var i = 0; i < x.length; i++) {
-        var j = x.charCodeAt(i);
-        if ((j >= 33) && (j <= 126)) {
-            s[i] = String.fromCharCode(33 + ((j + 14) % 94));
-        }
-        else {
-            s[i] = String.fromCharCode(j);
-        }
-    }
-    var url = "https://openload.co/stream/" + s.join("") + "?mime=true";
+function decodeOpenload(input) {
+    //x = $("<textarea/>").html(x).text();
+    //var s = [];
+    //for (var i = 0; i < x.length; i++) {
+    //    var j = x.charCodeAt(i);
+    //    if ((j >= 33) && (j <= 126)) {
+    //        s[i] = String.fromCharCode(33 + ((j + 14) % 94));
+    //    }
+    //    else {
+    //        s[i] = String.fromCharCode(j);
+    //    }
+    //}
+    var x = input.split("<sep>")[0];
+    var y = input.split("<sep>")[1];
+    var magic = y.slice(-1).charCodeAt(0);
+    y = y.split(String.fromCharCode(magic - 1)).join("	");
+    y = y.split(y.slice(-1)).join(String.fromCharCode(magic - 1));
+    y = y.split("	").join(String.fromCharCode(magic));
+    var s = []; for (var i = 0; i < y.length; i++) { var j = y.charCodeAt(i); if ((j >= 33) && (j <= 126)) { s[i] = String.fromCharCode(33 + ((j + 14) % 94)); } else { s[i] = String.fromCharCode(j); } }
+    var tmp = s.join("");
+    var str = tmp.substring(0, tmp.length - 1) + String.fromCharCode(tmp.slice(-1).charCodeAt(0) + 3);
+
+    var url = "https://openload.co/stream/" + str + "?mime=true";
     console.log(url)
     return url;
 }
