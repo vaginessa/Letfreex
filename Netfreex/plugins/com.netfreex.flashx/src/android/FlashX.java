@@ -46,7 +46,7 @@ public class FlashX extends CordovaPlugin {
 				content = sb.toString();
 				
 				String code = content.split("file_id', '")[1].split("'")[0];
-				String postUrl = content.split("POST\" action='")[1].split("'")[0];
+				String postUrl = content.split("POST\" action=\"")[1].split("\"")[0];
 				String fname = content.split("fname\" value=\"")[1].split("\"")[0];
 				 String referer = content.split("referer\" value=\"")[1].split("\"")[0];
 				 String hash = content.split("hash\" value=\"")[1].split("\"")[0];

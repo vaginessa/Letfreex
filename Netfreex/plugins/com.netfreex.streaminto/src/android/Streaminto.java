@@ -45,7 +45,7 @@ public class Streaminto extends CordovaPlugin {
 				inn.close();
 				
 				content = sb.toString();
-				content =  content.split("file:'")[1].split("',")[0];
+				content =  content.split("file: \"")[1].split("\"")[0];
 				
 				callbackContext.success(content);
 				

@@ -14,8 +14,9 @@ public class Nowvideo extends CordovaPlugin {
         if (action.equals("extract")) {
 			try{
 				String id = data.getString(0);
-				//String id = "e65c1fdf031e4";
 				
+				String[] serverPremium = {"s210","s00", "s40", "s10", "s20", "s30", "s50", "s70", "s80", "s90", "s100", "s110", "s120", "s130", "s140", "s160", "s170", "s180", "s190", "s200", "s220", "s230", "s240", "s250", "s260", "s270", "s280", "s290"};
+    	
 				URL url = new URL("http://www.nowvideo.li/mobile/video.php?id="+ id + "&download=2");
 				URLConnection connection = null;
 				String content = null;
@@ -48,22 +49,26 @@ public class Nowvideo extends CordovaPlugin {
 					huc.setConnectTimeout(2000); 
 					responseCode = huc.getResponseCode();
 					if (responseCode != 200)
-							throw new Exception();
+						throw new Exception();
 					callbackContext.success("http://" + server + "." + restOfLink);
 				}
 				catch(Exception e){
-					try{
-						urlVideo = new URL("http://s150." + restOfLink);
-						HttpURLConnection huc = (HttpURLConnection) urlVideo.openConnection();
-						huc.setRequestMethod("HEAD");
-						huc.setConnectTimeout(2000); 
-						responseCode = huc.getResponseCode();
-						if (responseCode != 200)
-							throw new Exception();
-						callbackContext.success("http://s150." + restOfLink);
-					}catch(Exception exx){
-						callbackContext.success("http://" + originalServer + "." + restOfLink);
+					for (String tryServer : serverPremium){
+						try{
+							urlVideo = new URL("http://"+tryServer+"." + restOfLink);
+							HttpURLConnection huc = (HttpURLConnection) urlVideo.openConnection();
+							huc.setRequestMethod("HEAD");
+							huc.setConnectTimeout(2000); 
+							responseCode = huc.getResponseCode();
+							if (responseCode != 200)
+								throw new Exception();
+							callbackContext.success("http://" + tryServer + "." + restOfLink);
+						}
+						catch(Exception exc){
+							
+						}
 					}
+					callbackContext.success("http://" + originalServer + "." + restOfLink);
 				}
 				
 			}catch(Exception ex)
