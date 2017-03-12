@@ -195,48 +195,7 @@ function initView() {
     $('.tf-menu').removeClass('hidden');
     $('#tf-menu').removeClass('hidden');
 
-    //NASCONDO GLI SLIDER VUOTI
-    if (isEmpty($('#movieSliderContainer'))) {
-        $('.movieLastTitle').addClass('hidden');
-        $('#homeFilm').addClass('hidden');
-    }
-    if (isEmpty($('#serieTvSliderContainer'))) {
-        $('.serieLastTitle').addClass('hidden');
-        $('#homeSerieTv').addClass('hidden');
-    }
-    if (isEmpty($('#serieTvMostPopularSliderContainer'))) {
-        $('.serieMostPopularTitle').addClass('hidden');
-        $('#homeSerieTvMostPopular').addClass('hidden');
-    }
-    if (isEmpty($('#movieMostPopularSliderContainer'))) {
-        $('.movieMostPopularTitle').addClass('hidden');
-        $('#homeFilmMostPopular').addClass('hidden');
-    }
-
-    //SE SONO VUOTI TUTTI DO ERRORE DI RETE
-    if (isEmpty($('#movieSliderContainer')) && isEmpty($('#serieTvSliderContainer')) && isEmpty($('#serieTvMostPopularSliderContainer')) && isEmpty($('#movieMostPopularSliderContainer'))) {
-        $('#error').removeClass('hidden');
-    }
-    slidePerView = 4;
-    //Inizializzo gli slider con le copertine
-    var windowLength = $(window).width();
-    if (windowLength >= 1024 && windowLength <= 1350)
-        slidePerView = 5;
-    if (windowLength >= 1350 && windowLength <= 1700)
-        slidePerView = 6;
-    if (windowLength >= 1800)
-        slidePerView = 8;
-    if (windowLength < 1024 && windowLength >= 768)
-        slidePerView = 4;
-    if (windowLength < 768)
-        slidePerView = 4;
-
-    for (var i = 0; i < sections.length; i++) {
-        initializeSliderPoster(sections[i]);
-    }
-
-    //Carousel
-    fillCarousel();
+    
 
 }
 

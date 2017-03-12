@@ -92,4 +92,7 @@ var sections = [
     openPage("http://www.italia-film.gratis/category/film-streaming-2017/", false, 'movieSliderContainer', false);
     openPage("http://www.italia-film.gratis/category/serie-tv/", true, 'serieTvSliderContainer', false);
 
+$(window).on("load", function () {
 
+    initViewChannelMode();
+});

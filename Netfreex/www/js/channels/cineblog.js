@@ -48,8 +48,6 @@ function extractLinkSwzz(url, host) {
     }
 }
 
-
-
 function parsePage(data, url, isSerieTv, section, nextPage, callback) {
     var html = data;
     arrayFilm = [];
@@ -92,9 +90,9 @@ function search() {
 
     var url;
     if ($('#serieTv').prop('checked'))
-        url = "http://www.cb01.co/serietv/search/" + input
+        url = "http://www.cb01.uno/serietv/search/" + input
     else
-        url = "http://www.cb01.co/search/" + input
+        url = "http://www.cb01.uno/search/" + input
 
     openPage(url, $('#serieTv').prop('checked'), 'searchResultContainer', false, true);
 }
@@ -160,6 +158,8 @@ var sections = [
     //openPage("http://www.cb01.co/serietv/page/2/", true, 'serieTvSliderContainer', false);
     //openPage("http://www.cb01.co/page/2/", false, 'movieSliderContainer', false);
 
-
+$(window).on("load", function () {
+    initViewChannelMode();
+});
 
 

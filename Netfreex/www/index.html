@@ -55,22 +55,25 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-            <a class="navbar-brand" href="index.html"><img style="width: 100px;margin-top: 7px;" src="img/logo.png"/></a>
+            <a class="navbar-brand" href="index.html"><img style="width: 100px; margin-top: 7px;" src="img/logo.png"/></a>
+            <span id="channelName"></span>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right ">
             <li><a  tabindex="0" onclick="goToHome()">Home</a></li>
-              <li><a  tabindex="0" onclick="goToSearch()"><i class="fa fa-search" style="padding-right: 10px"></i>Cerca</a></li>
+              <li id="cerca" class="hidden"><a  tabindex="0" onclick="goToSearch()"><i class="fa fa-search" style="padding-right: 10px"></i>Cerca</a></li>
             <!--<li><a tabindex="0"  class="page-scroll">Impostazioni</a></li>-->
               <li>
                   <div  class="dropdown" style="position: relative;top: 9px; left: 5px; margin-bottom: 5px;">
                       <button  class="btn btn-primary dropdown-toggle text-uppercase" type="button" data-toggle="dropdown" style="font-size: 12px; background-color: rgba(240, 248, 255, 0); border: none" >
-                          <span id="channelName"></span>
+                          <span id="menuDropDownLabel" >Gestione canali</span>
                           <span class="caret"></span>
                       </button>
-                      <ul class="dropdown-menu">
+                      <ul id="channelList" class="dropdown-menu">
+                          <li><a onclick="aggiungiCanale();">Aggiungi canale</a></li>
+                          <li class="borderBottomWhite"><a onclick="eliminaCanale();">Elimina canale</a></li>
                           <li><a href="index.html?channel=cineblog">Cineblog</a></li>
                           <li><a href="index.html?channel=italiafilm">ItaliaFilm</a></li>
                           <li><a href="index.html?channel=piratestreaming">Piratestreaming</a></li>
@@ -82,16 +85,21 @@
       </div>
     </nav>
 
-    
 
-      <div id="error" class="hidden">
-          Sembra ci sia un problema di rete. Controlla di essere connesso ad internet e riprova. <br/>Potrebbe anche essere un problema del canale, prova a cambiarlo.
-            <br/><br/><a class="btn btn-warning" href="index.html">Riprova</a>
+
+    <div id="error" class="hidden">
+        Sembra ci sia un problema di rete. Controlla di essere connesso ad internet e riprova. <br/>Potrebbe anche essere un problema del canale, prova a cambiarlo.
+        <br/><br/><a class="btn btn-warning" href="index.html">Riprova</a>
+    </div>
+
+      <div id="welcome" >
+          <span>Benvenuto in</span> <img style="width: 100px; margin-top: 7px;" src="img/logo.png"/>
+          <p style="font-size: 20px;">Per cominciare aggiungi un canale dal menù Gestione Canali.</p>
       </div>
 
   <!-- Home view
           ================================================== -->
-      <div id="homeContainer" >
+      <div id="homeContainer" class="hidden" >
           <!-- Home Page slider
         ==========================================-->
           <div id="tf-home" class="text-center hidden">
@@ -349,6 +357,7 @@
     <script src="js/utility.js"></script>
     <script src="js/tmdbApi.js"></script>
     <script src="js/updateManager.js"></script>
+      <script src="js/channelManager.js"></script>
     <script src="js/view.js"></script> 
     <script src="js/hosts.js"></script>
     <script type="text/javascript" src="js/main.js"></script> 
@@ -370,18 +379,8 @@
 
   <script>
       var slidePerView = 0;
+      loadChannelList(false);
 
-      //INIZIALIZZAZIONE CANALI
-      var channel = getURLParameters('channel');
-      if (channel != null) {
-          changeChannel(channel);
-          $('#channelName').html(channel);
-      }  
-      else {
-          //CANALE DEFAULT
-          changeChannel('cineblog');
-          $('#channelName').html('cineblog');
-      }
   </script>     
   </body>
 </html>

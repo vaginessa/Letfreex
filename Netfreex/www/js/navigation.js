@@ -85,21 +85,3 @@ function showSeason(seasonId) {
     $('#' + seasonId).removeClass('hidden');
 }
 
-function changeChannel(name) {
-    $('#movieSliderContainer').html('');
-    $('#serieTvSliderContainer').html('');
-    $('#movieMostPopularSliderContainer').html('');
-    $('#serieTvMostPopularSliderContainer').html('');
-
-    $('#carouselItems').html('');
-
-    $('.movieMostPopularTitle').removeClass('hidden');
-    $('.serieMostPopularTitle').removeClass('hidden');
-    $('#homeFilmMostPopular').removeClass('hidden');
-    $('#homeSerieTvMostPopular').removeClass('hidden');
-
-    $('img').imageReloader();
-
-    //localStorage.clear();
-    $('#channel').html('<scr' + 'ipt type="text/javascript" src="js/channels/' + name + '.js"></scr' + 'ipt>');
-}
