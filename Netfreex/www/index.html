@@ -9,16 +9,6 @@
     <!--[if IE]><meta http-equiv="x-ua-compatible" content="IE=9" /><![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Netfreex</title>
-    <meta name="description" content="Spirit8 is a Digital agency one page template built based on bootstrap framework. This template is design by Robert Berki and coded by Jenn Pereira. It is simple, mobile responsive, perfect for portfolio and agency websites. Get this for free exclusively at ThemeForces.com">
-    <meta name="keywords" content="bootstrap theme, portfolio template, digital agency, onepage, mobile responsive, spirit8, free website, free theme, themeforces themes, themeforces wordpress themes, themeforces bootstrap theme">
-    <meta name="author" content="ThemeForces.com">
-    
-    <!-- Favicons
-    ================================================== -->
-    <!--<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">-->
 
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css"  href="css/bootstrap.css">
@@ -55,8 +45,8 @@
 
     <!-- Navigation
     ==========================================-->
-    <nav id="tf-menu" class="navbar navbar-default navbar-fixed-top ">
-      <div class="container tf-menu hidden">
+    <nav id="tf-menu" class="navbar navbar-default navbar-fixed-top hidden">
+      <div class="container tf-menu ">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
           <button  type="button" class="navbar-toggle collapsed" onclick="changeBG()" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -65,7 +55,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-            <a class="navbar-brand" href="index.html"><img src="img/logo.png"/></a>
+            <a class="navbar-brand" href="index.html"><img style="width: 100px;margin-top: 7px;" src="img/logo.png"/></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -104,7 +94,7 @@
       <div id="homeContainer" >
           <!-- Home Page slider
         ==========================================-->
-          <div id="tf-home" class="text-center">
+          <div id="tf-home" class="text-center hidden">
               <div class="overlay">
                   <div class="content">
                       <div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 1300px; height: 700px; overflow: hidden; visibility: hidden;">
@@ -220,7 +210,7 @@
           <nav id="footer">
               <div class="container">
                   <div class="pull-left fnav">
-                      <p>NETFREEX 1.1.1 - © 2016. Developed by <a href="https://github.com/Be4t5">Be4t5</a></p>
+                      <p>NETFREEX 1.1.2 - © 2017. Developed by <a href="https://github.com/Be4t5">Be4t5</a></p>
                   </div>
               </div>
           </nav>
@@ -368,67 +358,30 @@
         <!--<script type="text/javascript" src="js/channels/piratestreaming.js"></script>-->
     </div>
   <script src="js/navigation.js"></script>
+  <!-- Servers -->
+  <script src="servers/streaminto.js"></script>
+  <script src="servers/flashx.js"></script>
+  <script src="servers/rapidvideo.js"></script>
+  <script src="servers/nowvideo.js"></script>
+  <script src="servers/openload.js"></script>
+  <script src="servers/italiafilmlinks.js"></script>
+  <script src="servers/vidto.js"></script>
+
 
   <script>
       var slidePerView = 0;
 
-      FastClick.attach(document.body);
-      $('img').imageReloader();
-
+      //INIZIALIZZAZIONE CANALI
       var channel = getURLParameters('channel');
       if (channel != null) {
           changeChannel(channel);
           $('#channelName').html(channel);
       }  
       else {
+          //CANALE DEFAULT
           changeChannel('cineblog');
           $('#channelName').html('cineblog');
       }
-
-      $(window).on("load", function () {
-          $('#loading').addClass('hidden');
-          $('.tf-menu').removeClass('hidden');
-          if (isEmpty($('#movieSliderContainer')) && isEmpty($('#serieTvSliderContainer')) && isEmpty($('#serieTvMostPopularSliderContainer')) && isEmpty($('#movieMostPopularSliderContainer'))) {
-              $('#error').removeClass('hidden');
-          }
-
-          //Inizializzo gli slider con le copertine
-          
-          var windowLength = $(window).width();
-          if (windowLength >= 1024 && windowLength <= 1350)
-              slidePerView = 5;
-          if (windowLength >= 1350 && windowLength <= 1700)
-              slidePerView = 6;
-          if (windowLength >= 1800)
-              slidePerView = 8;
-          if (windowLength < 1024 && windowLength >= 768)
-              slidePerView = windowLength / 176;
-          if (windowLength < 768)
-              slidePerView = windowLength / 140;
-  
-          for (var i = 0; i < sections.length; i++) {
-              initializeSliderPoster(sections[i]);
-          }       
-
-          //Carousel
-          fillCarousel();
-      });
-
-      //Eventi per navigazione tramite tastiera/telecomando
-      $(document).keydown(
-          function(e) {
-              if (e.keyCode == 13) {
-                  $(":focus").click();
-              }
-              if (e.keyCode == 37) {
-                  $.emulateTab(-1);
-              }
-              if (e.keyCode == 39) {
-                  $.emulateTab();
-              }
-          }
-      );
-
   </script>     
   </body>
 </html>

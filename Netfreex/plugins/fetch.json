@@ -190,5 +190,14 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "cordova-plugin-http": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/wymsee/cordova-HTTP.git",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

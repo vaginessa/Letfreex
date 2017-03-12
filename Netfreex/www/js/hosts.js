@@ -1,95 +1,96 @@
 //Gestione host serie tv =======================================================================
 var serieTvHosts = [
     'swzz|nowvideo',
-    //'swzz|openload',
+    'swzz|openload',
+    'swzz|flashx',
     //'italiaFilmLinks|openload',
-    //'italiaFilmLinks|videomega',
     'nowvideo',
-    //'openload',
+    'openload',
+    'vidto',
     'rapidvideo',
     'flashx',
-    'swzz|streaminto',
-    //'swzz|videomega'
+    'swzz|streaminto'
 ];
 
 var serieTvRegexHosts = [
     //Nowvideo redirect swzz (cineblog)
-    '([0-9]{1,3}(?:[^0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*xyz\/link\/([a-z0-9A-Z]+)[^<]*Nowvideo',
+    '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*goto/([a-z0-9A-Z=]*)" target="_blank">Nowvideo',
 
     //Openload redirect swzz (cineblog)
-    //'([0-9]{1,3}(?:[^0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*xyz\/link\/([a-z0-9A-Z]+)[^<]*Openload',
+    '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*goto/([a-z0-9A-Z=]*)" target="_blank">Openload',
+
+    //FlashX redirect swzz (cineblog)
+    '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*goto/([a-z0-9A-Z=]*)" target="_blank">Flashx',
 
     //Openload redirect Italia-Film Links (ItaliaFilm)
     //'([0-9]{1,3}(?:[^0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*hdlink.video\/l\/([a-z0-9A-Z]+)[^<]*Italia-Film Links',
 
-    //Videomega redirect Italia-Film Links (ItaliaFilm)
-    //'([0-9]{1,3}(?:[^0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*hdlink.video\/l\/([a-z0-9A-Z]+)[^<]*Italia-Film Links',
-
     //Nowvideo
-    '([0-9]{1,3}(?:[^0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*www.nowvideo.*/video/([a-z0-9A-Z]+)[^<]*Nowvideo',
+    '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*www.nowvideo.*/video/([a-z0-9A-Z]+)[^<]*Nowvideo',
 
     //Openload
-    //'([0-9]{1,3}(?:[^0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*openload.*/f/([a-z0-9A-Z]+)[^<]*Openload',
+    '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*openload.*/f/([a-z0-9A-Z]+)[^<]*Openload',
+
+    //VidTo
+    '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*vid.*/([a-z0-9A-Z]+).html[^<]*VidTO',
 
     //Rapidvideo
     '([0-9]{1,3}x[0-9]{1,3}).*http:\/\/www.rapidvideo.org/([a-z0-9A-Z\/._-]+)/.*?Rapidvideo',
 
     //FlashX
-    '([0-9]{1,3}(?:[^0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*http:\/\/.*\/([a-z0-9A-Z]+)[^<]*Flashx',
+    '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*http:\/\/.*flashx.*\/([a-z0-9A-Z]+)[^<]*Flashx',
 
     //Streamin redirect swzz (cineblog)
-    '([0-9]{1,3}(?:[^0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*xyz\/link\/([a-z0-9A-Z]+)[^<]*Streamin',
-
-    //Videomega redirect swzz (cineblog)
-    //'([0-9]{1,3}(?:[^0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*xyz\/link\/([a-z0-9A-Z]+)[^<]*Videomega',
+    '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*goto/([a-z0-9A-Z=]*)" target="_blank">Streamin',
 ];
 
 
 //Gestione host film (LINK UNICO)===============================================================
 var movieHostsOneLink = [
     'swzz|nowvideo',
-    //'swzz|openload',
+    'swzz|openload',
     //'italiaFilmLinks|openload',
-    //'italiaFilmLinks|videomega',
-    //'openload',
+    'openload',
+    'vidto',
     'nowvideo',
     'rapidvideo',
     'flashx',
-    'swzz|streaminto',
-    //'swzz|videomega'
+    'swzz|flashx',
+    'swzz|streaminto'
 ];
 
 var movieRegexHostsOneLink = [
 
     //Nowvideo redirect swzz (cineblog)
-    'xyz/link/([a-z0-9A-Z]*)/" target="_blank">Nowvideo',
+    'goto/([a-z0-9A-Z=]*)" target="_blank">Nowvideo',
 
     //Openload redirect swzz (cineblog)
-    //'xyz/link/([a-z0-9A-Z]*)/" target="_blank">Openload',
+    'goto/([a-z0-9A-Z=]*)" target="_blank">Openload',
 
     //Openload redirect ItaliaFilmLinks (italia film)
     //'hdlink.video/l/([0-9a-zA-Z]*)',
 
-    //Videomega redirect ItaliaFilmLinks (italia film)
-    //'hdlink.video/l/([0-9a-zA-Z]*)',
-
     //Openload
-    //'openload....?/f/([0-9a-zA-Z]*)',
+    'openload.*/f/([^/]*)/',
+
+    //VidTo
+    'vidto.*/([^/]*).html',
 
     //Nowvideo
-    'nowvideo.../video/([0-9a-zA-Z]*)',
+    'nowvideo.com/video/([0-9a-zA-Z]*)"',
 
     //Rapidvideo
-    'rapidvideo.org/([0-9a-zA-Z]*)/',
+    'rapidvideo.cool/([0-9a-zA-Z]*)/',
 
     //Flashx
-    'flashx.tv/([0-9a-zA-Z]*).html',
+    'flashx.*/([0-9a-zA-Z]*).html',
+
+    //Flashx redirect swzz (cineblog)
+    'goto/([a-z0-9A-Z=]*)" target="_blank">Flashx',
 
     //Streamin redirect swzz (cineblog)
-    'xyz/link/([a-z0-9A-Z]*)/" target="_blank">Streamin',
+    'goto/([a-z0-9A-Z=]*)" target="_blank">Streamin',
 
-    //Videomega redirect swzz (cineblog)
-    //'xyz/link/([a-z0-9A-Z]*)/" target="_blank">Videomega'
 ];
 
 
@@ -137,11 +138,11 @@ function manageMovieLinks(html) {
             console.log('trovato ' + res[1]);
             console.log(res);
 
-            link += "<div class=\"hidden marginBottom10\" host onclick=\"openVideo('" + movieHostsManyLink[i] + "','" + res[1] + "')\"><img class=\"poster play\" src=\"img/host/" + host + ".png\" /><p>" + res[2] + "</p></div>";
-            link += "<div class=\"hidden marginBottom10\" host onclick=\"openVideo('" + movieHostsManyLink[i] + "','" + res[3] + "')\"><img class=\"poster play\" src=\"img/host/" + host + ".png\" /><p>" + res[4] + "</p></div>";
+            link += "<div class=\"hidden marginBottom10\" host onclick=\"openVideo('" + movieHostsManyLink[i] + "','" + res[1] + "', false)\"><img class=\"poster play\" src=\"img/host/" + host + ".png\" /><p>" + res[2] + "</p></div>";
+            link += "<div class=\"hidden marginBottom10\" host onclick=\"openVideo('" + movieHostsManyLink[i] + "','" + res[3] + "', false)\"><img class=\"poster play\" src=\"img/host/" + host + ".png\" /><p>" + res[4] + "</p></div>";
 
             if (res[5])
-                link += "<div class=\"hidden marginBottom10\" host onclick=\"openVideo('" + movieHostsManyLink[i] + "','" + res[5] + "')\"><img class=\"poster play\" src=\"img/host/" + host + ".png\" /><p>" + res[6] + "</p></div>";
+                link += "<div class=\"hidden marginBottom10\" host onclick=\"openVideo('" + movieHostsManyLink[i] + "','" + res[5] + "', false)\"><img class=\"poster play\" src=\"img/host/" + host + ".png\" /><p>" + res[6] + "</p></div>";
 
         }
 
@@ -171,7 +172,7 @@ function manageMovieLinks(html) {
 
             if ($('#playButton').html().indexOf(res[1]) == -1) {
                 count++;
-                link += "<div  class=\"hidden marginBottom10\" host onclick=\"openVideo('" + movieHostsOneLink[i] + "','" + res[1] + "')\"><img width=\"200\" src=\"img/host/" + host + ".png\"></div>";
+                link += "<div  class=\"hidden marginBottom10\" host onclick=\"openVideo('" + movieHostsOneLink[i] + "','" + res[1] + "', false)\"><img width=\"200\" src=\"img/host/" + host + ".png\"></div>";
             }
         }
     }
@@ -218,7 +219,7 @@ function manageSerieTvLinks(html, regexStagione) {
                 id: res[2],
                 host: serieTvHosts[i]
             }
-            var seasonNum = res[1].split(/(?:[^0-9A-Za-z\.]+|&#[0-9]{4};)|x/)[0];
+            var seasonNum = res[1].split(/(?:[^&0-9A-Za-z\.]+|&#[0-9]{3,4};)|x/)[0];
 
             //Se la stagione inizia con 0, lo tolgo per non creare problemi
             if (seasonNum[0] == "0")
@@ -262,7 +263,7 @@ function manageSerieTvLinks(html, regexStagione) {
             if (listaLink[stagione].value[j].stagioneEpisodio != previousEpisodio) {
 
                 //Preparo la divisione in stagioni 
-                var seasonEpisodeRegex = "([0-9]{1,3})(?:[^0-9A-Za-z\.]+|&#[0-9]{4};|x)([0-9]{1,3}).*";
+                var seasonEpisodeRegex = "([0-9]{1,3})(?:[^&0-9A-Za-z\.]+|&#[0-9]{3,4};|x)([0-9]{1,3}).*";
                 var seasonEpisodePattern = new RegExp(seasonEpisodeRegex, 'gi');
 
                 while (response = seasonEpisodePattern.exec(listaLink[stagione].value[j].stagioneEpisodio)) {
@@ -280,7 +281,6 @@ function manageSerieTvLinks(html, regexStagione) {
                 previousEpisodio = listaLink[stagione].value[j].stagioneEpisodio;
 
                 link += "<div info=\"" + stagioneNumero + "x" + episodioNumero + "\" class=\"guarda col-md-4 col-xs-12 hidden\" >" +
-                            //"<div tabindex=\"0\" onclick=\"openVideo('" +listaLink[stagione].value[j].host+ "','" + listaLink[stagione].value[j].id + "')\">" +
                             "<div tabindex=\"0\" onclick=\"chooseHost($(this).parent())\">" +
                                 "<div class=\"playContainer\" style=\"background-position: center;background-repeat: no-repeat;\">" +
                                       "<img class=\"playSeries\" src=\"img/playSeries.png\" />" +
@@ -289,7 +289,7 @@ function manageSerieTvLinks(html, regexStagione) {
             }
 
             var hostImg = listaLink[stagione].value[j].host.split("|")[1] ? listaLink[stagione].value[j].host.split("|")[1] : listaLink[stagione].value[j].host;
-            link += "<div class=\"hidden marginBottom10\" host onclick=\"openVideo('" + listaLink[stagione].value[j].host + "','" + listaLink[stagione].value[j].id + "')\"><img width=\"200\" src=\"img/host/" + hostImg + ".png\"></div>";
+            link += "<div class=\"hidden marginBottom10\" host onclick=\"openVideo('" + listaLink[stagione].value[j].host + "','" + listaLink[stagione].value[j].id + "', true)\"><img width=\"200\" src=\"img/host/" + hostImg + ".png\"></div>";
         }
         link += "</div>";
     }

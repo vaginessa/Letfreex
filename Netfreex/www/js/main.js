@@ -39,7 +39,7 @@ var arrayFilm = [];
 var arrayCarousel = [];
 var mySwiper;
 
-function openPage(url, isSerieTv, section, mostPopular, nextPage) {
+function openPage(url, isSerieTv, section, mostPopular, nextPage, callback) {
     /*if (localStorage.getItem(url) != undefined &&
         localStorage.getItem(url).split('|')[0] > new Date().getTime()) {
         
@@ -47,15 +47,33 @@ function openPage(url, isSerieTv, section, mostPopular, nextPage) {
         printPage(isSerieTv, section);
     }
     else {*/
+
     if (!mostPopular)
-        scrapePage(url, isSerieTv, section, nextPage);
+        scrapePage(url, isSerieTv, section, nextPage, callback);
     else
-        scrapeMostPopular(url, isSerieTv, section);
+        scrapeMostPopular(url, isSerieTv, section, callback);
     //}
 
 }
 
-function printPage(isSerieTv, section, nextPage) {
+//Apre una pagina del canale
+function scrapePage(url, isSerieTv, section, nextPage, callback) {
+    get(url, function (response) {
+        parsePage(response, url, isSerieTv, section, nextPage, callback);
+    }, function (er) {
+        console.error(er);
+    });
+}
+
+function scrapeMostPopular(url, isSerieTv, section, callback) {
+    get(url, function (response) {
+        parseMostPopular(response, url, isSerieTv, section, callback);
+    }, function (er) {
+        console.error(er);
+    });
+}
+
+function printPage(isSerieTv, section, nextPage, callback) {
     $('#loadingSearch').addClass('hidden');
 
     var htmlFilm;
@@ -78,7 +96,12 @@ function printPage(isSerieTv, section, nextPage) {
 
     if (nextPage) {
         initializeSliderPoster(section);
-    }   
+    }
+
+    if (callback) {
+        callback();
+    }
+        
 }
 
 function pushRandomItemInCarousel(isSerie) {
@@ -126,7 +149,96 @@ function initializeSliderPoster(section) {
     });
 }
 
+//Apre la pagina principale di un film o serie
+function getVideoLink(url, isSerieTv) {
+    get(url, function (response) {
+        parseMoviePage(response, url, isSerieTv);
+    }, function (er) {
+        console.error(er);
+    });
+}
+
+
+
+
 main();
+
+
+//INIZIALIZZAZIONE DELLA VIEW
+$(window).on("load", function () {
+
+        initView();
+});
+
+
+
+function initView() {
+    FastClick.attach(document.body);
+    $('img').imageReloader();
+
+    //Eventi per navigazione tramite tastiera/telecomando
+    $(document).keydown(
+        function (e) {
+            if (e.keyCode == 13) {
+                $(":focus").click();
+            }
+            if (e.keyCode == 37) {
+                $.emulateTab(-1);
+            }
+            if (e.keyCode == 39) {
+                $.emulateTab();
+            }
+        }
+    );
+    
+    $('#loading').addClass('hidden');
+    $('.tf-menu').removeClass('hidden');
+    $('#tf-menu').removeClass('hidden');
+
+    //NASCONDO GLI SLIDER VUOTI
+    if (isEmpty($('#movieSliderContainer'))) {
+        $('.movieLastTitle').addClass('hidden');
+        $('#homeFilm').addClass('hidden');
+    }
+    if (isEmpty($('#serieTvSliderContainer'))) {
+        $('.serieLastTitle').addClass('hidden');
+        $('#homeSerieTv').addClass('hidden');
+    }
+    if (isEmpty($('#serieTvMostPopularSliderContainer'))) {
+        $('.serieMostPopularTitle').addClass('hidden');
+        $('#homeSerieTvMostPopular').addClass('hidden');
+    }
+    if (isEmpty($('#movieMostPopularSliderContainer'))) {
+        $('.movieMostPopularTitle').addClass('hidden');
+        $('#homeFilmMostPopular').addClass('hidden');
+    }
+
+    //SE SONO VUOTI TUTTI DO ERRORE DI RETE
+    if (isEmpty($('#movieSliderContainer')) && isEmpty($('#serieTvSliderContainer')) && isEmpty($('#serieTvMostPopularSliderContainer')) && isEmpty($('#movieMostPopularSliderContainer'))) {
+        $('#error').removeClass('hidden');
+    }
+    slidePerView = 4;
+    //Inizializzo gli slider con le copertine
+    var windowLength = $(window).width();
+    if (windowLength >= 1024 && windowLength <= 1350)
+        slidePerView = 5;
+    if (windowLength >= 1350 && windowLength <= 1700)
+        slidePerView = 6;
+    if (windowLength >= 1800)
+        slidePerView = 8;
+    if (windowLength < 1024 && windowLength >= 768)
+        slidePerView = 4;
+    if (windowLength < 768)
+        slidePerView = 4;
+
+    for (var i = 0; i < sections.length; i++) {
+        initializeSliderPoster(sections[i]);
+    }
+
+    //Carousel
+    fillCarousel();
+
+}
 
 
 

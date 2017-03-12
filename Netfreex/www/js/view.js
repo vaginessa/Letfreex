@@ -43,6 +43,7 @@ function openMovie(url,titolo, img, isSerieTv) {
 
         document.addEventListener("backbutton", function (e) {
             goToHome(true);
+            $('#loading').addClass('hidden');
         }, false);
     };
 
@@ -63,11 +64,11 @@ function chooseHost(video) {
         background: 'rgba(0, 0, 0, 0.82)',
         padding: 30,
         showConfirmButton: false
-    })
+    });
 }
 
 //Estrae il video di film/serie tv
-function openVideo(host, url) {
+function openVideo(host, url, isSerieTv) {
     swal.closeModal();
     $('#loading').removeClass('hidden');
 
@@ -75,33 +76,31 @@ function openVideo(host, url) {
         console.log(url);
         host = host.split('|');
 
-        if (host[0] == 'swzz')
-            extractLinkSwzz("http://swzz.xyz/link/" + url + "/", host[1]);
+        if (host[0] == 'swzz') {
+            //if(isSerieTv)
+            //    extractLinkSwzz("http://www.cb01.uno/serietv/goto/" + url + "", host[1]);
+            //else
+            extractLinkSwzz(url, host[1]);
+        }
+            
 
         else if (host[0] == 'italiaFilmLinks') {
             if (host[1] == 'openload')
-                italiaFilmLinks.extract(url + "?host=1", success, error);
-            if (host[1] == 'videomega')
-                italiaFilmLinks.extract(url + "?host=1", success, error);
+                italiafilmLinksExtract(url + "?host=1", success, error);
         }
 
         else if (host[0] == 'nowvideo')
-            nowvideo.extract(url, success, error);
-
+            nowvideoExtract(url, success, error);
+        else if (host[0] == 'vidto')
+            vidtoExtract(url, success, error);
         else if (host[0] == 'rapidvideo')
-            rapidvideo.extract(url, success, error);
-
+            rapidvideoExtract(url, success, error);
         else if (host[0] == 'flashx')
-            flashx.extract(url, success, error);
-
+            flashxExtract(url, success, error);
         else if (host[0] == 'openload')
-            openload.extract(url, success, error);
-
+            openloadExtract(url, success, error);
         else if (host[0] == 'streaminto')
-            streaminto.extract(url, success, error);
-
-        else if (host[0] == 'videomega')
-            videomega.extract(url, success, error);
+            streamintoExtract(url, success, error);
     }, 100);
 }
 
@@ -120,16 +119,6 @@ var success = function (url) {
         return;
     }
    
-    //Unpack packed url (flashx)
-    if (url.indexOf("eval") > -1) {
-        url = unpack(url);
-    }
-
-    //Decode url Openload
-    if (url.indexOf('openload') > -1) {
-        url = decodeOpenload(url.replace("openload|", ""));
-    }
-
     VideoPlayer.play(url);
 }
 
@@ -139,66 +128,7 @@ var error = function (ex) {
     alert("Il link e' offline");
 }
 
-function unpack(p) {
-    var c = p;
-    var a = 5, x = 1;
-    while (x < a) {
-        c = unescape(c);
-        if (/eval\(+function\(/.test(c)) {
-            c = depack(c);
-            x++;
-        } else { break }
-    };
-    c = unescape(c);
-    try{
-        c = c.split('file:"')[1].split('"')[0];
-    }
-    catch (e) {
-        try{
-            c = c.split('src","')[1].split('"')[0];
-        } catch (ex) {
-            c = c.split('file:\'')[1].split('\'')[0];
-        }
-        
-    }
-    return c;
-}
 
-function depack(p) {
-     if (p != "") {
-         c = unescape(p);
-         var _e = eval, s = "eval=function(v){c=v;};" + c + ";eval=_e;";
-         eval(s);
-     } else { c = p };
 
-    return c;
-}
-
-function decodeOpenload(input) {
-    //x = $("<textarea/>").html(x).text();
-    //var s = [];
-    //for (var i = 0; i < x.length; i++) {
-    //    var j = x.charCodeAt(i);
-    //    if ((j >= 33) && (j <= 126)) {
-    //        s[i] = String.fromCharCode(33 + ((j + 14) % 94));
-    //    }
-    //    else {
-    //        s[i] = String.fromCharCode(j);
-    //    }
-    //}
-    var x = input.split("<sep>")[0];
-    var y = input.split("<sep>")[1];
-    var magic = y.slice(-1).charCodeAt(0);
-    y = y.split(String.fromCharCode(magic - 1)).join("	");
-    y = y.split(y.slice(-1)).join(String.fromCharCode(magic - 1));
-    y = y.split("	").join(String.fromCharCode(magic));
-    var s = []; for (var i = 0; i < y.length; i++) { var j = y.charCodeAt(i); if ((j >= 33) && (j <= 126)) { s[i] = String.fromCharCode(33 + ((j + 14) % 94)); } else { s[i] = String.fromCharCode(j); } }
-    var tmp = s.join("");
-    var str = tmp.substring(0, tmp.length - 1) + String.fromCharCode(tmp.slice(-1).charCodeAt(0) + 3);
-
-    var url = "https://openload.co/stream/" + str + "?mime=true";
-    console.log(url)
-    return url;
-}
 
 

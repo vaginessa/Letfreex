@@ -81,3 +81,62 @@ String.prototype.replaceAll = function (search, replacement) {
     var target = this;
     return target.split(search).join(replacement);
 };
+
+function unpack(p) {
+    var c = p;
+    var a = 5, x = 1;
+    while (x < a) {
+        c = unescape(c);
+        if (/eval\(+function\(/.test(c)) {
+            c = depack(c);
+            x++;
+        } else { break }
+    };
+    c = unescape(c);
+    try {
+        c = c.split('file:"')[1].split('"')[0];
+    }
+    catch (e) {
+        try {
+            c = c.split('src","')[1].split('"')[0];
+        } catch (ex) {
+            c = c.split('file:\'')[1].split('\'')[0];
+        }
+
+    }
+    return c;
+}
+
+function depack(p) {
+    if (p != "") {
+        c = unescape(p);
+        var _e = eval, s = "eval=function(v){c=v;};" + c + ";eval=_e;";
+        eval(s);
+    } else { c = p };
+
+    return c;
+}
+
+//HTTP GET
+function get(url, success, error) {
+    //if (!window.cordova) {
+        $.getJSON("http://query.yahooapis.com/v1/public/yql?" +
+            "q=select%20*%20from%20html%20where%20url%3D%22" +
+            encodeURIComponent(url) +
+            "%22&format=xml'&callback=?",
+            function(data) {
+                if (data.results[0]) {
+                    success(data.results[0]);
+                }
+            }, function(er) {
+                error(er);
+            }
+        );
+    //} else {
+    //    cordovaHTTP.get(url, {}, {}, function (response) {
+    //        success(response.data);
+    //    }, function(response) {
+    //         error(response);
+    //    });
+    //}
+}
