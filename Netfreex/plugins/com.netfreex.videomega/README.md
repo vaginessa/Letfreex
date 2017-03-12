@@ -1,1 +1,0 @@
-# Videomega link extractor plugin
