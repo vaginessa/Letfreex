@@ -1,8 +1,14 @@
 function goToHome(backBtn) {
+    if (isChannelListEmpty())
+        $("#welcome").removeClass("hidden");
+    else
+        $('#homeContainer').removeClass('hidden');
+
     //Nascondo le pagine
     $('#viewMovieContainer').addClass('hidden');
     $('#searchContainer').addClass('hidden');
-    $('#homeContainer').removeClass('hidden');
+    
+    $("#singleLink").addClass("hidden");
 
     eraseViewMode();
     if (!backBtn)

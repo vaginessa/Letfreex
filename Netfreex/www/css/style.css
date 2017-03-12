@@ -908,3 +908,21 @@ label {
 .borderBottomWhite{
     border-bottom: 1px solid rgba(255, 255, 255, 0.55);
 }
+
+/*.singleLinkPlay {
+    position: fixed;
+    left: 50%;
+    top: 30%;
+    margin-left: -90px;
+}*/
+#singleLink {
+    position: fixed;
+    z-index: 99;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    text-align: center;
+    padding-top: 16%;
+    font-size: 2vw;
+    color: #F2A542;
+}

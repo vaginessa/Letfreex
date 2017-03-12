@@ -12,7 +12,7 @@ function loadChannelList(added) {
 
     $("#channelList").html(channelListHtml);
 
-    if ($("#channelList").html() != '<li><a onclick="aggiungiCanale();">Aggiungi canale</a></li><li class="borderBottomWhite"><a onclick="eliminaCanale();">Elimina canale</a></li>') {
+    if (!isChannelListEmpty()) {
         //INIZIALIZZAZIONE CANALI
         var channel = getURLParameters('channel');
         if (channel != null && !added) {
@@ -31,6 +31,10 @@ function loadChannelList(added) {
         }
     } 
     
+}
+
+function isChannelListEmpty() {
+    return $("#channelList").html() == '<li><a onclick="aggiungiCanale();">Aggiungi canale</a></li><li class="borderBottomWhite"><a onclick="eliminaCanale();">Elimina canale</a></li>';
 }
 
 function changeChannel(name) {

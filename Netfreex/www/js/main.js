@@ -173,6 +173,14 @@ $(window).on("load", function () {
 
 
 function initView() {
+    $(document).keypress(function(e) {
+        if (e.which == 13) {
+            if (window.cordova) {
+                Keyboard.hide();
+                StatusBar.hide();
+            }
+        }
+    });
     FastClick.attach(document.body);
     $('img').imageReloader();
 

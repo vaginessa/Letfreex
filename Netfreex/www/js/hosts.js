@@ -55,6 +55,7 @@ var movieHostsOneLink = [
     'nowvideo',
     'rapidvideo',
     'flashx',
+    'streaminto',
     'swzz|flashx',
     'swzz|streaminto'
 ];
@@ -84,6 +85,9 @@ var movieRegexHostsOneLink = [
 
     //Flashx
     'flashx.*/([0-9a-zA-Z]*).html',
+
+    //Streamin
+    'streamin.*/([0-9a-zA-Z]*)',
 
     //Flashx redirect swzz (cineblog)
     'goto/([a-z0-9A-Z=]*)" target="_blank">Flashx',
@@ -310,3 +314,5 @@ function manageSerieTvLinks(html, regexStagione) {
     $('#playButton').addClass('backgroundBlack');
 
 }
+
+
