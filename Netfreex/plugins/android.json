@@ -40,6 +40,9 @@
         "cordova-plugin-file-transfer": {
             "PACKAGE_NAME": "com.netfreex"
         },
+        "cordova-plugin-http": {
+            "PACKAGE_NAME": "com.netfreex"
+        },
         "cordova-plugin-keyboard": {
             "PACKAGE_NAME": "com.netfreex"
         },

@@ -27,7 +27,7 @@
             var idx4 = encode.substring(0, idx2) + encode.substring(idx2 + 20, encode.length);
 
             for (var i = 0; i < idx4.length; i = i + 2) {
-                var value = parseInt(idx4.substring(i, i + 2), 16) ^ 137 ^ decode1[(i / 2) % 10];
+                var value = parseInt(idx4.substring(i, i + 2), 16) ^ 96 ^ decode1[(i / 2) % 10];
                 text_decode.push(String.fromCharCode(value));
             }
             text_decode = text_decode.join("");
