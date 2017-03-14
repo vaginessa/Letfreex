@@ -87,7 +87,7 @@ var movieRegexHostsOneLink = [
     'flashx.*/([0-9a-zA-Z]*).html',
 
     //Streamin
-    'streamin.*/([0-9a-zA-Z]*)',
+    'streamin.[a-z]*/([0-9a-zA-Z]*)',
 
     //Flashx redirect swzz (cineblog)
     'goto/([a-z0-9A-Z=]*)" target="_blank">Flashx',
