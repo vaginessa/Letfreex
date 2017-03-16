@@ -21,6 +21,7 @@
   <allow-intent href="sms:*" />
   <allow-intent href="mailto:*" />
   <allow-intent href="geo:*" />
+  <allow-intent href="*" />
   <platform name="android">
     <allow-intent href="market:*" />
   </platform>
@@ -35,8 +36,8 @@
     <icon src="res/icons/android/icon-96-xhdpi.png" density="xhdpi" />
   </platform>
   <chcp>
-  <config-file url="http://netfreexupdate.altervista.org/chcp.json"/>
-</chcp>
+    <config-file url="http://netfreexupdate.altervista.org/chcp.json" />
+  </chcp>
   <platform name="ios">
     <!-- iOS 8.0+ -->
     <!-- iPhone 6 Plus  -->
@@ -139,5 +140,5 @@
   <plugin name="cordova-plugin-file" version="4.1.1" />
   <plugin name="cordova-plugin-http" version="1.2.0" src="https://github.com/wymsee/cordova-HTTP.git" />
   <plugin name="cordova-hot-code-push-plugin" version="1.5.2" src="https://github.com/nordnet/cordova-hot-code-push.git" />
-  <plugin name="cordova-plugin-http" version="1.2.0" src="https://github.com/wymsee/cordova-HTTP.git" />
+  <plugin name="com.hutchind.cordova.plugins.streamingmedia" version="0.1.4" src="https://github.com/nchutchind/cordova-plugin-streaming-media.git" />
 </widget>
