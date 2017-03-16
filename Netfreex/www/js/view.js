@@ -104,9 +104,14 @@ function openVideo(host, url, isSerieTv) {
     }, 100);
 }
 
+function hideLoadingiOs() {
+    $('#loading').addClass("hidden");
+}
+
+
 //Riproduce il video
 var success = function (url) {
-    $('#loading').addClass('hidden');
+    
     console.log(url);
  
     //Apri link openload estratto da italiaFilmLinks
@@ -118,8 +123,18 @@ var success = function (url) {
             openVideo('videomega', url[2]);
         return;
     }
-   
-    VideoPlayer.play(url);
+    if (device.platform != "Android") {
+        if (url.indexOf("nowvideo") > -1) {
+            window.plugins.streamingMedia.playVideo(url);
+            $('#loading').addClass("hidden");
+        } else
+            $('#loading').html("<a style='position:relative; top:30%' href='vlc-x-callback://x-callback-url/stream?url=" + encodeURIComponent(url) + "' onclick='hideLoadingiOs()'><img class='poster play' src='img/play_button.png'></a>");
+
+    } else {
+        $('#loading').addClass('hidden');
+        VideoPlayer.play(url);
+    }
+        
 }
 
 var error = function (ex) {

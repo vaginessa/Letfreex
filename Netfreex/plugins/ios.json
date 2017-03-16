@@ -39,6 +39,9 @@
         },
         "cordova-hot-code-push-plugin": {
             "PACKAGE_NAME": "com.netfreex"
+        },
+        "com.hutchind.cordova.plugins.streamingmedia": {
+            "PACKAGE_NAME": "com.netfreex"
         }
     },
     "dependent_plugins": {}

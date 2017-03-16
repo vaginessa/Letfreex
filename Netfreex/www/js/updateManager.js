@@ -6,10 +6,10 @@ var currentVersion;
     document.addEventListener('deviceready', onDeviceReady.bind(this), false);
 
     function onDeviceReady() {        
-        cordova.getAppVersion.getVersionNumber(function (version) {
-            currentVersion = version;
-            checkLastVersion();
-        });
+        //cordova.getAppVersion.getVersionNumber(function (version) {
+        //    currentVersion = version;
+        //    checkLastVersion();
+        //});
 
     };
 })();

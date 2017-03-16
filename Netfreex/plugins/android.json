@@ -10,19 +10,10 @@
         "com.dawsonloudon.videoplayer.custom": {
             "PACKAGE_NAME": "com.netfreex"
         },
-        "com.netfreex.italiaFilmLinks": {
+        "com.hutchind.cordova.plugins.streamingmedia": {
             "PACKAGE_NAME": "com.netfreex"
         },
-        "com.netfreex.nowvideo": {
-            "PACKAGE_NAME": "com.netfreex"
-        },
-        "com.netfreex.openload": {
-            "PACKAGE_NAME": "com.netfreex"
-        },
-        "com.netfreex.rapidvideo": {
-            "PACKAGE_NAME": "com.netfreex"
-        },
-        "com.netfreex.videomega": {
+        "cordova-hot-code-push-plugin": {
             "PACKAGE_NAME": "com.netfreex"
         },
         "cordova-plugin-app-version": {
@@ -50,15 +41,6 @@
             "PACKAGE_NAME": "com.netfreex"
         },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.netfreex"
-        },
-        "com.netfreex.flashx": {
-            "PACKAGE_NAME": "com.netfreex"
-        },
-        "cordova-plugin-http": {
-            "PACKAGE_NAME": "com.netfreex"
-        },
-        "cordova-hot-code-push-plugin": {
             "PACKAGE_NAME": "com.netfreex"
         }
     },

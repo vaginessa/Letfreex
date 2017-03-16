@@ -898,8 +898,8 @@ label {
 
 
 #channelName {
-    position: relative;
-    top: 15px;
+    position: absolute;
+    top: 40%;
     text-transform: uppercase;
     font-size: 10px;
     color: white;

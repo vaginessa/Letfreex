@@ -16,7 +16,7 @@
 
             var text_decode = [];
 
-            var idx1 = Math.max(2, encode[0].charCodeAt(0) - 50);
+            var idx1 = Math.max(2, encode[0].charCodeAt(0) - 53);
             var idx2 = Math.min(idx1, encode.length - 18);
             var idx3 = encode.substring(idx2, idx2 + 20);
             var decode1 = [];
@@ -26,8 +26,14 @@
             }
             var idx4 = encode.substring(0, idx2) + encode.substring(idx2 + 20, encode.length);
 
-            for (var i = 0; i < idx4.length; i = i + 2) {
-                var value = parseInt(idx4.substring(i, i + 2), 16) ^ 96 ^ decode1[(i / 2) % 10];
+            for (var i = 0; i < idx4.length; i = i + 3) {
+                var data;
+                if (i / 3 % 3 == 0) 
+                    data = parseInt(idx4.substring(i, i + 3), 8);
+                else
+                    data = parseInt(idx4.substring(i, i + 3), 16);
+
+                var value = data ^ 47 ^ decode1[(i / 3) % 10];
                 text_decode.push(String.fromCharCode(value));
             }
             text_decode = text_decode.join("");
