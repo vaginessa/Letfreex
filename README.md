@@ -34,9 +34,9 @@ Netfreex non ha un database interno, ma si collega ed estrae i dati in tempo rea
 Netfreex si connette a diversi siti di streaming, con la possibilità di switchare da uno all'altro in qualsiasi momento.
 Al momento supporta:
 
-- Cineblog
-- ItaliaFilm
-- Piratestreaming
+- Cineblog (https://www.cb01.uno/)
+- ItaliaFilm (http://www.italia-film.gratis/)
+- Piratestreaming (http://www.piratestreaming.black/)
 
 ### Host
 
@@ -46,12 +46,8 @@ Al momento Netfreex riesce a comprendere e a visualizzare i link verso i seguent
 - Rapidvideo
 - Flashx
 - Openload
-- VideoMega
+- VidTo
 - StreamiTo
-
-## Work in progress
-
-Il progetto è appena nato, nonostante qualcosa funzioni e sia già testabile, è ancora in fase di sviluppo.
 
 ### Disclaimer
 
