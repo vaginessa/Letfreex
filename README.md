@@ -47,6 +47,7 @@ Al momento Netfreex riesce a comprendere e a visualizzare i link verso i seguent
 - Flashx
 - Openload
 - VidTo
+- Vidlox
 - StreamiTo
 
 ### Disclaimer
