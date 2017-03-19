@@ -9,6 +9,9 @@ function loadChannelList(added) {
     if (localStorage.pirateStreamingUrl) {
         channelListHtml += '<li><a href="index.html?channel=piratestreaming">Piratestreaming</a></li>';
     }
+    if (localStorage.filmPerTuttiUrl) {
+        channelListHtml += '<li><a href="index.html?channel=filmpertutti">FilmPerTutti</a></li>';
+    }
 
     $("#channelList").html(channelListHtml);
 
@@ -26,6 +29,9 @@ function loadChannelList(added) {
                 window.location.replace("index.html?channel=italiafilm");
             } else if (localStorage.pirateStreamingUrl) {
                 window.location.replace("index.html?channel=piratestreaming");
+            }
+            else if (localStorage.filmPerTuttiUrl) {
+                window.location.replace("index.html?channel=filmpertutti");
             }
 
         }
@@ -115,7 +121,11 @@ function aggiungiCanale() {
         cancelButtonText: 'Annulla',
         inputValidator: function(value) {
             return new Promise(function(resolve, reject) {
-                if (value.indexOf("italia-film") == -1 && value.indexOf("cb01") == -1 && value.indexOf("piratestreaming") == -1) {
+                if (value.indexOf("italia-film") == -1
+                    && value.indexOf("cb01") == -1
+                    && value.indexOf("piratestreaming") == -1
+                    && value.indexOf("filmpertutti") == -1
+                    ) {
                     reject('Il canale che hai inserito non e\' valido');
                 } else {
                     resolve();
@@ -131,6 +141,9 @@ function aggiungiCanale() {
         }
         else if (result.indexOf("piratestreaming") > -1) {
             localStorage.pirateStreamingUrl = result;
+        }
+        else if (result.indexOf("filmpertutti") > -1) {
+            localStorage.filmPerTuttiUrl = result;
         }
         loadChannelList(true);
     });
@@ -155,6 +168,9 @@ function eliminaCanale() {
     }
     if (localStorage.pirateStreamingUrl) {
         channelList["pirateStreamingUrl"] = "Piratestreaming";
+    }
+    if (localStorage.filmPerTuttiUrl) {
+        channelList["filmPerTuttiUrl"] = "FilmPerTutti";
     }
 
     swal({

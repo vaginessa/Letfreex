@@ -23,9 +23,6 @@ function parsePage(html, url, isSerieTv, section, nextPage) {
     printPage(isSerieTv, section, nextPage);
 }
 
-function scrapeMostPopular(url, isSerieTv, section) {
-
-}
 
 
 function parseMoviePage(html, url, isSerieTv) {

@@ -5,6 +5,9 @@
     cordovaHTTP.get("http://streamin.to/embed-" + id + "-640x360.html", {}, {}, function (response) {
         console.log(response);
 
+        if (response.data == "File was deleted")
+            error("File was deleted");
+
         var content = response.data.split("eval(function")[1].split("</script>")[0];
         content = "eval(function" + content;
 

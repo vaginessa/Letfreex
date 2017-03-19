@@ -7,15 +7,19 @@
 
     cordovaHTTP.get(page_url, {}, {}, function(response) {
         console.log(response);
+        try {
+            var content = response.data;
 
-        var content = response.data;
+            var fname = content.split("fname\" value=\"")[1].split("\"")[0];
+            var hash = content.split("hash\" value=\"")[1].split("\"")[0];
 
-        var fname = content.split("fname\" value=\"")[1].split("\"")[0];
-        var hash = content.split("hash\" value=\"")[1].split("\"")[0];
-       
-        setTimeout(function() {
-            doPostRequest(id, fname, hash);
-        }, 6000);
+            setTimeout(function() {
+                doPostRequest(id, fname, hash);
+            }, 6000);
+        } catch (ex) {
+            error(ex)
+        }
+        
 
 
     }, function(response) {
@@ -33,8 +37,9 @@
             hash: hash,
             imhuman: "Proceed+to+video"
         }, {}, function (response) {
-
             var url = response.data.split('sources: [{file:"')[1].split('",label:"360p"')[0];
+            if(url == "")
+                url = response.data.split(',{file:"')[1].split('",label:"240p"')[0];
 
             success(url);
 

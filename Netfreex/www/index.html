@@ -55,8 +55,8 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-            <a class="navbar-brand" href="index.html"><img style="width: 100px; margin-top: 7px;" src="img/logo.png"/></a>
-            <span id="channelName"></span>
+            <a class="navbar-brand" href="index.html"><img style="width: 100px; margin-top: 7px;float: left" src="img/logo.png"/><span id="channelName"></span></a>
+            
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -65,9 +65,8 @@
               <li><a tabindex="0" onclick="goToHome()">Home</a></li>
               <li><a tabindex="0" onclick="playByUrl()">Riproduci da URL</a></li>
               <li id="cerca" class="hidden"><a  tabindex="0" onclick="goToSearch()"><i class="fa fa-search" style="padding-right: 10px"></i>Cerca</a></li>
-            <!--<li><a tabindex="0"  class="page-scroll">Impostazioni</a></li>-->
               <li>
-                  <div  class="dropdown" style="position: relative;top: 9px; left: 5px; margin-bottom: 5px;">
+                  <div  class="dropdown" style="position: relative;top: 10px; left: 5px; margin-bottom: 5px;">
                       <button  class="btn btn-primary dropdown-toggle text-uppercase" type="button" data-toggle="dropdown" style="font-size: 12px; background-color: rgba(240, 248, 255, 0); border: none" >
                           <span id="menuDropDownLabel" >Gestione canali</span>
                           <span class="caret"></span>
@@ -96,6 +95,7 @@
     <div id="welcome">
         <span>Benvenuto in</span> <img style="width: 100px; margin-top: 7px;" src="img/logo.png"/>
         <p style="font-size: 20px;">Per cominciare aggiungi un canale dal menù Gestione Canali.</p>
+        <p style="font-size: 16PX;">Se ti serve un aiuto e per la lista dei canali disponibili visita <a style="color: white" href="#" onclick="window.open('https://github.com/Be4t5/Netfreex/wiki', '_system');">la guida</a></p>
     </div>
 
       <div id="singleLink" class="hidden">
@@ -222,7 +222,7 @@
           <nav id="footer">
               <div class="container">
                   <div class="pull-left fnav">
-                      <p>NETFREEX 1.1.2.8 - © 2017. Developed by <a href="https://github.com/Be4t5">Be4t5</a></p>
+                      <p>NETFREEX 1.1.3.3 - © 2017. Developed by <a href="https://github.com/Be4t5">Be4t5</a></p>
                   </div>
               </div>
           </nav>
@@ -374,9 +374,12 @@
   <script src="js/playByUrl.js"></script>
 
   <!-- Servers -->
+  <script src="servers/vidlox.js"></script>
   <script src="servers/streaminto.js"></script>
   <script src="servers/flashx.js"></script>
   <script src="servers/rapidvideo.js"></script>
+      <script src="servers/speedvideo.js"></script>
+  <script src="servers/rapidvideocom.js"></script>
   <script src="servers/nowvideo.js"></script>
   <script src="servers/openload.js"></script>
   <script src="servers/italiafilmlinks.js"></script>

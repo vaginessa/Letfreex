@@ -77,24 +77,25 @@ function openVideo(host, url, isSerieTv) {
         host = host.split('|');
 
         if (host[0] == 'swzz') {
-            //if(isSerieTv)
-            //    extractLinkSwzz("http://www.cb01.uno/serietv/goto/" + url + "", host[1]);
-            //else
             extractLinkSwzz(url, host[1]);
-        }
-            
+        }      
 
         else if (host[0] == 'italiaFilmLinks') {
             if (host[1] == 'openload')
                 italiafilmLinksExtract(url + "?host=1", success, error);
         }
-
+        else if (host[0] == 'vidlox')
+            vidloxExtract(url, success, error);
+        else if (host[0] == 'speedvideo')
+            speedvideoExtract(url, success, error);
         else if (host[0] == 'nowvideo')
             nowvideoExtract(url, success, error);
         else if (host[0] == 'vidto')
             vidtoExtract(url, success, error);
         else if (host[0] == 'rapidvideo')
             rapidvideoExtract(url, success, error);
+        else if (host[0] == 'rapidvideocom')
+            rapidvideocomExtract(url, success, error);
         else if (host[0] == 'flashx')
             flashxExtract(url, success, error);
         else if (host[0] == 'openload')

@@ -5,9 +5,13 @@ var serieTvHosts = [
     'swzz|flashx',
     //'italiaFilmLinks|openload',
     'nowvideo',
+    'vidlox',
     'openload',
     'vidto',
+    'speedvideo',
     'rapidvideo',
+    'rapidvideocom',
+    'rapidvideocom',
     'flashx',
     'swzz|streaminto'
 ];
@@ -26,19 +30,31 @@ var serieTvRegexHosts = [
     //'([0-9]{1,3}(?:[^0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*hdlink.video\/l\/([a-z0-9A-Z]+)[^<]*Italia-Film Links',
 
     //Nowvideo
-    '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*www.nowvideo.[a-z]*/video/([a-z0-9A-Z]+)[^<]*Nowvideo',
+    '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*www.nowvideo\.[a-z]+/video/([a-z0-9A-Z]+)[^<]*Nowvideo',
+
+    //Vidlox
+    '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*vidlox\.[a-z]+/([a-z0-9A-Z]+)[^<]*Vidlox',
 
     //Openload
-    '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*openload.[a-z]*/f/([a-z0-9A-Z]+)[^<]*Openload',
+    '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*openload\.[a-z]+/f/([0-9a-zA-Z\-_]*)[^<]*Openload',
 
     //VidTo
-    '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*vid.[a-z]*/([a-z0-9A-Z]+).html[^<]*VidTO',
+    '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*vidto\.[a-z]+/([a-z0-9A-Z]+).html[^<]*VidTO',
+
+    //Speedvideo
+    '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*speedvideo\.[a-z]+/([a-z0-9A-Z]+)[^<]*Speedvideo',
 
     //Rapidvideo
     '([0-9]{1,3}x[0-9]{1,3}).*http:\/\/www.rapidvideo.[a-z]*/([a-z0-9A-Z\/._-]+)/.*?Rapidvideo',
 
+    //Rapidvideocom _raptu
+    '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*raptu\.[a-z]*/\.v=([a-z0-9A-Z]+)[^<]*RapidVideo',
+
+    //Rapidvideocom _raptu
+    '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*rapidvideo\.[a-z]*/\.v=([a-z0-9A-Z]+)[^<]*RapidVideo',
+
     //FlashX
-    '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*http:\/\/.*flashx.[a-z]*\/([a-z0-9A-Z]+)[^<]*Flashx',
+    '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*http:\/\/.*flashx\.[a-z]+\/([a-z0-9A-Z]+)[^<]*Flashx',
 
     //Streamin redirect swzz (cineblog)
     '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*goto/([a-z0-9A-Z=]*)" target="_blank">Streamin',
@@ -51,11 +67,15 @@ var movieHostsOneLink = [
     'swzz|openload',
     //'italiaFilmLinks|openload',
     'openload',
+    'vidlox',
     'vidto',
     'nowvideo',
     'rapidvideo',
+    'rapidvideocom',
+    'rapidvideocom',
     'flashx',
     'streaminto',
+    'speedvideo',
     'swzz|flashx',
     'swzz|streaminto'
 ];
@@ -72,22 +92,34 @@ var movieRegexHostsOneLink = [
     //'hdlink.video/l/([0-9a-zA-Z]*)',
 
     //Openload
-    'openload.[a-z]*/f/([^/]*)/',
+    'openload\.[a-z]+/f/([0-9a-zA-Z\-_]*)/',
+
+    //Vidlox
+    'vidlox\.[a-z]+/([a-z0-9A-Z]+)',
 
     //VidTo
-    'vidto.[a-z]*/([^/]*).html',
+    'vidto\.[a-z]+/([0-9a-zA-Z\-_]*).html',
 
     //Nowvideo
-    'nowvideo.[a-z]*/video/([0-9a-zA-Z]*)"',
+    'nowvideo\.[a-z]+/video/([0-9a-zA-Z]*)"',
 
     //Rapidvideo
-    'rapidvideo.[a-z]*/([0-9a-zA-Z]*)/',
+    'rapidvideo\.[a-z]+/([0-9a-zA-Z]*)/',
+
+    //Rapidvideocom - raptu
+    'raptu\.[a-z]+/?v=([0-9a-zA-Z]*)/',
+
+    //Rapidvideocom
+    'rapidvideo\.[a-z]+/?v=([0-9a-zA-Z]*)/',
 
     //Flashx
-    'flashx.[a-z]*/([0-9a-zA-Z]*).html',
+    'flashx\.[a-z]+/([0-9a-zA-Z]*).html',
 
     //Streamin
-    'streamin.[a-z]*/([0-9a-zA-Z]*)',
+    'streamin\.[a-z]+/([0-9a-zA-Z]*)',
+
+    //Speedvideo
+    'speedvideo\.[a-z]+/([0-9a-zA-Z-]*(\.html)?)',
 
     //Flashx redirect swzz (cineblog)
     'goto/([a-z0-9A-Z=]*)" target="_blank">Flashx',
@@ -213,10 +245,6 @@ function manageSerieTvLinks(html, regexStagione) {
             //res[1] = Stagione episodio
             //res[2] = id link
             console.log('trovato ' + res[1] + " - " + res[2]);
-
-            if (res[1] == undefined)
-                debugger
-
 
             var singleEpisode = {
                 stagioneEpisodio: res[1],
