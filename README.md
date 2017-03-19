@@ -22,33 +22,14 @@ Il progetto nasce dalla mia esigenza di avere una app da installare sulla mia tv
 
 ## Piattaforme supportate
 
-Per adesso è disponibile la versione per Android, non escludo che in futuro la compatibilità venga estesa anche ad altre piattaforme.
+Per adesso è disponibile la versione per Android, presto sarà pubblicata anche la versione iOS.
 L'interfaccia è responsive e si adatta facilmente sia agli schermi più piccoli degli smartphone e tablet che alle TV.
 
 ## Come funziona?
 
 Netfreex non ha un database interno, ma si collega ed estrae i dati in tempo reale direttamente dai siti di streaming (utilizzando appositi meccanismi di caching per ottimizzare le prestazioni), visualizzandoli SENZA PUBBLICITA' e con una grafica chiara, touch friendly e molto simile a quella di Netflix.
 
-## Canali
-
-Netfreex si connette a diversi siti di streaming, con la possibilità di switchare da uno all'altro in qualsiasi momento.
-Al momento supporta:
-
-- Cineblog (https://www.cb01.uno/)
-- ItaliaFilm (http://www.italia-film.gratis/)
-- Piratestreaming (http://www.piratestreaming.black/)
-
-### Host
-
-Al momento Netfreex riesce a comprendere e a visualizzare i link verso i seguenti host:
-
-- Nowvideo
-- Rapidvideo
-- Flashx
-- Openload
-- VidTo
-- Vidlox
-- StreamiTo
+Per maggiori informazioni visitate la wiki https://github.com/Be4t5/Netfreex/wiki
 
 ### Disclaimer
 
