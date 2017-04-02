@@ -43,7 +43,7 @@
           </div>
       </div>
 
-    <!-- Navigation
+    <!-- MENU
     ==========================================-->
     <nav id="tf-menu" class="navbar navbar-default navbar-fixed-top hidden">
       <div class="container tf-menu ">
@@ -85,11 +85,11 @@
       </div>
     </nav>
 
-
+  
 
     <div id="error" class="hidden">
-        Sembra ci sia un problema di rete. Controlla di essere connesso ad internet e riprova. <br/>Potrebbe anche essere un problema del canale, prova a cambiarlo.
-        <br/><br/><a class="btn btn-warning" href="index.html">Riprova</a>
+        <span id="errorMsg">Sembra ci sia un problema di rete. Controlla di essere connesso ad internet e riprova. <br />Potrebbe anche essere un problema del canale, prova a cambiarlo.</span>
+        <br/><br/><a class="btn btn-warning" href="index.html" id="errorBtn">Riprova</a>
     </div>
 
     <div id="welcome">
@@ -101,7 +101,7 @@
       <div id="singleLink" class="hidden">
       </div>
 
-  <!-- Home view
+        <!-- Home view
           ================================================== -->
       <div id="homeContainer" class="hidden" >
           <!-- Home Page slider
@@ -222,7 +222,7 @@
           <nav id="footer">
               <div class="container">
                   <div class="pull-left fnav">
-                      <p>NETFREEX 1.1.3.3 - © 2017. Developed by <a href="https://github.com/Be4t5">Be4t5</a></p>
+                      <p>NETFREEX 1.1.4 - © 2017. Developed by <a href="https://github.com/Be4t5">Be4t5</a></p>
                   </div>
               </div>
           </nav>
@@ -341,8 +341,9 @@
           
       </div>
 
+      <div id="openloadDecode" style="display:none;"></div>
 
-    <script type="text/javascript" src="js/lib/bootstrap.js"></script>
+  <script type="text/javascript" src="js/lib/bootstrap.js"></script>
     <script type="text/javascript" src="js/lib/SmoothScroll.js"></script>
     <script type="text/javascript" src="js/lib/jquery.isotope.js"></script>
     <script src="js/lib/owl.carousel.js"></script>
@@ -355,6 +356,7 @@
 
       <!-- SweetAlert2 -->
     <script src="js/lib/sweet-alert-2/sweetalert2.min.js"></script>
+    <script src="js/lib/sweet-alert-2/es6-promise.auto.min.js"></script>
     <link href="js/lib/sweet-alert-2/sweetalert2.css" rel="stylesheet" />
 
     <!-- Core -->

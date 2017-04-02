@@ -79,7 +79,7 @@ var sections = [
     "movieSliderContainer",
     "serieTvSliderContainer"
 ];
-
+$("#welcome").addClass("hidden");
 
     //ITALIAFILM
     //Most popular

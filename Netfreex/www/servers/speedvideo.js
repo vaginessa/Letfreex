@@ -28,8 +28,6 @@
             error(ex);
         }
         
-
-
     }, function(response) {
         error(response);
     });
@@ -64,6 +62,13 @@
 
         var url = base64_decode(linkEncoded, base);
 
+        url = url.replace("speedvideo.net/getvideo///", "");
+        try {
+            url = url.split(".mp4")[0] + ".mp4";
+        } catch (e) {
+            url = url.split(".flv")[0] + ".flv";
+        }
+        
         success(url.replace(".mp4", ".flv"));
     }
 

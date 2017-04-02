@@ -285,7 +285,7 @@
   },
   {
     "file": "index.html",
-    "hash": "80c10a9c1ee7428b18d4913339a1f2a6"
+    "hash": "7f7696ab978bd64e7bf702b5780e97d5"
   },
   {
     "file": "js/channelManager.js",
@@ -305,7 +305,7 @@
   },
   {
     "file": "js/channels/piratestreaming.js",
-    "hash": "b8eefc59a2d4011e6b363fc55d443489"
+    "hash": "ffa6a5d80c222e29f4ba5a69228e39ac"
   },
   {
     "file": "js/hosts.js",
@@ -401,7 +401,7 @@
   },
   {
     "file": "js/main.js",
-    "hash": "e94a9a3f25e74e8c298df852052b053a"
+    "hash": "b9c2629873aa056227894fd3f66f2fce"
   },
   {
     "file": "js/navigation.js",
@@ -449,7 +449,7 @@
   },
   {
     "file": "servers/openload.js",
-    "hash": "cc1eadcda4a4fe2899f84f2517910615"
+    "hash": "b0ebc83ca2325fe166ef6fbbee65dfe4"
   },
   {
     "file": "servers/rapidvideo.js",
@@ -461,7 +461,7 @@
   },
   {
     "file": "servers/speedvideo.js",
-    "hash": "2a80fde1be33f0678e1135218f715ead"
+    "hash": "af67d38351abc7dcecf57ed6fa575143"
   },
   {
     "file": "servers/streaminto.js",

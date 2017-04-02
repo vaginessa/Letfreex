@@ -84,9 +84,9 @@ function initViewChannelMode() {
         $('#homeFilmMostPopular').addClass('hidden');
     }
 
-    //SE SONO VUOTI TUTTI DO ERRORE DI RETE
+    ////SE SONO VUOTI TUTTI DO ERRORE DI RETE
     if (isEmpty($('#movieSliderContainer')) && isEmpty($('#serieTvSliderContainer')) && isEmpty($('#serieTvMostPopularSliderContainer')) && isEmpty($('#movieMostPopularSliderContainer'))) {
-        $('#error').removeClass('hidden');
+            $('#error').removeClass('hidden');
     }
     slidePerView = 4;
     //Inizializzo gli slider con le copertine

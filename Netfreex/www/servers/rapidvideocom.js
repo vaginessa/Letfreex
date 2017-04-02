@@ -5,20 +5,25 @@
     cordovaHTTP.get("https://www.rapidvideo.com/?v=" + id , {}, {}, function (response) {
         console.log(response);
 
-        var content = response.data.split('"sources":')[1].split(' ,"displaydescription"')[0];
-        content = '{"sources":' + content + '}';
+        try {
+            var content = response.data.split('"sources":')[1].split(' ,"displaydescription"')[0];
+            content = '{"sources":' + content + '}';
 
-        var links = JSON.parse(content)["sources"];
+            var links = JSON.parse(content)["sources"];
 
-        var maxRes = links[0];
-        for (var i = 0; i < links.length; i++) {
-            if (parseInt(links[i]["res"]) > maxRes["res"])
-                maxRes = links[i];
+            var maxRes = links[0];
+            for (var i = 0; i < links.length; i++) {
+                if (parseInt(links[i]["res"]) > maxRes["res"])
+                    maxRes = links[i];
+            }
+
+            var url = maxRes["file"];
+            
+            success(url);
+        } catch (e) {
+            error(e);
         }
-
-        var url = maxRes["file"];
-
-        success(url);
+        
 
     }, function (response) {
         error(response);

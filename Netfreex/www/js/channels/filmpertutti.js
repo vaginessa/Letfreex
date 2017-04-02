@@ -65,7 +65,7 @@ var sections = [
     "movieSliderContainer",
     "serieTvSliderContainer"
 ];
-
+$("#welcome").addClass("hidden");
 
     //FILM PER TUTTI
 

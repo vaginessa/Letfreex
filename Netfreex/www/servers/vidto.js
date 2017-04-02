@@ -17,7 +17,7 @@
                 doPostRequest(id, fname, hash);
             }, 6000);
         } catch (ex) {
-            error(ex)
+            error(ex);
         }
         
 
@@ -37,12 +37,15 @@
             hash: hash,
             imhuman: "Proceed+to+video"
         }, {}, function (response) {
-            var url = response.data.split('sources: [{file:"')[1].split('",label:"360p"')[0];
-            if(url == "")
-                url = response.data.split(',{file:"')[1].split('",label:"240p"')[0];
+            try {
+                var url = response.data.split('sources: [{file:"')[1].split('",label:"360p"')[0];
+                if (url == "")
+                    url = response.data.split(',{file:"')[1].split('",label:"240p"')[0];
 
-            success(url);
-
+                success(url);
+            } catch (e) {
+                error(e);
+            }
         }, function (response) {
             error(response);
         });

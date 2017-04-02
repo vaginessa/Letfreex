@@ -42,6 +42,9 @@
         },
         "com.hutchind.cordova.plugins.streamingmedia": {
             "PACKAGE_NAME": "com.netfreex"
+        },
+        "cordova-plugin-inappbrowser-custom": {
+            "PACKAGE_NAME": "com.netfreex"
         }
     },
     "dependent_plugins": {}

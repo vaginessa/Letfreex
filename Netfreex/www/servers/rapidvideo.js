@@ -5,13 +5,18 @@
     cordovaHTTP.get("http://www.rapidvideo.cool/embed-" + id + "-607x360.html", {}, {}, function (response) {
         console.log(response);
 
-        var content = response.data.split("eval(function")[1].split("</script>")[0];
-        content = "eval(function" + content;
+        try {
+            var content = response.data.split("eval(function")[1].split("</script>")[0];
+            content = "eval(function" + content;
 
-        //UNPACK
-        var url = unpack(content);
+            //UNPACK
+            var url = unpack(content);
 
-        success(url);
+            success(url);
+        } catch (e) {
+            error(e);
+        }
+        
 
     }, function (response) {
         error(response);

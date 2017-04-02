@@ -9,6 +9,7 @@ function playByUrl() {
         title: 'Inserisci l\'indirizzo del video',
         input: 'text',
         showCancelButton: true,
+        animation: false,
         confirmButtonColor: '#d9941e',
         cancelButtonText: 'Annulla',
         allowOutsideClick: false,

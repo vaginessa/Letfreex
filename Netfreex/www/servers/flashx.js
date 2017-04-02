@@ -9,32 +9,30 @@
 
         var content = response.data;
 
-        var fname = content.split("fname\" value=\"")[1].split("\"")[0];
-        var hash = content.split("hash\" value=\"")[1].split("\"")[0];
-        var file_id = content.match("'file_id', '([^']+)'")[1];
+        try {
+            var fname = content.split("fname\" value=\"")[1].split("\"")[0];
+            var hash = content.split("hash\" value=\"")[1].split("\"")[0];
+            var file_id = content.match("'file_id', '([^']+)'")[1];
 
-        var coding_url = 'https://files.fx.fastcontentdelivery.com/jquery2.js?fx=' + window.btoa(file_id);
-        cordovaHTTP.setHeader("Host", "files.fx.fastcontentdelivery.com");
-        cordovaHTTP.setHeader("Referer", "https://www.flashx.tv/");
-        cordovaHTTP.setHeader("Accept", "*/*");
-        cordovaHTTP.get(coding_url, {}, {}, function(response) {}, function(response) {});
-        coding_url = 'https://www.flashx.tv/counter.cgi?fx=' + window.btoa(file_id);
-        cordovaHTTP.setHeader("Host", "www.flashx.tv");
-        cordovaHTTP.get(coding_url, {}, {}, function(response) {}, function(response) {});
-        coding_url = 'https://www.flashx.tv/flashx.php?fxfx=3';
-        cordovaHTTP.setHeader("X-Requested-With", "XMLHttpRequest");
-        cordovaHTTP.get(coding_url, {}, {}, function(response) {}, function(response) {});
+            var coding_url = 'https://files.fx.fastcontentdelivery.com/jquery2.js?fx=' + window.btoa(file_id);
+            cordovaHTTP.setHeader("Host", "files.fx.fastcontentdelivery.com");
+            cordovaHTTP.setHeader("Referer", "https://www.flashx.tv/");
+            cordovaHTTP.setHeader("Accept", "*/*");
+            cordovaHTTP.get(coding_url, {}, {}, function(response) {}, function(response) {});
+            coding_url = 'https://www.flashx.tv/counter.cgi?fx=' + window.btoa(file_id);
+            cordovaHTTP.setHeader("Host", "www.flashx.tv");
+            cordovaHTTP.get(coding_url, {}, {}, function(response) {}, function(response) {});
+            coding_url = 'https://www.flashx.tv/flashx.php?fxfx=3';
+            cordovaHTTP.setHeader("X-Requested-With", "XMLHttpRequest");
+            cordovaHTTP.get(coding_url, {}, {}, function(response) {}, function(response) {});
 
-        //try {
-        //    var wait_time = content.match(/<span id='xxc2'>(\d+)/g)[0].split("<span id='xxc2'>")[1];
-        //    setTimeout(function() {
-        //        doPostRequest(id, fname, hash);
-        //    }, parseInt(wait_time) + 1);
-        //} catch (e) {
+
             setTimeout(function() {
                 doPostRequest(id, fname, hash);
             }, 6000);
-        //}
+        } catch (e) {
+            error(e);
+        }
 
     }, function(response) {
         error(response);
@@ -52,15 +50,19 @@
             imhuman: "Proceed+to+video"
         }, {}, function (response) {
 
-            var content = response.data.split("download_div2")[1];
+            try {
+                var content = response.data.split("download_div2")[1];
 
-            content = content.split("eval(function")[1].split("</script>")[0];
-            content = "eval(function" + content;
+                content = content.split("eval(function")[1].split("</script>")[0];
+                content = "eval(function" + content;
 
-            //UNPACK
-            var url = unpack(content);
+                //UNPACK
+                var url = unpack(content);
 
-            success(url);
+                success(url);
+            } catch (e) {
+                error(e);
+            }
 
         }, function (response) {
             error(response);

@@ -1,37 +1,37 @@
 function main() {
-(function () {
-    'use strict';
+    (function () {
+        'use strict';
 
-    $(".dropdown-menu").on('click', 'li a', function () {
-        $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
-        $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
-    });
+        $(".dropdown-menu").on('click', 'li a', function () {
+            $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
+            $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+        });
 
-  	$('a.page-scroll').click(function() {
-        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-          var target = $(this.hash);
-          target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-          if (target.length) {
-            $('html,body').animate({
-              scrollTop: target.offset().top - 40
-            }, 900);
-            return false;
-          }
-        }
-      });
-    $(window).bind('scroll', function() {
-        var navHeight = $(window).height() - 100;
-        if ($(window).scrollTop() > navHeight) {
-            $('.navbar-default').addClass('on');
-        } else {
-            $('.navbar-default').removeClass('on');
-        }
-    });
-    $('body').scrollspy({
-        target: '.navbar-default',
-        offset: 80
-    });
-}());
+        $('a.page-scroll').click(function () {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top - 40
+                    }, 900);
+                    return false;
+                }
+            }
+        });
+        $(window).bind('scroll', function () {
+            var navHeight = $(window).height() - 100;
+            if ($(window).scrollTop() > navHeight) {
+                $('.navbar-default').addClass('on');
+            } else {
+                $('.navbar-default').removeClass('on');
+            }
+        });
+        $('body').scrollspy({
+            target: '.navbar-default',
+            offset: 80
+        });
+    }());
 }
 
 //Scraping e print delle locandine in homepage =================================================
@@ -55,6 +55,7 @@ function openPage(url, isSerieTv, section, mostPopular, nextPage, callback) {
     //}
 
 }
+
 
 //Apre una pagina del canale
 function scrapePage(url, isSerieTv, section, nextPage, callback) {
@@ -86,7 +87,7 @@ function printPage(isSerieTv, section, nextPage, callback) {
             htmlFilm = "<div class=\"swiper-slide\"><a  tabindex=\"0\" onclick=\"openMovie('" + arrayFilm[i].url + "','" + arrayFilm[i].title + "','" + arrayFilm[i].img + "'," + isSerieTv + ")\" ><img class='posterImg' src='" + arrayFilm[i].img + "'></a></div>";
         else
             htmlFilm = "";
-        if ( i == arrayFilm.length - 1 && typeof arrayFilm[i] == "string")
+        if (i == arrayFilm.length - 1 && typeof arrayFilm[i] == "string")
             htmlFilm = "<div class=\"swiper-slide text-center nextPage" + section + "\" tabindex=\"0\" onclick=\"nextPage('" + arrayFilm[i] + "'," + isSerieTv + ",'" + section + "')\"><img class='posterImg arrow' src='img/arrow-right.png'></div>";
         $("#" + section).html($("#" + section).html() + htmlFilm)
     }
@@ -101,12 +102,12 @@ function printPage(isSerieTv, section, nextPage, callback) {
     if (callback) {
         callback();
     }
-        
+
 }
 
 function pushRandomItemInCarousel(isSerie) {
-    var obj = arrayFilm[Math.floor(Math.random() * arrayFilm.length-1) + 0];
-    searchMovieInfo(obj, isSerie, true);  
+    var obj = arrayFilm[Math.floor(Math.random() * arrayFilm.length - 1) + 0];
+    searchMovieInfo(obj, isSerie, true);
 }
 
 function fillCarousel() {
@@ -120,22 +121,22 @@ function fillCarousel() {
                  //'<h2 style="color:white">' + title + '</h2>' +
                   '<img class="carouselImg" src="https://image.tmdb.org/t/p/w500' + arrayCarousel[i].results[0].poster_path + '">' +
                   //'<div class="carouselPlot" class="scroll">' + truncate(arrayCarousel[i].results[0].overview) + '</div>' +
-             '</div>'+
+             '</div>' +
         '</div>';
 
         $('#carouselItems').append(item);
-    } 
+    }
 
-    
+
 
     initializeSlider();
-   
+
     if ($(window).width() > 768) {
         var options = { $AutoPlay: true, $ArrowKeyNavigation: 0, $Idle: 3000 };
         var jssor_slider1 = new $JssorSlider$('jssor_1', options);
     }
 
-    $('#tf-home').removeClass('hidden');    
+    $('#tf-home').removeClass('hidden');
 }
 
 function initializeSliderPoster(section) {
@@ -167,13 +168,12 @@ main();
 //INIZIALIZZAZIONE DELLA VIEW
 $(window).on("load", function () {
 
-        initView();
+    initView();
 });
 
 
-
 function initView() {
-    $(document).keypress(function(e) {
+    $(document).keypress(function (e) {
         if (e.which == 13) {
             if (window.cordova) {
                 Keyboard.hide();
@@ -198,17 +198,17 @@ function initView() {
             }
         }
     );
-    
+
     $('#loading').addClass('hidden');
     $('.tf-menu').removeClass('hidden');
     $('#tf-menu').removeClass('hidden');
 
-    
+
 
 }
 
 
-
+var cineblog = false;
 
 
 

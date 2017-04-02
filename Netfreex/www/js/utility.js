@@ -119,24 +119,53 @@ function depack(p) {
 
 //HTTP GET
 function get(url, success, error) {
-    //if (!window.cordova) {
+    if (cineblog != true) {
+
         $.getJSON("http://query.yahooapis.com/v1/public/yql?" +
             "q=select%20*%20from%20html%20where%20url%3D%22" +
             encodeURIComponent(url) +
             "%22&format=xml'&callback=?",
-            function(data) {
+            function (data) {
                 if (data.results[0]) {
                     success(data.results[0]);
                 }
-            }, function(er) {
+            }, function (er) {
                 error(er);
             }
         );
-    //} else {
-    //    cordovaHTTP.get(url, {}, {}, function (response) {
-    //        success(response.data);
-    //    }, function(response) {
-    //         error(response);
-    //    });
-    //}
+    } else {
+       
+        if (localStorage.expirationCF && localStorage.cookieCFCB.indexOf("cf_clearance") > -1) {
+            if (new Date(localStorage.expirationCF).getTime() < new Date().getTime()) {
+                getCookieCF(function() {
+                    doGetCB(url, success, error);
+                });
+            } else {
+                doGetCB(url, success, error);
+            }
+                
+        } else {
+            getCookieCF(function () {
+                doGetCB(url, success, error);
+            });
+        }
+
+    }
+}
+
+function doGetCB(url, success, error) {
+    if (localStorage.cookieCFCB) {
+        cordovaHTTP.headers = [];
+        cordovaHTTP.setHeader("User-Agent", navigator.userAgent);
+        cordovaHTTP.setHeader("Cookie", localStorage.cookieCFCB);
+    }
+
+    cordovaHTTP.get(url, {}, {}, function (response) {
+        $("#loading").addClass("hidden");
+        success(response.data);
+    }, function (response) {
+        $("#loading").addClass("hidden");
+        $("#error").removeClass("hidden");
+        error(response);
+    });
 }

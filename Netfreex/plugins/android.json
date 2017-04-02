@@ -34,6 +34,9 @@
         "cordova-plugin-http": {
             "PACKAGE_NAME": "com.netfreex"
         },
+        "cordova-plugin-inappbrowser-custom": {
+            "PACKAGE_NAME": "com.netfreex"
+        },
         "cordova-plugin-keyboard": {
             "PACKAGE_NAME": "com.netfreex"
         },

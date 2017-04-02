@@ -1,7 +1,7 @@
 function parsePage(html, url, isSerieTv, section, nextPage) {
     arrayFilm = [];
     var articoli = html.split('featuredItem');
-    for (var i = 1; i < articoli.length; i = i + 2) {
+    for (var i = 1; i < articoli.length; i = i + 1) {
         try {
             var movie = {
                 title: articoli[i].split('html">')[1].split('</a')[0],
@@ -55,7 +55,7 @@ var sections = [
     "movieSliderContainer",
     "serieTvSliderContainer"
 ];
-
+$("#welcome").addClass("hidden");
 
 //Most popular
     $('.movieMostPopularTitle').addClass('hidden');

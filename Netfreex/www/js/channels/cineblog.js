@@ -1,8 +1,7 @@
 function extractLinkSwzz(url, host) {
     console.log(url)
 
-    //Decodifico l'url cineblog
-    url = atob(url);
+    
 
     function parseUrl(html) {
         try {
@@ -34,16 +33,19 @@ function extractLinkSwzz(url, host) {
     }
 
 
-    if (url.indexOf("swzz") > -1) {
+    if (url.length < 7) {
+        url = "http://swzz.xyz/link/" + url + "/";
         $.getJSON("http://query.yahooapis.com/v1/public/yql?" +
             "q=select%20*%20from%20html%20where%20url%3D%22" +
             encodeURIComponent(url) +
             "%22&format=xml'&callback=?",
-            function(data) {
+            function (data) {
                 parseUrl(data.results[0]);
             }
         );
     } else {
+        //Decodifico l'url cineblog
+        url = atob(url);
         parseUrl(url);
     }
 }
@@ -90,9 +92,9 @@ function search() {
 
     var url;
     if ($('#serieTv').prop('checked'))
-        url = "http://www.cb01.uno/serietv/search/" + input
+        url = "https://www.cb01.uno/serietv/search/" + input;
     else
-        url = "http://www.cb01.uno/search/" + input
+        url = "https://www.cb01.uno/search/" + input;
 
     openPage(url, $('#serieTv').prop('checked'), 'searchResultContainer', false, true);
 }
@@ -136,30 +138,65 @@ function parseMostPopular(html, url, isSerieTv, section, callback) {
     printPage(isSerieTv, section, null, callback);
 }
 
+function getCookieCF(callback) {
+    $("#loading").removeClass("hidden");
+    var win = window.open('https://www.cb01.uno', "_blank", "EnableViewPortScale=yes,clearcache=no,clearsessioncache=no,hidden=yes");
+    win.addEventListener("loadstop", function () {
+        setTimeout(function () {
+            //win.executeScript(
+            //        { code: "navigator.userAgent" },
+            //        function (values) {
+            //            console.log("USER AGENT " + values[0]);
+            //            localStorage.userAgentCF = values[0];
+            //        }
+            //    );
+            win.getCookies(
+                    { url: '.cb01.uno' },
+                    function (values) {
+                        console.log(values);
+                        localStorage.cookieCFCB = values;
+
+                        var exp = new Date();
+                        exp.setHours(exp.getHours() + 2);
+                        localStorage.expirationCF = exp;
+                        $("#welcome").addClass("hidden");
+                        callback();
+                        win.close();
+                    }
+                );
+
+        }, 6000);
+    });
+}
+
+$("#welcome").addClass("hidden");
 var sections = [
-    "movieMostPopularSliderContainer",
-    "serieTvMostPopularSliderContainer",
+    //"movieMostPopularSliderContainer",
+    //"serieTvMostPopularSliderContainer",
     "movieSliderContainer",
-    "serieTvSliderContainer"
+    //"serieTvSliderContainer"
 ];
 
+var cineblog = true;
+
+document.addEventListener('deviceready', onDeviceReady.bind(this), false);
+
+function onDeviceReady() {
+    openPage("https://www.cb01.uno/", false, 'movieSliderContainer', false, null, initViewChannelMode);
+}
+
+//CINEBLOG
+//Most popular
+//openPage("https://www.cb01.uno/", false, 'movieMostPopularSliderContainer', true, null, initViewChannelMode);
+//openPage("https://www.cb01.uno/serietv/", true, 'serieTvMostPopularSliderContainer', true, null, initViewChannelMode);
+
+//Ultime uscite
 
 
+//openPage("https://www.cb01.uno/serietv/", true, 'serieTvSliderContainer', false, null, initViewChannelMode);
 
-    //CINEBLOG
-    //Most popular
-    openPage("http://www.cb01.uno/", false, 'movieMostPopularSliderContainer', true);
-    openPage("http://www.cb01.uno/serietv/", true, 'serieTvMostPopularSliderContainer', true);
-
-    //Ultime uscite
-    openPage("http://www.cb01.uno/", false, 'movieSliderContainer', false);
-    openPage("http://www.cb01.uno/serietv/", true, 'serieTvSliderContainer', false);
-
-    //openPage("http://www.cb01.co/serietv/page/2/", true, 'serieTvSliderContainer', false);
-    //openPage("http://www.cb01.co/page/2/", false, 'movieSliderContainer', false);
-
-$(window).on("load", function () {
-    initViewChannelMode();
-});
+//$(window).on("load", function () {
+//    initViewChannelMode();
+//});
 
 
