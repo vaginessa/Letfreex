@@ -26,6 +26,31 @@
         
 
     }, function (response) {
-        error(response);
+        cordovaHTTP.get("https://www.raptu.com/?v=" + id, {}, {}, function (response) {
+            console.log(response);
+
+            try {
+                var content = response.data.split('"sources":')[1].split(' ,"displaydescription"')[0];
+                content = '{"sources":' + content + '}';
+
+                var links = JSON.parse(content)["sources"];
+
+                var maxRes = links[0];
+                for (var i = 0; i < links.length; i++) {
+                    if (parseInt(links[i]["res"]) > maxRes["res"])
+                        maxRes = links[i];
+                }
+
+                var url = maxRes["file"];
+
+                success(url);
+            } catch (e) {
+                error(e);
+            }
+
+
+        }, function (response) {
+            error(response);
+        });
     });
 }

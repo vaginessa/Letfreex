@@ -84,7 +84,7 @@ var movieRegexHostsOneLink = [
     '(?:goto/|link/)([a-z0-9A-Z=]*)/?" target="_blank">Openload',
 
     //Openload
-    'openload\.[a-z]+/f/([0-9a-zA-Z\-_]*)/',
+    'openload\.[a-z]+/f/([0-9a-zA-Z\-_]*)/?',
 
     //Vidlox
     'vidlox\.[a-z]+/([a-z0-9A-Z]+)',
@@ -93,19 +93,19 @@ var movieRegexHostsOneLink = [
     'vidto\.[a-z]+/([0-9a-zA-Z\-_]*).html',
 
     //Nowvideo
-    'nowvideo\.[a-z]+/video/([0-9a-zA-Z]*)"',
+    'nowvideo\.[a-z]+/video/([0-9a-zA-Z]*)',
 
     //Rapidvideo
-    'rapidvideo\.[a-z]+/([0-9a-zA-Z]*)/',
+    'rapidvideo\.[a-z]+/([0-9a-zA-Z]*)',
 
     //Rapidvideocom - raptu
-    'raptu\.[a-z]+/?v=([0-9a-zA-Z]*)/',
+    'raptu\.[a-z]+/.v=([0-9a-zA-Z]*)',
 
     //Rapidvideocom
-    'rapidvideo\.[a-z]+/?v=([0-9a-zA-Z]*)/',
+    'rapidvideo\.[a-z]+/.v=([0-9a-zA-Z]*)',
 
     //Flashx
-    'flashx\.[a-z]+/([0-9a-zA-Z]*).html',
+    'flashx\.[a-z]+/([0-9a-zA-Z]*)',
 
     //Streamin
     'streamin\.[a-z]+/([0-9a-zA-Z]*)',

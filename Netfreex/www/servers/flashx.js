@@ -1,6 +1,11 @@
 ﻿function flashxExtract(id, success, error) {
+    var page_url = "";
 
-    var page_url = "https://www.flashx.to/" + id + ".html";
+    if(id.length < 15)
+        page_url = "https://www.flashx.to/" + id + ".html";
+    else
+        page_url = "https://streamcrypt.net/flashx.to/" + id;
+
     cordovaHTTP.headers = [];
     cordovaHTTP.setHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0");
 
@@ -13,6 +18,7 @@
             var fname = content.split("fname\" value=\"")[1].split("\"")[0];
             var hash = content.split("hash\" value=\"")[1].split("\"")[0];
             var file_id = content.match("'file_id', '([^']+)'")[1];
+            var idVideo = content.split('name="id" value="')[1].split("\"")[0];
 
             var coding_url = 'https://files.fx.fastcontentdelivery.com/jquery2.js?fx=' + window.btoa(file_id);
             cordovaHTTP.setHeader("Host", "files.fx.fastcontentdelivery.com");
@@ -28,7 +34,7 @@
 
 
             setTimeout(function() {
-                doPostRequest(id, fname, hash);
+                doPostRequest(idVideo, fname, hash);
             }, 6000);
         } catch (e) {
             error(e);

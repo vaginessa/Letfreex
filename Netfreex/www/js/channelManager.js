@@ -23,15 +23,16 @@ function loadChannelList(added) {
             $('#channelName').html(channel);
         } else {
             //CANALE DEFAULT
-            if (localStorage.cineblogUrl) {
-                window.location.replace("index.html?channel=cineblog");
+            if (localStorage.filmPerTuttiUrl) {
+                window.location.replace("index.html?channel=filmpertutti");
+                
             } else if (localStorage.italiaFilmUrl) {
                 window.location.replace("index.html?channel=italiafilm");
             } else if (localStorage.pirateStreamingUrl) {
                 window.location.replace("index.html?channel=piratestreaming");
             }
-            else if (localStorage.filmPerTuttiUrl) {
-                window.location.replace("index.html?channel=filmpertutti");
+            else if (localStorage.cineblogUrl) {
+                window.location.replace("index.html?channel=cineblog");
             }
 
         }

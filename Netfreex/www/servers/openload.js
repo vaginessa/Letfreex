@@ -2,7 +2,12 @@
     cordovaHTTP.headers = [];
     cordovaHTTP.setHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0");
 
-    cordovaHTTP.get("https://openload.co/f/" + id , {}, {}, function (response) {
+    var url = "";
+
+        url = "https://openload.co/f/" + id;
+    
+    
+    cordovaHTTP.get(url , {}, {}, function (response) {
         console.log(response);
 
         try {

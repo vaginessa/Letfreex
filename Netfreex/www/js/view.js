@@ -79,10 +79,9 @@ function openVideo(host, url, isSerieTv) {
         if (host[0] == 'swzz') {
             extractLinkSwzz(url, host[1]);
         }      
-
-        else if (host[0] == 'italiaFilmLinks') {
+        else if (host[0] == 'vcrypt') {
             if (host[1] == 'openload')
-                italiafilmLinksExtract(url + "?host=1", success, error);
+                openloadExtract(url+"|openload", success, error);
         }
         else if (host[0] == 'vidlox')
             vidloxExtract(url, success, error);
