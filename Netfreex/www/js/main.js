@@ -84,7 +84,7 @@ function printPage(isSerieTv, section, nextPage, callback) {
 
     for (var i = 0; i < arrayFilm.length; i++) {
         if (arrayFilm[i].url != undefined)
-            htmlFilm = "<div class=\"swiper-slide\"><a  tabindex=\"0\" onclick=\"openMovie('" + arrayFilm[i].url + "','" + arrayFilm[i].title + "','" + arrayFilm[i].img + "'," + isSerieTv + ")\" ><img class='posterImg' src='" + arrayFilm[i].img + "'></a></div>";
+            htmlFilm = "<div class=\"swiper-slide\"><a  tabindex=\"0\" onclick=\"openMovie('" + arrayFilm[i].url + "','" + arrayFilm[i].title + "','" + arrayFilm[i].img + "'," + arrayFilm[i].isSerieTv + ")\" ><img class='posterImg' src='" + arrayFilm[i].img + "'></a></div>";
         else
             htmlFilm = "";
         if (i == arrayFilm.length - 1 && typeof arrayFilm[i] == "string")
@@ -93,7 +93,8 @@ function printPage(isSerieTv, section, nextPage, callback) {
     }
 
     //Pusho nel carousel un oggetto random tra quelli nell'array
-    pushRandomItemInCarousel(isSerieTv);
+    if(arrayFilm[0].carousel != "false")
+        pushRandomItemInCarousel(isSerieTv);
 
     if (nextPage) {
         initializeSliderPoster(section);
@@ -148,10 +149,12 @@ function initializeSliderPoster(section) {
         spaceBetween: 30,
         freeMode: true
     });
+
 }
 
 //Apre la pagina principale di un film o serie
 function getVideoLink(url, isSerieTv) {
+
     get(url, function (response) {
         parseMoviePage(response, url, isSerieTv);
     }, function (er) {

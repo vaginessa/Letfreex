@@ -3,6 +3,8 @@
 
     if(id.length < 15)
         page_url = "https://www.flashx.to/" + id + ".html";
+    else if(id.length == 32)
+        page_url = "https://www.flashx.to/" + id + ".jsp";
     else
         page_url = "https://streamcrypt.net/flashx.to/" + id;
 

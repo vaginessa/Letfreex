@@ -5,7 +5,8 @@ function parsePage(html, url, isSerieTv, section, nextPage, callback) {
         var movie = {
             title: articoli[i].split('title="')[1].split('"')[0],
             img: articoli[i].split("echo=\"")[1].split('"')[0],
-            url: articoli[i].split('href="')[1].split('"')[0]
+            url: articoli[i].split('href="')[1].split('"')[0],
+            isSerieTv: isSerieTv
         };
         arrayFilm.push(movie);
     }

@@ -71,7 +71,8 @@ function parsePage(data, url, isSerieTv, section, nextPage, callback) {
         var movie = {
             title: articoli[i].split('"title": "')[1].split('"')[0] + anno,
             img: articoli[i].split("src=\"")[1].split('"')[0],
-            url: articoli[i].split('href="')[1].split('"')[0]
+            url: articoli[i].split('href="')[1].split('"')[0],
+            isSerieTv: isSerieTv
         };
         arrayFilm.push(movie);
     }

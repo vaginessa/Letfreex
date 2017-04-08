@@ -13,8 +13,9 @@
             found = true;
         }
 
+
         try {
-            if (matches == null) {
+            if (!found) {
                 url = response.data.split("src: '")[1].split("',")[0];
                 url = url.split("dash/")[1].split("/")[0],
                 url = "http://www.nowvideo.sx/download.php?file=mm" + url + ".mp4";

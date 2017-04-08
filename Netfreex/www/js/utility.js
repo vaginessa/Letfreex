@@ -169,3 +169,38 @@ function doGetCB(url, success, error) {
         error(response);
     });
 }
+
+
+function clearCache() {
+    var cineblobUrl = localStorage.cineblogUrl;
+    var cinemalibero = localStorage.cinemaLiberoUrl;
+    var filmpertutti = localStorage.filmPerTuttiUrl;
+    var italiafilm = localStorage.italiaFilmUrl;
+    var piratestreaming = localStorage.pirateStreamingUrl;
+
+    var favourites = localStorage.favourites;
+    var cookieCF = localStorage.cookieCFCB;
+    var expirationCF = localStorage.expirationCF;
+    var downloadEpisodeInfo = localStorage.downloadEpisodeInfo;
+
+    localStorage.clear();
+
+    if(cineblobUrl)
+        localStorage.cineblogUrl = cineblobUrl;
+    if (cinemalibero)
+        localStorage.cinemaLiberoUrl = cinemalibero;
+    if (filmpertutti)
+        localStorage.filmPerTuttiUrl = filmpertutti;
+    if (italiafilm)
+        localStorage.italiaFilmUrl = italiafilm;
+    if (piratestreaming)
+        localStorage.pirateStreamingUrl = piratestreaming;
+    if (favourites)
+        localStorage.favourites = favourites;
+    if (cookieCF)
+        localStorage.cookieCFCB = cookieCF;
+    if (expirationCF)
+        localStorage.expirationCF = expirationCF;
+    if (downloadEpisodeInfo)
+        localStorage.downloadEpisodeInfo = downloadEpisodeInfo;
+}

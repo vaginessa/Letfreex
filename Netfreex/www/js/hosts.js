@@ -1,8 +1,12 @@
 //Gestione host serie tv =======================================================================
 var serieTvHosts = [
     'swzz|nowvideo',
+    'vcrypt|nowvideo',
     'swzz|openload',
+    'vcrypt|openload',
     'swzz|flashx',
+    'vcrypt|flashx',
+    'vcrypt|rapidvideocom',
     'nowvideo',
     'vidlox',
     'openload',
@@ -19,11 +23,23 @@ var serieTvRegexHosts = [
     //Nowvideo redirect swzz (cineblog)
     '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*(?:goto/|link/)([a-z0-9A-Z=]*)/?" target="_blank">Nowvideo',
 
+    //Nowvideo redirect vcrypt (cinemalibero)
+    '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*cinemalibero\.[a-z]+/goto/([a-z0-9A-Z=]*)/?"[^<]*>Nowvideo',
+
     //Openload redirect swzz (cineblog)
     '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*(?:goto/|link/)([a-z0-9A-Z=]*)/?" target="_blank">Openload',
 
+    //Openload redirect vcrypt (cinemalibero)
+    '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*cinemalibero\.[a-z]+/goto/([a-z0-9A-Z=]*)/?"[^<]*>Openload',
+
     //FlashX redirect swzz (cineblog)
-    '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*(?:goto/|link/)([a-z0-9A-Z=]*)/?" target="_blank">Flashx',
+    '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*(?:goto/|link/)([a-z0-9A-Z=]*)/?" target="_blank">Flash',
+
+    //FlashX redirect vcrypt (cinemalibero)
+    '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*cinemalibero\.[a-z]+/goto/([a-z0-9A-Z=]*)/?"[^<]*>Flash',
+
+    //Raptu(rapidvideocom) redirect vcrypt (cinemalibero)
+    '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*cinemalibero\.[a-z]+/goto/([a-z0-9A-Z=]*)/?"[^<]*>Raptu',
 
     //Nowvideo
     '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*www.nowvideo\.[a-z]+/video/([a-z0-9A-Z]+)[^<]*Nowvideo',
@@ -60,7 +76,10 @@ var serieTvRegexHosts = [
 //Gestione host film (LINK UNICO)===============================================================
 var movieHostsOneLink = [
     'swzz|nowvideo',
+    'vcrypt|nowvideo',
     'swzz|openload',
+    'vcrypt|openload',
+    'vcrypt|openload',
     'openload',
     'vidlox',
     'vidto',
@@ -72,6 +91,7 @@ var movieHostsOneLink = [
     'streaminto',
     'speedvideo',
     'swzz|flashx',
+    'vcrypt|flashx',
     'swzz|streaminto'
 ];
 
@@ -80,8 +100,17 @@ var movieRegexHostsOneLink = [
     //Nowvideo redirect swzz (cineblog)
     '(?:goto/|link/)([a-z0-9A-Z=]*)/?" target="_blank">Nowvideo',
 
+    //Nowvideo redirect vcrypt (cinemalibero)
+    'goto/([a-z0-9A-Z=]*)/?"[^<]*>Nowvideo',
+
     //Openload redirect swzz (cineblog)
     '(?:goto/|link/)([a-z0-9A-Z=]*)/?" target="_blank">Openload',
+
+    //Openload redirect vcrypt(cinemalibero)
+    'goto/([a-z0-9A-Z=]*)/?"[^<]*>Openload',
+
+    //Openload redirect vcrypt(filmpertutti)
+    'vcrypt.pw/open/([a-z0-9A-Z=]*)[^<]*>Openload',
 
     //Openload
     'openload\.[a-z]+/f/([0-9a-zA-Z\-_]*)/?',
@@ -114,7 +143,10 @@ var movieRegexHostsOneLink = [
     'speedvideo\.[a-z]+/([0-9a-zA-Z-]*(\.html)?)',
 
     //Flashx redirect swzz (cineblog)
-    '(?:goto/|link/)([a-z0-9A-Z=]*)/?" target="_blank">Flashx',
+    '(?:goto/|link/)([a-z0-9A-Z=]*)/?" target="_blank">Flash',
+
+    //Flashx redirect vcrypt(cinemalibero)
+    'goto/([a-z0-9A-Z=]*)/?"[^<]*>Flash',
 
     //Streamin redirect swzz (cineblog)
     '(?:goto/|link/)([a-z0-9A-Z=]*)/?" target="_blank">Streamin',

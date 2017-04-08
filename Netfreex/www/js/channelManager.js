@@ -12,6 +12,9 @@ function loadChannelList(added) {
     if (localStorage.filmPerTuttiUrl) {
         channelListHtml += '<li><a href="index.html?channel=filmpertutti">FilmPerTutti</a></li>';
     }
+    if (localStorage.cinemaLiberoUrl) {
+        channelListHtml += '<li><a href="index.html?channel=cinemalibero">CinemaLibero</a></li>';
+    }
 
     $("#channelList").html(channelListHtml);
 
@@ -30,6 +33,9 @@ function loadChannelList(added) {
                 window.location.replace("index.html?channel=italiafilm");
             } else if (localStorage.pirateStreamingUrl) {
                 window.location.replace("index.html?channel=piratestreaming");
+            }
+            else if (localStorage.cinemaLiberoUrl) {
+                window.location.replace("index.html?channel=cinemalibero");
             }
             else if (localStorage.cineblogUrl) {
                 window.location.replace("index.html?channel=cineblog");
@@ -59,6 +65,7 @@ function changeChannel(name) {
 
     $('img').imageReloader();
 
+    clearCache();
     $('#channel').html('<scr' + 'ipt type="text/javascript" src="js/channels/' + name + '.js"></scr' + 'ipt>');
 }
 
@@ -66,6 +73,7 @@ function initViewChannelMode() {
     $('#homeContainer').removeClass('hidden');
     $('#welcome').addClass('hidden');
     $('#cerca').removeClass('hidden');
+    $('#preferiti').removeClass('hidden');
 
     //NASCONDO GLI SLIDER VUOTI
     if (isEmpty($('#movieSliderContainer'))) {
@@ -126,6 +134,7 @@ function aggiungiCanale() {
                     && value.indexOf("cb01") == -1
                     && value.indexOf("piratestreaming") == -1
                     && value.indexOf("filmpertutti") == -1
+                    && value.indexOf("cinemalibero") == -1
                     ) {
                     reject('Il canale che hai inserito non e\' valido');
                 } else {
@@ -145,6 +154,9 @@ function aggiungiCanale() {
         }
         else if (result.indexOf("filmpertutti") > -1) {
             localStorage.filmPerTuttiUrl = result;
+        }
+        else if (result.indexOf("cinemalibero") > -1) {
+            localStorage.cinemaLiberoUrl = result;
         }
         loadChannelList(true);
     });
@@ -172,6 +184,9 @@ function eliminaCanale() {
     }
     if (localStorage.filmPerTuttiUrl) {
         channelList["filmPerTuttiUrl"] = "FilmPerTutti";
+    }
+    if (localStorage.cinemaLiberoUrl) {
+        channelList["cinemaLiberoUrl"] = "CinemaLibero";
     }
 
     swal({

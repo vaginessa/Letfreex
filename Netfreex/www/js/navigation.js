@@ -7,7 +7,7 @@ function goToHome(backBtn) {
     //Nascondo le pagine
     $('#viewMovieContainer').addClass('hidden');
     $('#searchContainer').addClass('hidden');
-    
+    $('#favouritesContainer').addClass('hidden');
     $("#singleLink").addClass("hidden");
 
     eraseViewMode();
@@ -19,11 +19,29 @@ function goToHome(backBtn) {
 function goToSearch() {
     $('#homeContainer').addClass('hidden');
     $('#viewMovieContainer').addClass('hidden');
+    $('#favouritesContainer').addClass('hidden');
+    $("#singleLink").addClass("hidden");
     $('#searchContainer').removeClass('hidden');
 
     eraseViewMode();
 
     $('#bs-example-navbar-collapse-1').collapse('hide');
+
+}
+
+function goToFavourites() {
+    
+
+    $('#homeContainer').addClass('hidden');
+    $('#viewMovieContainer').addClass('hidden');
+    $('#searchContainer').addClass('hidden');
+    $("#singleLink").addClass("hidden");
+    $('#favouritesContainer').removeClass('hidden');
+
+    eraseViewMode();
+
+    $('#bs-example-navbar-collapse-1').collapse('hide');
+    fillFavourites();
 
 }
 
@@ -55,14 +73,14 @@ function changeTab(num) {
         case 0:
             $('#riepilogo').removeClass('hidden');
             $('#dettagli').addClass('hidden');
-            $('#riepilogoButton').addClass('viewButtonActive')
-            $('#dettagliButton').removeClass('viewButtonActive')
+            $('#riepilogoButton').addClass('viewButtonActive');
+            $('#dettagliButton').removeClass('viewButtonActive');
             break;
         case 1:
             $('#riepilogo').addClass('hidden');
             $('#dettagli').removeClass('hidden');
-            $('#riepilogoButton').removeClass('viewButtonActive')
-            $('#dettagliButton').addClass('viewButtonActive')
+            $('#riepilogoButton').removeClass('viewButtonActive');
+            $('#dettagliButton').addClass('viewButtonActive');
             break;
     }
 }
@@ -81,7 +99,7 @@ $('#search').keypress(function (e) {
         } 
         $('#searchResultContainer').html('');
         $('#loadingSearch').removeClass('hidden');
-        search()
+        search();
         return false;
     }
 });

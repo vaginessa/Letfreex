@@ -10,7 +10,15 @@ function openMovie(url,titolo, img, isSerieTv) {
     titolo = unescape(titolo);
     $('#homeContainer').addClass('hidden');
     $('#searchContainer').addClass('hidden');
+    $('#favouritesContainer').addClass('hidden');
     $('#viewMovieContainer').removeClass('hidden');
+
+    //Setto bottone preferiti
+    if (isInFavourites(url))
+        $('#addToFavourites').html('<div onclick="removeFromFavourites(\'' + url + '\', \'' + titolo + '\',\'' + img + '\',\'' + isSerieTv + '\' )"><i class="fa fa-star colorOrange"></i> Rimuovi dai preferiti</div>');
+    else
+        $('#addToFavourites').html('<div onclick="addToFavourites(\'' + url + '\', \'' + titolo + '\',\'' + img + '\',\'' + isSerieTv + '\')"><i class="fa fa-star-o colorOrange"></i> Aggiungi ai preferiti</div>');
+
 
     getVideoLink(url, isSerieTv);
 
@@ -76,13 +84,14 @@ function openVideo(host, url, isSerieTv) {
         console.log(url);
         host = host.split('|');
 
+        //Redirect link criptati
         if (host[0] == 'swzz') {
             extractLinkSwzz(url, host[1]);
         }      
         else if (host[0] == 'vcrypt') {
-            if (host[1] == 'openload')
-                openloadExtract(url+"|openload", success, error);
+            extractVcrypt(url, host[1]);
         }
+        //Link in chiaro
         else if (host[0] == 'vidlox')
             vidloxExtract(url, success, error);
         else if (host[0] == 'speedvideo')

@@ -62,8 +62,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right ">
-              <li><a tabindex="0" onclick="goToHome()">Home</a></li>
-              <li><a tabindex="0" onclick="playByUrl()">Riproduci da URL</a></li>
+              <li><a tabindex="0" onclick="goToHome()"><i class="fa fa-home" style="padding-right: 10px"></i>Home</a></li>
+              <li id="preferiti" class="hidden"><a tabindex="0" onclick="goToFavourites()"><i class="fa fa-star" style="padding-right: 10px"></i>Preferiti</a></li>
+              <li><a tabindex="0" onclick="playByUrl()"><i class="fa fa-link" style="padding-right: 10px"></i>Riproduci da URL</a></li>
               <li id="cerca" class="hidden"><a  tabindex="0" onclick="goToSearch()"><i class="fa fa-search" style="padding-right: 10px"></i>Cerca</a></li>
               <li>
                   <div  class="dropdown" style="position: relative;top: 10px; left: 5px; margin-bottom: 5px;">
@@ -222,7 +223,7 @@
           <nav id="footer">
               <div class="container">
                   <div class="pull-left fnav">
-                      <p>NETFREEX 1.1.4 - © 2017. Developed by <a href="https://github.com/Be4t5">Be4t5</a></p>
+                      <p>NETFREEX 1.1.5 - © 2017. Developed by <a href="https://github.com/Be4t5">Be4t5</a></p>
                   </div>
               </div>
           </nav>
@@ -237,20 +238,21 @@
                   <h2 id="movieTitle"></h2>
                   <div id="boxInfo" class="text-center ">
                       <img id="locandina" class="poster" src=""/>
-
+                      <div id="addToFavourites"></div>
                       <!-- Riepilogo -->
                       <div id="riepilogo" class="colonnaSx ">
+                          
                           <div id="moviePlot" class="scroll">
                           </div>
                           <div id="loadingLink" class="rightBlockView play" style="opacity: 0.7; font-size: 2em;">
-                                  <i class="fa fa-spinner fa-pulse fa-spin fa-4x"></i>
+                              <i class="fa fa-spinner fa-pulse fa-spin fa-4x"></i>
 
                           </div>
 
                           <!-- Lista Stagioni -->
-                          <div id="dropDownStagioni" class="rightBlockView hidden" style="overflow: visible; text-align: initial;" >
+                          <div id="dropDownStagioni" class="rightBlockView hidden" style="overflow: visible; text-align: initial;">
                               <div class="dropdown" style="margin-top: -40px; margin-left: -10px; text-shadow: none">
-                                  <button id="currentSeason" class="btn btn-primary dropdown-toggle text-uppercase" type="button" data-toggle="dropdown" style="font-size: 12px;background-color: rgba(0, 0, 0, 0.72); border: none">
+                                  <button id="currentSeason" class="btn btn-primary dropdown-toggle text-uppercase" type="button" data-toggle="dropdown" style="font-size: 12px; background-color: rgba(0, 0, 0, 0.72); border: none">
                                       <!--Stagione 1 <span class="caret"></span>-->
                                   </button><ul class="dropdown-menu listaStagioni"></ul>
                               </div>
@@ -310,38 +312,60 @@
           <div class="row" style="margin-right: 0;">
               <div class="form" id="searchForm">
                   <input type="text" id="search">
-                      <input type="checkbox" id="serieTv"> Serie TV
-                  
+                  <input type="checkbox" id="serieTv"> Serie TV
+
                   <label for="search">Search</label>
                   <input type="submit" hidden/>
               </div>
-              
-          </div>
-          
-          <h1 class="sliderTitle ricerca" style="margin-bottom: 70px;">Risultati della ricerca</h1>
-       
-              <div class="container">
-                  <div class="row">
-                      <div class="col-md-12" id="searchResult">
-                          <!-- Slider main container -->
-                          <div class="swiper-container searchResultContainer" style="width: 100%; ">
-                              <!-- Additional required wrapper -->
-                              <div id="searchResultContainer" class="swiper-wrapper marginBottom30">
-                                  
-                              </div>
-                              <div id="loadingSearch"  >
 
-                                      <i class="fa fa-spinner fa-pulse fa-spin fa-4x"></i>
-                                  
-                              </div>
+          </div>
+
+          <h1 class="sliderTitle ricerca" style="margin-bottom: 35px;">Risultati della ricerca</h1>
+
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-12" id="searchResult">
+                      <!-- Slider main container -->
+                      <div class="swiper-container searchResultContainer" style="width: 100%;">
+                          <!-- Additional required wrapper -->
+                          <div id="searchResultContainer" class="swiper-wrapper marginBottom30">
+
+                          </div>
+                          <div id="loadingSearch">
+
+                              <i class="fa fa-spinner fa-pulse fa-spin fa-4x"></i>
+
                           </div>
                       </div>
                   </div>
               </div>
-          
+          </div>
+
       </div>
 
-      <div id="openloadDecode" style="display:none;"></div>
+
+      <!-- Preferiti view
+    ================================================== -->
+      <div id="favouritesContainer" class="hidden">
+          <h1 class="sliderTitle ricerca" style="margin-bottom: 35px; margin-top: 56px !important;">I tuoi preferiti <span style="font-size: 0.5em;">su questo canale</span></h1> 
+
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-12" id="favouritesResult">
+                      <!-- Slider main container -->
+                      <div class="swiper-container favouritesResultContainer" style="width: 100%; ">
+                          <!-- Additional required wrapper -->
+                          <div id="favouritesResultContainer" class="swiper-wrapper marginBottom30">
+
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+
+  <div id="openloadDecode" style="display:none;"></div>
 
   <script type="text/javascript" src="js/lib/bootstrap.js"></script>
     <script type="text/javascript" src="js/lib/SmoothScroll.js"></script>
@@ -361,8 +385,8 @@
 
     <!-- Core -->
     <script src="js/utility.js"></script>
+    <script src="js/favourites.js"></script>
     <script src="js/tmdbApi.js"></script>
-    <!--<script src="js/updateManager.js"></script>-->
     <script src="js/channelManager.js"></script>
     <script src="js/view.js"></script> 
     <script src="js/hosts.js"></script>

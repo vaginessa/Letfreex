@@ -929,3 +929,13 @@ label {
     font-size: 2vw;
     color: #F2A542;
 }
+
+.colorWhite {
+    color: white !important;
+}
+
+#addToFavourites {
+    margin-top: -13px;
+    margin-bottom: 13px;
+    color: white;
+}

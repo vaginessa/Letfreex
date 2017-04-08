@@ -1,3 +1,55 @@
+function extractVcrypt(url, host) {
+    debugger
+    cordovaHTTP.headers = [];
+    cordovaHTTP.setHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0");
+
+    cordovaHTTP.get("https://vcrypt.pw/open/" + url, {}, {}, function (response) {
+
+            error(e);
+       
+    }, function (response) {
+        console.log(response.headers.Location);
+        doPostVcrypt(response.headers.Location.replace("http", "https"), host, url);
+    });
+  
+
+
+}
+
+function doPostVcrypt(idVcrypt, host, url) {
+    cordovaHTTP.setHeader("Content-Type", "application/x-www-form-urlencoded");
+    cordovaHTTP.post(idVcrypt, {
+        go: "go",
+    }, {}, function (response) {
+        try {
+            var urlVideo = response.data.split('url=')[1].split("'")[0];
+            switch (host) {
+                case 'nowvideo':
+                    url = urlVideo.match("/video/([a-zA-Z0-9]+)")[1];
+                    break;
+                case 'openload':
+                    url = urlVideo.match("openload.[a-z]{2,5}/f/([^']+)/?")[1];
+                    break;
+                case 'streaminto':
+                    url = urlVideo.match("streamin.[a-z]{2,5}/([a-zA-Z0-9]+)")[1];
+                    break;
+                case 'flashx':
+                    url = urlVideo.match("flashx.[a-z]{2,5}/([a-zA-Z0-9]+).html")[1];
+                    break;
+            }
+
+            console.log(url);
+            openVideo(host, url);
+        } catch (e) {
+            error(e);
+        }
+
+    }, function (response) {
+        error(response);
+    });
+}
+
+
 function parsePage(html, url, isSerieTv, section, nextPage, callback) {
     arrayFilm = [];
     html = html.split('<ul class="posts">')[1].split('<footer>')[0];
@@ -8,7 +60,8 @@ function parsePage(html, url, isSerieTv, section, nextPage, callback) {
             var movie = {
                 title: articoli[i].split('class="title">')[1].split('</div')[0],
                 img: articoli[i].split('data-thumbnail="')[1].split('"')[0],
-                url: articoli[i].split('href="')[1].split('"')[0]
+                url: articoli[i].split('href="')[1].split('"')[0],
+                isSerieTv: isSerieTv
             };
             //Pulisco tag html da titolo
             var div = document.createElement("div");
