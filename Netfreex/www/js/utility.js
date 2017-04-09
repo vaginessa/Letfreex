@@ -179,6 +179,7 @@ function clearCache() {
     var piratestreaming = localStorage.pirateStreamingUrl;
 
     var favourites = localStorage.favourites;
+    var bookmarks = localStorage.bookmarks;
     var cookieCF = localStorage.cookieCFCB;
     var expirationCF = localStorage.expirationCF;
     var downloadEpisodeInfo = localStorage.downloadEpisodeInfo;
@@ -195,6 +196,8 @@ function clearCache() {
         localStorage.italiaFilmUrl = italiafilm;
     if (piratestreaming)
         localStorage.pirateStreamingUrl = piratestreaming;
+    if (bookmarks)
+        localStorage.bookmarks = bookmarks;
     if (favourites)
         localStorage.favourites = favourites;
     if (cookieCF)

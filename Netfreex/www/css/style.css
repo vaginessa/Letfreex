@@ -939,3 +939,17 @@ label {
     margin-bottom: 13px;
     color: white;
 }
+
+.seenIcon {
+    font-size: 17px;
+    right: 24px;
+    opacity: 0.75;
+    top: 125px;
+    position: absolute;
+}
+
+#cleanAlreadySeen {
+    position: absolute;
+    right: 5px;
+    top: -25px;
+}

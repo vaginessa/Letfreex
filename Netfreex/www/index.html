@@ -223,7 +223,7 @@
           <nav id="footer">
               <div class="container">
                   <div class="pull-left fnav">
-                      <p>NETFREEX 1.1.5 - © 2017. Developed by <a href="https://github.com/Be4t5">Be4t5</a></p>
+                      <p>NETFREEX 1.1.5.1 - © 2017. Developed by <a href="https://github.com/Be4t5">Be4t5</a></p>
                   </div>
               </div>
           </nav>
@@ -239,6 +239,7 @@
                   <div id="boxInfo" class="text-center ">
                       <img id="locandina" class="poster" src=""/>
                       <div id="addToFavourites"></div>
+                      
                       <!-- Riepilogo -->
                       <div id="riepilogo" class="colonnaSx ">
                           
@@ -256,6 +257,7 @@
                                       <!--Stagione 1 <span class="caret"></span>-->
                                   </button><ul class="dropdown-menu listaStagioni"></ul>
                               </div>
+                              <div id="cleanAlreadySeen" onclick="markAllAsUnseen()"><i class="fa fa-bookmark-o" aria-hidden="true"></i> Elimina segnalibri</div>
                           </div>
 
                           <div id="playButton" class="rightBlockView scroll" style="padding-top: 26px;">
@@ -386,6 +388,7 @@
     <!-- Core -->
     <script src="js/utility.js"></script>
     <script src="js/favourites.js"></script>
+    <script src="js/bookmark.js"></script>
     <script src="js/tmdbApi.js"></script>
     <script src="js/channelManager.js"></script>
     <script src="js/view.js"></script> 

@@ -77,6 +77,8 @@ function fillPageWithMovieDetails(json, isSerie, obj, foundByAPI) {
 
         $("#movieDetails").css("background-image", "url('" + selectBackgroundSize() + json.results[0].backdrop_path + "')");
 
+        localStorage.currentMovieId = id;
+
         //General info
         getGeneralInfo(id, isSerie);
     } else {

@@ -68,7 +68,6 @@ function doPostVcrypt(idVcrypt, host, url) {
 
 function parsePage(html, url, isSerieTv, section, nextPage) {
     arrayFilm = [];
-    debugger
     var htmlLocandine = html.split('<div class="locandine">')[1].split('<div style="clear: both"></div>')[0];
 
     var articoli = htmlLocandine.split('<a class="');

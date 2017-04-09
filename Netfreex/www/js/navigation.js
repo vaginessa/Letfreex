@@ -47,6 +47,9 @@ function goToFavourites() {
 
 function eraseViewMode() {
     localStorage.downloadEpisodeInfo = false;
+    localStorage.removeItem("currentMovieId");
+    localStorage.removeItem("currentEpisode");
+
     $('#moviePlot').html("");
     $("#locandina").attr("src", "");
     $("#movieTitle").html("");

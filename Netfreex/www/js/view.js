@@ -65,6 +65,8 @@ function openMovie(url,titolo, img, isSerieTv) {
 })();
 
 function chooseHost(video) {
+    localStorage.currentEpisode = video.attr("info");
+
     console.log(video);
     swal({
         title: 'Guarda su',
@@ -143,7 +145,8 @@ var success = function (url) {
         $('#loading').addClass('hidden');
         VideoPlayer.play(url);
     }
-        
+    
+    markAsSeen();
 }
 
 var error = function (ex) {

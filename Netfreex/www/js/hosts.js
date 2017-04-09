@@ -336,10 +336,13 @@ function manageSerieTvLinks(html, regexStagione) {
 
                 previousEpisodio = listaLink[stagione].value[j].stagioneEpisodio;
 
-                link += "<div info=\"" + stagioneNumero + "x" + episodioNumero + "\" class=\"guarda col-md-4 col-xs-12 hidden\" >" +
+                var alreadySeenClass = isAlreadySeen(stagioneNumero + "x" + episodioNumero) ? "" : "hidden";
+
+                link += "<div info=\"" + stagioneNumero + "x" + episodioNumero + "\" class=\"guarda col-md-4 col-xs-12 " + alreadySeenClass + " hidden\" >" +
                             "<div tabindex=\"0\" onclick=\"chooseHost($(this).parent())\">" +
                                 "<div class=\"playContainer\" style=\"background-position: center;background-repeat: no-repeat;\">" +
                                       "<img class=\"playSeries\" src=\"img/playSeries.png\" />" +
+                                      "<i info=\"" + stagioneNumero + "x" + episodioNumero + "\" class=\"fa fa-bookmark seenIcon "+ alreadySeenClass +"\" ></i>" +
                                 "</div><h4>" + stagioneNumero + "x" + episodioNumero + "</h4>" +
                             "</div>";
             }
