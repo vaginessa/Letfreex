@@ -232,7 +232,7 @@ function manageMovieLinks(html) {
 
             if ($('#playButton').html().indexOf(res[1]) == -1) {
                 count++;
-                link += "<div  class=\"hidden marginBottom10\" host onclick=\"openVideo('" + movieHostsOneLink[i] + "','" + res[1] + "', false)\"><img width=\"200\" src=\"img/host/" + host + ".png\"></div>";
+                link += "<div  class=\"hidden marginBottom10\" host ><img onclick=\"openVideo('" + movieHostsOneLink[i] + "','" + res[1] + "', false)\" width=\"200\" src=\"img/host/" + host + ".png\"><i class=\"fa fa-download\" aria-hidden=\"true\" onclick=\"openVideo('" + movieHostsOneLink[i] + "','" + res[1] + "', true)\"></i></div>";
             }
         }
     }
@@ -348,7 +348,7 @@ function manageSerieTvLinks(html, regexStagione) {
             }
 
             var hostImg = listaLink[stagione].value[j].host.split("|")[1] ? listaLink[stagione].value[j].host.split("|")[1] : listaLink[stagione].value[j].host;
-            link += "<div class=\"hidden marginBottom10\" host onclick=\"openVideo('" + listaLink[stagione].value[j].host + "','" + listaLink[stagione].value[j].id + "', true)\"><img width=\"200\" src=\"img/host/" + hostImg + ".png\"></div>";
+            link += "<div class=\"hidden marginBottom10\" host ><img onclick=\"openVideo('" + listaLink[stagione].value[j].host + "','" + listaLink[stagione].value[j].id + "', false)\" width=\"200\" src=\"img/host/" + hostImg + ".png\"><i class=\"fa fa-download\" aria-hidden=\"true\" onclick=\"openVideo('" + listaLink[stagione].value[j].host + "','" + listaLink[stagione].value[j].id + "', true)\"></i></div>";
         }
         link += "</div>";
     }

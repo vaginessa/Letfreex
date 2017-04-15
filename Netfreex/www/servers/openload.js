@@ -1,4 +1,4 @@
-﻿function openloadExtract(id, success, error) {
+﻿function openloadExtract(id, success, error, download) {
     cordovaHTTP.headers = [];
     cordovaHTTP.setHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0");
 
@@ -25,7 +25,7 @@
 
             var url = "https://openload.co/stream/" + $("#streamurl").html() + "?mime=true";
 
-            success(url);
+            success(url, download);
         } catch (ex) {
             error(ex);
         }

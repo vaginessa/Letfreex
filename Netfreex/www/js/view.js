@@ -77,10 +77,12 @@ function chooseHost(video) {
     });
 }
 
+var download = false;
 //Estrae il video di film/serie tv
-function openVideo(host, url, isSerieTv) {
+function openVideo(host, url, download) {
     swal.closeModal();
     $('#loading').removeClass('hidden');
+    download = download;
 
     setTimeout(function () {
         console.log(url);
@@ -88,30 +90,30 @@ function openVideo(host, url, isSerieTv) {
 
         //Redirect link criptati
         if (host[0] == 'swzz') {
-            extractLinkSwzz(url, host[1]);
+            extractLinkSwzz(url, host[1], download);
         }      
         else if (host[0] == 'vcrypt') {
-            extractVcrypt(url, host[1]);
+            extractVcrypt(url, host[1], download);
         }
         //Link in chiaro
         else if (host[0] == 'vidlox')
-            vidloxExtract(url, success, error);
+            vidloxExtract(url, success, error, download);
         else if (host[0] == 'speedvideo')
-            speedvideoExtract(url, success, error);
+            speedvideoExtract(url, success, error, download);
         else if (host[0] == 'nowvideo')
-            nowvideoExtract(url, success, error);
+            nowvideoExtract(url, success, error, download);
         else if (host[0] == 'vidto')
-            vidtoExtract(url, success, error);
+            vidtoExtract(url, success, error, download);
         else if (host[0] == 'rapidvideo')
-            rapidvideoExtract(url, success, error);
+            rapidvideoExtract(url, success, error, download);
         else if (host[0] == 'rapidvideocom')
-            rapidvideocomExtract(url, success, error);
+            rapidvideocomExtract(url, success, erro, downloadr);
         else if (host[0] == 'flashx')
-            flashxExtract(url, success, error);
+            flashxExtract(url, success, error, download);
         else if (host[0] == 'openload')
-            openloadExtract(url, success, error);
+            openloadExtract(url, success, error, download);
         else if (host[0] == 'streaminto')
-            streamintoExtract(url, success, error);
+            streamintoExtract(url, success, error, download);
     }, 100);
 }
 
@@ -121,19 +123,10 @@ function hideLoadingiOs() {
 
 
 //Riproduce il video
-var success = function (url) {
+var success = function (url, download) {
     
     console.log(url);
  
-    //Apri link openload estratto da italiaFilmLinks
-    if (url.indexOf("italiaFilmLinks") > -1) {
-        url = url.split('|');
-        if(url[1] == 'openload')
-            openVideo('openload', url[2]);
-        if (url[1] == 'videomega')
-            openVideo('videomega', url[2]);
-        return;
-    }
     if (device.platform != "Android") {
         if (url.indexOf("nowvideo") > -1) {
             window.plugins.streamingMedia.playVideo(url);
@@ -143,7 +136,10 @@ var success = function (url) {
 
     } else {
         $('#loading').addClass('hidden');
-        VideoPlayer.play(url);
+        if (!download)
+            VideoPlayer.play(url);
+        else 
+            window.open(url, "_system");
     }
     
     markAsSeen();

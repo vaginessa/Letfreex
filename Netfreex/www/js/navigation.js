@@ -18,7 +18,7 @@ function goToHome(backBtn) {
 }
 
 function goToSearch() {
-    
+    $('#searchResultContainer').html('');
     $('#homeContainer').addClass('hidden');
     $('#viewMovieContainer').addClass('hidden');
     $('#favouritesContainer').addClass('hidden');
@@ -117,6 +117,7 @@ $('#search').keypress(function (e) {
 });
 
 function setSearchType(isSerie) {
+    $('#searchResultContainer').html('');
     $('#searchForm').removeClass('hidden');
     $('#searchType').addClass('hidden');
     $('#serieTv').prop('checked', isSerie);
@@ -159,6 +160,13 @@ function redesignView() {
     $('#sfumato').css('height', $(window).height() + 'px');
     $('#boxInfoContainer').css('height', $(window).height() + 'px');
     $('#viewButtons').css('width', $(window).width() + 'px');
+
+    if ($(window).width() > 700) {
+        $('.rightBlockView').css('width', $(window).width() - ($('#boxInfoContainer').outerWidth(true) - $('#boxInfoContainer').outerWidth() + 340 + 30) + 'px')
+        $('.rightBlockView').css('height', $(window).height() - 148 + 'px');
+        $('#moviePlot').css('height', $(window).height() - 480 + 'px');
+        $('#dettagli').css('height', $(window).height() - 480 + 'px');
+    }
 }
 $(window).resize(function () {
     redesignView();

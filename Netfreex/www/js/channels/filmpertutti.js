@@ -1,4 +1,4 @@
-function extractVcrypt(url, host) {
+function extractVcrypt(url, host, download) {
     debugger
     cordovaHTTP.headers = [];
     cordovaHTTP.setHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0");
@@ -9,14 +9,14 @@ function extractVcrypt(url, host) {
        
     }, function (response) {
         console.log(response.headers.Location);
-        doPostVcrypt(response.headers.Location.replace("http", "https"), host, url);
+        doPostVcrypt(response.headers.Location.replace("http", "https"), host, url, download);
     });
   
 
 
 }
 
-function doPostVcrypt(idVcrypt, host, url) {
+function doPostVcrypt(idVcrypt, host, url, download) {
     cordovaHTTP.setHeader("Content-Type", "application/x-www-form-urlencoded");
     cordovaHTTP.post(idVcrypt, {
         go: "go",
@@ -39,7 +39,7 @@ function doPostVcrypt(idVcrypt, host, url) {
             }
 
             console.log(url);
-            openVideo(host, url);
+            openVideo(host, url, download);
         } catch (e) {
             error(e);
         }

@@ -1,10 +1,10 @@
-function extractVcrypt(url, host) {
+function extractVcrypt(url, host, download) {
     cordovaHTTP.headers = [];
     cordovaHTTP.setHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0");
     cordovaHTTP.get("http://www.cinemalibero.tv/goto/" + url, {}, {}, function (response) {
         if (response.data.indexOf("nowvideo") > -1) {
             var idVideo = response.data.match("/video/([a-zA-Z0-9]+)")[1];
-            openVideo("nowvideo", idVideo);
+            openVideo("nowvideo", idVideo, download);
         }
     }, function (response) {
         try{
@@ -12,19 +12,19 @@ function extractVcrypt(url, host) {
 
             if (redUrl.indexOf("raptu") > -1) {
                 var idVideo = redUrl.split('v=')[1];
-                openVideo("rapidvideocom", idVideo);
+                openVideo("rapidvideocom", idVideo, download);
                 return;
             }
 
             cordovaHTTP.get(redUrl, {}, {}, function (response) {
                 if (response.data.indexOf("flashx") > -1) {
                     var idVideo = response.data.split('name="id" value="')[1].split("\"")[0];
-                    openVideo("flashx", idVideo);
+                    openVideo("flashx", idVideo, download);
                 } else
                     error("not found");
             }, function (response) {
                 console.log(response.headers.Location);
-                doPostVcrypt(response.headers.Location.replace("http","https"), host, url);
+                doPostVcrypt(response.headers.Location.replace("http", "https"), host, url, download);
             });
         } catch (e) {
             error(e);
@@ -32,7 +32,7 @@ function extractVcrypt(url, host) {
     });
 }
 
-function doPostVcrypt(idVcrypt, host, url) {
+function doPostVcrypt(idVcrypt, host, url, download) {
     cordovaHTTP.setHeader("Content-Type", "application/x-www-form-urlencoded");
     cordovaHTTP.post( idVcrypt, {
         go: "go",
@@ -55,7 +55,7 @@ function doPostVcrypt(idVcrypt, host, url) {
             }
 
             console.log(url);
-            openVideo(host, url);
+            openVideo(host, url, download);
         } catch (e) {
             error(e);
         }

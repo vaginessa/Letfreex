@@ -1,4 +1,4 @@
-﻿function flashxExtract(id, success, error) {
+﻿function flashxExtract(id, success, error, download) {
     var page_url = "";
 
     if(id.length < 15)
@@ -67,7 +67,7 @@
                 //UNPACK
                 var url = unpack(content);
 
-                success(url);
+                success(url, download);
             } catch (e) {
                 error(e);
             }

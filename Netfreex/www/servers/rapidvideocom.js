@@ -1,4 +1,4 @@
-﻿function rapidvideocomExtract(id, success, error) {
+﻿function rapidvideocomExtract(id, success, error, download) {
     cordovaHTTP.headers = [];
     cordovaHTTP.setHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0");
 
@@ -19,7 +19,7 @@
 
             var url = maxRes["file"];
             
-            success(url);
+            success(url, download);
         } catch (e) {
             error(e);
         }
@@ -43,7 +43,7 @@
 
                 var url = maxRes["file"];
 
-                success(url);
+                success(url, download);
             } catch (e) {
                 error(e);
             }

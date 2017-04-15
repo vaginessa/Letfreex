@@ -964,3 +964,7 @@ label {
     width: 175px;
     padding: 25px;
 }
+
+.fa-download {
+    color: #fcac45;
+}

@@ -1,4 +1,4 @@
-﻿function speedvideoExtract(id, success, error) {
+﻿function speedvideoExtract(id, success, error, download) {
 
     var page_url = "http://speedvideo.net/" + id ;
 
@@ -69,7 +69,7 @@
             url = url.split(".flv")[0] + ".flv";
         }
         
-        success(url.replace(".mp4", ".flv"));
+        success(url.replace(".mp4", ".flv"), download);
     }
 
     //DECODE FUNCTIONS

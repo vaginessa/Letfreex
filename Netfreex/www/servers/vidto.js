@@ -1,4 +1,4 @@
-﻿function vidtoExtract(id, success, error) {
+﻿function vidtoExtract(id, success, error, download) {
 
     var page_url = "http://vidto.me/" + id + ".html";
 
@@ -42,7 +42,7 @@
                 if (url == "")
                     url = response.data.split(',{file:"')[1].split('",label:"240p"')[0];
 
-                success(url);
+                success(url, download);
             } catch (e) {
                 error(e);
             }

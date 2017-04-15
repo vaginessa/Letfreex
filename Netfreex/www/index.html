@@ -66,13 +66,14 @@
               <li id="preferiti" class="hidden"><a tabindex="0" onclick="goToFavourites()"><i class="fa fa-star" style="padding-right: 10px"></i>Preferiti</a></li>
               <li><a tabindex="0" onclick="playByUrl()"><i class="fa fa-link" style="padding-right: 10px"></i>Riproduci da URL</a></li>
               <li id="cerca" class="hidden"><a  tabindex="0" onclick="goToSearch()"><i class="fa fa-search" style="padding-right: 10px"></i>Cerca</a></li>
+              <li><a tabindex="0" href="https://github.com/Be4t5/Netfreex/wiki"><i class="fa fa-question" style="padding-right: 10px"></i>Guida</a></li>
               <li>
-                  <div  class="dropdown" style="position: relative;top: 10px; left: 5px; margin-bottom: 5px;">
+                  <div  id="channelDrop" class="dropdown" style="position: relative;top: 10px; left: 5px; margin-bottom: 5px;">
                       <button  class="btn btn-primary dropdown-toggle text-uppercase" type="button" data-toggle="dropdown" style="font-size: 12px; background-color: rgba(240, 248, 255, 0); border: none" >
                           <span id="menuDropDownLabel" >Gestione canali</span>
                           <span class="caret"></span>
                       </button>
-                      <ul id="channelList" class="dropdown-menu marginBottom30" >
+                      <ul id="channelList" class="dropdown-menu" >
                           <li><a onclick="aggiungiCanale();">Aggiungi canale</a></li>
                           <li class="borderBottomWhite"><a onclick="eliminaCanale();">Elimina canale</a></li>
                           <!--<li><a href="index.html?channel=cineblog">Cineblog</a></li>
@@ -117,21 +118,7 @@
                               <div style="position:absolute;display:block;top:0px;left:0px;width:100%;height:100%;"><i class="fa fa-spinner fa-spin"></i></div>
                           </div>
                           <div id="carouselItems" data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 1300px; height: 700px; overflow: hidden;">
-                              
-                              <!--<div data-p="225.00" style="display: none;">
-                                  <img data-u="image" src="img/slider1.jpg"/>
-                                  <img style="position: absolute;top: 26%;left: 55%;" src="img/play_button.png" />
 
-                                  <div id="carouselPoster" class="sfumato" style="height: 100%; padding-top: 6% !important; padding: 55px;">
-                                      <h2 style="color:white">The Big bang theory</h2>
-                                      <img class="poster" src="https://image.tmdb.org/t/p/w500/wQoosZYg9FqPrmI4zeCLRdEbqAB.jpg">
-                                      <div id="carouselPlot">The Big Bang Theory è una sitcom statunitense ideata da Chuck Lorre e Bill Prady e prodotta dalla Warner Bros. Television in collaborazione con la Chuck Lorre Productions. L'episodio pilota è andato in onda il 24 settembre 2007 sul canale CBS.
-                                          In Italia (dove per le prime sei stagioni era intitolata Big Bang Theory) la serie viene trasmessa in prima visione pay dalla piattaforma Mediaset Premium dal 19 gennaio 2008, e resa disponibile dal servizio di streaming on demand Mediaset Infinity dal 16 ottobre 2015,
-                                          mentre in chiaro è trasmessa dai canali Mediaset dal 20 settembre 2010.</div>
-
-                                  </div>
-
-                              </div>-->
                           </div>
                           <!-- Bullet Navigator -->
                           <div data-u="navigator" class="jssorb05" style="bottom:16px;right:16px;" data-autocenter="1">
@@ -223,7 +210,7 @@
           <nav id="footer">
               <div class="container">
                   <div class="pull-left fnav">
-                      <p>NETFREEX 1.1.5.1 - © 2017. Developed by <a href="https://github.com/Be4t5">Be4t5</a></p>
+                      <p>NETFREEX 1.1.6 - © 2017. Developed by <a href="https://github.com/Be4t5">Be4t5</a></p>
                   </div>
               </div>
           </nav>

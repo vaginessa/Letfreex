@@ -1,4 +1,4 @@
-function extractLinkSwzz(url, host) {
+function extractLinkSwzz(url, host, download) {
     console.log(url)
 
     
@@ -26,7 +26,7 @@ function extractLinkSwzz(url, host) {
             }
 
             console.log(url)
-            openVideo(host, url);
+            openVideo(host, url, download);
         } catch (e) {
             error(e);
         }
