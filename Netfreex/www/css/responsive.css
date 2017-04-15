@@ -1,4 +1,95 @@
-/*smartphone*/
+/*Portrait*/
+@media (max-width: 598px) {
+    .posterImg {
+        width: 115px;
+        height: 171px;
+    }
+    .sliderTitle {
+        font-size: 25px;
+        text-align: center;
+        padding-left: 0;
+        padding-top: 0; 
+    }
+    #movieTitle {
+        font-size: 22px !important;
+    }
+    #riepilogoButton h4, #dettagliButton h4 {
+        font-size: 13px;
+    }
+    #boxInfoContainer, #carouselPoster, #searchContainer, #favouritesContainer {
+    padding-top: 14% !important;
+    }
+    #boxInfo{
+        width: 100%;
+    }
+    #moviePlot{
+        margin-bottom: 60px;
+        color: rgba(255, 255, 255, 0.79);
+        width: 100%;
+        max-height: 120px;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.46);
+    }
+    .sfumatoMovie {
+        width: 100%;
+        background-image: none !important;
+        background-color: rgba(0, 0, 0, 0.26);
+    }
+    .rightBlockView {
+        position: inherit;
+        padding-bottom: 0 !important;
+        width: 100%;
+        
+    }
+    .poster{
+        width: 160px;
+    }
+    #dettagli{
+        width: 100%;
+    }
+    .colonnaSx {
+        width: 100%;
+    }
+}
+
+/*Landscape*/
+@media (max-width: 992px) and (min-width: 598px) {
+   .posterImg {
+        width: 133px;
+        height: 200px;
+    }
+
+   .sliderTitle {
+       font-size: 30px;
+       text-align: center;
+        padding-left: 0;
+        padding-top: 0; 
+   }
+
+   #boxInfoContainer, #carouselPoster, #searchContainer, #favouritesContainer {
+    padding-top: 8% !important;
+    }
+     #boxInfo{
+        width: 240px;
+    }
+     #moviePlot{
+        width: 240px;
+        margin-bottom: 60px;
+    }
+    .poster{
+        width: 113px;
+    }
+    #dettagli{
+        width: 240px;
+    }
+     .rightBlockView { 
+        top: 130px;
+        left: 274px;
+        width: 48%;
+    }
+}
+
+/*Tablet e smartphone */
 @media (max-width: 992px){
   .content {
     background-color: rgba(0, 0, 0, 0.79);
@@ -7,31 +98,9 @@
     padding: 0px !important;
     transition: all 0.8s;
 }
-  .posterImg {
-    width: 133px;
-    height: 200px;
-}
-  .poster{
-     width: 113px;
-}
-  #boxInfo{
-    width: 240px;
-}
-  #moviePlot{
-    width: 240px;
-    margin-bottom: 60px;
-}
-  #dettagli{
-    width: 240px;
-}
+
   .posterContainer {
     padding: 0px;
-}
-
- .rightBlockView { 
-    top: 130px;
-    left: 274px;
-     width: 48%;
 }
 
  .carouselPlot {
@@ -46,15 +115,9 @@
     background-image: -webkit-linear-gradient(right, rgba(255, 255, 255, 0) 0%, #000 60%);
 }
 
-#boxInfoContainer, #carouselPoster {
-    padding-top: 8% !important;
-}
-
-
-
 .form {
-    margin-top: 21px;
-    margin-left: -45px;
+    margin-top: 0;
+    margin-left: 0;
 }
 .ricerca {
     margin-top: 0 !important;

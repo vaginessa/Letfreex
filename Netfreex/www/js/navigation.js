@@ -1,4 +1,5 @@
 function goToHome(backBtn) {
+    
     if (isChannelListEmpty())
         $("#welcome").removeClass("hidden");
     else
@@ -13,10 +14,11 @@ function goToHome(backBtn) {
     eraseViewMode();
     if (!backBtn)
         $('#bs-example-navbar-collapse-1').collapse('hide');
-
+    redesignView();
 }
 
 function goToSearch() {
+    
     $('#homeContainer').addClass('hidden');
     $('#viewMovieContainer').addClass('hidden');
     $('#favouritesContainer').addClass('hidden');
@@ -25,8 +27,11 @@ function goToSearch() {
 
     eraseViewMode();
 
-    $('#bs-example-navbar-collapse-1').collapse('hide');
+    $('#searchForm').addClass('hidden');
+    $('#searchType').removeClass('hidden');
 
+    $('#bs-example-navbar-collapse-1').collapse('hide');
+    redesignView();
 }
 
 function goToFavourites() {
@@ -42,7 +47,7 @@ function goToFavourites() {
 
     $('#bs-example-navbar-collapse-1').collapse('hide');
     fillFavourites();
-
+    redesignView();
 }
 
 function eraseViewMode() {
@@ -102,13 +107,59 @@ $('#search').keypress(function (e) {
         } 
         $('#searchResultContainer').html('');
         $('#loadingSearch').removeClass('hidden');
+
+        $('#searchForm').addClass('hidden');
+        $('#searchType').removeClass('hidden');
+
         search();
         return false;
     }
 });
+
+function setSearchType(isSerie) {
+    $('#searchForm').removeClass('hidden');
+    $('#searchType').addClass('hidden');
+    $('#serieTv').prop('checked', isSerie);
+
+    if (isSerie)
+        $('#searchingFor').html("una Serie Tv");
+    else
+        $('#searchingFor').html("un Film");
+}
 
 function showSeason(seasonId) {
     $('.season').addClass('hidden');
     $('#' + seasonId).removeClass('hidden');
 }
 
+function redesignView() {
+    //Reimposto gli slider della home
+    var windowLength = $(window).width();
+    if (windowLength >= 1024 && windowLength <= 1350)
+        slidePerView = 5;
+    if (windowLength >= 1350 && windowLength <= 1700)
+        slidePerView = 6;
+    if (windowLength >= 1800)
+        slidePerView = 8;
+    if (windowLength < 1024 && windowLength >= 570)
+        slidePerView = 4;
+    if (windowLength < 570 && windowLength >= 426)
+        slidePerView = 3;
+    if (windowLength < 426)
+        slidePerView = 3;
+
+    for (var i = 0; i < slidersHomeArray.length; i++) {
+        slidersHomeArray[i].params.slidesPerView = slidePerView;
+        slidersHomeArray[i].update();
+    }
+
+    //Reimposto la vista view movie
+    $('#movieDetails').css('height', $(window).height() + 'px');
+    $('#movieDetails').css('width', $(window).width() + 'px');
+    $('#sfumato').css('height', $(window).height() + 'px');
+    $('#boxInfoContainer').css('height', $(window).height() + 'px');
+    $('#viewButtons').css('width', $(window).width() + 'px');
+}
+$(window).resize(function () {
+    redesignView();
+});

@@ -594,7 +594,7 @@ nav#footer p{
 
 .sliderTitle {
     padding-left: 58px;
-    padding-top: 20px;
+    /*padding-top: 20px;*/
     margin-bottom: -17px;
 }
 
@@ -619,6 +619,9 @@ nav#footer p{
 
 }
 
+#favouritesContainer {
+    padding-top: 6%;
+}
 #movieTitle{
 color:white;
     z-index:2;
@@ -633,7 +636,7 @@ background-image: -ms-linear-gradient(top right, #fff 0%, #000 100%);
     position:absolute;
     top:0;
     z-index: 1;
-   width:500px;
+   width:40%;
 }
 
 .poster{
@@ -652,7 +655,9 @@ background-image: -ms-linear-gradient(top right, #fff 0%, #000 100%);
 #boxInfo{
     width: 340px;
 }
-
+#searchContainer {
+    padding-top: 6%;
+}
 #boxInfoContainer{
     padding-top: 6%;
     position: relative; 
@@ -730,8 +735,8 @@ body {
     -o-box-shadow:      0 1px 5px #000;
     -webkit-box-shadow: 0 1px 5px #000;
     
-    height: 100px;
-    margin-top: 65px;
+    /*height: 100px;
+    margin-top: 65px;*/
     padding: 0;
 }
 
@@ -759,7 +764,7 @@ input[type="text"]{
     -moz-transition: all .1s linear;
     -o-transition: all .1s linear;
     -webkit-transition: all .1s linear;
-    width: 250px;
+    /*width: 250px;*/
 }
 
 input[type="checkbox"] {
@@ -952,4 +957,10 @@ label {
     position: absolute;
     right: 5px;
     top: -25px;
+}
+
+.cercaButton {
+    float: left;
+    width: 175px;
+    padding: 25px;
 }

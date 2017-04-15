@@ -106,11 +106,14 @@ function initViewChannelMode() {
         slidePerView = 6;
     if (windowLength >= 1800)
         slidePerView = 8;
-    if (windowLength < 1024 && windowLength >= 768)
+    if (windowLength < 1024 && windowLength >= 570)
         slidePerView = 4;
-    if (windowLength < 768)
-        slidePerView = 4;
+    if (windowLength < 569 && windowLength >= 426)
+        slidePerView = 3;
+    if (windowLength < 426)
+        slidePerView = 3;
 
+    slidersHomeArray = new Array();
     for (var i = 0; i < sections.length; i++) {
         initializeSliderPoster(sections[i]);
     }

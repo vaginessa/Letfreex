@@ -140,6 +140,7 @@ function fillCarousel() {
     $('#tf-home').removeClass('hidden');
 }
 
+var slidersHomeArray = new Array();
 function initializeSliderPoster(section) {
     if ($('.' + section)[0].swiper)
         $('.' + section)[0].swiper.destroy();
@@ -149,8 +150,10 @@ function initializeSliderPoster(section) {
         spaceBetween: 30,
         freeMode: true
     });
-
+    slidersHomeArray.push(mySwiper);
 }
+
+
 
 //Apre la pagina principale di un film o serie
 function getVideoLink(url, isSerieTv) {

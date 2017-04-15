@@ -75,9 +75,9 @@
                       <ul id="channelList" class="dropdown-menu marginBottom30" >
                           <li><a onclick="aggiungiCanale();">Aggiungi canale</a></li>
                           <li class="borderBottomWhite"><a onclick="eliminaCanale();">Elimina canale</a></li>
-                          <li><a href="index.html?channel=cineblog">Cineblog</a></li>
+                          <!--<li><a href="index.html?channel=cineblog">Cineblog</a></li>
                           <li><a href="index.html?channel=italiafilm">ItaliaFilm</a></li>
-                          <li><a href="index.html?channel=piratestreaming">Piratestreaming</a></li>
+                          <li><a href="index.html?channel=piratestreaming">Piratestreaming</a></li>-->
                       </ul>
                   </div>
               </li>
@@ -292,7 +292,7 @@
                   </div>               
               </div>
 
-              <div id="sfumato" class="sfumato">
+              <div id="sfumato" class="sfumato sfumatoMovie" >
               </div>
           </div>
 
@@ -311,12 +311,22 @@
       <!-- Search view
         ================================================== -->
       <div id="searchContainer" class="hidden">
-          <div class="row" style="margin-right: 0;">
-              <div class="form" id="searchForm">
-                  <input type="text" id="search">
-                  <input type="checkbox" id="serieTv"> Serie TV
+          <div class="row" style="text-align: center; height:100px; width: 100%; margin-left: 0; margin-right: 0;">
+              <div id="searchType" style="margin: 0 auto; width: 350px">
+                  <div id="cercaSerie" class="cercaButton" onclick="setSearchType(false)">
+                      <i class="fa fa-2x fa-film" aria-hidden="true"></i>
+                      <br/>Cerca Film
+                  </div>
+                  <div id="cercaFilm" class="cercaButton" onclick="setSearchType(true)">
+                      <i class="fa fa-2x fa-television" aria-hidden="true"></i>
+                      <br/>Cerca Serie Tv
+                  </div>
+              </div>
 
-                  <label for="search">Search</label>
+              <div class="form hidden" id="searchForm">
+                  <div style="margin-bottom: -13px;">Stai cercando <span id="searchingFor"></span></div>
+                  <input type="text" id="search" style="background: url(http://f.cl.ly/items/2a2Z0V0L0J1p3V082d3r/icon-search.png) no-repeat scroll 9px 6px;">
+                  <input type="checkbox" hidden id="serieTv">
                   <input type="submit" hidden/>
               </div>
 
@@ -349,7 +359,7 @@
       <!-- Preferiti view
     ================================================== -->
       <div id="favouritesContainer" class="hidden">
-          <h1 class="sliderTitle ricerca" style="margin-bottom: 35px; margin-top: 56px !important;">I tuoi preferiti <span style="font-size: 0.5em;">su questo canale</span></h1> 
+          <h1 class="sliderTitle ricerca" style="margin-bottom: 35px;">I tuoi preferiti <span style="font-size: 0.5em;">su questo canale</span></h1> 
 
           <div class="container">
               <div class="row">
@@ -407,7 +417,7 @@
   <script src="servers/streaminto.js"></script>
   <script src="servers/flashx.js"></script>
   <script src="servers/rapidvideo.js"></script>
-      <script src="servers/speedvideo.js"></script>
+    <script src="servers/speedvideo.js"></script>
   <script src="servers/rapidvideocom.js"></script>
   <script src="servers/nowvideo.js"></script>
   <script src="servers/openload.js"></script>
@@ -416,7 +426,7 @@
 
 
   <script>
-      var slidePerView = 0;
+      var slidePerView = 4;
       loadChannelList(false);
 
   </script>     

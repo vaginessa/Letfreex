@@ -3,7 +3,8 @@ var apiKey = "f7f51775877e0bb6703520952b3c7840";
 var id;
 function searchMovieInfo(obj, isSerie, isCarousel) {
     id = "";
-    var input = obj.title;
+    var input = obj.title.replace("&#038;", "and");
+
 
     var aux = input.replace(new RegExp('\\[.*\\]', 'g'), ' ').split('(');
     input = encodeURI(aux[0].split('\'')[0].split('-')[0]);
@@ -57,7 +58,6 @@ function searchMovieInfo(obj, isSerie, isCarousel) {
 }
 
 function fillPageWithMovieDetails(json, isSerie, obj, foundByAPI) {
-
     if ($(window).width() > 700) {
         $('.rightBlockView').css('width', $(window).width() - ($('#boxInfoContainer').outerWidth(true) - $('#boxInfoContainer').outerWidth() + 340 + 30) + 'px')
         $('.rightBlockView').css('height', $(window).height() - 148 + 'px');
@@ -71,7 +71,10 @@ function fillPageWithMovieDetails(json, isSerie, obj, foundByAPI) {
         id = json.results[0].id;
 
         //Base info
-        $('#moviePlot').html(json.results[0].overview);
+        if (json.results[0].overview.length > 2)
+            $('#moviePlot').html(json.results[0].overview);
+        else
+            $('#moviePlot').html("Trama non disponibile");
         $("#locandina").attr("src", "https://image.tmdb.org/t/p/w500" + json.results[0].poster_path);
         $("#movieTitle").html(isSerie ? json.results[0].name : json.results[0].title);
 
@@ -82,7 +85,6 @@ function fillPageWithMovieDetails(json, isSerie, obj, foundByAPI) {
         //General info
         getGeneralInfo(id, isSerie);
     } else {
-        //$('#moviePlot').html(obj.plot);
         $("#locandina").attr("src", obj.img);
         $("#movieTitle").html(obj.title);
     }
