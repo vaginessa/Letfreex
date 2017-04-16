@@ -5,7 +5,7 @@
   },
   {
     "file": "css/bootstrap.css",
-    "hash": "98f3d4ac584b4d3cd0062a16ca495014"
+    "hash": "88a2ce13f328e29f27e3ac308862ef79"
   },
   {
     "file": "css/bootstrap.min.css",
@@ -25,7 +25,7 @@
   },
   {
     "file": "css/responsive.css",
-    "hash": "7dd6c1124ee83085ebe9216cf72755c3"
+    "hash": "345c2c34ca3d3deeeb0ea6aad09f831e"
   },
   {
     "file": "css/slider.css",
@@ -33,7 +33,7 @@
   },
   {
     "file": "css/style.css",
-    "hash": "6dd21c020450249003cfdfb69439ee0d"
+    "hash": "a028e70436bdc6c9dd4c46a5f2d0c3c4"
   },
   {
     "file": "css/swiper.css",
@@ -41,35 +41,35 @@
   },
   {
     "file": "fonts/font-awesome/css/font-awesome.css",
-    "hash": "f33fbea2572e184c1dd8da809c02edbe"
+    "hash": "c495654869785bc3df60216616814ad1"
   },
   {
     "file": "fonts/font-awesome/css/font-awesome.min.css",
-    "hash": "94d896502d6d8500605aab00dc3d6dbc"
+    "hash": "269550530cc127b6aa5a35925a7de6ce"
   },
   {
     "file": "fonts/font-awesome/fonts/fontawesome-webfont.eot",
-    "hash": "f7c2b4b747b1a225eb8dee034134a1b0"
+    "hash": "674f50d287a8c48dc19ba404d20fe713"
   },
   {
     "file": "fonts/font-awesome/fonts/fontawesome-webfont.svg",
-    "hash": "2980083682e94d33a66eef2e7d612519"
+    "hash": "912ec66d7572ff821749319396470bde"
   },
   {
     "file": "fonts/font-awesome/fonts/fontawesome-webfont.ttf",
-    "hash": "706450d7bba6374ca02fe167d86685cb"
+    "hash": "b06871f281fee6b241d60582ae9369b9"
   },
   {
     "file": "fonts/font-awesome/fonts/fontawesome-webfont.woff",
-    "hash": "d9ee23d59d0e0e727b51368b458a0bff"
+    "hash": "fee66e712a8a08eef5805a46892932ad"
   },
   {
     "file": "fonts/font-awesome/fonts/fontawesome-webfont.woff2",
-    "hash": "97493d3f11c0a3bd5cbd959f5d19b699"
+    "hash": "af7ae505a9eed503f8b8e6982036873e"
   },
   {
     "file": "fonts/font-awesome/fonts/FontAwesome.otf",
-    "hash": "0b462f5cc07779cab3bef252c0271f2b"
+    "hash": "0d2717cd5d853e5c765ca032dfd41a4d"
   },
   {
     "file": "fonts/font-awesome/less/animated.less",
@@ -77,11 +77,11 @@
   },
   {
     "file": "fonts/font-awesome/less/bordered-pulled.less",
-    "hash": "5b3f3e1353ea7ab9d10fd7598fbd214b"
+    "hash": "898f90e40876883214bbd121b0c20e9f"
   },
   {
     "file": "fonts/font-awesome/less/core.less",
-    "hash": "483b97c7c5e4bc5e58c51a7c8dcf2452"
+    "hash": "fb4efe4ae63737706875bbbfc7b7e9af"
   },
   {
     "file": "fonts/font-awesome/less/fixed-width.less",
@@ -89,11 +89,11 @@
   },
   {
     "file": "fonts/font-awesome/less/font-awesome.less",
-    "hash": "a031a4e1505b74fc89d53e1b451070d8"
+    "hash": "15cb7faa02437c2f9719351c157fe7e7"
   },
   {
     "file": "fonts/font-awesome/less/icons.less",
-    "hash": "20ea652130cf1688cb31b2b9915b6feb"
+    "hash": "bf95b901c36b646ff457379bdcda94b7"
   },
   {
     "file": "fonts/font-awesome/less/larger.less",
@@ -105,15 +105,19 @@
   },
   {
     "file": "fonts/font-awesome/less/mixins.less",
-    "hash": "2db969adf253ac72874ae8efb396e045"
+    "hash": "fbb1f2f1ab96ba020c7f14208aac72b8"
   },
   {
     "file": "fonts/font-awesome/less/path.less",
-    "hash": "3ae443e0386cc3a69ff47d641aefb74b"
+    "hash": "a8c41460c42a4fe9e98550f00c8b3f19"
   },
   {
     "file": "fonts/font-awesome/less/rotated-flipped.less",
     "hash": "a8476cdc50c264abd11ff59d6a9dd025"
+  },
+  {
+    "file": "fonts/font-awesome/less/screen-reader.less",
+    "hash": "0f881617264587bef0df6ce92253ecea"
   },
   {
     "file": "fonts/font-awesome/less/stacked.less",
@@ -121,7 +125,7 @@
   },
   {
     "file": "fonts/font-awesome/less/variables.less",
-    "hash": "f2f06e00c3e6faecfe1f6b7d4a4a5643"
+    "hash": "be3f6eed38aa909483e1bd9ee0876e80"
   },
   {
     "file": "fonts/font-awesome/scss/_animated.scss",
@@ -129,11 +133,11 @@
   },
   {
     "file": "fonts/font-awesome/scss/_bordered-pulled.scss",
-    "hash": "e4f85472a1f6ed0e23a473b8e00ef071"
+    "hash": "4cad0df17bf40327feae33fa9a6c6ba2"
   },
   {
     "file": "fonts/font-awesome/scss/_core.scss",
-    "hash": "0a2608d157008ac6e08f52bbfab362f1"
+    "hash": "ef059a98cf9de6ca5b77ee6850771cf0"
   },
   {
     "file": "fonts/font-awesome/scss/_fixed-width.scss",
@@ -141,7 +145,7 @@
   },
   {
     "file": "fonts/font-awesome/scss/_icons.scss",
-    "hash": "5bcd881d5f16bbe383db51679fa87cad"
+    "hash": "de9fa842ad0b619a95ac4f42ac6ba930"
   },
   {
     "file": "fonts/font-awesome/scss/_larger.scss",
@@ -153,7 +157,7 @@
   },
   {
     "file": "fonts/font-awesome/scss/_mixins.scss",
-    "hash": "cb30923e6315eea41a6fe44a469714b4"
+    "hash": "aa2b8f32b403733713d8885f14ab86cc"
   },
   {
     "file": "fonts/font-awesome/scss/_path.scss",
@@ -164,16 +168,20 @@
     "hash": "9f5d4bc6fadea89328d2aac26574a9d8"
   },
   {
+    "file": "fonts/font-awesome/scss/_screen-reader.scss",
+    "hash": "8907bd7dbf4799e8120bda5568d76fea"
+  },
+  {
     "file": "fonts/font-awesome/scss/_stacked.scss",
     "hash": "5594237226aedfbca2fa1c7f4604c214"
   },
   {
     "file": "fonts/font-awesome/scss/_variables.scss",
-    "hash": "e2b60aa53e36271ec641c7efa93ec8aa"
+    "hash": "dc5261f37a8a01feeb52a746d16c0459"
   },
   {
     "file": "fonts/font-awesome/scss/font-awesome.scss",
-    "hash": "d2e25b243ec5c049cf838d3bfdb3afd0"
+    "hash": "8c015559216d1654630a839b61c6b83d"
   },
   {
     "file": "fonts/fonts/glyphicons-halflings-regular.eot",
@@ -285,7 +293,7 @@
   },
   {
     "file": "index.html",
-    "hash": "daae1075e2d150d934cb340467234dcc"
+    "hash": "45c64573fb9804665d6f7a3726030bbc"
   },
   {
     "file": "js/bookmark.js",
@@ -293,19 +301,19 @@
   },
   {
     "file": "js/channelManager.js",
-    "hash": "a8704f397af44ec0e06fa081756ca4b3"
+    "hash": "e6fb4ba54722fb5ff73175e5d7665380"
   },
   {
     "file": "js/channels/cineblog.js",
-    "hash": "2be6c808211327b20adac1f12e0684d0"
+    "hash": "1d495d80c3362398301f37e555669c7d"
   },
   {
     "file": "js/channels/cinemalibero.js",
-    "hash": "b74b92b9b57655fe7fa1f91e21f626ee"
+    "hash": "6e0e9541721c76e369eaba9912b36ca7"
   },
   {
     "file": "js/channels/filmpertutti.js",
-    "hash": "d9dbf94822e2ca404e84a37ca6066547"
+    "hash": "a7d0c496d59dd7f5b1222b6462a264f7"
   },
   {
     "file": "js/channels/italiafilm.js",
@@ -321,7 +329,7 @@
   },
   {
     "file": "js/hosts.js",
-    "hash": "0319a5571c23c8c284370a069b42795d"
+    "hash": "89a04289bd40239df15fd7fd2c29388e"
   },
   {
     "file": "js/lib/bootstrap.js",
@@ -417,11 +425,11 @@
   },
   {
     "file": "js/main.js",
-    "hash": "97011226f508142f95e8d44b9c34d4b8"
+    "hash": "45efa057e9b74c445e11d3fba3cb0a7d"
   },
   {
     "file": "js/navigation.js",
-    "hash": "6e38a8e5e401bb45f848bd1aab4321e0"
+    "hash": "d1630714c9da419362eff2e531472390"
   },
   {
     "file": "js/playByUrl.js",
@@ -429,7 +437,7 @@
   },
   {
     "file": "js/tmdbApi.js",
-    "hash": "1a05f487afcc22d32be7587b835ef3bf"
+    "hash": "dc5f8a45c6da08abe734fecb1ffe57eb"
   },
   {
     "file": "js/updateManager.js",
@@ -437,11 +445,11 @@
   },
   {
     "file": "js/utility.js",
-    "hash": "b77dbbc7567657df0342dc484a88cc6d"
+    "hash": "b167c6e0045fd7dd2340cbe4d447cba3"
   },
   {
     "file": "js/view.js",
-    "hash": "be282aca2ded56e9f51c101ecf817ee8"
+    "hash": "3005223bd9ecd3def6705891ace415e5"
   },
   {
     "file": "scripts/jquery-1.12.0.min.js",
@@ -453,7 +461,7 @@
   },
   {
     "file": "servers/flashx.js",
-    "hash": "a7910244bd1ad06325dc9736f3e29aa0"
+    "hash": "fb9c638c09ee168437bba1ac98cd8857"
   },
   {
     "file": "servers/italiafilmlinks.js",
@@ -461,34 +469,34 @@
   },
   {
     "file": "servers/nowvideo.js",
-    "hash": "2d7b31c2144595dfd2a8a19a1c9df8a1"
+    "hash": "c5556df7e5944f66ae3d9d73da77a3e3"
   },
   {
     "file": "servers/openload.js",
-    "hash": "88358ab5cb9f14f86513e9e3068d7e21"
+    "hash": "fb772de7f0b811f84c100e0130e68372"
   },
   {
     "file": "servers/rapidvideo.js",
-    "hash": "256381da84f2bcb987cfcc2599695598"
+    "hash": "78fd4bdfa58a1d4d5bd004e34d88ee66"
   },
   {
     "file": "servers/rapidvideocom.js",
-    "hash": "ab26816efb71660fdc41ba5338a0656e"
+    "hash": "b06b750b876c31610f5b58c648bf7017"
   },
   {
     "file": "servers/speedvideo.js",
-    "hash": "d8ab9965bdc03755b97458fa9c83274b"
+    "hash": "d891cd69a31a5c2116ca5f5d41dcae88"
   },
   {
     "file": "servers/streaminto.js",
-    "hash": "1c757ae7b824520683b1c80e59934160"
+    "hash": "b680394ddaa91a474944941f92f14c80"
   },
   {
     "file": "servers/vidlox.js",
-    "hash": "fd69a10a2d2960d36e14865f78a1d3d1"
+    "hash": "e41031378f20539ec034a545fd486b2e"
   },
   {
     "file": "servers/vidto.js",
-    "hash": "d456805d2619c3083fa1e6df6b3bfce5"
+    "hash": "aca5324fe9eee688b14dfcea981e9730"
   }
 ]

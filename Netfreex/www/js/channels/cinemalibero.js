@@ -88,10 +88,13 @@ function parsePage(html, url, isSerieTv, section, nextPage) {
 
     //Prossima pagina
     try {
-        var urlNextPage = html.split('next page-numbers" href="')[1].split('">');
+        var urlNextPage = html.split('next page-numbers" href="')[1].split('"')[0];
+        console.log("NEXT PAGE");
+        console.log(urlNextPage);
         arrayFilm.push(urlNextPage); 
     } catch (e) {
-        console.log(e);
+        console.error("ERRORE NEXT PAGE");
+        console.error(e);
     }
     
 

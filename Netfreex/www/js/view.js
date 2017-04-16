@@ -107,7 +107,7 @@ function openVideo(host, url, download) {
         else if (host[0] == 'rapidvideo')
             rapidvideoExtract(url, success, error, download);
         else if (host[0] == 'rapidvideocom')
-            rapidvideocomExtract(url, success, erro, downloadr);
+            rapidvideocomExtract(url, success, error, download);
         else if (host[0] == 'flashx')
             flashxExtract(url, success, error, download);
         else if (host[0] == 'openload')

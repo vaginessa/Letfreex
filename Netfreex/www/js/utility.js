@@ -77,6 +77,12 @@ function sortStagioni(obj) {
     return arr; // returns array
 }
 
+Date.prototype.addDays = function (days) {
+    var dat = new Date(this.valueOf());
+    dat.setDate(dat.getDate() + days);
+    return dat;
+}
+
 String.prototype.replaceAll = function (search, replacement) {
     var target = this;
     return target.split(search).join(replacement);
@@ -172,38 +178,51 @@ function doGetCB(url, success, error) {
 
 
 function clearCache() {
-    var cineblobUrl = localStorage.cineblogUrl;
-    var cinemalibero = localStorage.cinemaLiberoUrl;
-    var filmpertutti = localStorage.filmPerTuttiUrl;
-    var italiafilm = localStorage.italiaFilmUrl;
-    var piratestreaming = localStorage.pirateStreamingUrl;
+    if (localStorage.timeStampClearCache == undefined)
+        localStorage.timeStampClearCache = new Date();
 
-    var favourites = localStorage.favourites;
-    var bookmarks = localStorage.bookmarks;
-    var cookieCF = localStorage.cookieCFCB;
-    var expirationCF = localStorage.expirationCF;
-    var downloadEpisodeInfo = localStorage.downloadEpisodeInfo;
+    if (new Date(localStorage.timeStampClearCache).getTime() < new Date().getTime()) {
+        var cineblobUrl = localStorage.cineblogUrl;
+        var cinemalibero = localStorage.cinemaLiberoUrl;
+        var filmpertutti = localStorage.filmPerTuttiUrl;
+        var italiafilm = localStorage.italiaFilmUrl;
+        var piratestreaming = localStorage.pirateStreamingUrl;
+        var donation = localStorage.timeStampDonation;
+        var cache = localStorage.timeStampClearCache;
 
-    localStorage.clear();
+        var favourites = localStorage.favourites;
+        var bookmarks = localStorage.bookmarks;
+        var cookieCF = localStorage.cookieCFCB;
+        var expirationCF = localStorage.expirationCF;
+        var downloadEpisodeInfo = localStorage.downloadEpisodeInfo;
 
-    if(cineblobUrl)
-        localStorage.cineblogUrl = cineblobUrl;
-    if (cinemalibero)
-        localStorage.cinemaLiberoUrl = cinemalibero;
-    if (filmpertutti)
-        localStorage.filmPerTuttiUrl = filmpertutti;
-    if (italiafilm)
-        localStorage.italiaFilmUrl = italiafilm;
-    if (piratestreaming)
-        localStorage.pirateStreamingUrl = piratestreaming;
-    if (bookmarks)
-        localStorage.bookmarks = bookmarks;
-    if (favourites)
-        localStorage.favourites = favourites;
-    if (cookieCF)
-        localStorage.cookieCFCB = cookieCF;
-    if (expirationCF)
-        localStorage.expirationCF = expirationCF;
-    if (downloadEpisodeInfo)
-        localStorage.downloadEpisodeInfo = downloadEpisodeInfo;
+        localStorage.clear();
+
+        if (cineblobUrl)
+            localStorage.cineblogUrl = cineblobUrl;
+        if (cinemalibero)
+            localStorage.cinemaLiberoUrl = cinemalibero;
+        if (filmpertutti)
+            localStorage.filmPerTuttiUrl = filmpertutti;
+        if (italiafilm)
+            localStorage.italiaFilmUrl = italiafilm;
+        if (piratestreaming)
+            localStorage.pirateStreamingUrl = piratestreaming;
+        if (bookmarks)
+            localStorage.bookmarks = bookmarks;
+        if (favourites)
+            localStorage.favourites = favourites;
+        if (cookieCF)
+            localStorage.cookieCFCB = cookieCF;
+        if (expirationCF)
+            localStorage.expirationCF = expirationCF;
+        if (downloadEpisodeInfo)
+            localStorage.downloadEpisodeInfo = downloadEpisodeInfo;
+        if (donation)
+            localStorage.timeStampDonation = donation;
+        if (cache)
+            localStorage.timeStampClearCache = cache;
+
+        localStorage.timeStampClearCache = new Date().addDays(7);
+    }
 }

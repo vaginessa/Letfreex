@@ -120,6 +120,36 @@ function initViewChannelMode() {
 
     //Carousel
     fillCarousel();
+
+
+    if (localStorage.timeStampDonation == undefined)
+        localStorage.timeStampDonation = new Date();
+
+    if (new Date(localStorage.timeStampDonation).getTime() < new Date().getTime()) {
+        var donation = '<p style="color: white"> Stiamo portando avanti questo progetto per passione e non ne ricaviamo nessuna entrata economica.' +
+            '<br><br> Se ti piace l\'app, vuoi dirci grazie e supportare il nostro lavoro, perche\' non offrirci un caffe\'?<br>Grazie!</p>' +
+            '<i style="color:orange">Il team di Netfreex</i><br><br>' +
+            '<form action="https://www.paypal.com/cgi-bin/webscr" method="post" onsubmit="goToHome()">' +
+            '<input type="hidden" name="business" value="thomas.traverso54@gmail.com">' +
+            '<input type="hidden" name="cmd" value="_donations">' +
+            '<input type="hidden" name="item_name" value="Ti offro un caffe\'">' +
+            '<input type="hidden" name="item_number" value="Donazione">' +
+            '<input type="hidden" name="currency_code" value="EUR">' +
+            '<input type="image" name="submit" src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_donate_92x26.png" alt="Donate">' +
+            '<img alt="" width="1" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" ></form>';
+
+        swal({
+            title: 'Netfreex e\' gratis!',
+            type: 'info',
+            html: donation,
+            background: 'rgba(0, 0, 0, 0.82)',
+            showCloseButton: true,
+            showCancelButton: false,
+            showConfirmButton: false
+
+        });
+        localStorage.timeStampDonation = new Date().addDays(1);
+    }
 }
 
 function aggiungiCanale() {

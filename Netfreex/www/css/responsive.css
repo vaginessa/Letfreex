@@ -16,7 +16,7 @@
     #riepilogoButton h4, #dettagliButton h4 {
         font-size: 13px;
     }
-    #boxInfoContainer, #carouselPoster, #searchContainer, #favouritesContainer {
+    #boxInfoContainer, #carouselPoster, #searchContainer, #favouritesContainer, .paddingTopSection {
     padding-top: 14% !important;
     }
     #boxInfo{
@@ -50,6 +50,18 @@
     .colonnaSx {
         width: 100%;
     }
+    .navbar-fixed-top .navbar-collapse, .navbar-fixed-bottom .navbar-collapse {
+        max-height: 900px;
+    }
+    #dettagli {
+        background: rgba(0, 0, 0, 0.46);
+    }
+    #cast.backgroundBlack {
+        background: none;
+    }
+    #playButton {
+        width: 100% !important;
+    }
 }
 
 /*Landscape*/
@@ -58,7 +70,9 @@
         width: 133px;
         height: 200px;
     }
-
+   #playButton {
+       padding-top: 8% !important;
+   }
    .sliderTitle {
        font-size: 30px;
        text-align: center;
@@ -66,7 +80,11 @@
         padding-top: 0; 
    }
 
-   #boxInfoContainer, #carouselPoster, #searchContainer, #favouritesContainer {
+   #channelList {
+       margin-bottom: 25px;
+   }
+
+   #boxInfoContainer, #carouselPoster, #searchContainer, #favouritesContainer, .paddingTopSection {
     padding-top: 8% !important;
     }
      #boxInfo{

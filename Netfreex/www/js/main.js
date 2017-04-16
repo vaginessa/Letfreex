@@ -91,7 +91,7 @@ function printPage(isSerieTv, section, nextPage, callback) {
             htmlFilm = "<div class=\"swiper-slide text-center nextPage" + section + "\" tabindex=\"0\" onclick=\"nextPage('" + arrayFilm[i] + "'," + isSerieTv + ",'" + section + "')\"><img class='posterImg arrow' src='img/arrow-right.png'></div>";
         $("#" + section).html($("#" + section).html() + htmlFilm)
     }
-
+    debugger
     //Pusho nel carousel un oggetto random tra quelli nell'array
     if(arrayFilm[0].carousel != "false")
         pushRandomItemInCarousel(isSerieTv);
@@ -127,7 +127,8 @@ function fillCarousel() {
 
         $('#carouselItems').append(item);
     }
-
+    if (arrayCarousel.length == 0)
+        $("#homeContainer").addClass('paddingTopSection');
 
 
     initializeSlider();

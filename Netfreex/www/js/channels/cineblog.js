@@ -77,11 +77,16 @@ function parsePage(data, url, isSerieTv, section, nextPage, callback) {
         arrayFilm.push(movie);
     }
 
+
     //Prossima pagina
-    var patt = new RegExp('<li><a href="([a-z0-9A-Z' + escapeRegExp(':/.') + ']*)">&gt;</a>', 'gi');
-    while (res = patt.exec(html)) {
-        console.log(res[1])
-        arrayFilm.push(res[1]);
+    try {
+        var urlNextPage = html.split("rel='next' href='")[1].split("'")[0];
+        console.log("NEXT PAGE");
+        console.log(urlNextPage);
+        arrayFilm.push(urlNextPage);
+    } catch (e) {
+        console.error("ERRORE NEXT PAGE");
+        console.error(e);
     }
 
     console.log(arrayFilm)

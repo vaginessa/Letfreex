@@ -835,6 +835,10 @@ label {
     background-color: rgba(0, 0, 0, 0.0) !important;
 }
 
+.paddingTopSection {
+    padding-top: 6%;
+}
+
 .actor{
     margin-bottom: 15px;
     height: 286px;
