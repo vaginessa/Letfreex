@@ -36,7 +36,8 @@ function parseMostPopular(html, url, isSerieTv, section, callback)
         var movie = {
             title: articoli[i].split('title="')[1].split('"')[0],
             img: "http:" + articoli[i].split("pagespeed-lazy-src=\"")[1].split('"')[0].replace('http:', ''),
-            url: articoli[i].split('href="')[1].split('"')[0]
+            url: articoli[i].split('href="')[1].split('"')[0],
+            isSerieTv: isSerieTv
         };
 
         arrayFilm.push(movie);

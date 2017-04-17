@@ -36,34 +36,6 @@ function openMovie(url,titolo, img, isSerieTv) {
 }
 
 
-//Eventi cordova
-(function () {
-    "use strict";
-
-    document.addEventListener('deviceready', onDeviceReady.bind(this), false);
-
-    function onDeviceReady() {
-        // Gestire gli eventi di sospensione e ripresa di Cordova
-        document.addEventListener('pause', onPause.bind(this), false);
-        document.addEventListener('resume', onResume.bind(this), false);
-
-        
-
-        document.addEventListener("backbutton", function (e) {
-            goToHome(true);
-            $('#loading').addClass('hidden');
-        }, false);
-    };
-
-    function onPause() {
-        // TODO: questa applicazione è stata sospesa. Salvarne lo stato qui.
-    };
-
-    function onResume() {
-        // TODO: questa applicazione è stata riattivata. Ripristinarne lo stato qui.
-    };
-})();
-
 function chooseHost(video) {
     localStorage.currentEpisode = video.attr("info");
 
@@ -114,6 +86,10 @@ function openVideo(host, url, download) {
             openloadExtract(url, success, error, download);
         else if (host[0] == 'streaminto')
             streamintoExtract(url, success, error, download);
+        else if (host[0] == 'megahd')
+            megahdExtract(url, success, error, download);
+        else if (host[0] == 'fastvideo')
+            fastvideoExtract(url, success, error, download);
     }, 100);
 }
 
@@ -127,7 +103,7 @@ var success = function (url, download) {
     
     console.log(url);
  
-    if (device.platform != "Android") {
+    if (device.platform == "iOS") {
         if (url.indexOf("nowvideo") > -1) {
             window.plugins.streamingMedia.playVideo(url);
             $('#loading').addClass("hidden");

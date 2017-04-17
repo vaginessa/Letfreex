@@ -171,3 +171,31 @@ function redesignView() {
 $(window).resize(function () {
     redesignView();
 });
+
+//Eventi cordova
+(function () {
+    "use strict";
+
+    document.addEventListener('deviceready', onDeviceReady.bind(this), false);
+
+    function onDeviceReady() {
+        // Gestire gli eventi di sospensione e ripresa di Cordova
+        document.addEventListener('pause', onPause.bind(this), false);
+        document.addEventListener('resume', onResume.bind(this), false);
+
+
+
+        document.addEventListener("backbutton", function (e) {
+            goToHome(true);
+            $('#loading').addClass('hidden');
+        }, false);
+    };
+
+    function onPause() {
+        // TODO: questa applicazione è stata sospesa. Salvarne lo stato qui.
+    };
+
+    function onResume() {
+        // TODO: questa applicazione è stata riattivata. Ripristinarne lo stato qui.
+    };
+})();

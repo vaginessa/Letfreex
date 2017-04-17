@@ -15,6 +15,9 @@ function loadChannelList(added) {
     if (localStorage.cinemaLiberoUrl) {
         channelListHtml += '<li><a href="index.html?channel=cinemalibero">CinemaLibero</a></li>';
     }
+    if (localStorage.altadefinizioneUrl) {
+        channelListHtml += '<li><a href="index.html?channel=altadefinizione">Altadefinizione</a></li>';
+    }
 
     $("#channelList").html(channelListHtml);
 
@@ -36,6 +39,9 @@ function loadChannelList(added) {
             }
             else if (localStorage.cinemaLiberoUrl) {
                 window.location.replace("index.html?channel=cinemalibero");
+            }
+            else if (localStorage.altadefinizioneUrl) {
+                window.location.replace("index.html?channel=altadefinizione");
             }
             else if (localStorage.cineblogUrl) {
                 window.location.replace("index.html?channel=cineblog");
@@ -168,6 +174,7 @@ function aggiungiCanale() {
                     && value.indexOf("piratestreaming") == -1
                     && value.indexOf("filmpertutti") == -1
                     && value.indexOf("cinemalibero") == -1
+                    && value.indexOf("altadefinizione") == -1
                     ) {
                     reject('Il canale che hai inserito non e\' valido');
                 } else {
@@ -190,6 +197,9 @@ function aggiungiCanale() {
         }
         else if (result.indexOf("cinemalibero") > -1) {
             localStorage.cinemaLiberoUrl = result;
+        }
+        else if (result.indexOf("altadefinizione") > -1) {
+            localStorage.altadefinizioneUrl = result;
         }
         loadChannelList(true);
     });
@@ -220,6 +230,9 @@ function eliminaCanale() {
     }
     if (localStorage.cinemaLiberoUrl) {
         channelList["cinemaLiberoUrl"] = "CinemaLibero";
+    }
+    if (localStorage.altadefinizioneUrl) {
+        channelList["altadefinizioneUrl"] = "Altadefinizione";
     }
 
     swal({
