@@ -34,19 +34,19 @@ function playByUrl() {
 
 function manageSingleLink(html) {
     var trovato = false;
-    for (var i = 0; i < movieHostsOneLink.length; i++) {
-        var patt = new RegExp(movieRegexHostsOneLink[i], 'gi');
+    for (var i = 0; i < movieOneLinkHosts.length; i++) {
+        var patt = new RegExp(movieOneLinkHosts[i].regex, 'gi');
 
-        var host = movieHostsOneLink[i].split('|')[1];
+        var host = movieOneLinkHosts[i].host.split('|')[1];
 
         if (!host)
-            host = movieHostsOneLink[i];
+            host = movieOneLinkHosts[i].host;
 
         while (res = patt.exec(html)) {
             console.log('trovato ' + res[1]);
             var link = "<div class=\"guarda singleLinkPlay\"  >" +
                             "<img class=\"poster play\" onclick=\"chooseHost($(this).parent())\" src=\"img/play_button.png\" />" +
-                            "<div  class=\"hidden marginBottom10\" host onclick=\"openVideo('" + movieHostsOneLink[i] + "','" + res[1] + "', false)\"><img width=\"200\" src=\"img/host/" + host + ".png\"></div>";
+                            "<div  class=\"hidden marginBottom10\" host onclick=\"openVideo('" + movieOneLinkHosts[i].host + "','" + res[1] + "', false)\"><img width=\"200\" src=\"img/host/" + host + ".png\"></div>";
             $('#singleLink').html($('#singleLink').html() + link + "</div>");
             trovato = true;
         }
