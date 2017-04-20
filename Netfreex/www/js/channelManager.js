@@ -132,7 +132,7 @@ function initViewChannelMode() {
         localStorage.timeStampDonation = new Date();
 
     if (new Date(localStorage.timeStampDonation).getTime() < new Date().getTime()) {
-        var donation = '<p style="color: white"> Stiamo portando avanti questo progetto per passione e non ne ricaviamo nessuna entrata economica.' +
+        var donation = '<p style="color: white"> Stiamo portando avanti questo progetto soltanto per passione.' +
             '<br><br> Se ti piace l\'app, vuoi dirci grazie e supportare il nostro lavoro, perche\' non offrirci un caffe\'?<br>Grazie!</p>' +
             '<i style="color:orange">Il team di Netfreex</i><br><br>' +
             '<form action="https://www.paypal.com/cgi-bin/webscr" method="post" onsubmit="goToHome()">' +

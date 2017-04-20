@@ -80,3 +80,13 @@
 
 }
 
+function removeLinkOfflineFlashX(id, link) {
+    return true;
+    //cordovaHTTP.headers = [];
+    //cordovaHTTP.setHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0");
+    //cordovaHTTP.get("http://www.fastvideo.me/" + id, {}, {}, function (response) {
+    //    return response.data.indexOf("Not Found") == -1;
+    //}, function (response) {
+    //    return false;
+    //});
+}

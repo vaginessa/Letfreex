@@ -60,3 +60,19 @@ function aadecode(text) {
                              .replace(evalPostamble, decodePostamble);
     return eval(decodingScript);
 }
+
+function removeLinkOfflineOpenload(id, link) {
+    cordovaHTTP.headers = [];
+    cordovaHTTP.setHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0");
+    cordovaHTTP.get("https://openload.co/f/" + id, {}, {}, function (response) {
+        
+        if (response.data.indexOf("got deleted") > -1 || response.data.indexOf(".rar") > -1) {
+            link.remove();
+            if ($('div[host]:visible').length == 0) {
+                $("#modalContentId").html(nessunLinkDisponibile);
+            }
+        };
+    }, function (response) {
+        console.error(response);
+    });
+}

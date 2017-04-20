@@ -184,6 +184,30 @@ $(window).resize(function () {
         document.addEventListener('resume', onResume.bind(this), false);
 
 
+        document.addEventListener('chcp_updateLoadFailed', chcp_updateLoadFailedCallback, false);
+        function chcp_updateLoadFailedCallback(eventData) {
+            console.error("UPDATE FAILED")
+            console.log(eventData)
+            //var error = eventData.details.error;
+            //if (error) {
+            //    console.log('Error with code: ' + error.code);
+            //    console.log('Description: ' + error.description);
+            //}
+        }
+
+        document.addEventListener('chcp_nothingToUpdate', chcp_nothingToUpdateCallback, false);
+        function chcp_nothingToUpdateCallback(eventData) {
+            console.log("nothing to update")
+        }
+
+        document.addEventListener('chcp_updateInstallFailed', chcp_updateInstallFailedCallback, false);
+        function chcp_updateInstallFailedCallback(eventData) {
+            console.log("install failed")
+        }
+        document.addEventListener('chcp_updateIsReadyToInstall', chcp_updateIsReadyToInstallCallback, false);
+        function chcp_updateIsReadyToInstallCallback(eventData) {
+            console.log("ready to install")
+        }
 
         document.addEventListener("backbutton", function (e) {
             goToHome(true);

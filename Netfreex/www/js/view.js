@@ -35,6 +35,42 @@ function openMovie(url,titolo, img, isSerieTv) {
         searchMovieInfo(obj, isSerieTv);
 }
 
+var nessunLinkDisponibile = "<span class='marginTop10'>Nessun link disponibile, prova su un altro canale.</span>";
+function removeLinkOffline(video) {
+    var arrayHost = $('div[host]:visible'); //video.find('[host]');
+
+    for (var i = 0; i < arrayHost.length; i++) {
+
+        var host = arrayHost[i].innerHTML.split("openVideo('")[1].split("'")[0];
+        var id = arrayHost[i].innerHTML.split("','")[1].split("'")[0];
+
+        if (host == 'vidlox')
+            removeLinkOfflineVidLox(id, arrayHost[i]);
+        else if (host == 'speedvideo')
+            removeLinkOfflineSpeedvideo(id, arrayHost[i]);
+        else if (host == 'nowvideo')
+            removeLinkOfflineNowvideo(id, arrayHost[i]);
+        else if (host == 'vidto')
+            removeLinkOfflineVidTo(id, arrayHost[i]);
+        else if (host == 'rapidvideo')
+            removeLinkOfflineRapidvideo(id, arrayHost[i]);
+        else if (host == 'rapidvideocom')
+            removeLinkOfflineRapidvideoCom(id, arrayHost[i]);
+        else if (host == 'flashx')
+            removeLinkOfflineFlashX(id, arrayHost[i]);
+        else if (host == 'openload')
+            removeLinkOfflineOpenload(id, arrayHost[i]);
+        else if (host == 'streaminto')
+            removeLinkOfflineStreaminTo(id, arrayHost[i]);
+        else if (host == 'megahd')
+            removeLinkOfflineMegahd(id, arrayHost[i]);
+        else if (host == 'fastvideo')
+            removeLinkOfflineFastvideo(id, arrayHost[i]);
+    }
+
+    
+
+}
 
 function chooseHost(video) {
     localStorage.currentEpisode = video.attr("info");
@@ -47,6 +83,8 @@ function chooseHost(video) {
         padding: 30,
         showConfirmButton: false
     });
+    //if (window.cordova)
+    //    removeLinkOffline(video);
 }
 
 var download = false;
@@ -54,7 +92,6 @@ var download = false;
 function openVideo(host, url, download) {
     swal.closeModal();
     $('#loading').removeClass('hidden');
-    download = download;
 
     setTimeout(function () {
         console.log(url);

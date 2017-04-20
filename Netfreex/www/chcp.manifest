@@ -224,8 +224,16 @@
     "hash": "59e03e2b25f9817c262ee7add7e01301"
   },
   {
+    "file": "img/host/fastvideo.png",
+    "hash": "f35290c8e0c7479e50574f9a7afd1631"
+  },
+  {
     "file": "img/host/flashx.png",
     "hash": "b49a118753ed8726ce1fb408930cba82"
+  },
+  {
+    "file": "img/host/megahd.png",
+    "hash": "2d6f4a59a2f1cabdd6b10845fd940bff"
   },
   {
     "file": "img/host/nowvideo.png",
@@ -293,7 +301,7 @@
   },
   {
     "file": "index.html",
-    "hash": "20411829532182156892795027912ad7"
+    "hash": "fdcc30e7c2d1d8b3c7043aa89dc5498d"
   },
   {
     "file": "js/bookmark.js",
@@ -301,11 +309,15 @@
   },
   {
     "file": "js/channelManager.js",
-    "hash": "e6fb4ba54722fb5ff73175e5d7665380"
+    "hash": "5ecdee83ea546701a76b1eb68916ee9e"
+  },
+  {
+    "file": "js/channels/altadefinizione.js",
+    "hash": "37776a3936e252d232e4eca78fd3e652"
   },
   {
     "file": "js/channels/cineblog.js",
-    "hash": "1d495d80c3362398301f37e555669c7d"
+    "hash": "71912f7dea89e96288099fa545b309f6"
   },
   {
     "file": "js/channels/cinemalibero.js",
@@ -317,7 +329,7 @@
   },
   {
     "file": "js/channels/italiafilm.js",
-    "hash": "325a77af21df2650a26e8d51b7445faa"
+    "hash": "a2830e331abafa2a021f1dd77d3cb8e9"
   },
   {
     "file": "js/channels/piratestreaming.js",
@@ -329,7 +341,7 @@
   },
   {
     "file": "js/hosts.js",
-    "hash": "89a04289bd40239df15fd7fd2c29388e"
+    "hash": "dbdc227f464605ed21a3067e55fe5031"
   },
   {
     "file": "js/lib/bootstrap.js",
@@ -425,15 +437,15 @@
   },
   {
     "file": "js/main.js",
-    "hash": "45efa057e9b74c445e11d3fba3cb0a7d"
+    "hash": "e5013a7a545b455cfe30135af9707f5c"
   },
   {
     "file": "js/navigation.js",
-    "hash": "d1630714c9da419362eff2e531472390"
+    "hash": "02f94630bf8d3fefd30cf2e086a892ae"
   },
   {
     "file": "js/playByUrl.js",
-    "hash": "a7fd13aefeda490efcc42b9d62f8a1c5"
+    "hash": "ec2f033c2c6211c6eaaa544a7c40f215"
   },
   {
     "file": "js/tmdbApi.js",
@@ -449,7 +461,7 @@
   },
   {
     "file": "js/view.js",
-    "hash": "58a21ad535132a34eeea417fa00ec630"
+    "hash": "92f464aaac4652124238bf895845b09a"
   },
   {
     "file": "scripts/jquery-1.12.0.min.js",
@@ -460,43 +472,47 @@
     "hash": "0aea5edd42fd64e5dae527550b7f06d3"
   },
   {
-    "file": "servers/flashx.js",
-    "hash": "fb9c638c09ee168437bba1ac98cd8857"
+    "file": "servers/fastvideo.js",
+    "hash": "58d0ded4672435efb640057f0801e603"
   },
   {
-    "file": "servers/italiafilmlinks.js",
-    "hash": "a084319d3f4a3b629b5d1d91b5439c43"
+    "file": "servers/flashx.js",
+    "hash": "7414acda955b0f85650da5c745e606ee"
+  },
+  {
+    "file": "servers/megahd.js",
+    "hash": "d6951d631e7da8ed81a91c9999c3e333"
   },
   {
     "file": "servers/nowvideo.js",
-    "hash": "c5556df7e5944f66ae3d9d73da77a3e3"
+    "hash": "ecd7af3e307831f268c62d963989b863"
   },
   {
     "file": "servers/openload.js",
-    "hash": "fb772de7f0b811f84c100e0130e68372"
+    "hash": "edb3cab981a844dad8ce130e940b86d2"
   },
   {
     "file": "servers/rapidvideo.js",
-    "hash": "78fd4bdfa58a1d4d5bd004e34d88ee66"
+    "hash": "f52c173434b5cf2da6370a2c8b40a976"
   },
   {
     "file": "servers/rapidvideocom.js",
-    "hash": "b06b750b876c31610f5b58c648bf7017"
+    "hash": "394a7a7ff115b56952dc86b406e0dc09"
   },
   {
     "file": "servers/speedvideo.js",
-    "hash": "d891cd69a31a5c2116ca5f5d41dcae88"
+    "hash": "649c6f213eef05d06fe3c78d4d97513d"
   },
   {
     "file": "servers/streaminto.js",
-    "hash": "b680394ddaa91a474944941f92f14c80"
+    "hash": "2bc0d0140ec0e30b8e2df36e2de69bcd"
   },
   {
     "file": "servers/vidlox.js",
-    "hash": "e41031378f20539ec034a545fd486b2e"
+    "hash": "6a335c05ffe2ef3c0e6e79df9630a26d"
   },
   {
     "file": "servers/vidto.js",
-    "hash": "aca5324fe9eee688b14dfcea981e9730"
+    "hash": "4b65b1249ad667f10ea82bb580ef21e9"
   }
 ]

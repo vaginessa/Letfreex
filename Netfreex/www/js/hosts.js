@@ -2,82 +2,86 @@ var serieTvHosts = [
     {
         //Cineblog
         host: 'swzz|nowvideo',
-        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*(?:goto/|link/)([a-z0-9A-Z=]*)/?" target="_blank">Nowvideo'
+        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};|x)[0-9]{1,3}).*(?:goto/|link/)([a-z0-9A-Z=]*)/?" target="_blank">Nowvideo'
     },
     {
         //Cinemalibero
         host: 'vcrypt|nowvideo',
-        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*cinemalibero\.[a-z]+/goto/([a-z0-9A-Z=]*)/?"[^<]*>Nowvideo'
+        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};|x)[0-9]{1,3}).*cinemalibero\.[a-z]+/goto/([a-z0-9A-Z=]*)/?"[^<]*>Nowvideo'
     },
     {
         //Cineblog
         host: 'swzz|openload',
-        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*(?:goto/|link/)([a-z0-9A-Z=]*)/?" target="_blank">Openload'
+        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};|x)[0-9]{1,3}).*(?:goto/|link/)([a-z0-9A-Z=]*)/?" target="_blank">Openload'
     },
     {
         //Cinemalibero
         host: 'vcrypt|openload',
-        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*cinemalibero\.[a-z]+/goto/([a-z0-9A-Z=]*)/?"[^<]*>Openload'
+        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};|x)[0-9]{1,3}).*cinemalibero\.[a-z]+/goto/([a-z0-9A-Z=]*)/?"[^<]*>Openload'
     },
     {
         //Cineblog
         host: 'swzz|flashx',
-        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*(?:goto/|link/)([a-z0-9A-Z=]*)/?" target="_blank">Flash'
+        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};|x)[0-9]{1,3}).*(?:goto/|link/)([a-z0-9A-Z=]*)/?" target="_blank">Flash'
     },
     {
         //Cinemalibero
         host: 'vcrypt|flashx',
-        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*cinemalibero\.[a-z]+/goto/([a-z0-9A-Z=]*)/?"[^<]*>Flash'
+        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};|x)[0-9]{1,3}).*cinemalibero\.[a-z]+/goto/([a-z0-9A-Z=]*)/?"[^<]*>Flash'
     },
     {
         //Cinemalibero
         host: 'vcrypt|rapidvideocom',
-        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*cinemalibero\.[a-z]+/goto/([a-z0-9A-Z=]*)/?"[^<]*>Raptu'
+        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};|x)[0-9]{1,3}).*cinemalibero\.[a-z]+/goto/([a-z0-9A-Z=]*)/?"[^<]*>Raptu'
     },
     {
         host: 'nowvideo',
-        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*www.nowvideo\.[a-z]+/video/([a-z0-9A-Z]+)[^<]*Nowvideo'
+        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};|x)[0-9]{1,3}).*www.nowvideo\.[a-z]+/video/([a-z0-9A-Z]+)[^<]*Nowvideo'
     },
     {
         host: 'vidlox',
-        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*vidlox\.[a-z]+/([a-z0-9A-Z]+)[^<]*Vidlox'
+        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};|x)[0-9]{1,3}).*vidlox\.[a-z]+/([a-z0-9A-Z]+)[^<]*Vidlox'
     },
     {
         host: 'openload',
-        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*openload\.[a-z]+/f/([0-9a-zA-Z\-_]*)[^<]*Openload'
+        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};|x)[0-9]{1,3}).*openload\.[a-z]+/f/([0-9a-zA-Z\-_]*)[^<]*Openload'
     },
     {
         host: 'vidto',
-        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*vidto\.[a-z]+/([a-z0-9A-Z]+).html[^<]*VidTO'
+        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};|x)[0-9]{1,3}).*vidto\.[a-z]+/([a-z0-9A-Z]+).html[^<]*VidTO'
     },
     {
         host: 'speedvideo',
-        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*speedvideo\.[a-z]+/([a-z0-9A-Z]+)[^<]*Speedvideo'
+        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};|x)[0-9]{1,3}).*speedvideo\.[a-z]+/([a-z0-9A-Z]+)[^<]*Speedvideo'
     },
     {
         host: 'rapidvideo',
-        regex: '([0-9]{1,3}x[0-9]{1,3}).*http:\/\/www.rapidvideo.[a-z]*/([a-z0-9A-Z\/._-]+)/.*?Rapidvideo'
+        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};|x)[0-9]{1,3}).*http:\/\/www.rapidvideo.[a-z]*/([a-z0-9A-Z\/._-]+)/.*?Rapidvideo'
     },
     {
         host: 'rapidvideocom',
-        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*raptu\.[a-z]*/\.v=([a-z0-9A-Z]+)[^<]*RapidVideo'
+        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};|x)[0-9]{1,3}).*raptu\.[a-z]*/\.v=([a-z0-9A-Z]+)[^<]*RapidVideo'
     },
     {
         host: 'rapidvideocom',
-        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*rapidvideo\.[a-z]*/\.v=([a-z0-9A-Z]+)[^<]*RapidVideo'
+        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};|x)[0-9]{1,3}).*rapidvideo\.[a-z]*/\.v=([a-z0-9A-Z]+)[^<]*RapidVideo'
     },
     {
         host: 'flashx',
-        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*http:\/\/.*flashx\.[a-z]+\/([a-z0-9A-Z]+)[^<]*Flashx'
+        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};|x)[0-9]{1,3}).*http:\/\/.*flashx\.[a-z]+\/([a-z0-9A-Z]+)[^<]*Flashx'
     },
     {
         //Cineblog
         host: 'swzz|streaminto',
-        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};)[0-9]{1,3}).*(?:goto/|link/)([a-z0-9A-Z=]*)/?" target="_blank">Streamin'
+        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};|x)[0-9]{1,3}).*(?:goto/|link/)([a-z0-9A-Z=]*)/?" target="_blank">Streamin'
     },
     {
         host: 'fastvideo',
-        regex: '([0-9]{1,3}x[0-9]{1,3}).*http:\/\/www.fastvideo.[a-z]*/([a-z0-9A-Z\/._-]+)/'
+        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};|x|x)[0-9]{1,3}).*http:\/\/www.fastvideo.[a-z]*/([a-z0-9A-Z\/._-]+)/'
+    },
+    {
+        host: 'streaminto',
+        regex: '([0-9]{1,3}(?:[^&0-9A-Za-z]|&#[0-9]{1,4};|x)[0-9]{1,3}).*streamin.[a-z]*/([a-z0-9A-Z\/._-]+)'
     }
 ];
 

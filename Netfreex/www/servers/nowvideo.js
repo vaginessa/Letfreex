@@ -33,3 +33,18 @@
         error(response);
     });
 }
+
+function removeLinkOfflineNowvideo(id, link) {
+    cordovaHTTP.headers = [];
+    cordovaHTTP.setHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0");
+    cordovaHTTP.get("http://www.nowvideo.sx/video/" + id, {}, {}, function (response) {
+        if (response.data.indexOf("no longer exists") != -1) {
+            link.remove()
+            if ($('div[host]:visible').length == 0) {
+                $("#modalContentId").html(nessunLinkDisponibile);
+            }
+        }
+    }, function (response) {
+        console.log(response);
+    });
+}
