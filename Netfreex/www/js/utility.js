@@ -187,6 +187,7 @@ function clearCache() {
         var filmpertutti = localStorage.filmPerTuttiUrl;
         var italiafilm = localStorage.italiaFilmUrl;
         var piratestreaming = localStorage.pirateStreamingUrl;
+        var altadefinizione = localStorage.altadefinizioneUrl;
         var donation = localStorage.timeStampDonation;
         var cache = localStorage.timeStampClearCache;
 
@@ -208,6 +209,8 @@ function clearCache() {
             localStorage.italiaFilmUrl = italiafilm;
         if (piratestreaming)
             localStorage.pirateStreamingUrl = piratestreaming;
+        if (altadefinizione)
+            localStorage.altadefinizioneUrl = altadefinizione;
         if (bookmarks)
             localStorage.bookmarks = bookmarks;
         if (favourites)
