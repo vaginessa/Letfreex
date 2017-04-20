@@ -7,43 +7,7 @@
         "files": {}
     },
     "installed_plugins": {
-        "com.dawsonloudon.videoplayer.custom": {
-            "PACKAGE_NAME": "com.netfreex"
-        },
-        "cordova-plugin-app-version": {
-            "PACKAGE_NAME": "com.netfreex"
-        },
-        "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.netfreex"
-        },
-        "cordova-plugin-file": {
-            "PACKAGE_NAME": "com.netfreex"
-        },
-        "cordova-plugin-file-opener2": {
-            "PACKAGE_NAME": "com.netfreex"
-        },
-        "cordova-plugin-file-transfer": {
-            "PACKAGE_NAME": "com.netfreex"
-        },
-        "cordova-plugin-http": {
-            "PACKAGE_NAME": "com.netfreex"
-        },
-        "cordova-plugin-keyboard": {
-            "PACKAGE_NAME": "com.netfreex"
-        },
-        "cordova-plugin-statusbar-custom": {
-            "PACKAGE_NAME": "com.netfreex"
-        },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.netfreex"
-        },
         "cordova-hot-code-push-plugin": {
-            "PACKAGE_NAME": "com.netfreex"
-        },
-        "com.hutchind.cordova.plugins.streamingmedia": {
-            "PACKAGE_NAME": "com.netfreex"
-        },
-        "cordova-plugin-inappbrowser-custom": {
             "PACKAGE_NAME": "com.netfreex"
         }
     },

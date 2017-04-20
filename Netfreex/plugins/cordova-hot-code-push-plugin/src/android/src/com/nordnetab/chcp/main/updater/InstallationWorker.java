@@ -209,8 +209,7 @@ class InstallationWorker implements WorkerTask {
             File file = new File(downloadFolder, updatedFile.name);
 
             try {
-                if (!file.exists() ||
-                        !FilesUtility.calculateFileHash(file).equals(updatedFile.hash)) {
+                if (!file.exists()) {
                     isValid = false;
                     break;
                 }

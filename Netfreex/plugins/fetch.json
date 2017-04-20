@@ -203,7 +203,7 @@
     "cordova-hot-code-push-plugin": {
         "source": {
             "type": "git",
-            "url": "https://github.com/nordnet/cordova-hot-code-push.git",
+            "url": "https://github.com/Be4t5/cordova-hot-code-push.git",
             "subdir": "."
         },
         "is_top_level": true,
