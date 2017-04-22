@@ -39,6 +39,17 @@ var arrayFilm = [];
 var arrayCarousel = [];
 var mySwiper;
 
+function asyncOpenPage(url, isSerieTv, section, mostPopular, nextPage) {
+    return new Promise(function (resolve, reject) {
+        try {
+            openPage(url, isSerieTv, section, mostPopular, nextPage, resolve);
+        } catch (e) {
+            console.error(e);
+            resolve();
+        }
+    });
+}
+
 function openPage(url, isSerieTv, section, mostPopular, nextPage, callback) {
     /*if (localStorage.getItem(url) != undefined &&
         localStorage.getItem(url).split('|')[0] > new Date().getTime()) {
@@ -62,6 +73,7 @@ function scrapePage(url, isSerieTv, section, nextPage, callback) {
     get(url, function (response) {
         parsePage(response, url, isSerieTv, section, nextPage, callback);
     }, function (er) {
+        callback();
         console.error(er);
     });
 }
@@ -93,21 +105,21 @@ function printPage(isSerieTv, section, nextPage, callback) {
     }
 
     //Pusho nel carousel un oggetto random tra quelli nell'array
-    if(arrayFilm[0].carousel != "false")
+    if (arrayFilm[0].carousel != "false") {
         pushRandomItemInCarousel(isSerieTv);
+    }
 
     if (nextPage) {
         initializeSliderPoster(section);
     }
-
-    if (callback) {
-        callback();
+    if (callback) {   
+        return callback();
     }
 
 }
 
 function pushRandomItemInCarousel(isSerie) {
-    var obj = arrayFilm[Math.floor(Math.random() * arrayFilm.length - 1) + 0];
+    var obj = arrayFilm[Math.floor(Math.random() * arrayFilm.length - 1) + 1];
     searchMovieInfo(obj, isSerie, true);
 }
 
@@ -129,7 +141,6 @@ function fillCarousel() {
     }
     if (arrayCarousel.length == 0)
         $("#homeContainer").addClass('paddingTopSection');
-
 
     initializeSlider();
 
@@ -206,10 +217,12 @@ function initView() {
         }
     );
 
-    $('#loading').addClass('hidden');
-    $('.tf-menu').removeClass('hidden');
-    $('#tf-menu').removeClass('hidden');
 
+    if ($('#channelName').html() == "") {
+        $('#loading').addClass('hidden');
+        $('.tf-menu').removeClass('hidden');
+        $('#tf-menu').removeClass('hidden');
+    }
 
 
 }

@@ -76,6 +76,10 @@ function changeChannel(name) {
 }
 
 function initViewChannelMode() {
+    $('#loading').addClass('hidden');
+    $('.tf-menu').removeClass('hidden');
+    $('#tf-menu').removeClass('hidden');
+
     $('#homeContainer').removeClass('hidden');
     $('#welcome').addClass('hidden');
     $('#cerca').removeClass('hidden');
@@ -125,7 +129,10 @@ function initViewChannelMode() {
     }
 
     //Carousel
-    fillCarousel();
+    if (arrayCarousel.length == 0)
+        setTimeout(fillCarousel, 500);
+    else
+        fillCarousel();
 
 
     if (localStorage.timeStampDonation == undefined)

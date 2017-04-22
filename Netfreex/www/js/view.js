@@ -139,7 +139,17 @@ function hideLoadingiOs() {
 var success = function (url, download) {
     
     console.log(url);
- 
+    
+    if (download == 0)
+        playWithOurPlayer(url);
+    else if (download == 1) {
+        window.open(url, "_system");
+    }
+    else if (download == 2) {
+        VideoPlayer.play(url);
+        markAsSeen();
+    }
+ /*
     if (device.platform == "iOS") {
         if (url.indexOf("nowvideo") > -1) {
             window.plugins.streamingMedia.playVideo(url);
@@ -154,8 +164,9 @@ var success = function (url, download) {
         else 
             window.open(url, "_system");
     }
+    */
+    $('#loading').addClass("hidden");
     
-    markAsSeen();
 }
 
 var error = function (ex) {
@@ -165,6 +176,28 @@ var error = function (ex) {
 }
 
 
+function playWithOurPlayer(url) {
+    if (window.cordova) {
+        screen.orientation.lock('landscape');
+    }
 
+    $('#playerContainer').removeClass('hidden');
+    $("#playerContainer").html('<video id="player" class="video-js" poster="null" style="outline: none;"><source id="source" type="video/mp4"></video>');
+
+        var myPlayer = videojs('player', {
+            controls: true,
+            autoplay: true,
+            preload: 'auto',
+            fluid: true
+        });
+        myPlayer.src(url);
+        //myPlayer.ready(function () {
+        //    myPlayer.currentTime(getLastTime());
+        //});
+
+        myPlayer.on('loadedmetadata', function () {
+            myPlayer.currentTime(getLastTime());
+        });
+}
 
 

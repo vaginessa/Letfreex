@@ -1,40 +1,49 @@
 ﻿function streamintoExtract(id, success, error, download) {
-    cordovaHTTP.headers =[];
-    cordovaHTTP.setHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0");
+    $.ajax({
+        url: "http://streamin.to/embed-" + id + "-640x360.html",
+        type: "GET",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0");
+        },
+        success: function (response) {
+            if (response == "File was deleted")
+                error("File was deleted");
 
-    cordovaHTTP.get("http://streamin.to/embed-" + id + "-640x360.html", {}, {}, function (response) {
-        console.log(response);
+            try {
+                var content = response.split("eval(function")[1].split("</script>")[0];
+                content = "eval(function" + content;
 
-        if (response.data == "File was deleted")
-            error("File was deleted");
+                //UNPACK
+                var url = unpack(content);
 
-        try {
-            var content = response.data.split("eval(function")[1].split("</script>")[0];
-            content = "eval(function" + content;
-
-            //UNPACK
-            var url = unpack(content);
-
-            success(url, download);
-        } catch (e) {
+                success(url, download);
+            } catch (e) {
+                error(e);
+            }
+        },
+        error: function (e) {
             error(e);
         }
-    }, function (response) {
-        error(response);
     });
 }
 
 function removeLinkOfflineStreaminTo(id,link) {
-    cordovaHTTP.headers = [];
-    cordovaHTTP.setHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0");
-    cordovaHTTP.get("http://streamin.to/" + id, {}, {}, function (response) {
-        if (response.data.indexOf("File Deleted") != -1) {
-            link.remove()
-            if ($('div[host]:visible').length == 0) {
-                $("#modalContentId").html(nessunLinkDisponibile);
+    $.ajax({
+        url: "http://streamin.to/" + id,
+        type: "GET",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0");
+        },
+        success: function (response) {
+            if (response.indexOf("File Deleted") != -1) {
+                link.remove()
+                if ($('div[host]:visible').length == 0) {
+                    $("#modalContentId").html(nessunLinkDisponibile);
+                }
             }
+        },
+        error: function (e) {
+            console.error(e);
         }
-    }, function (response) {
-        console.log(response);
     });
 }

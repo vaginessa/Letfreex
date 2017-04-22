@@ -257,7 +257,11 @@ function manageMovieLinks(html) {
 
             if ($('#playButton').html().indexOf(res[1]) == -1 && link.indexOf(res[1]) == -1) {
                 count++;
-                link += "<div  class=\"hidden marginBottom10\" host ><img onclick=\"openVideo('" + movieOneLinkHosts[i].host + "','" + res[1] + "', false)\" width=\"200\" src=\"img/host/" + host + ".png\"><i class=\"fa fa-download\" aria-hidden=\"true\" onclick=\"openVideo('" + movieOneLinkHosts[i].host + "','" + res[1] + "', true)\"></i></div>";
+                link += "<div  class=\"hidden marginBottom10\" host >" +
+                    "<img onclick=\"openVideo('" + movieOneLinkHosts[i].host + "','" + res[1] + "', 0)\" width=\"200\" src=\"img/host/" + host + ".png\">" +
+                    "<i class=\"fa fa-download\" aria-hidden=\"true\" onclick=\"openVideo('" + movieOneLinkHosts[i].host + "','" + res[1] + "', 1)\"></i>" +
+                    "<i class=\"fa fa-external-link\" aria-hidden=\"true\" onclick=\"openVideo('" + movieOneLinkHosts[i].host + "','" + res[1] + "', 2)\"></i>" +
+                    "</div>";
             }
         }
     }
@@ -373,7 +377,11 @@ function manageSerieTvLinks(html, regexStagione) {
             }
 
             var hostImg = listaLink[stagione].value[j].host.split("|")[1] ? listaLink[stagione].value[j].host.split("|")[1] : listaLink[stagione].value[j].host;
-            link += "<div class=\"hidden marginBottom10\" host ><img onclick=\"openVideo('" + listaLink[stagione].value[j].host + "','" + listaLink[stagione].value[j].id + "', false)\" width=\"200\" src=\"img/host/" + hostImg + ".png\"><i class=\"fa fa-download\" aria-hidden=\"true\" onclick=\"openVideo('" + listaLink[stagione].value[j].host + "','" + listaLink[stagione].value[j].id + "', true)\"></i></div>";
+            link += "<div class=\"hidden marginBottom10\" host >" +
+                "<img onclick=\"openVideo('" + listaLink[stagione].value[j].host + "','" + listaLink[stagione].value[j].id + "', 0)\" width=\"200\" src=\"img/host/" + hostImg + ".png\">" +
+                "<i class=\"fa fa-download\" aria-hidden=\"true\" onclick=\"openVideo('" + listaLink[stagione].value[j].host + "','" + listaLink[stagione].value[j].id + "', 1)\"></i>" +
+                "<i class=\"fa fa-external-link\" aria-hidden=\"true\" onclick=\"openVideo('" + listaLink[stagione].value[j].host + "','" + listaLink[stagione].value[j].id + "', 2)\"></i>" +
+                "</div>";
         }
         link += "</div>";
     }

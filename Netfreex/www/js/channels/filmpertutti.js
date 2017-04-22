@@ -120,13 +120,16 @@ var sections = [
 ];
 $("#welcome").addClass("hidden");
 
-    //FILM PER TUTTI
+$(document).on("ready", function () {
+    Promise.all([
+            asyncOpenPage("http://www.filmpertutti.black/category/film/", false, 'movieSliderContainer', false, null),
+            asyncOpenPage("http://www.filmpertutti.black/category/serie-tv/", true, 'serieTvSliderContainer', false, null),
+    ])
+    .then(function () {
+        initViewChannelMode();
+    })
+    .catch(function (e) {
+        console.error(e);
+    });
 
-    //Ultime uscite
-openPage("http://www.filmpertutti.black/category/film/", false, 'movieSliderContainer', false);
-openPage("http://www.filmpertutti.black/category/serie-tv/", true, 'serieTvSliderContainer', false);
-
-$(window).on("load", function () {
-
-    initViewChannelMode();
 });

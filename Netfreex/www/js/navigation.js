@@ -15,6 +15,7 @@ function goToHome(backBtn) {
     if (!backBtn)
         $('#bs-example-navbar-collapse-1').collapse('hide');
     redesignView();
+    closeNav();
 }
 
 function goToSearch() {
@@ -32,6 +33,7 @@ function goToSearch() {
 
     $('#bs-example-navbar-collapse-1').collapse('hide');
     redesignView();
+    closeNav();
 }
 
 function goToFavourites() {
@@ -48,6 +50,7 @@ function goToFavourites() {
     $('#bs-example-navbar-collapse-1').collapse('hide');
     fillFavourites();
     redesignView();
+    closeNav();
 }
 
 function eraseViewMode() {
@@ -74,6 +77,16 @@ function eraseViewMode() {
     $('#playButton').removeClass('backgroundBlack');
     $('img').imageReloader();
 
+}
+
+function openNav() {
+    document.getElementById("mySidenav").style.marginLeft = "0";
+    $("body").css("overflow", "hidden");
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.marginLeft = "-250px";
+    $("body").css("overflow", "initial");
 }
 
 function changeTab(num) {
@@ -172,6 +185,36 @@ $(window).resize(function () {
     redesignView();
 });
 
+function hidePlayer() {
+    if (window.cordova) {
+        screen.orientation.unlock();
+    }
+
+    $('#playerContainer').addClass('hidden');
+    $('#loading').addClass('hidden');
+
+    var player = videojs('player');
+
+    markAsSeen(player.currentTime());
+
+    player.dispose();
+}
+
+function goBack() {
+    if (!$('#playerContainer').hasClass("hidden")) {
+        hidePlayer();
+    } else {
+        if (!$('#homeContainer').hasClass("hidden")) {
+            if(window.cordova)
+                navigator.app.exitApp();
+        }
+
+        goToHome(true);
+        closeNav();
+        $('#loading').addClass('hidden');
+    }
+}
+
 //Eventi cordova
 (function () {
     "use strict";
@@ -210,8 +253,8 @@ $(window).resize(function () {
         }
 
         document.addEventListener("backbutton", function (e) {
-            goToHome(true);
-            $('#loading').addClass('hidden');
+            goBack();
+
         }, false);
     };
 
@@ -223,3 +266,4 @@ $(window).resize(function () {
         // TODO: questa applicazione è stata riattivata. Ripristinarne lo stato qui.
     };
 })();
+

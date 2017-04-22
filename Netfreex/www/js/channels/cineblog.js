@@ -192,18 +192,5 @@ function onDeviceReady() {
     openPage("https://www.cb01.uno/", false, 'movieSliderContainer', false, null, initViewChannelMode);
 }
 
-//CINEBLOG
-//Most popular
-//openPage("https://www.cb01.uno/", false, 'movieMostPopularSliderContainer', true, null, initViewChannelMode);
-//openPage("https://www.cb01.uno/serietv/", true, 'serieTvMostPopularSliderContainer', true, null, initViewChannelMode);
-
-//Ultime uscite
-
-
-//openPage("https://www.cb01.uno/serietv/", true, 'serieTvSliderContainer', false, null, initViewChannelMode);
-
-//$(window).on("load", function () {
-//    initViewChannelMode();
-//});
 
 

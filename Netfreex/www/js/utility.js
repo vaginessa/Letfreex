@@ -127,18 +127,28 @@ function depack(p) {
 function get(url, success, error) {
     if (cineblog != true) {
 
-        $.getJSON("http://query.yahooapis.com/v1/public/yql?" +
-            "q=select%20*%20from%20html%20where%20url%3D%22" +
-            encodeURIComponent(url) +
-            "%22&format=xml'&callback=?",
-            function (data) {
-                if (data.results[0]) {
-                    success(data.results[0]);
-                }
-            }, function (er) {
-                error(er);
+        //$.getJSON("http://query.yahooapis.com/v1/public/yql?" +
+        //    "q=select%20*%20from%20html%20where%20url%3D%22" +
+        //    encodeURIComponent(url) +
+        //    "%22&format=xml'&callback=?",
+        //    function (data) {
+        //        if (data.results[0]) {
+        //            success(data.results[0]);
+        //        }
+        //    }, function (er) {
+        //        error(er);
+        //    }
+        //);
+        $.ajax({
+            url: url,
+            type: "GET",
+            success: function (response) {
+                success(response);
+            },
+            error: function (e) {
+                error(e);
             }
-        );
+        });
     } else {
        
         if (localStorage.expirationCF && localStorage.cookieCFCB.indexOf("cf_clearance") > -1) {

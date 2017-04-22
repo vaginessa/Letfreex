@@ -1,55 +1,67 @@
 ﻿function speedvideoExtract(id, success, error, download) {
+    var page = "http://speedvideo.net/" + id;
+    $.ajax({
+        url: page,
+        type: "GET",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0");
+        },
+        success: function (response) {
+            console.log(response);
+            try {
+                var content = response;
 
-    var page_url = "http://speedvideo.net/" + id ;
+                if (page.indexOf("embed") > -1) {
+                    try {
+                        extractLink(response);
+                    } catch (e) {
+                        error(e);
+                    }
+                } else {
+                    var fname = content.split("fname\" value=\"")[1].split("\"")[0];
+                    var hash = content.split("hash\" value=\"")[1].split("\"")[0];
 
-    cordovaHTTP.headers = [];
-    cordovaHTTP.setHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0");
-
-    cordovaHTTP.get(page_url, {}, {}, function(response) {
-        console.log(response);
-        try {
-            var content = response.data;
-
-            if (page_url.indexOf("embed") > -1) {
-                try {
-                    extractLink(response.data);
-                } catch (e) {
-                    error(e);
+                    doPostRequest(id, fname, hash);
                 }
-            } else {
-                var fname = content.split("fname\" value=\"")[1].split("\"")[0];
-                var hash = content.split("hash\" value=\"")[1].split("\"")[0];
 
-                doPostRequest(id, fname, hash);
+
+            } catch (ex) {
+                error(ex);
             }
-            
-
-        } catch (ex) {
-            error(ex);
+        },
+        error: function (e) {
+            error(e);
         }
-        
-    }, function(response) {
-        error(response);
     });
     
     function doPostRequest(id, fname, hash) {
-        cordovaHTTP.setHeader("Content-Type", "application/x-www-form-urlencoded");
-        cordovaHTTP.post("http://speedvideo.net/" + id , {
-            op: "download1",
-            usr_login: "",
-            id: id,
-            fname: fname,
-            referer: "",
-            hash: hash,
-            imhuman: "Proceed+to+video"
-        }, {}, function (response) {
-            try {
-                extractLink(response.data);
-            } catch (e) {
+        $.ajax({
+            url: "http://speedvideo.net/" + id,
+            type: "POST",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0");
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            },
+            data:{
+                op: "download1",
+                usr_login: "",
+                id: id,
+                fname: fname,
+                referer: "",
+                hash: hash,
+                imhuman: "Proceed+to+video"
+            },
+            success: function (response) {
+                console.log(response);
+                try {
+                    extractLink(response);
+                } catch (e) {
+                    error(e);
+                }
+            },
+            error: function (e) {
                 error(e);
             }
-        }, function (response) {
-            error(response);
         });
     }
 
@@ -58,18 +70,21 @@
         data = data.split("<script type='text/javascript'>")[1];
         var base = parseInt(data.split('= ')[1].split(';')[0]);
 
-        var linkEncoded = input.split('file: base64_decode("')[1].split('"')[0];
+        var url = input.split("linkfile = '")[1].split("'")[0];
 
-        var url = base64_decode(linkEncoded, base);
+        //var linkEncoded = input.split('file: base64_decode("')[1].split('"')[0];
 
-        url = url.replace("speedvideo.net/getvideo///", "");
-        try {
-            url = url.split(".mp4")[0] + ".mp4";
-        } catch (e) {
-            url = url.split(".flv")[0] + ".flv";
-        }
+        //var url = base64_decode(linkEncoded, base);
+
+        //url = url.replace("speedvideo.net/getvideo///", "");
+        //try {
+        //    url = url.split(".mp4")[0] + ".mp4";
+        //} catch (e) {
+        //    url = url.split(".flv")[0] + ".flv";
+        //}
         
-        success(url.replace(".mp4", ".flv"), download);
+        //success(url.replace(".mp4", ".flv"), download);
+        success(url, download);
     }
 
     //DECODE FUNCTIONS
@@ -78,16 +93,22 @@
 }
 
 function removeLinkOfflineSpeedvideo(id, link) {
-    cordovaHTTP.headers = [];
-    cordovaHTTP.setHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0");
-    cordovaHTTP.get("http://speedvideo.net/" + id, {}, {}, function (response) {
-        if (response.data.indexOf("File Not Found") != -1) {
-            link.remove()
-            if ($('div[host]:visible').length == 0) {
-                $("#modalContentId").html(nessunLinkDisponibile);
+    $.ajax({
+        url: "http://speedvideo.net/" + id,
+        type: "GET",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0");
+        },
+        success: function (response) {
+            if (response.indexOf("File Not Found") != -1) {
+                link.remove()
+                if ($('div[host]:visible').length == 0) {
+                    $("#modalContentId").html(nessunLinkDisponibile);
+                }
             }
+        },
+        error: function (e) {
+            console.error(e);
         }
-    }, function (response) {
-        console.log(response);
     });
 }

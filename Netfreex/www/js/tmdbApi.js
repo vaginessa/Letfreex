@@ -3,7 +3,13 @@ var apiKey = "f7f51775877e0bb6703520952b3c7840";
 var id;
 function searchMovieInfo(obj, isSerie, isCarousel) {
     id = "";
-    var input = obj.title.replace("&#038;", "and");
+    var input = "";
+
+    try {
+        input = obj.title.replace("&#038;", "and");
+    } catch (e) {
+        console.error(e);
+    }
 
 
     var aux = input.replace(new RegExp('\\[.*\\]', 'g'), ' ').split('(');
@@ -36,6 +42,7 @@ function searchMovieInfo(obj, isSerie, isCarousel) {
                     json.info = obj;
                     console.log(json);
                     arrayCarousel.push(json);
+    
                 }
                     
             } else {

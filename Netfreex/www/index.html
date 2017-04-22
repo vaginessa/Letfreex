@@ -1,17 +1,17 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <!-- Basic Page Needs
     ================================================== -->
     <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
 
     <meta charset="utf-8">
-    <!--[if IE]><meta http-equiv="x-ua-compatible" content="IE=9" /><![endif]-->
+    <!--[if IE]><meta http-equiv="x-ua-compatible" content="IE=9"/><![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Netfreex</title>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" type="text/css"  href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.css">
 
     <!-- Slider
@@ -21,10 +21,10 @@
 
     <!-- Stylesheet
     ================================================== -->
-    <link rel="stylesheet" type="text/css"  href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/responsive.css">
-    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,700,300,600,800,400' rel='stylesheet' type='text/css'>
+    <link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,700,300,600,800,400" rel="stylesheet" type="text/css">
     <script src="cordova.js"></script>
     <script type="text/javascript" src="js/lib/modernizr.custom.js"></script>
     <script type="text/javascript" src="js/lib/jquery.1.11.1.js"></script>
@@ -33,392 +33,406 @@
     <link rel="stylesheet" type="text/css" href="css/slider.css">
     <script src="scripts/platformOverrides.js"></script>
     <script src="js/lib/swiper.js"></script>
-    <link href="css/swiper.css" rel="stylesheet" />
-  </head>
-  <body id="body">
-      <div id="loading">
-          <div id="loader">
-              <img src="img/logo.png" /><br />
-              <i class="fa fa-spinner fa-pulse fa-spin fa-2x"></i>
-          </div>
-      </div>
+    <link href="css/swiper.css" rel="stylesheet"/>
 
-    <!-- MENU
-    ==========================================-->
-    <nav id="tf-menu" class="navbar navbar-default navbar-fixed-top hidden">
-      <div class="container tf-menu ">
-        <!-- Brand and toggle get grouped for better mobile display -->
+</head>
+<body id="body" style="height: 100%">
+<div id="loading">
+    <div id="loader">
+        <img src="img/logo.png"/><br/>
+        <i class="fa fa-spinner fa-pulse fa-spin fa-2x"></i>
+    </div>
+</div>
+
+<!-- MENU
+==========================================-->
+<nav id="tf-menu" class="navbar navbar-default navbar-fixed-top hidden">
+    <div class="container tf-menu ">
         <div class="navbar-header">
-          <button  type="button" class="navbar-toggle collapsed" onclick="changeBG()" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-            <a class="navbar-brand" href="index.html"><img style="width: 100px; margin-top: 7px;float: left" src="img/logo.png"/><span id="channelName"></span></a>
-            
+
+            <a class="navbar-brand">
+                <i class="fa fa-bars" onclick="openNav()" aria-hidden="true" style="color: #f79921; float: left; font-size: 30px; padding: 8px; padding-right: 24px;"></i>
+                <img href="index.html" style="float: left; margin-top: 7px; width: 100px;" src="img/logo.png"/>
+                <span id="channelName"></span>
+                <div id="cerca" class="hidden">
+                    <a tabindex="0" onclick="goToSearch()"><i class="fa fa-search" style="padding-right: 11px"></i></a>
+                </div>
+            </a>
+
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav navbar-right ">
-              <li><a tabindex="0" onclick="goToHome()"><i class="fa fa-home" style="padding-right: 10px"></i>Home</a></li>
-              <li id="preferiti" class="hidden"><a tabindex="0" onclick="goToFavourites()"><i class="fa fa-star" style="padding-right: 10px"></i>Preferiti</a></li>
-              <li><a tabindex="0" onclick="playByUrl()"><i class="fa fa-link" style="padding-right: 10px"></i>Riproduci da URL</a></li>
-              <li id="cerca" class="hidden"><a  tabindex="0" onclick="goToSearch()"><i class="fa fa-search" style="padding-right: 10px"></i>Cerca</a></li>
-              <li><a tabindex="0" href="https://github.com/Be4t5/Netfreex/wiki"><i class="fa fa-question" style="padding-right: 10px"></i>Guida</a></li>
-              <li>
-                  <div  id="channelDrop" class="dropdown" style="position: relative;top: 10px; left: 5px; margin-bottom: 5px;">
-                      <button  class="btn btn-primary dropdown-toggle text-uppercase" type="button" data-toggle="dropdown" style="font-size: 12px; background-color: rgba(240, 248, 255, 0); border: none" >
-                          <span id="menuDropDownLabel" >Gestione canali</span>
-                          <span class="caret"></span>
-                      </button>
-                      <ul id="channelList" class="dropdown-menu" >
-                          <li><a onclick="aggiungiCanale();">Aggiungi canale</a></li>
-                          <li class="borderBottomWhite"><a onclick="eliminaCanale();">Elimina canale</a></li>
-                          <!--<li><a href="index.html?channel=cineblog">Cineblog</a></li>
-                          <li><a href="index.html?channel=italiafilm">ItaliaFilm</a></li>
-                          <li><a href="index.html?channel=piratestreaming">Piratestreaming</a></li>-->
-                      </ul>
-                  </div>
-              </li>
-          </ul>
+        <div id="mySidenav" class="sidenav">
+            <i class="fa fa-arrow-left" onclick="goBack()" style="position: absolute;top: 26px;color: whitesmoke;font-size: 30px;margin-left: 30px;"></i>
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div>
+                <a href="#channelList" class="list-group-item list-group-item-success" data-toggle="collapse" style="background: #111111; border: none;">
+                    <i class="fa fa-television" style="padding-right: 8px"></i>Canali <i class="fa fa-caret-down"></i>
+                </a>
+                <ul id="channelList" class="collapse" style="list-style-type: none; background: #2e2d2d;"></ul>
+            </div>
+            <div>
+                <a tabindex="0" onclick="playByUrl()"><i class="fa fa-link" style="padding-right: 10px"></i>Riproduci da URL</a>
+            </div>
+            <!--<div>
+                <a tabindex="0" onclick="goToHome()"><i class="fa fa-home" style="padding-right: 10px"></i>Home</a>
+            </div>-->
+            <div id="preferiti" class="hidden">
+                <a tabindex="0" onclick="goToFavourites()"><i class="fa fa-star" style="padding-right: 11px"></i>Preferiti</a>
+            </div>
+
+            <div>
+                <a tabindex="0" href="https://github.com/Be4t5/Netfreex/wiki"><i class="fa fa-question" style="padding-right: 18px"></i>Guida</a>
+            </div>
+
         </div>
-      </div>
+
+    </div>
+</nav>
+
+
+<div id="main">
+<div id="error" class="hidden">
+    <span id="errorMsg">Sembra ci sia un problema di rete. Controlla di essere connesso ad internet e riprova. <br />Potrebbe anche essere un problema del canale, prova a cambiarlo.</span>
+    <br/><br/><a class="btn btn-warning" href="index.html" id="errorBtn">Riprova</a>
+</div>
+
+<div id="welcome">
+    <span>Benvenuto in</span> <img style="margin-top: 7px; width: 100px;" src="img/logo.png"/>
+    <p style="font-size: 20px;">Per cominciare aggiungi un canale dal menù Gestione Canali.</p>
+    <p style="font-size: 16PX;">
+        Se ti serve un aiuto e per la lista dei canali disponibili visita <a style="color: white" href="#" onclick="window.open('https://github.com/Be4t5/Netfreex/wiki', '_system');">la guida</a>
+    </p>
+</div>
+
+<div id="singleLink" class="hidden">
+</div>
+
+<!-- Home view
+================================================== -->
+<div id="homeContainer" class="hidden">
+    <!-- Home Page slider
+    ==========================================-->
+    <div id="tf-home" class="text-center hidden">
+        <div class="overlay">
+            <div class="content">
+                <div id="jssor_1" style="height: 700px; left: 0px; margin: 0 auto; overflow: hidden; position: relative; top: 0px; visibility: hidden; width: 1300px;">
+                    <!-- Loading Screen -->
+                    <div data-u="loading" style="left: 0px; position: absolute; top: 0px;">
+                        <div style="display: block; filter: alpha(opacity=70); height: 100%; left: 0px; opacity: 0.7; position: absolute; top: 0px; width: 100%;"></div>
+                        <div style="display: block; height: 100%; left: 0px; position: absolute; top: 0px; width: 100%;">
+                            <i class="fa fa-spinner fa-spin"></i>
+                        </div>
+                    </div>
+                    <div id="carouselItems" data-u="slides" style="cursor: default; height: 700px; left: 0px; overflow: hidden; position: relative; top: 0px; width: 1300px;">
+
+                    </div>
+                    <!-- Bullet Navigator -->
+                    <div data-u="navigator" class="jssorb05" style="bottom: 16px; right: 16px;" data-autocenter="1">
+                        <!-- bullet navigator item prototype -->
+                        <div data-u="prototype" style="height: 16px; width: 16px;"></div>
+                    </div>
+                    <!-- Arrow Navigator -->
+                    <span data-u="arrowleft" class="jssora22l" style="height: 58px; left: 12px; top: 0px; width: 40px;" data-autocenter="2"></span>
+                    <span data-u="arrowright" class="jssora22r" style="height: 58px; right: 12px; top: 0px; width: 40px;" data-autocenter="2"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Film - Più popolari
+    ==========================================-->
+    <h1 class="sliderTitle movieMostPopularTitle">Film - Più popolari</h1>
+    <div id="homeFilmMostPopular" class="paddingUpDown40">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" id="movieMostPopularSlider">
+                    <!-- Slider main container -->
+                    <div class="swiper-container movieMostPopularSliderContainer" style="width: 100%;">
+                        <!-- Additional required wrapper -->
+                        <div id="movieMostPopularSliderContainer" class="swiper-wrapper ">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Serie TV - Più popolari
+    ==========================================-->
+    <h1 class="sliderTitle serieMostPopularTitle">Serie TV - Più popolari</h1>
+    <div id="homeSerieTvMostPopular" class="paddingUpDown40">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" id="serieTvMostPopularSlider">
+                    <!-- Slider main container -->
+                    <div class="swiper-container serieTvMostPopularSliderContainer" style="width: 100%;">
+                        <!-- Additional required wrapper -->
+                        <div id="serieTvMostPopularSliderContainer" class="swiper-wrapper">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Film - Ultime uscite
+    ==========================================-->
+    <h1 class="sliderTitle movieLastTitle">Film - Ultime uscite</h1>
+    <div id="homeFilm">
+
+        <div class="container move">
+            <div class="row">
+                <div class="col-md-12" id="movieSlider">
+                    <!-- Slider main container -->
+                    <div class="swiper-container movieSliderContainer" style="width: 100%;">
+                        <!-- Additional required wrapper -->
+                        <div id="movieSliderContainer" class="swiper-wrapper">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Serie TV - Ultime uscite
+    ==========================================-->
+    <h1 class="sliderTitle serieLastTitle">Serie TV - Ultime uscite</h1>
+    <div id="homeSerieTv" class="paddingUpDown40">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" id="movieSlider">
+                    <!-- Slider main container -->
+                    <div class="swiper-container serieTvSliderContainer" style="width: 100%;">
+                        <!-- Additional required wrapper -->
+                        <div id="serieTvSliderContainer" class="swiper-wrapper">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav id="footer">
+        <div class="container">
+            <div class="pull-left fnav">
+                <p>
+                    NETFREEX 1.1.7 - © 2017. Developed by <a href="https://github.com/Be4t5">Be4t5</a>
+                </p>
+            </div>
+        </div>
     </nav>
+</div>
 
-  
+<!-- View movie/serie view
+================================================== -->
+<div id="viewMovieContainer" class="hidden">
+    <div class="" id="movieDetails">
+        <div id="boxInfoContainer" class="container">
+            <h2 id="movieTitle"></h2>
+            <div id="boxInfo" class="text-center ">
+                <img id="locandina" class="poster" src=""/>
+                <div id="addToFavourites"></div>
 
-    <div id="error" class="hidden">
-        <span id="errorMsg">Sembra ci sia un problema di rete. Controlla di essere connesso ad internet e riprova. <br />Potrebbe anche essere un problema del canale, prova a cambiarlo.</span>
-        <br/><br/><a class="btn btn-warning" href="index.html" id="errorBtn">Riprova</a>
+                <!-- Riepilogo -->
+                <div id="riepilogo" class="colonnaSx ">
+
+                    <div id="moviePlot" class="scroll">
+                    </div>
+                    <div id="loadingLink" class="rightBlockView play" style="font-size: 2em; opacity: 0.7;">
+                        <i class="fa fa-spinner fa-pulse fa-spin fa-4x"></i>
+
+                    </div>
+
+                    <!-- Lista Stagioni -->
+                    <div id="dropDownStagioni" class="rightBlockView hidden" style="overflow: visible; text-align: initial;">
+                        <div class="dropdown" style="margin-left: -10px; margin-top: -40px; text-shadow: none">
+                            <button id="currentSeason" class="btn btn-primary dropdown-toggle text-uppercase" type="button" data-toggle="dropdown" style="background-color: rgba(0, 0, 0, 0.72); border: none; font-size: 12px;">
+                                <!--Stagione 1 <span class="caret"></span>-->
+                            </button><ul class="dropdown-menu listaStagioni"></ul>
+                        </div>
+                        <div id="cleanAlreadySeen" onclick="markAllAsUnseen()">
+                            <i class="fa fa-bookmark-o" aria-hidden="true"></i> Elimina segnalibri
+                        </div>
+                    </div>
+
+                    <div id="playButton" class="rightBlockView scroll">
+                    </div>
+                </div>
+
+                <!--Dettagli-->
+                <div id="dettagli" class="colonnaSx hidden scroll">
+                    <div id="durata" class="marginBottom10">
+                        <span class="colorOrange">Durata</span><br/>
+                        <span id="durataValue"></span>
+                    </div>
+                    <div id="data" class="marginBottom10">
+                        <span class="colorOrange">Data di uscita</span><br/>
+                        <span id="dataValue"></span>
+                    </div>
+                    <div id="voto" class="marginBottom10">
+                        <span class="colorOrange">Voto</span><br/>
+                        <span id="votoValue"></span>
+                    </div>
+                    <span class="colorOrange">Genere</span><br/>
+                    <div id="generi" class="marginBottom10">
+                    </div>
+                    <span class="colorOrange">Case di produzione</span><br/>
+                    <div id="produzione" class="marginBottom10">
+                    </div>
+                    <!-- Cast
+                    ================== -->
+                    <div id="cast" class="rightBlockView backgroundBlack">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="sfumato" class="sfumato sfumatoMovie">
+        </div>
     </div>
 
-    <div id="welcome">
-        <span>Benvenuto in</span> <img style="width: 100px; margin-top: 7px;" src="img/logo.png"/>
-        <p style="font-size: 20px;">Per cominciare aggiungi un canale dal menù Gestione Canali.</p>
-        <p style="font-size: 16PX;">Se ti serve un aiuto e per la lista dei canali disponibili visita <a style="color: white" href="#" onclick="window.open('https://github.com/Be4t5/Netfreex/wiki', '_system');">la guida</a></p>
+
+    <div id="viewButtons">
+        <div id="riepilogoButton" tabindex="1" class="col-sm-2 col-sm-offset-4 col-xs-3 col-xs-offset-3  text-center viewButtonActive" onclick="changeTab(0)">
+            <h4>Riepilogo</h4>
+        </div>
+        <div id="dettagliButton" tabindex="1" class="col-sm-2 col-xs-3 text-center" onclick="changeTab(1)">
+            <h4>Dettagli</h4>
+        </div>
     </div>
 
-      <div id="singleLink" class="hidden">
-      </div>
+</div>
 
-        <!-- Home view
-          ================================================== -->
-      <div id="homeContainer" class="hidden" >
-          <!-- Home Page slider
-        ==========================================-->
-          <div id="tf-home" class="text-center hidden">
-              <div class="overlay">
-                  <div class="content">
-                      <div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 1300px; height: 700px; overflow: hidden; visibility: hidden;">
-                          <!-- Loading Screen -->
-                          <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
-                              <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
-                              <div style="position:absolute;display:block;top:0px;left:0px;width:100%;height:100%;"><i class="fa fa-spinner fa-spin"></i></div>
-                          </div>
-                          <div id="carouselItems" data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 1300px; height: 700px; overflow: hidden;">
+<!-- Search view
+================================================== -->
+<div id="searchContainer" class="hidden">
+    <div class="row" style="height: 100px; margin-left: 0; margin-right: 0; text-align: center; width: 100%;">
+        <div id="searchType" style="margin: 0 auto; width: 350px">
+            <div id="cercaSerie" class="cercaButton" onclick="setSearchType(false)">
+                <i class="fa fa-2x fa-film" aria-hidden="true"></i>
+                <br/>Cerca Film
+            </div>
+            <div id="cercaFilm" class="cercaButton" onclick="setSearchType(true)">
+                <i class="fa fa-2x fa-television" aria-hidden="true"></i>
+                <br/>Cerca Serie Tv
+            </div>
+        </div>
 
-                          </div>
-                          <!-- Bullet Navigator -->
-                          <div data-u="navigator" class="jssorb05" style="bottom:16px;right:16px;" data-autocenter="1">
-                              <!-- bullet navigator item prototype -->
-                              <div data-u="prototype" style="width:16px;height:16px;"></div>
-                          </div>
-                          <!-- Arrow Navigator -->
-                          <span data-u="arrowleft" class="jssora22l" style="top:0px;left:12px;width:40px;height:58px;" data-autocenter="2"></span>
-                          <span data-u="arrowright" class="jssora22r" style="top:0px;right:12px;width:40px;height:58px;" data-autocenter="2"></span>
-                      </div>
-                  </div>
-              </div>
-          </div>
+        <div class="form hidden" id="searchForm">
+            <div style="margin-bottom: -13px;">Stai cercando <span id="searchingFor"></span></div>
+            <input type="text" id="search" style="background: url(http://f.cl.ly/items/2a2Z0V0L0J1p3V082d3r/icon-search.png) no-repeat scroll 9px 4px;">
+            <input type="checkbox" hidden id="serieTv">
+            <input type="submit" hidden/>
+        </div>
 
-
-          <!-- Film - Più popolari
-        ==========================================-->
-          <h1 class="sliderTitle movieMostPopularTitle">Film - Più popolari</h1>
-          <div id="homeFilmMostPopular" class="paddingUpDown40">  
-              <div class="container">
-                  <div class="row">
-                      <div class="col-md-12" id="movieMostPopularSlider">
-                          <!-- Slider main container -->
-                          <div class="swiper-container movieMostPopularSliderContainer" style="width: 100%;">
-                              <!-- Additional required wrapper -->
-                              <div id="movieMostPopularSliderContainer" class="swiper-wrapper ">
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-          <!-- Serie TV - Più popolari
-        ==========================================-->
-          <h1 class="sliderTitle serieMostPopularTitle">Serie TV - Più popolari</h1>
-          <div id="homeSerieTvMostPopular" class="paddingUpDown40">
-              <div class="container">
-                  <div class="row">
-                      <div class="col-md-12" id="serieTvMostPopularSlider">
-                          <!-- Slider main container -->
-                          <div class="swiper-container serieTvMostPopularSliderContainer" style="width: 100%;">
-                              <!-- Additional required wrapper -->
-                              <div id="serieTvMostPopularSliderContainer" class="swiper-wrapper">
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-          <!-- Film - Ultime uscite
-        ==========================================-->
-          <h1 class="sliderTitle movieLastTitle">Film - Ultime uscite</h1>
-          <div id="homeFilm">
-              
-              <div class="container move">
-                  <div class="row">
-                      <div class="col-md-12" id="movieSlider">
-                          <!-- Slider main container -->
-                          <div class="swiper-container movieSliderContainer" style="width: 100%;">
-                              <!-- Additional required wrapper -->
-                              <div id="movieSliderContainer" class="swiper-wrapper">
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-          <!-- Serie TV - Ultime uscite
-        ==========================================-->
-          <h1 class="sliderTitle serieLastTitle">Serie TV - Ultime uscite</h1>
-          <div id="homeSerieTv" class="paddingUpDown40">
-              <div class="container">
-                  <div class="row">
-                      <div class="col-md-12" id="movieSlider">
-                          <!-- Slider main container -->
-                          <div class="swiper-container serieTvSliderContainer" style="width: 100%;">
-                              <!-- Additional required wrapper -->
-                              <div id="serieTvSliderContainer" class="swiper-wrapper">
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-          <nav id="footer">
-              <div class="container">
-                  <div class="pull-left fnav">
-                      <p>NETFREEX 1.1.7 - © 2017. Developed by <a href="https://github.com/Be4t5">Be4t5</a>
-                      </p>                      
-                  </div>
-              </div>
-          </nav>
-
-      </div>
-
-      <!-- View movie/serie view
-        ================================================== -->
-      <div id="viewMovieContainer" class="hidden">
-          <div class="" id="movieDetails">
-              <div id="boxInfoContainer" class="container">
-                  <h2 id="movieTitle"></h2>
-                  <div id="boxInfo" class="text-center ">
-                      <img id="locandina" class="poster" src=""/>
-                      <div id="addToFavourites"></div>
-                      
-                      <!-- Riepilogo -->
-                      <div id="riepilogo" class="colonnaSx ">
-                          
-                          <div id="moviePlot" class="scroll">
-                          </div>
-                          <div id="loadingLink" class="rightBlockView play" style="opacity: 0.7; font-size: 2em;">
-                              <i class="fa fa-spinner fa-pulse fa-spin fa-4x"></i>
-
-                          </div>
-
-                          <!-- Lista Stagioni -->
-                          <div id="dropDownStagioni" class="rightBlockView hidden" style="overflow: visible; text-align: initial;">
-                              <div class="dropdown" style="margin-top: -40px; margin-left: -10px; text-shadow: none">
-                                  <button id="currentSeason" class="btn btn-primary dropdown-toggle text-uppercase" type="button" data-toggle="dropdown" style="font-size: 12px; background-color: rgba(0, 0, 0, 0.72); border: none">
-                                      <!--Stagione 1 <span class="caret"></span>-->
-                                  </button><ul class="dropdown-menu listaStagioni"></ul>
-                              </div>
-                              <div id="cleanAlreadySeen" onclick="markAllAsUnseen()"><i class="fa fa-bookmark-o" aria-hidden="true"></i> Elimina segnalibri</div>
-                          </div>
-
-                          <div id="playButton" class="rightBlockView scroll" >
-                          </div>
-                      </div>
-
-                      <!--Dettagli-->
-                      <div id="dettagli" class="colonnaSx hidden scroll">
-                          <div id="durata" class="marginBottom10">
-                              <span class="colorOrange">Durata</span><br />
-                              <span id="durataValue"></span>
-                          </div>
-                          <div id="data"  class="marginBottom10">
-                              <span class="colorOrange">Data di uscita</span><br />
-                              <span id="dataValue"></span>
-                          </div>
-                          <div id="voto"  class="marginBottom10">
-                              <span class="colorOrange">Voto</span><br />
-                              <span id="votoValue"></span>
-                          </div>
-                          <span class="colorOrange"  >Genere</span><br />
-                          <div id="generi" class="marginBottom10">
-                          </div>
-                          <span class="colorOrange">Case di produzione</span><br />
-                          <div id="produzione" class="marginBottom10">
-                          </div>
-                          <!-- Cast
-                            ================== -->
-                          <div id="cast" class="rightBlockView backgroundBlack">
-                          </div>
-                      </div> 
-                  </div>               
-              </div>
-
-              <div id="sfumato" class="sfumato sfumatoMovie" >
-              </div>
-          </div>
-
-
-          <div id="viewButtons">
-              <div id="riepilogoButton" tabindex="1" class="col-sm-2 col-sm-offset-4 col-xs-3 col-xs-offset-3  text-center viewButtonActive" onclick="changeTab(0)">
-                  <h4>Riepilogo</h4>
-              </div>
-              <div id="dettagliButton" tabindex="1" class="col-sm-2 col-xs-3 text-center" onclick="changeTab(1)">
-                  <h4>Dettagli</h4>
-              </div>
-          </div>
-
-      </div>
-
-      <!-- Search view
-        ================================================== -->
-      <div id="searchContainer" class="hidden">
-          <div class="row" style="text-align: center; height:100px; width: 100%; margin-left: 0; margin-right: 0;">
-              <div id="searchType" style="margin: 0 auto; width: 350px">
-                  <div id="cercaSerie" class="cercaButton" onclick="setSearchType(false)">
-                      <i class="fa fa-2x fa-film" aria-hidden="true"></i>
-                      <br/>Cerca Film
-                  </div>
-                  <div id="cercaFilm" class="cercaButton" onclick="setSearchType(true)">
-                      <i class="fa fa-2x fa-television" aria-hidden="true"></i>
-                      <br/>Cerca Serie Tv
-                  </div>
-              </div>
-
-              <div class="form hidden" id="searchForm">
-                  <div style="margin-bottom: -13px;">Stai cercando <span id="searchingFor"></span></div>
-                  <input type="text" id="search" style="background: url(http://f.cl.ly/items/2a2Z0V0L0J1p3V082d3r/icon-search.png) no-repeat scroll 9px 6px;">
-                  <input type="checkbox" hidden id="serieTv">
-                  <input type="submit" hidden/>
-              </div>
-
-          </div>
-
-          <h1 class="sliderTitle ricerca" style="margin-bottom: 35px;">Risultati della ricerca</h1>
-
-          <div class="container">
-              <div class="row">
-                  <div class="col-md-12" id="searchResult">
-                      <!-- Slider main container -->
-                      <div class="swiper-container searchResultContainer" style="width: 100%;">
-                          <!-- Additional required wrapper -->
-                          <div id="searchResultContainer" class="swiper-wrapper marginBottom30">
-
-                          </div>
-                          <div id="loadingSearch">
-
-                              <i class="fa fa-spinner fa-pulse fa-spin fa-4x"></i>
-
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-      </div>
-
-
-      <!-- Preferiti view
-    ================================================== -->
-      <div id="favouritesContainer" class="hidden">
-          <h1 class="sliderTitle ricerca" style="margin-bottom: 35px;">I tuoi preferiti <span style="font-size: 0.5em;">su questo canale</span></h1> 
-
-          <div class="container">
-              <div class="row">
-                  <div class="col-md-12" id="favouritesResult">
-                      <!-- Slider main container -->
-                      <div class="swiper-container favouritesResultContainer" style="width: 100%; ">
-                          <!-- Additional required wrapper -->
-                          <div id="favouritesResultContainer" class="swiper-wrapper marginBottom30">
-
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-      </div>
-
-  <div id="openloadDecode" style="display:none;"></div>
-
-  <script type="text/javascript" src="js/lib/bootstrap.js"></script>
-    <script type="text/javascript" src="js/lib/SmoothScroll.js"></script>
-    <script type="text/javascript" src="js/lib/jquery.isotope.js"></script>
-    <script src="js/lib/owl.carousel.js"></script>
-    <script src="js/lib/emulatetab.joelpurra.js"></script>
-    <script src="js/lib/fastclick.js"></script>
-
-      <!-- Image reloader -->
-    <script src="js/lib/image-reloader/jquery.imageReloader.js"></script>
-    <link href="js/lib/image-reloader/image_reloader.css" rel="stylesheet"/>
-
-      <!-- SweetAlert2 -->
-    <script src="js/lib/sweet-alert-2/sweetalert2.min.js"></script>
-    <script src="js/lib/sweet-alert-2/es6-promise.auto.min.js"></script>
-    <link href="js/lib/sweet-alert-2/sweetalert2.css" rel="stylesheet" />
-
-    <!-- Core -->
-    <script src="js/utility.js"></script>
-    <script src="js/favourites.js"></script>
-    <script src="js/bookmark.js"></script>
-    <script src="js/tmdbApi.js"></script>
-    <script src="js/channelManager.js"></script>
-    <script src="js/view.js"></script> 
-    <script src="js/hosts.js"></script>
-    <script type="text/javascript" src="js/main.js"></script> 
-    <div id="channel" class="hidden">
-        <!--<script type="text/javascript" src="js/channels/italiafilm.js"></script>-->
-        <!--<script type="text/javascript" src="js/channels/cineblog.js"></script>-->
-        <!--<script type="text/javascript" src="js/channels/piratestreaming.js"></script>-->
     </div>
-  <script src="js/navigation.js"></script>
-  <script src="js/playByUrl.js"></script>
 
-  <!-- Servers -->
-  <script src="servers/fastvideo.js"></script>
-  <script src="servers/megahd.js"></script>
-  <script src="servers/vidlox.js"></script>
-  <script src="servers/streaminto.js"></script>
-  <script src="servers/flashx.js"></script>
-  <script src="servers/rapidvideo.js"></script>
-    <script src="servers/speedvideo.js"></script>
-  <script src="servers/rapidvideocom.js"></script>
-  <script src="servers/nowvideo.js"></script>
-  <script src="servers/openload.js"></script>
-  <script src="servers/vidto.js"></script>
+    <h1 class="sliderTitle ricerca" style="margin-bottom: 35px;">Risultati della ricerca</h1>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" id="searchResult">
+                <!-- Slider main container -->
+                <div class="swiper-container searchResultContainer" style="width: 100%;">
+                    <!-- Additional required wrapper -->
+                    <div id="searchResultContainer" class="swiper-wrapper marginBottom30">
+
+                    </div>
+                    <div id="loadingSearch">
+
+                        <i class="fa fa-spinner fa-pulse fa-spin fa-4x"></i>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 
-  <script>
-      var slidePerView = 4;
-      loadChannelList(false);
+<!-- Preferiti view
+================================================== -->
+<div id="favouritesContainer" class="hidden">
+    <h1 class="sliderTitle ricerca" style="margin-bottom: 35px;">I tuoi preferiti <span style="font-size: 0.5em;">su questo canale</span></h1>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" id="favouritesResult">
+                <!-- Slider main container -->
+                <div class="swiper-container favouritesResultContainer" style="width: 100%;">
+                    <!-- Additional required wrapper -->
+                    <div id="favouritesResultContainer" class="swiper-wrapper marginBottom30">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 
-  </script>     
-  </body>
+
+<div id="openloadDecode" style="display: none;"></div>
+
+<div id="playerContainer" class="hidden"></div>
+</div>
+
+<script type="text/javascript" src="js/lib/bootstrap.js"></script>
+<script type="text/javascript" src="js/lib/SmoothScroll.js"></script>
+<script type="text/javascript" src="js/lib/jquery.isotope.js"></script>
+<script src="js/lib/owl.carousel.js"></script>
+<script src="js/lib/emulatetab.joelpurra.js"></script>
+<script src="js/lib/fastclick.js"></script>
+
+<!-- Image reloader -->
+<script src="js/lib/image-reloader/jquery.imageReloader.js"></script>
+<link href="js/lib/image-reloader/image_reloader.css" rel="stylesheet"/>
+
+<!-- SweetAlert2 -->
+<script src="js/lib/sweet-alert-2/sweetalert2.min.js"></script>
+<script src="js/lib/sweet-alert-2/es6-promise.auto.min.js"></script>
+<link href="js/lib/sweet-alert-2/sweetalert2.css" rel="stylesheet"/>
+
+<!-- VideoJS -->
+<script src="js/lib/video-js-5.19.2/video.js"></script>
+<link href="js/lib/video-js-5.19.2/video-js.min.css" rel="stylesheet"/>
+<link href="js/lib/video-js-5.19.2/skin/skin.css" rel="stylesheet"/>
+
+<!-- Core -->
+<script src="js/utility.js"></script>
+<script src="js/favourites.js"></script>
+<script src="js/bookmark.js"></script>
+<script src="js/tmdbApi.js"></script>
+<script src="js/channelManager.js"></script>
+<script src="js/view.js"></script>
+<script src="js/hosts.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<div id="channel" class="hidden"></div>
+<script src="js/navigation.js"></script>
+<script src="js/playByUrl.js"></script>
+
+<!-- Servers -->
+<script src="servers/fastvideo.js"></script>
+<script src="servers/megahd.js"></script>
+<script src="servers/vidlox.js"></script>
+<script src="servers/streaminto.js"></script>
+<script src="servers/flashx.js"></script>
+<script src="servers/rapidvideo.js"></script>
+<script src="servers/speedvideo.js"></script>
+<script src="servers/rapidvideocom.js"></script>
+<script src="servers/nowvideo.js"></script>
+<script src="servers/openload.js"></script>
+<script src="servers/vidto.js"></script>
+
+
+<script>
+    var slidePerView = 4;
+    loadChannelList(false);
+
+
+</script>
+</body>
 </html>

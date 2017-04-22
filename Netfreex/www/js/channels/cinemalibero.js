@@ -66,17 +66,17 @@ function doPostVcrypt(idVcrypt, host, url, download) {
 }
 
 
-function parsePage(html, url, isSerieTv, section, nextPage) {
+function parsePage(html, url, isSerieTv, section, nextPage, callback) {
     arrayFilm = [];
     var htmlLocandine = html.split('<div class="locandine">')[1].split('<div style="clear: both"></div>')[0];
 
-    var articoli = htmlLocandine.split('<a class="');
+    var articoli = htmlLocandine.split('<a href="');
     for (var i = 1; i < articoli.length; i = i + 1) {
         try {
             var movie = {
                 title: articoli[i].split('class="titolo">')[1].split('</div>')[0],
                 img: articoli[i].split("url(")[1].split(')')[0],
-                url: articoli[i].split('href="')[1].split('"')[0],
+                url: articoli[i].split('"')[0],
                 isSerieTv: isSerieTv
             };
             arrayFilm.push(movie);
@@ -99,7 +99,7 @@ function parsePage(html, url, isSerieTv, section, nextPage) {
     
 
     console.log(arrayFilm)
-    printPage(isSerieTv, section, nextPage);
+    printPage(isSerieTv, section, nextPage, callback);
 }
 
 
@@ -138,21 +138,30 @@ var sections = [
 $("#welcome").addClass("hidden");
 
 //Most popular
-    $('.movieMostPopularTitle').addClass('hidden');
-    $('.serieMostPopularTitle').addClass('hidden');
-    $('#homeFilmMostPopular').addClass('hidden');
-    $('#homeSerieTvMostPopular').addClass('hidden');
+    //$('.movieMostPopularTitle').addClass('hidden');
+    //$('.serieMostPopularTitle').addClass('hidden');
+    //$('#homeFilmMostPopular').addClass('hidden');
+    //$('#homeSerieTvMostPopular').addClass('hidden');
 
     //Ultime uscite
-    openPage("http://www.cinemalibero.tv/category/film/", false, 'movieSliderContainer', false);
+    //openPage("http://www.cinemalibero.tv/category/film/", false, 'movieSliderContainer', false);
 
-    openPage("http://www.cinemalibero.tv/category/serie-tv/", true, 'serieTvSliderContainer', false);
+    //openPage("http://www.cinemalibero.tv/category/serie-tv/", true, 'serieTvSliderContainer', false);
 
     //openPage("http://www.piratestreaming.news/serietv-aggiornamentii.php?pageNum_lista_film=2", true, 'serieTvSliderContainer', false);
     //openPage("http://www.piratestreaming.news/film-aggiornamenti.php?pageNum_lista_film=2", false, 'movieSliderContainer', false);
 
     
-$(window).on("load", function () {
+$(document).on("ready", function () {
+    Promise.all([
+            asyncOpenPage("http://www.cinemalibero.tv/category/film/", false, 'movieSliderContainer', false, null),
+            asyncOpenPage("http://www.cinemalibero.tv/category/serie-tv/", true, 'serieTvSliderContainer', false, null),
+    ])
+    .then(function () {
+        initViewChannelMode();
+    })
+    .catch(function (e) {
+        console.error(e);
+    });
 
-    initViewChannelMode();
 });

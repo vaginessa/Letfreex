@@ -1,4 +1,4 @@
-function parsePage(html, url, isSerieTv, section, nextPage) {
+function parsePage(html, url, isSerieTv, section, nextPage, callback) {
     arrayFilm = [];
     var articoli = html.split('cover boxcaption');
     for (var i = 1; i < articoli.length; i = i + 1) {
@@ -19,7 +19,7 @@ function parsePage(html, url, isSerieTv, section, nextPage) {
     //Prossima pagina
     console.log(html)
     try {
-        var urlNextPage = html.split('nextpostslink" href="')[1].split('"')[0];
+        var urlNextPage = html.split('nextpostslink" rel="next" href="')[1].split('"')[0];
         console.log("NEXT PAGE");
         console.log(urlNextPage);
         arrayFilm.push(urlNextPage);
@@ -29,7 +29,7 @@ function parsePage(html, url, isSerieTv, section, nextPage) {
     }
 
     console.log(arrayFilm)
-    printPage(isSerieTv, section, nextPage);
+    printPage(isSerieTv, section, nextPage, callback);
 }
 
 
@@ -62,26 +62,18 @@ function search() {
 
 var sections = [
     "movieSliderContainer",
-    "serieTvSliderContainer"
 ];
+
 $("#welcome").addClass("hidden");
 
-//Most popular
-    $('.movieMostPopularTitle').addClass('hidden');
-    $('.serieMostPopularTitle').addClass('hidden');
-    $('#homeFilmMostPopular').addClass('hidden');
-    $('#homeSerieTvMostPopular').addClass('hidden');
-
-    //Ultime uscite
-    openPage("http://www.altadefinizione01.uno/", false, 'movieSliderContainer', false);
-
-    //openPage("http://www.piratestreaming.black/serietv-aggiornamentii.php?pageNum_lista_film=1", true, 'serieTvSliderContainer', false);
-
-    //openPage("http://www.piratestreaming.news/serietv-aggiornamentii.php?pageNum_lista_film=2", true, 'serieTvSliderContainer', false);
-    //openPage("http://www.piratestreaming.news/film-aggiornamenti.php?pageNum_lista_film=2", false, 'movieSliderContainer', false);
-
-    
-$(window).on("load", function () {
-
-    initViewChannelMode();
+$(document).on("ready", function () {
+    Promise.all([
+            asyncOpenPage("http://www.altadefinizione01.uno/", false, 'movieSliderContainer', false, null),
+    ])
+    .then(function () {
+        initViewChannelMode();
+    })
+    .catch(function (e) {
+        console.error(e);
+    });
 });

@@ -1,36 +1,34 @@
 ﻿function openloadExtract(id, success, error, download) {
-    cordovaHTTP.headers = [];
-    cordovaHTTP.setHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0");
+    $.ajax({
+        url: "https://openload.co/f/" + id,
+        type: "GET",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0");
+        },
+        success: function (response) {
+            try {
 
-    var url = "";
+                //Main script
+                var script = response.split('<script type="text/javascript">ﾟωﾟ')[1].split("}})")[0];
 
-        url = "https://openload.co/f/" + id;
-    
-    
-    cordovaHTTP.get(url , {}, {}, function (response) {
-        console.log(response);
+                //ContentDiv for the url
+                var divContent = response.split('<div style="display:none;">')[1].split("</div>")[0];
+                $("#openloadDecode").html(divContent);
 
-        try {
+                script = "ﾟωﾟ" + script + "}})";
 
-            //Main script
-            var script = response.data.split('<script type="text/javascript">ﾟωﾟ')[1].split("}})")[0];
+                eval(script);
 
-            //ContentDiv for the url
-            var divContent = response.data.split('<div style="display:none;">')[1].split("</div>")[0];
-            $("#openloadDecode").html(divContent);
+                var url = "https://openload.co/stream/" + $("#streamurl").html() + "?mime=true";
 
-            script = "ﾟωﾟ" + script + "}})";
-
-            eval(script);
-
-            var url = "https://openload.co/stream/" + $("#streamurl").html() + "?mime=true";
-
-            success(url, download);
-        } catch (ex) {
-            error(ex);
+                success(url, download);
+            } catch (ex) {
+                error(ex);
+            }
+        },
+        error: function (e) {
+            error(e);
         }
-    }, function (response) {
-        error(response);
     });
 }
 
@@ -62,17 +60,22 @@ function aadecode(text) {
 }
 
 function removeLinkOfflineOpenload(id, link) {
-    cordovaHTTP.headers = [];
-    cordovaHTTP.setHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0");
-    cordovaHTTP.get("https://openload.co/f/" + id, {}, {}, function (response) {
-        
-        if (response.data.indexOf("got deleted") > -1 || response.data.indexOf(".rar") > -1) {
-            link.remove();
-            if ($('div[host]:visible').length == 0) {
-                $("#modalContentId").html(nessunLinkDisponibile);
-            }
-        };
-    }, function (response) {
-        console.error(response);
+    $.ajax({
+        url: "https://openload.co/f/" + id,
+        type: "GET",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0");
+        },
+        success: function (response) {
+            if (response.indexOf("got deleted") > -1 || response.indexOf(".rar") > -1) {
+                link.remove();
+                if ($('div[host]:visible').length == 0) {
+                    $("#modalContentId").html(nessunLinkDisponibile);
+                }
+            };
+        },
+        error: function (e) {
+            console.error(e);
+        }
     });
 }

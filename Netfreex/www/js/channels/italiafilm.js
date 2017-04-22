@@ -1,15 +1,21 @@
 function parsePage(html, url, isSerieTv, section, nextPage, callback) {
     arrayFilm = [];
     var articoli = html.split('article')
+    
     for (var i = 1; i < articoli.length; i = i + 2) {
-        var movie = {
-            title: articoli[i].split('title="')[1].split('"')[0],
-            img: articoli[i].split("echo=\"")[1].split('"')[0],
-            url: articoli[i].split('href="')[1].split('"')[0],
-            isSerieTv: isSerieTv
-        };
-        arrayFilm.push(movie);
+        try {
+            var movie = {
+                title: articoli[i].split('title="')[1].split('"')[0],
+                img: articoli[i].split("echo=\"")[1].split('"')[0],
+                url: articoli[i].split('href="')[1].split('"')[0],
+                isSerieTv: isSerieTv
+            };
+            arrayFilm.push(movie);
+        } catch (e) {
+            console.log(e)
+        }
     }
+    
 
     //Prossima pagina
     var patt = new RegExp('<a class="next page-numbers" href="(.*)">', 'gi');
@@ -33,14 +39,17 @@ function parseMostPopular(html, url, isSerieTv, section, callback)
     else
         start = 10;
     for (var i = start; i < articoli.length; i++) {
-        var movie = {
-            title: articoli[i].split('title="')[1].split('"')[0],
-            img: "http:" + articoli[i].split("pagespeed-lazy-src=\"")[1].split('"')[0].replace('http:', ''),
-            url: articoli[i].split('href="')[1].split('"')[0],
-            isSerieTv: isSerieTv
-        };
-
-        arrayFilm.push(movie);
+        try {
+            var movie = {
+                title: articoli[i].split('title="')[1].split('"')[0],
+                img: articoli[i].split("src=\"")[1].split('"')[0],
+                url: articoli[i].split('href="')[1].split('"')[0],
+                isSerieTv: isSerieTv
+            };
+            arrayFilm.push(movie);
+        } catch (e) {
+            console.log(e);
+        }
 
         if (i == 9)
             break;
@@ -83,18 +92,18 @@ var sections = [
 ];
 $("#welcome").addClass("hidden");
 
-    //ITALIAFILM
-    //Most popular
-    openPage("http://www.italia-film.gratis/category/film-streaming-2017/", false, 'movieMostPopularSliderContainer', true, null, function() {     
-    });
-    openPage("http://www.italia-film.gratis/category/film-streaming-2017/", true, 'serieTvMostPopularSliderContainer', true, null, function () {
-    });
+$(document).on("ready", function () {
+    Promise.all([
+         asyncOpenPage("http://www.italia-film.gratis/category/film-streaming-2017/", false, 'movieMostPopularSliderContainer', true, null),
+         asyncOpenPage("http://www.italia-film.gratis/category/film-streaming-2017/", true, 'serieTvMostPopularSliderContainer', true, null),
+         asyncOpenPage("http://www.italia-film.gratis/category/serie-tv/", true, 'serieTvSliderContainer', false, null),
+         asyncOpenPage("http://www.italia-film.gratis/category/film-streaming-2017/", false, 'movieSliderContainer', false, null),
+    ])
+     .then(function () {
+            initViewChannelMode();
+        })
+     .catch(function (e) {
+            console.error(e);
+        });
 
-    //Ultime uscite
-    openPage("http://www.italia-film.gratis/category/film-streaming-2017/", false, 'movieSliderContainer', false);
-    openPage("http://www.italia-film.gratis/category/serie-tv/", true, 'serieTvSliderContainer', false);
-
-$(window).on("load", function () {
-
-    initViewChannelMode();
 });

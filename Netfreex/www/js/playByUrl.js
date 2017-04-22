@@ -46,7 +46,7 @@ function manageSingleLink(html) {
             console.log('trovato ' + res[1]);
             var link = "<div class=\"guarda singleLinkPlay\"  >" +
                             "<img class=\"poster play\" onclick=\"chooseHost($(this).parent())\" src=\"img/play_button.png\" />" +
-                            "<div  class=\"hidden marginBottom10\" host onclick=\"openVideo('" + movieOneLinkHosts[i].host + "','" + res[1] + "', false)\"><img width=\"200\" src=\"img/host/" + host + ".png\"></div>";
+                            "<div  class=\"hidden marginBottom10\" host onclick=\"openVideo('" + movieOneLinkHosts[i].host + "','" + res[1] + "', 0)\"><img width=\"200\" src=\"img/host/" + host + ".png\"></div>";
             $('#singleLink').html($('#singleLink').html() + link + "</div>");
             trovato = true;
         }
