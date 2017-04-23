@@ -206,6 +206,8 @@ function clearCache() {
         var cookieCF = localStorage.cookieCFCB;
         var expirationCF = localStorage.expirationCF;
         var downloadEpisodeInfo = localStorage.downloadEpisodeInfo;
+        var castTutorialBlock = localStorage.castTutorialBlock;
+        var downloadTutorialBlock = localStorage.downloadTutorialBlock;
 
         localStorage.clear();
 
@@ -235,6 +237,10 @@ function clearCache() {
             localStorage.timeStampDonation = donation;
         if (cache)
             localStorage.timeStampClearCache = cache;
+        if (castTutorialBlock)
+            localStorage.castTutorialBlock = castTutorialBlock;
+        if (downloadTutorialBlock)
+            localStorage.downloadTutorialBlock = downloadTutorialBlock;
 
         localStorage.timeStampClearCache = new Date().addDays(7);
     }

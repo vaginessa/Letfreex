@@ -25,7 +25,7 @@
   },
   {
     "file": "css/responsive.css",
-    "hash": "345c2c34ca3d3deeeb0ea6aad09f831e"
+    "hash": "c0cd5112c7ac806aaea39b5b076248b9"
   },
   {
     "file": "css/slider.css",
@@ -33,7 +33,7 @@
   },
   {
     "file": "css/style.css",
-    "hash": "a028e70436bdc6c9dd4c46a5f2d0c3c4"
+    "hash": "f79a1b403472dedd9f6eaf1e75b4c3c9"
   },
   {
     "file": "css/swiper.css",
@@ -224,6 +224,10 @@
     "hash": "59e03e2b25f9817c262ee7add7e01301"
   },
   {
+    "file": "img/cast.png",
+    "hash": "dc7d808c4d1968efa9936c569da8d356"
+  },
+  {
     "file": "img/host/fastvideo.png",
     "hash": "f35290c8e0c7479e50574f9a7afd1631"
   },
@@ -272,24 +276,8 @@
     "hash": "7078cd56715602553d76a54245698cd9"
   },
   {
-    "file": "img/locandina.jpg",
-    "hash": "44898d3f21e418c673211135d13772e5"
-  },
-  {
     "file": "img/logo.png",
     "hash": "d5c962773be397074bce2a045529411d"
-  },
-  {
-    "file": "img/netfreex1.png",
-    "hash": "d2dbd87790d8bcd8bf4e98bfa59ca615"
-  },
-  {
-    "file": "img/netfreex2.png",
-    "hash": "9a8b63d02530901b328a85be9f91fac1"
-  },
-  {
-    "file": "img/netfreex3.png",
-    "hash": "be5cb6a14c436b4163371fe40bf8ab8e"
   },
   {
     "file": "img/play_button.png",
@@ -301,47 +289,47 @@
   },
   {
     "file": "index.html",
-    "hash": "fdcc30e7c2d1d8b3c7043aa89dc5498d"
+    "hash": "74796d0338470ab2dc6773c8e3eae8b8"
   },
   {
     "file": "js/bookmark.js",
-    "hash": "7caf8cb50c80b78b5f9b3a81adba6c40"
+    "hash": "46e3e403317cdd267751c4acbbbfb814"
   },
   {
     "file": "js/channelManager.js",
-    "hash": "5ecdee83ea546701a76b1eb68916ee9e"
+    "hash": "fa632534f7928af7bd4aeb74a6a86774"
   },
   {
     "file": "js/channels/altadefinizione.js",
-    "hash": "37776a3936e252d232e4eca78fd3e652"
+    "hash": "ca719b07eb211e2fa0d9adb94a86df6a"
   },
   {
     "file": "js/channels/cineblog.js",
-    "hash": "71912f7dea89e96288099fa545b309f6"
+    "hash": "ec56d76e52e3a7951d5b84b222906f07"
   },
   {
     "file": "js/channels/cinemalibero.js",
-    "hash": "6e0e9541721c76e369eaba9912b36ca7"
+    "hash": "80bb0626934fa3fb6afb0fce5af9fb67"
   },
   {
     "file": "js/channels/filmpertutti.js",
-    "hash": "a7d0c496d59dd7f5b1222b6462a264f7"
+    "hash": "36fa5df39e5ea467af8e4886294b4012"
   },
   {
     "file": "js/channels/italiafilm.js",
-    "hash": "a2830e331abafa2a021f1dd77d3cb8e9"
+    "hash": "acdbf6da31cf51146b89c44163dedfc7"
   },
   {
     "file": "js/channels/piratestreaming.js",
-    "hash": "a04355d14fafe2151794d8eef116e167"
+    "hash": "162fb3d0e06c6389d0adfdcc2d5c3a77"
   },
   {
     "file": "js/favourites.js",
-    "hash": "06b0bdfea931761552f505c2da3b941a"
+    "hash": "ea2b54f837d63389c0a40da7afaea510"
   },
   {
     "file": "js/hosts.js",
-    "hash": "dbdc227f464605ed21a3067e55fe5031"
+    "hash": "4d557d469ee41b51a67ec88aad6ba326"
   },
   {
     "file": "js/lib/bootstrap.js",
@@ -409,7 +397,7 @@
   },
   {
     "file": "js/lib/slider.js",
-    "hash": "56825d01c1ea6c32c4919e313ce09d4f"
+    "hash": "e49216f8fcc4e325aa00ecf7126cb3cb"
   },
   {
     "file": "js/lib/SmoothScroll.js",
@@ -433,23 +421,71 @@
   },
   {
     "file": "js/lib/swiper.js",
-    "hash": "7e1e8e48f73289ba92735aaa96caeb77"
+    "hash": "6af53e50b2d588466897e6761803c579"
+  },
+  {
+    "file": "js/lib/video-js-5.19.2/skin/nf-icon-v1-86.eot",
+    "hash": "db7332e7fd7cef1282520b3485d41d71"
+  },
+  {
+    "file": "js/lib/video-js-5.19.2/skin/nf-icon-v1-86.ttf",
+    "hash": "1774a0847a9219cedc8151a6730013a4"
+  },
+  {
+    "file": "js/lib/video-js-5.19.2/skin/nf-icon-v1-86.woff",
+    "hash": "ae2a300fb77ce1e2ab3d09308c066a00"
+  },
+  {
+    "file": "js/lib/video-js-5.19.2/skin/site-spinner.png",
+    "hash": "e27b3165308c68cc99b4a134189378bc"
+  },
+  {
+    "file": "js/lib/video-js-5.19.2/skin/skin.css",
+    "hash": "b830df144399387955b757c498c04852"
+  },
+  {
+    "file": "js/lib/video-js-5.19.2/video-js.css",
+    "hash": "25c0ee9be005c59ef095ff469f8e9c8f"
+  },
+  {
+    "file": "js/lib/video-js-5.19.2/video-js.min.css",
+    "hash": "cecd84e507e98544f7f99c4c4f184a2c"
+  },
+  {
+    "file": "js/lib/video-js-5.19.2/video-js.swf",
+    "hash": "a722264640f60ed5bfca0dc021e0adec"
+  },
+  {
+    "file": "js/lib/video-js-5.19.2/video.js",
+    "hash": "b7543c1ea8af02b0c6aeca5f224f3f22"
+  },
+  {
+    "file": "js/lib/video-js-5.19.2/video.min.js",
+    "hash": "2eda0b0b50a325022c67ba6200cbdb30"
+  },
+  {
+    "file": "js/lib/video-js-5.19.2/videojs.hotkeys.min.js",
+    "hash": "2872576b4d512bb120203cc6e8eea572"
   },
   {
     "file": "js/main.js",
-    "hash": "e5013a7a545b455cfe30135af9707f5c"
+    "hash": "22982a7701c716274d275879573f8b0a"
   },
   {
     "file": "js/navigation.js",
-    "hash": "02f94630bf8d3fefd30cf2e086a892ae"
+    "hash": "61205ab39ea9da5de317e01c036c4a81"
   },
   {
     "file": "js/playByUrl.js",
-    "hash": "ec2f033c2c6211c6eaaa544a7c40f215"
+    "hash": "e504f964ea01a271fa299714ceee9e49"
+  },
+  {
+    "file": "js/supportRestrictionPlatform.js",
+    "hash": "52d4c10120f3f25e63157392f90618d0"
   },
   {
     "file": "js/tmdbApi.js",
-    "hash": "dc5f8a45c6da08abe734fecb1ffe57eb"
+    "hash": "ebc6db29bdd0319ac92bd969e1d382e3"
   },
   {
     "file": "js/updateManager.js",
@@ -457,11 +493,11 @@
   },
   {
     "file": "js/utility.js",
-    "hash": "ce95f05191b9a930861dbd97784bf4ec"
+    "hash": "bed56d7906c771fcb91357cefba052c9"
   },
   {
     "file": "js/view.js",
-    "hash": "92f464aaac4652124238bf895845b09a"
+    "hash": "88dc59632a5549b51b66a743a4a617f4"
   },
   {
     "file": "scripts/jquery-1.12.0.min.js",
@@ -473,46 +509,46 @@
   },
   {
     "file": "servers/fastvideo.js",
-    "hash": "58d0ded4672435efb640057f0801e603"
+    "hash": "7aced4f45d8f7ef49868b923e0ff8f80"
   },
   {
     "file": "servers/flashx.js",
-    "hash": "7414acda955b0f85650da5c745e606ee"
+    "hash": "b13003f35a6f0853fbbf09c861ad41b0"
   },
   {
     "file": "servers/megahd.js",
-    "hash": "d6951d631e7da8ed81a91c9999c3e333"
+    "hash": "f7253759c87b3dea42df42590a6f496c"
   },
   {
     "file": "servers/nowvideo.js",
-    "hash": "ecd7af3e307831f268c62d963989b863"
+    "hash": "073ee1b0b848c22e0fe54aca67417e43"
   },
   {
     "file": "servers/openload.js",
-    "hash": "edb3cab981a844dad8ce130e940b86d2"
+    "hash": "45d23567a7ec93f052c915fbeb5e534f"
   },
   {
     "file": "servers/rapidvideo.js",
-    "hash": "f52c173434b5cf2da6370a2c8b40a976"
+    "hash": "0be62ce19e3099cbbc8e76d28bd84067"
   },
   {
     "file": "servers/rapidvideocom.js",
-    "hash": "394a7a7ff115b56952dc86b406e0dc09"
+    "hash": "f12aac34776e929fab764ffdea641578"
   },
   {
     "file": "servers/speedvideo.js",
-    "hash": "649c6f213eef05d06fe3c78d4d97513d"
+    "hash": "a2c05bdc347278eb99b74b3fc657485b"
   },
   {
     "file": "servers/streaminto.js",
-    "hash": "2bc0d0140ec0e30b8e2df36e2de69bcd"
+    "hash": "6bc0ecc8b34892adbd1873a275b4aee6"
   },
   {
     "file": "servers/vidlox.js",
-    "hash": "6a335c05ffe2ef3c0e6e79df9630a26d"
+    "hash": "cc73c5f68382b8d48c626a2ace552865"
   },
   {
     "file": "servers/vidto.js",
-    "hash": "4b65b1249ad667f10ea82bb580ef21e9"
+    "hash": "09c6a6a05aa2387ef5b060a742b7fb34"
   }
 ]

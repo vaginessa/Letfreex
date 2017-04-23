@@ -141,17 +141,20 @@ function fillCarousel() {
     }
     if (arrayCarousel.length == 0)
         $("#homeContainer").addClass('paddingTopSection');
+    try {
+        initializeSlider();
 
-    initializeSlider();
-
-    if ($(window).width() > 768) {
-        var options = { $AutoPlay: true, $ArrowKeyNavigation: 0, $Idle: 3000 };
-        jssor_slider1 = new $JssorSlider$('jssor_1', options);
+        if ($(window).width() > 768) {
+            var options = { $AutoPlay: true, $ArrowKeyNavigation: 0, $Idle: 3000 };
+            var jssor_slider1 = new $JssorSlider$('jssor_1', options);
+        }
+        $('#tf-home').removeClass('hidden');
+    } catch (e) {
+        console.error("FAILED INIT CAROUSEL");
+        console.error(e);
     }
-
-    $('#tf-home').removeClass('hidden');
-
-
+    
+    
     $('#loading').addClass('hidden');
     $('.tf-menu').removeClass('hidden');
     $('#tf-menu').removeClass('hidden');

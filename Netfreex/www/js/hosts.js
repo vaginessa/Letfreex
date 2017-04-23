@@ -257,13 +257,12 @@ function manageMovieLinks(html) {
             console.log('trovato ' + res[1]);
 
             //Se il link non l'ho già inserito prima, nei link multipli
-
-            if ($('#playButton').html().indexOf(res[1]) == -1 && link.indexOf(res[1]) == -1) {
+            if ($('#playButton').html().indexOf(res[1]) == -1 && link.indexOf(res[1]) == -1 && res[1] != "embed") {
                 count++;
                 link += "<div  class=\"hidden marginBottom10\" host >" +
                     "<img tabindex='0' onclick=\"openVideo('" + movieOneLinkHosts[i].host + "','" + res[1] + "', 0)\" width=\"200\" src=\"img/host/" + host + ".png\">" +
                     "<i tabindex='0' class=\"fa fa-download\" aria-hidden=\"true\" onclick=\"openVideo('" + movieOneLinkHosts[i].host + "','" + res[1] + "', 1)\"></i>" +
-                    "<i tabindex='0' class=\"fa fa-external-link\" aria-hidden=\"true\" onclick=\"openVideo('" + movieOneLinkHosts[i].host + "','" + res[1] + "', 2)\"></i>" +
+                    "<img tabindex='0' onclick=\"openVideo('" + movieOneLinkHosts[i].host + "','" + res[1] + "', 2)\" class=\"castIcon\" src=\"img/cast.png\">" +
                     "</div>";
             }
         }
@@ -321,7 +320,8 @@ function manageSerieTvLinks(html, regexStagione) {
             if (!listaLink[label])
                 listaLink[label] = [];
 
-            listaLink[label].push(singleEpisode);
+            if (res[2] != "embed")
+                listaLink[label].push(singleEpisode);
         }
     }
 
@@ -386,7 +386,7 @@ function manageSerieTvLinks(html, regexStagione) {
             link += "<div class=\"hidden marginBottom10\" host >" +
                 "<img tabindex='0' onclick=\"openVideo('" + listaLink[stagione].value[j].host + "','" + listaLink[stagione].value[j].id + "', 0)\" width=\"200\" src=\"img/host/" + hostImg + ".png\">" +
                 "<i tabindex='0' class=\"fa fa-download\" aria-hidden=\"true\" onclick=\"openVideo('" + listaLink[stagione].value[j].host + "','" + listaLink[stagione].value[j].id + "', 1)\"></i>" +
-                "<i tabindex='0' class=\"fa fa-external-link\" aria-hidden=\"true\" onclick=\"openVideo('" + listaLink[stagione].value[j].host + "','" + listaLink[stagione].value[j].id + "', 2)\"></i>" +
+                "<img tabindex='0' onclick=\"openVideo('" + listaLink[stagione].value[j].host + "','" + listaLink[stagione].value[j].id + "', 2)\" class=\"castIcon\" src=\"img/cast.png\">" +
                 "</div>";
         }
         link += "</div>";

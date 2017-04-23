@@ -124,11 +124,20 @@ function initViewChannelMode() {
         initializeSliderPoster(sections[i]);
     }
 
-    //Carousel
-    if (arrayCarousel.length == 0)
-        setTimeout(fillCarousel, 500);
-    else
-        fillCarousel();
+    try {
+
+        //Carousel
+        if (arrayCarousel.length == 0)
+            setTimeout(fillCarousel, 500);
+        else
+            fillCarousel();
+    } catch (e) {
+
+        $('#loading').addClass('hidden');
+        $('.tf-menu').removeClass('hidden');
+        $('#tf-menu').removeClass('hidden');
+        $("#homeContainer").addClass('paddingTopSection');
+    }
 
 
     if (localStorage.timeStampDonation == undefined)

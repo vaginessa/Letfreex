@@ -1,4 +1,4 @@
-var jssor_1_slider;
+
 function initializeSlider() {
     var jssor_1_SlideoTransitions = [
               [{ b: 5500, d: 3000, o: -1, r: 240, e: { r: 2 } }],
@@ -30,7 +30,7 @@ function initializeSlider() {
         }
     };
 
-    jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+    var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
 
     //responsive code begin
     //you can remove responsive code if you don't want the slider scales while window resizing

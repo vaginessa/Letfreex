@@ -72,6 +72,36 @@ function removeLinkOffline(video) {
 
 }
 
+function showCastTutorial() {
+    var html = "<p>Cliccando sull'icona trasmetti, poi riprodurre i video con un player alternativo tra quelli installati sul tuo dispositivo.</p>"
+        + "<p>Puoi anche trasmettere il video a <span class=\"colorWhite\">Chromecast</span> o <span class=\"colorWhite\">SmartTv</span>!<br>" +
+        "Ti basta aprire il video con un'app di casting come, ad esempio, <a href='https://play.google.com/store/apps/details?id=com.instantbits.cast.webvideo&hl=it'>Web Video Caster</a></p>";
+
+    swal({
+        title: '<img class="castIcon" src="img/cast.png">Trasmetti',
+        html: html,
+        background: 'rgba(0, 0, 0, 1)',
+        padding: 30,
+        showConfirmButton: false,
+        showCloseButton: true
+    });
+    localStorage.castTutorialBlock = "true";
+}
+function showDownloadTutorial() {
+    var html = "<p>Cliccando sull'icona download, puoi scaricare il video sul tuo dispositivo per guardarlo offline.</p>"
+    + "<p>Per scaricarlo, ti basta aprirlo con un browser, oppure (<span class='colorWhite'>consigliato</span>) con un download manager come <a href='https://play.google.com/store/apps/details?id=com.dv.adm'>Advanced Download Manager</a>, grazie al quale aumenterai anche la velocita' del download.</p>";
+
+    swal({
+        title: '<i class="fa fa-download colorOrange"></i>Download',
+        html: html,
+        background: 'rgba(0, 0, 0, 1)',
+        padding: 30,
+        showConfirmButton: false,
+        showCloseButton: true
+    });
+    localStorage.downloadTutorialBlock = "true";
+}
+
 function chooseHost(video) {
     localStorage.currentEpisode = video.attr("info");
 
@@ -90,6 +120,13 @@ function chooseHost(video) {
 var download = false;
 //Estrae il video di film/serie tv
 function openVideo(host, url, download) {
+    if(download == 2 && localStorage.castTutorialBlock != "true") {
+        return showCastTutorial();
+    }
+    if (download == 1 && localStorage.downloadTutorialBlock != "true") {
+        return showDownloadTutorial();
+    }
+
     swal.closeModal();
     $('#loading').removeClass('hidden');
 
@@ -189,7 +226,8 @@ function playWithOurPlayer(url) {
     }
 
     $('#playerContainer').removeClass('hidden');
-    $("#playerContainer").html('<video id="player" class="video-js" poster="null" style="outline: none;-webkit-tap-highlight-color: rgba(0, 0, 0, 0);-webkit-appearance: none;"><source id="source" type="video/mp4"></video>');
+    $("#playerContainer").html('<video id="player" class="video-js" poster="null" style="outline: none;-webkit-tap-highlight-color: rgba(0, 0, 0, 0);-webkit-appearance: none;">' +
+        '<source id="source" type="video/mp4"></video>');
 
         var myPlayer = videojs('player', {
             controls: true,
@@ -209,6 +247,11 @@ function playWithOurPlayer(url) {
                     return ((event.which === 179) || (event.which === 13));
                 }
             });
+
+            $('.vjs-modal-dialog').on('click',function() {
+                myPlayer.dispose();
+                playWithOurPlayer(url);
+            })
         });
 
         myPlayer.on('loadedmetadata', function () {

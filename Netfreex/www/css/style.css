@@ -757,15 +757,15 @@ input[type="text"]{
  0 0 10px rgba(255, 255, 255, 0.3);*/
 
     color: #333;
-    height: 26px;
-    margin: 38px 80px 0 80px;
+    height: 36px;
+    margin: 38px 0px 0 0px;
     outline: none;
-    padding: 0 20px 0 35px;
+    padding: 0px 27px 4px 34px;
     transition: all .1s linear;
     -moz-transition: all .1s linear;
     -o-transition: all .1s linear;
     -webkit-transition: all .1s linear;
-    /*width: 250px;*/
+    width: 280px;
 }
 
 input[type="checkbox"] {
@@ -951,11 +951,11 @@ label {
 }
 
 .seenIcon {
-    font-size: 17px;
+    font-size: 21px;
     right: 24px;
-    opacity: 0.75;
     top: 125px;
     position: absolute;
+    color: #fcac45;
 }
 
 #cleanAlreadySeen {
@@ -1054,4 +1054,10 @@ a.list-group-item-success.active:focus {
     margin-left: -78px;
     top: 20px;
     margin-bottom: 20px;
+}
+
+.castIcon {
+    width: 20px;
+    position: relative;
+    top: -1px;
 }
