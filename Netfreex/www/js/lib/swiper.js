@@ -2971,6 +2971,8 @@
           Keyboard Control
           ===========================*/
         function handleKeyboard(e) {
+            if(s.container.find('.backgroundOrange').length == 0)
+                return;
             if (e.originalEvent) e = e.originalEvent; //jquery fix
             var kc = e.keyCode || e.charCode;
             // Directions locks

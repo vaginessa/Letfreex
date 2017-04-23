@@ -98,9 +98,9 @@ function search() {
 
     var url;
     if ($('#serieTv').prop('checked'))
-        url = "https://www.cb01.uno/serietv/search/" + input;
+        url = localStorage.cineblogUrl + "/serietv/search/" + input;
     else
-        url = "https://www.cb01.uno/search/" + input;
+        url = localStorage.cineblogUrl + "/search/" + input;
 
     openPage(url, $('#serieTv').prop('checked'), 'searchResultContainer', false, true);
 }
@@ -116,6 +116,7 @@ function parseMoviePage(html, url, isSerieTv) {
         $('.guarda').removeClass('hidden');
         $('#playButton').removeClass('hidden');
         $('#loadingLink').addClass('hidden');
+        
 
     } else {
 
@@ -125,6 +126,7 @@ function parseMoviePage(html, url, isSerieTv) {
 
         manageSerieTvLinks(html, regexStagione);
     }
+    $('#loading').addClass('hidden');
 }
 
 
@@ -189,7 +191,7 @@ var cineblog = true;
 document.addEventListener('deviceready', onDeviceReady.bind(this), false);
 
 function onDeviceReady() {
-    openPage("https://www.cb01.uno/", false, 'movieSliderContainer', false, null, initViewChannelMode);
+    openPage(localStorage.cineblogUrl, false, 'movieSliderContainer', false, null, initViewChannelMode);
 }
 
 

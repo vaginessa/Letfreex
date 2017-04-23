@@ -252,7 +252,7 @@ bit of blue so it can still be seen on all-black video frames, which are common.
             /* For IE8 we'll lighten the color */
             background: #3a3a3a;
             /* Otherwise we'll rely on stacked opacities */
-            background: rgba(46, 46, 46, 0.5);
+            background: rgba(165, 165, 165,1);
             border-radius: 1em;
             height: 0.9em !important;
         }
@@ -263,7 +263,7 @@ smaller disconnected loaded time ranges */
                 /* For IE8 we'll lighten the color */
                 background: #3a3a3a;
                 /* Otherwise we'll rely on stacked opacities */
-                background: rgba(46, 46, 46, 0.75);
+                background: rgba(165, 165, 165,1);
                 border-radius: 1em;
                 height: 0.9em !important;
             }

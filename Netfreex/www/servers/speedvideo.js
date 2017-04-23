@@ -70,7 +70,21 @@
         data = data.split("<script type='text/javascript'>")[1];
         var base = parseInt(data.split('= ')[1].split(';')[0]);
 
-        var url = input.split("linkfile = '")[1].split("'")[0];
+        var url = "";
+        try {
+            url = input.split("linkfile = '")[1].split("'")[0];
+        } catch (e) {
+            var linkEncoded = input.split('file: base64_decode("')[1].split('"')[0];
+
+            var url = base64_decode(linkEncoded, base);
+
+            url = url.replace("speedvideo.net/getvideo///", "");
+            try {
+                url = url.split(".mp4")[0] + ".mp4";
+            } catch (e) {
+                url = url.split(".flv")[0] + ".flv";
+            }
+        }
 
         //var linkEncoded = input.split('file: base64_decode("')[1].split('"')[0];
 

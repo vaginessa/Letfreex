@@ -4,6 +4,12 @@
         width: 115px;
         height: 171px;
     }
+    #cerca {
+        right: 0;
+    }
+    #welcome {
+        padding-top: 40%;
+    }
     .sliderTitle {
         font-size: 25px;
         text-align: center;
@@ -66,6 +72,9 @@
 
 /*Landscape*/
 @media (max-width: 992px) and (min-width: 598px) {
+    #cerca {
+        right: 12px;
+    }
    .posterImg {
         width: 133px;
         height: 200px;
@@ -128,11 +137,11 @@
  }
 
  .play {
-     margin-top: -7% !important;
+     margin-top: -5% !important;
  }
 
 #sfumato {
-    background-image: -webkit-linear-gradient(right, rgba(255, 255, 255, 0) 0%, #000 60%);
+    background-image: -webkit-linear-gradient(right, rgba(0, 0, 0, 0) 0%, #000 60%);
 }
 
 .form {
@@ -140,7 +149,7 @@
     margin-left: 0;
 }
 .ricerca {
-    margin-top: 0 !important;
+    margin-top: 3px !important;
     padding-top: 0 !important; 
 }
 }
@@ -166,7 +175,7 @@
 
 @media (max-width: 603px){
 #tf-menu.navbar-default {
-	background-image: -webkit-linear-gradient(bottom, rgba(255, 255, 255, 0) 0%, #000 100%);
+	background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, #000 100%);
     border: none;
 	}
 #tf-works li.pull-right, #tf-works li.pull-left {

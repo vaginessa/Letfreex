@@ -1,7 +1,7 @@
 function extractVcrypt(url, host, download) {
     cordovaHTTP.headers = [];
     cordovaHTTP.setHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:18.0) Gecko/20100101 Firefox/18.0");
-    cordovaHTTP.get("http://www.cinemalibero.tv/goto/" + url, {}, {}, function (response) {
+    cordovaHTTP.get(localStorage.cinemaLiberoUrl + "/goto/" + url, {}, {}, function (response) {
         if (response.data.indexOf("nowvideo") > -1) {
             var idVideo = response.data.match("/video/([a-zA-Z0-9]+)")[1];
             openVideo("nowvideo", idVideo, download);
@@ -112,6 +112,7 @@ function parseMoviePage(html, url, isSerieTv) {
         $('.guarda').removeClass('hidden');
         $('#playButton').removeClass('hidden');
         $('#loadingLink').addClass('hidden');
+        
 
     } else {
         //Levo la roba che non serve
@@ -121,12 +122,13 @@ function parseMoviePage(html, url, isSerieTv) {
 
         manageSerieTvLinks(html, regexStagione);
     }
+    $('#loading').addClass('hidden');
 }
 
 function search() {
     var input = encodeURI($('#search').val());
 
-    var url = "http://www.cinemalibero.tv/?s=" + input;
+    var url = localStorage.cinemaLiberoUrl + "/?s=" + input;
 
     openPage(url, $('#serieTv').prop('checked'), 'searchResultContainer', false, true);
 }
@@ -154,8 +156,8 @@ $("#welcome").addClass("hidden");
     
 $(document).on("ready", function () {
     Promise.all([
-            asyncOpenPage("http://www.cinemalibero.tv/category/film/", false, 'movieSliderContainer', false, null),
-            asyncOpenPage("http://www.cinemalibero.tv/category/serie-tv/", true, 'serieTvSliderContainer', false, null),
+            asyncOpenPage(localStorage.cinemaLiberoUrl + "/category/film/", false, 'movieSliderContainer', false, null),
+            asyncOpenPage(localStorage.cinemaLiberoUrl + "/category/serie-tv/", true, 'serieTvSliderContainer', false, null),
     ])
     .then(function () {
         initViewChannelMode();

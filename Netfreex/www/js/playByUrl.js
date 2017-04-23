@@ -5,17 +5,21 @@ function playByUrl() {
     $('#bs-example-navbar-collapse-1').collapse('hide');
 
     swal({
-        background: 'rgba(0, 0, 0, 0.568627)',
+        background: 'rgba(0, 0, 0, 1)',
         title: 'Inserisci l\'indirizzo del video',
         input: 'text',
         showCancelButton: true,
         animation: false,
+        customClass: 'top-60',
         confirmButtonColor: '#d9941e',
         cancelButtonText: 'Annulla',
         allowOutsideClick: false,
         inputValidator: function (value) {
             return new Promise(function (resolve, reject) {
-                    resolve();
+                if (value == "")
+                    reject();
+
+                resolve();
             });
         }
     }).then(function (result) {

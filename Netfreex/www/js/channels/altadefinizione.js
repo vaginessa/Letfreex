@@ -41,6 +41,7 @@ function parseMoviePage(html, url, isSerieTv) {
         $('.guarda').removeClass('hidden');
         $('#playButton').removeClass('hidden');
         $('#loadingLink').addClass('hidden');
+        
 
     } else {
         //Levo la roba che non serve
@@ -50,12 +51,13 @@ function parseMoviePage(html, url, isSerieTv) {
 
         manageSerieTvLinks(html, regexStagione);
     }
+    $('#loading').addClass('hidden');
 }
 
 function search() {
     var input = encodeURI($('#search').val());
 
-    var url = "http://www.altadefinizione01.uno/?s=" + input;
+    var url = localStorage.altadefinizioneUrl + "/?s=" + input;
 
     openPage(url, $('#serieTv').prop('checked'), 'searchResultContainer', false, true);
 }
@@ -68,7 +70,7 @@ $("#welcome").addClass("hidden");
 
 $(document).on("ready", function () {
     Promise.all([
-            asyncOpenPage("http://www.altadefinizione01.uno/", false, 'movieSliderContainer', false, null),
+            asyncOpenPage(localStorage.altadefinizioneUrl, false, 'movieSliderContainer', false, null),
     ])
     .then(function () {
         initViewChannelMode();

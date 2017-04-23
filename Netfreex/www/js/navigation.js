@@ -79,15 +79,24 @@ function eraseViewMode() {
 
 }
 
+var navOpened = false;
 function openNav() {
+    if (buttonMode)
+        $("#mySidenav").removeClass('hidden');
     document.getElementById("mySidenav").style.marginLeft = "0";
-    $("body").css("overflow", "hidden");
+    $('.menuItem').attr("tabindex", "2");
+    navOpened = true;
+
 }
 
 function closeNav() {
+    if (buttonMode)
+        $("#mySidenav").addClass('hidden');
     document.getElementById("mySidenav").style.marginLeft = "-250px";
-    $("body").css("overflow", "initial");
+    $('.menuItem').attr("tabindex", "-1");
+    navOpened = false;
 }
+
 
 function changeTab(num) {
     switch (num) {
@@ -256,6 +265,10 @@ function goBack() {
             goBack();
 
         }, false);
+
+        if(device.platform == "Win32")
+            Fullscreen.on();
+
     };
 
     function onPause() {

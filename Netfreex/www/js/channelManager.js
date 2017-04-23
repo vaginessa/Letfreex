@@ -1,22 +1,22 @@
 function loadChannelList(added) {
-    var channelListHtml = '<li><a onclick="aggiungiCanale();">Aggiungi canale</a></li><li class="borderBottomWhite"><a onclick="eliminaCanale();">Elimina canale</a></li>';
+    var channelListHtml = '<li><a class="menuItem" onclick="aggiungiCanale();">Aggiungi canale</a></li><li class="borderBottomWhite"><a class="menuItem" onclick="eliminaCanale();">Elimina canale</a></li>';
     if (localStorage.cineblogUrl) {
-        channelListHtml += '<li><a href="index.html?channel=cineblog">Cineblog</a></li>';
+        channelListHtml += '<li><a class="menuItem" href="index.html?channel=cineblog">Cineblog</a></li>';
     }
     if (localStorage.italiaFilmUrl) {
-        channelListHtml += '<li><a href="index.html?channel=italiafilm">ItaliaFilm</a></li>';
+        channelListHtml += '<li><a class="menuItem" href="index.html?channel=italiafilm">ItaliaFilm</a></li>';
     }
     if (localStorage.pirateStreamingUrl) {
-        channelListHtml += '<li><a href="index.html?channel=piratestreaming">Piratestreaming</a></li>';
+        channelListHtml += '<li><a class="menuItem" href="index.html?channel=piratestreaming">Piratestreaming</a></li>';
     }
     if (localStorage.filmPerTuttiUrl) {
-        channelListHtml += '<li><a href="index.html?channel=filmpertutti">FilmPerTutti</a></li>';
+        channelListHtml += '<li><a class="menuItem" href="index.html?channel=filmpertutti">FilmPerTutti</a></li>';
     }
     if (localStorage.cinemaLiberoUrl) {
-        channelListHtml += '<li><a href="index.html?channel=cinemalibero">CinemaLibero</a></li>';
+        channelListHtml += '<li><a class="menuItem" href="index.html?channel=cinemalibero">CinemaLibero</a></li>';
     }
     if (localStorage.altadefinizioneUrl) {
-        channelListHtml += '<li><a href="index.html?channel=altadefinizione">Altadefinizione</a></li>';
+        channelListHtml += '<li><a class="menuItem" href="index.html?channel=altadefinizione">Altadefinizione</a></li>';
     }
 
     $("#channelList").html(channelListHtml);
@@ -53,7 +53,7 @@ function loadChannelList(added) {
 }
 
 function isChannelListEmpty() {
-    return $("#channelList").html() == '<li><a onclick="aggiungiCanale();">Aggiungi canale</a></li><li class="borderBottomWhite"><a onclick="eliminaCanale();">Elimina canale</a></li>';
+    return $("#channelList").html() == '<li><a class="menuItem" onclick="aggiungiCanale();">Aggiungi canale</a></li><li class="borderBottomWhite"><a class="menuItem" onclick="eliminaCanale();">Elimina canale</a></li>';
 }
 
 function changeChannel(name) {
@@ -76,10 +76,6 @@ function changeChannel(name) {
 }
 
 function initViewChannelMode() {
-    $('#loading').addClass('hidden');
-    $('.tf-menu').removeClass('hidden');
-    $('#tf-menu').removeClass('hidden');
-
     $('#homeContainer').removeClass('hidden');
     $('#welcome').addClass('hidden');
     $('#cerca').removeClass('hidden');
@@ -142,14 +138,7 @@ function initViewChannelMode() {
         var donation = '<p style="color: white"> Stiamo portando avanti questo progetto soltanto per passione.' +
             '<br><br> Se ti piace l\'app, vuoi dirci grazie e supportare il nostro lavoro, perche\' non offrirci un caffe\'?<br>Grazie!</p>' +
             '<i style="color:orange">Il team di Netfreex</i><br><br>' +
-            '<form action="https://www.paypal.com/cgi-bin/webscr" method="post" onsubmit="goToHome()">' +
-            '<input type="hidden" name="business" value="thomas.traverso54@gmail.com">' +
-            '<input type="hidden" name="cmd" value="_donations">' +
-            '<input type="hidden" name="item_name" value="Ti offro un caffe\'">' +
-            '<input type="hidden" name="item_number" value="Donazione">' +
-            '<input type="hidden" name="currency_code" value="EUR">' +
-            '<input type="image" name="submit" src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_donate_92x26.png" alt="Donate">' +
-            '<img alt="" width="1" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" ></form>';
+            '<a href="http://paypal.me/be4t5"> <img src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_donate_92x26.png" alt="Donate"></a>';
 
         swal({
             title: 'Netfreex e\' gratis!',
@@ -168,14 +157,18 @@ function initViewChannelMode() {
 function aggiungiCanale() {
     
     swal({
-        background: 'rgba(0, 0, 0, 0.568627)',
+        background: 'rgba(0, 0, 0, 1)',
         title: 'Inserisci l\'indirizzo del canale',
         input: 'text',
         showCancelButton: true,
+        customClass: 'top-60',
         confirmButtonColor: '#d9941e',
         cancelButtonText: 'Annulla',
         inputValidator: function(value) {
-            return new Promise(function(resolve, reject) {
+            return new Promise(function (resolve, reject) {
+                if (value == "")
+                    reject();
+
                 if (value.indexOf("italia-film") == -1
                     && value.indexOf("cb01") == -1
                     && value.indexOf("piratestreaming") == -1
@@ -185,7 +178,11 @@ function aggiungiCanale() {
                     ) {
                     reject('Il canale che hai inserito non e\' valido');
                 } else {
-                    resolve();
+
+                    if (isChannelSupported(value))
+                        resolve();
+                    else
+                        reject('Il canale che hai inserito non e\' compatibile con il tuo device');
                 }
             });
         }
@@ -243,17 +240,19 @@ function eliminaCanale() {
     }
 
     swal({
-        background: 'rgba(0, 0, 0, 0.568627)',
+        background: 'rgba(0, 0, 0, 1)',
         title: 'Quale canale vuoi eliminare?',
         input: 'select',
         inputOptions: channelList,
+        customClass: 'top-60',
         inputPlaceholder: 'Seleziona canale',
         showCancelButton: true,
         confirmButtonColor: '#d9941e',
         cancelButtonText: 'Annulla',
         inputValidator: function(value) {
             return new Promise(function(resolve, reject) {
-
+                if (value == "")
+                    reject();
                 resolve();
 
             });

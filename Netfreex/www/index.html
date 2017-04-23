@@ -34,7 +34,7 @@
     <script src="scripts/platformOverrides.js"></script>
     <script src="js/lib/swiper.js"></script>
     <link href="css/swiper.css" rel="stylesheet"/>
-
+    <style id="focus"></style>
 </head>
 <body id="body" style="height: 100%">
 <div id="loading">
@@ -51,39 +51,31 @@
         <div class="navbar-header">
 
             <a class="navbar-brand">
-                <i class="fa fa-bars" onclick="openNav()" aria-hidden="true" style="color: #f79921; float: left; font-size: 30px; padding: 8px; padding-right: 24px;"></i>
+                <i class="fa fa-bars" tabindex="1" onclick="openNav()" aria-hidden="true" style="color: #f79921; float: left; font-size: 30px; padding: 8px; margin-right: 24px;"></i>
                 <img href="index.html" style="float: left; margin-top: 7px; width: 100px;" src="img/logo.png"/>
                 <span id="channelName"></span>
                 <div id="cerca" class="hidden">
-                    <a tabindex="0" onclick="goToSearch()"><i class="fa fa-search" style="padding-right: 11px"></i></a>
+                    <a tabindex="0" onclick="goToSearch()"><i class="fa fa-search" style="padding:8px"></i></a>
                 </div>
             </a>
 
         </div>
 
         <div id="mySidenav" class="sidenav">
-            <i class="fa fa-arrow-left" onclick="goBack()" style="position: absolute;top: 26px;color: whitesmoke;font-size: 30px;margin-left: 30px;"></i>
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <div>
-                <a href="#channelList" class="list-group-item list-group-item-success" data-toggle="collapse" style="background: #111111; border: none;">
-                    <i class="fa fa-television" style="padding-right: 8px"></i>Canali <i class="fa fa-caret-down"></i>
-                </a>
-                <ul id="channelList" class="collapse" style="list-style-type: none; background: #2e2d2d;"></ul>
-            </div>
-            <div>
-                <a tabindex="0" onclick="playByUrl()"><i class="fa fa-link" style="padding-right: 10px"></i>Riproduci da URL</a>
-            </div>
-            <!--<div>
-                <a tabindex="0" onclick="goToHome()"><i class="fa fa-home" style="padding-right: 10px"></i>Home</a>
-            </div>-->
-            <div id="preferiti" class="hidden">
-                <a tabindex="0" onclick="goToFavourites()"><i class="fa fa-star" style="padding-right: 11px"></i>Preferiti</a>
-            </div>
+            <i tabindex="-1" class="fa fa-arrow-left menuItem" onclick="goBack()" style="position: absolute;top: 19px;color: #fbab44;font-size: 30px;margin-left: 30px; padding: 5px;"></i>
+            <i tabindex="-1" href="javascript:void(0)" class="closebtn menuItem fa fa-bars" onclick="closeNav()" 
+               style="position: absolute;color: rgb(156, 156, 156);top: 19px;right: 25px;font-size: 30px;padding: 5px;"></i>
+            
+            <a tabindex="-1" href="#channelList" class="list-group-item list-group-item-success menuItem" data-toggle="collapse" style="background: #111111; border: none;">
+                <i class="fa fa-television" style="padding-right: 8px"></i>Canali <i class="fa fa-caret-down"></i>
+            </a>
+            <ul id="channelList" class="collapse" style="list-style-type: none; background: #2e2d2d;"></ul>
+            <a tabindex="-1" onclick="playByUrl()" class="menuItem"><i class="fa fa-link" style="padding-right: 10px"></i>Riproduci da URL</a>
+            <a tabindex="-1" id="preferiti" class="hidden menuItem" onclick="goToFavourites()"><i class="fa fa-star" style="padding-right: 11px"></i>Preferiti</a>
+            <a tabindex="-1" href="https://github.com/Be4t5/Netfreex/wiki" class="menuItem"><i class="fa fa-question" style="padding-right: 18px"></i>Guida</a>
 
-            <div>
-                <a tabindex="0" href="https://github.com/Be4t5/Netfreex/wiki"><i class="fa fa-question" style="padding-right: 18px"></i>Guida</a>
-            </div>
-
+            <div id="donateBtn"><a href="http://paypal.me/be4t5"> <img src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_donate_92x26.png" alt="Donate"></a></div>
+            
         </div>
 
     </div>
@@ -247,11 +239,11 @@
                     <!-- Lista Stagioni -->
                     <div id="dropDownStagioni" class="rightBlockView hidden" style="overflow: visible; text-align: initial;">
                         <div class="dropdown" style="margin-left: -10px; margin-top: -40px; text-shadow: none">
-                            <button id="currentSeason" class="btn btn-primary dropdown-toggle text-uppercase" type="button" data-toggle="dropdown" style="background-color: rgba(0, 0, 0, 0.72); border: none; font-size: 12px;">
+                            <button id="currentSeason"  tabindex="1" class="btn btn-primary dropdown-toggle text-uppercase" type="button" data-toggle="dropdown" style="background-color: rgba(0, 0, 0, 0.72); border: none; font-size: 12px;">
                                 <!--Stagione 1 <span class="caret"></span>-->
                             </button><ul class="dropdown-menu listaStagioni"></ul>
                         </div>
-                        <div id="cleanAlreadySeen" onclick="markAllAsUnseen()">
+                        <div tabindex="0" id="cleanAlreadySeen" onclick="markAllAsUnseen()">
                             <i class="fa fa-bookmark-o" aria-hidden="true"></i> Elimina segnalibri
                         </div>
                     </div>
@@ -309,11 +301,11 @@
 <div id="searchContainer" class="hidden">
     <div class="row" style="height: 100px; margin-left: 0; margin-right: 0; text-align: center; width: 100%;">
         <div id="searchType" style="margin: 0 auto; width: 350px">
-            <div id="cercaSerie" class="cercaButton" onclick="setSearchType(false)">
+            <div tabindex="0" id="cercaSerie" class="cercaButton" onclick="setSearchType(false)">
                 <i class="fa fa-2x fa-film" aria-hidden="true"></i>
                 <br/>Cerca Film
             </div>
-            <div id="cercaFilm" class="cercaButton" onclick="setSearchType(true)">
+            <div tabindex="0" id="cercaFilm" class="cercaButton" onclick="setSearchType(true)">
                 <i class="fa fa-2x fa-television" aria-hidden="true"></i>
                 <br/>Cerca Serie Tv
             </div>
@@ -321,7 +313,7 @@
 
         <div class="form hidden" id="searchForm">
             <div style="margin-bottom: -13px;">Stai cercando <span id="searchingFor"></span></div>
-            <input type="text" id="search" style="background: url(http://f.cl.ly/items/2a2Z0V0L0J1p3V082d3r/icon-search.png) no-repeat scroll 9px 4px;">
+            <input tabindex="0" type="text" id="search" style="background: url(http://f.cl.ly/items/2a2Z0V0L0J1p3V082d3r/icon-search.png) no-repeat scroll 9px 4px;">
             <input type="checkbox" hidden id="serieTv">
             <input type="submit" hidden/>
         </div>
@@ -400,6 +392,7 @@
 <script src="js/lib/video-js-5.19.2/video.js"></script>
 <link href="js/lib/video-js-5.19.2/video-js.min.css" rel="stylesheet"/>
 <link href="js/lib/video-js-5.19.2/skin/skin.css" rel="stylesheet"/>
+<script src="js/lib/video-js-5.19.2/videojs.hotkeys.min.js"></script>
 
 <!-- Core -->
 <script src="js/utility.js"></script>
@@ -413,6 +406,7 @@
 <div id="channel" class="hidden"></div>
 <script src="js/navigation.js"></script>
 <script src="js/playByUrl.js"></script>
+<script src="js/supportRestrictionPlatform.js"></script>
 
 <!-- Servers -->
 <script src="servers/fastvideo.js"></script>
@@ -427,12 +421,24 @@
 <script src="servers/openload.js"></script>
 <script src="servers/vidto.js"></script>
 
+    <script src="http://nekman.github.io/keynavigator/keynavigator.js"></script>
 
 <script>
+    var buttonMode = false;
     var slidePerView = 4;
     loadChannelList(false);
-
-
+    //$(document).ready(function() {
+    //    $('.swiper-slide').keynavigator({
+    //        activateOn: 'keypress',
+    //        cycle:false,
+    //        activeClass: 'backgroundOrange',
+    //        keys: {
+    //            enter: function ($el) {
+    //                $el.children('a').click();
+    //            }
+    //        }
+    //});
+    //});
 </script>
 </body>
 </html>

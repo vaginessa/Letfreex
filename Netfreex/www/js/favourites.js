@@ -16,7 +16,7 @@ function addToFavourites(url, title, img, isSerieTv) {
 
     localStorage.favourites = JSON.stringify(preferiti);
     
-    $('#addToFavourites').html('<div onclick="removeFromFavourites(\'' + url + '\', \'' + title + '\',\'' + img + '\',\'' + isSerieTv + '\')"><i class="fa fa-star colorOrange"></i> Rimuovi dai preferiti</div>');
+    $('#addToFavourites').html('<div tabindex="0" onclick="removeFromFavourites(\'' + url + '\', \'' + title + '\',\'' + img + '\',\'' + isSerieTv + '\')"><i class="fa fa-star colorOrange"></i> Rimuovi dai preferiti</div>');
 }
 
 function removeFromFavourites(url, title, img, isSerieTv) {
@@ -31,7 +31,7 @@ function removeFromFavourites(url, title, img, isSerieTv) {
     localStorage.favourites = JSON.stringify(preferiti);
 
 
-    $('#addToFavourites').html('<div onclick="addToFavourites(\'' + url + '\', \'' + title + '\',\'' + img + '\',\'' + isSerieTv + '\')"><i class="fa fa-star-o colorOrange"></i> Aggiungi ai preferiti</div>');
+    $('#addToFavourites').html('<div tabindex="0" onclick="addToFavourites(\'' + url + '\', \'' + title + '\',\'' + img + '\',\'' + isSerieTv + '\')"><i class="fa fa-star-o colorOrange"></i> Aggiungi ai preferiti</div>');
 }
 
 function isInFavourites(url) {

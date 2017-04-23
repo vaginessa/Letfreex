@@ -136,13 +136,16 @@ function fillCast(json) {
         console.log(json.cast[i].name)
         if (json.cast[i].profile_path == null)
             continue;
-        var html = "<div class='actor col-md-3 col-xs-12'>";
-        html += " <a href='https://it.wikipedia.org/w/index.php?search=" + json.cast[i].name + "&title=Speciale%3ARicerca&go=Vai'>";
+        var html = "<div tabindex='0' class='actor col-md-3 col-xs-12' onclick=\"openActor('"+json.cast[i].name +"')\">";
         html += "<img style='width:135px; height:200px;' src='https://image.tmdb.org/t/p/original" + json.cast[i].profile_path + "'>";
         html += "<div class='actorName'><span class='colorOrange'>" + json.cast[i].name + "</span><br>as<br><span class='colorWhite'>" + json.cast[i].character + "</span></div>";
-        html += "</a></div>";
+        html +=   "</div>";
         $('#cast').html($('#cast').html() + html);
     }
+}
+
+function openActor(name) {
+    window.open('https://it.wikipedia.org/w/index.php?search=' + name + '&title=Speciale%3ARicerca&go=Vai', '_system');
 }
 
 function getGeneralInfo(id, isSerie) {
@@ -331,7 +334,7 @@ function getEpisodesInfo() {
             first = false;
         }
 
-        listaStagioni += "<li><a onclick=\"showSeason('" + $(this).attr('id') + "')\">Stagione " + seasonNumber.replaceAll('_', ' ') + "</a></li>";
+        listaStagioni += "<li><a tabindex=\"1\" onclick=\"showSeason('" + $(this).attr('id') + "')\">Stagione " + seasonNumber.replaceAll('_', ' ') + "</a></li>";
 
         $("#" + $(this).attr('id')).children().each(function () {
             //Episodio

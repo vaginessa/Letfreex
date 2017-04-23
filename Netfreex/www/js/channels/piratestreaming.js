@@ -2,16 +2,15 @@ function parsePage(html, url, isSerieTv, section, nextPage, callback) {
     arrayFilm = [];
     var articoli = html.split('featuredItem');
     console.log(html)
-    debugger
     for (var i = 1; i < articoli.length; i = i + 1) {
         try {
             articoli[i] = articoli[i].split("paginazione")[0];
             var img = articoli[i].indexOf("src=\"") > -1 ? articoli[i].split("src=\"")[1].split('"')[0] : articoli[i].split("src=")[1].split(' ')[0]
-            var url = articoli[i].indexOf('href="') > -1 ? articoli[i].split("href=\"")[1].split('"')[0] : articoli[i].split("href=")[1].split(' ')[0]
+            var urlMovie = articoli[i].indexOf('href="') > -1 ? articoli[i].split("href=\"")[1].split('"')[0] : articoli[i].split("href=")[1].split(' ')[0]
             var movie = {
                 title: articoli[i].split('html>')[1].split('<')[0],
                 img: img,
-                url: url,
+                url: urlMovie,
                 isSerieTv: isSerieTv
             };
             arrayFilm.push(movie);
@@ -38,6 +37,7 @@ function parseMoviePage(html, url, isSerieTv) {
         $('.guarda').removeClass('hidden');
         $('#playButton').removeClass('hidden');
         $('#loadingLink').addClass('hidden');
+        
 
     } else {
         //Levo la roba che non serve
@@ -47,12 +47,13 @@ function parseMoviePage(html, url, isSerieTv) {
 
         manageSerieTvLinks(html, regexStagione);
     }
+    $('#loading').addClass('hidden');
 }
 
 function search() {
     var input = encodeURI($('#search').val());
 
-    var url = "http://www.piratestreaming.news/cerca.php?all=" + input;
+    var url = localStorage.pirateStreamingUrl + "/cerca.php?all=" + input;
 
     openPage(url, $('#serieTv').prop('checked'), 'searchResultContainer', false, true);
 }
@@ -65,8 +66,8 @@ $("#welcome").addClass("hidden");
     
 $(document).on("ready", function () {
     Promise.all([
-            asyncOpenPage("http://www.piratestreaming.black/film-aggiornamenti.php?pageNum_lista_film=0", false, 'movieSliderContainer', false, null),
-            asyncOpenPage("http://www.piratestreaming.black/serietv-aggiornamentii.php?pageNum_lista_film=1", true, 'serieTvSliderContainer', false, null),
+            asyncOpenPage(localStorage.pirateStreamingUrl + "/film-aggiornamenti.php?pageNum_lista_film=0", false, 'movieSliderContainer', false, null),
+            asyncOpenPage(localStorage.pirateStreamingUrl + "/serietv-aggiornamentii.php?pageNum_lista_film=1", true, 'serieTvSliderContainer', false, null),
     ])
     .then(function () {
         initViewChannelMode();

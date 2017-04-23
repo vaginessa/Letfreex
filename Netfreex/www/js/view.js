@@ -15,9 +15,9 @@ function openMovie(url,titolo, img, isSerieTv) {
 
     //Setto bottone preferiti
     if (isInFavourites(url))
-        $('#addToFavourites').html('<div onclick="removeFromFavourites(\'' + url + '\', \'' + titolo + '\',\'' + img + '\',\'' + isSerieTv + '\' )"><i class="fa fa-star colorOrange"></i> Rimuovi dai preferiti</div>');
+        $('#addToFavourites').html('<div tabindex="0" onclick="removeFromFavourites(\'' + url + '\', \'' + titolo + '\',\'' + img + '\',\'' + isSerieTv + '\' )"><i class="fa fa-star colorOrange"></i> Rimuovi dai preferiti</div>');
     else
-        $('#addToFavourites').html('<div onclick="addToFavourites(\'' + url + '\', \'' + titolo + '\',\'' + img + '\',\'' + isSerieTv + '\')"><i class="fa fa-star-o colorOrange"></i> Aggiungi ai preferiti</div>');
+        $('#addToFavourites').html('<div tabindex="0" onclick="addToFavourites(\'' + url + '\', \'' + titolo + '\',\'' + img + '\',\'' + isSerieTv + '\')"><i class="fa fa-star-o colorOrange"></i> Aggiungi ai preferiti</div>');
 
 
     getVideoLink(url, isSerieTv);
@@ -79,7 +79,7 @@ function chooseHost(video) {
     swal({
         title: 'Guarda su',
         html: video.clone().find('[host]').removeClass('hidden'),
-        background: 'rgba(0, 0, 0, 0.82)',
+        background: 'rgba(0, 0, 0, 1)',
         padding: 30,
         showConfirmButton: false
     });
@@ -172,7 +172,14 @@ var success = function (url, download) {
 var error = function (ex) {
     $('#loading').addClass('hidden');
     console.log(ex);
-    alert("Il link e' offline");
+    swal({
+        title: "Il link e' offline",
+        type: "error",
+        showCloseButton: true,
+        showCancelButton: false,
+        showConfirmButton: false,
+        background: 'rgba(0, 0, 0, 1)'
+    });
 }
 
 
@@ -182,7 +189,7 @@ function playWithOurPlayer(url) {
     }
 
     $('#playerContainer').removeClass('hidden');
-    $("#playerContainer").html('<video id="player" class="video-js" poster="null" style="outline: none;"><source id="source" type="video/mp4"></video>');
+    $("#playerContainer").html('<video id="player" class="video-js" poster="null" style="outline: none;-webkit-tap-highlight-color: rgba(0, 0, 0, 0);-webkit-appearance: none;"><source id="source" type="video/mp4"></video>');
 
         var myPlayer = videojs('player', {
             controls: true,
@@ -191,9 +198,18 @@ function playWithOurPlayer(url) {
             fluid: true
         });
         myPlayer.src(url);
-        //myPlayer.ready(function () {
-        //    myPlayer.currentTime(getLastTime());
-        //});
+        myPlayer.ready(function () {
+            $('#player').focus();
+            this.hotkeys({
+                volumeStep: 0.1,
+                seekStep: 30,
+                enableModifiersForNumbers: false,
+                alwaysCaptureHotkeys: true,
+                playPauseKey: function (event, player) {
+                    return ((event.which === 179) || (event.which === 13));
+                }
+            });
+        });
 
         myPlayer.on('loadedmetadata', function () {
             myPlayer.currentTime(getLastTime());

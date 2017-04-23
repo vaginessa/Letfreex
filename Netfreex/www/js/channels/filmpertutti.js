@@ -95,6 +95,7 @@ function parseMoviePage(html, url, isSerieTv) {
         $('.guarda').removeClass('hidden');
         $('#playButton').removeClass('hidden');
         $('#loadingLink').addClass('hidden');
+        
 
     } else {
         //Levo la roba che non serve
@@ -104,12 +105,13 @@ function parseMoviePage(html, url, isSerieTv) {
 
         manageSerieTvLinks(html, regexStagione);
     }
+    $('#loading').addClass('hidden');
 }
 
 function search() {
     var input = encodeURI($('#search').val());
 
-    var url = "http://www.filmpertutti.black/?s=" + input;
+    var url = localStorage.filmPerTuttiUrl + "/?s=" + input;
 
     openPage(url, $('#serieTv').prop('checked'), 'searchResultContainer', false, true);
 }
@@ -122,8 +124,8 @@ $("#welcome").addClass("hidden");
 
 $(document).on("ready", function () {
     Promise.all([
-            asyncOpenPage("http://www.filmpertutti.black/category/film/", false, 'movieSliderContainer', false, null),
-            asyncOpenPage("http://www.filmpertutti.black/category/serie-tv/", true, 'serieTvSliderContainer', false, null),
+            asyncOpenPage(localStorage.filmPerTuttiUrl + "/category/film/", false, 'movieSliderContainer', false, null),
+            asyncOpenPage(localStorage.filmPerTuttiUrl + "/category/serie-tv/", true, 'serieTvSliderContainer', false, null),
     ])
     .then(function () {
         initViewChannelMode();

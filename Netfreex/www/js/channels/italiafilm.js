@@ -65,6 +65,7 @@ function parseMoviePage(html, url, isSerieTv) {
         $('.guarda').removeClass('hidden');
         $('#playButton').removeClass('hidden');
         $('#loadingLink').addClass('hidden');
+        
 
     } else {
         //Levo la roba che non serve
@@ -74,12 +75,13 @@ function parseMoviePage(html, url, isSerieTv) {
 
         manageSerieTvLinks(html, regexStagione);
     }
+    $('#loading').addClass('hidden');
 }
 
 function search() {
     var input = encodeURI($('#search').val());
 
-    var url = "http://www.italia-film.co/?s=" + input;
+    var url = localStorage.italiaFilmUrl + "/?s=" + input;
 
     openPage(url, $('#serieTv').prop('checked'), 'searchResultContainer', false, true);
 }
@@ -94,10 +96,10 @@ $("#welcome").addClass("hidden");
 
 $(document).on("ready", function () {
     Promise.all([
-         asyncOpenPage("http://www.italia-film.gratis/category/film-streaming-2017/", false, 'movieMostPopularSliderContainer', true, null),
-         asyncOpenPage("http://www.italia-film.gratis/category/film-streaming-2017/", true, 'serieTvMostPopularSliderContainer', true, null),
-         asyncOpenPage("http://www.italia-film.gratis/category/serie-tv/", true, 'serieTvSliderContainer', false, null),
-         asyncOpenPage("http://www.italia-film.gratis/category/film-streaming-2017/", false, 'movieSliderContainer', false, null),
+         asyncOpenPage(localStorage.italiaFilmUrl + "/category/film-streaming-2017/", false, 'movieMostPopularSliderContainer', true, null),
+         asyncOpenPage(localStorage.italiaFilmUrl + "/category/film-streaming-2017/", true, 'serieTvMostPopularSliderContainer', true, null),
+         asyncOpenPage(localStorage.italiaFilmUrl + "/category/serie-tv/", true, 'serieTvSliderContainer', false, null),
+         asyncOpenPage(localStorage.italiaFilmUrl + "/category/film-streaming-2017/", false, 'movieSliderContainer', false, null),
     ])
      .then(function () {
             initViewChannelMode();
