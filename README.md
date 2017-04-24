@@ -22,15 +22,15 @@ Il progetto nasce dalla mia esigenza di avere una app da installare sulla mia tv
 
 ## Piattaforme supportate
 
-Per adesso è disponibile la versione per Android, presto sarà pubblicata anche la versione iOS.
+Per adesso è disponibile per Android e iOS, ma è in preparazione anche la versione Windows.
 L'interfaccia è responsive e si adatta facilmente sia agli schermi più piccoli degli smartphone e tablet che alle TV.
 
 ## Come funziona?
 
-Netfreex non ha un database interno, ma si collega ed estrae i dati in tempo reale direttamente dai siti di streaming (utilizzando appositi meccanismi di caching per ottimizzare le prestazioni), visualizzandoli SENZA PUBBLICITA' e con una grafica chiara, touch friendly e molto simile a quella di Netflix.
+Netfreex non ha un database interno, ma si collega ed estrae i dati in tempo reale direttamente dai siti di streaming (utilizzando appositi meccanismi di caching per ottimizzare le prestazioni), visualizzandoli SENZA PUBBLICITA' e con una grafica chiara, touch friendly..
 
 Per maggiori informazioni visitate la wiki https://github.com/Be4t5/Netfreex/wiki
 
 ### Disclaimer
 
-Ricordo che Netfreex è un progetto opensource, gratuito, non a scopo di lucro. Non ha server o database propri, non ospita materiale protetto da copyright. Svolge soltanto una funzione di catalogazione di contenuti presenti su altri siti web. Operando in tempo reale e non salvando informazioni al suo interno, nel momento in cui i siti web a cui si collega venissero messi offline, anche Netfreex smetterà di funzionare.
+Ricordo che Netfreex è un progetto opensource, gratuito, non a scopo di lucro. Non ha server o database propri, non ospita materiale protetto da copyright. Svolge soltanto una funzione di url resolving e di browsing di contenuti presenti su altri siti web (inseriti dall'utente). Operando in tempo reale e non salvando informazioni al suo interno, nel momento in cui i siti web a cui si collega venissero messi offline, anche Netfreex smetterà di funzionare.
