@@ -10,7 +10,7 @@ function playByUrl() {
         input: 'text',
         showCancelButton: true,
         animation: false,
-        customClass: 'top-60',
+        //customClass: 'top-60',
         confirmButtonColor: '#d9941e',
         cancelButtonText: 'Annulla',
         allowOutsideClick: false,

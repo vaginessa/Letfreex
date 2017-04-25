@@ -5,7 +5,14 @@ function extractVcrypt(url, host, download) {
         if (response.data.indexOf("nowvideo") > -1) {
             var idVideo = response.data.match("/video/([a-zA-Z0-9]+)")[1];
             openVideo("nowvideo", idVideo, download);
+            return;
         }
+        if (response.data.indexOf("openload") > -1) {
+            var idVideo = response.data.match("openload.[a-z]{2,5}/f/([^\"]+)/?")[1];
+            openVideo("openload", idVideo, download);
+            return;
+        }
+        error("not found");
     }, function (response) {
         try{
             var redUrl = response.error.split('url=')[1].split('"')[0].replace(" ", "");

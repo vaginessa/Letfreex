@@ -16,7 +16,10 @@ function loadChannelList(added) {
         channelListHtml += '<li><a class="menuItem" href="index.html?channel=cinemalibero">CinemaLibero</a></li>';
     }
     if (localStorage.altadefinizioneUrl) {
-        channelListHtml += '<li><a class="menuItem" href="index.html?channel=altadefinizione">Altadefinizione</a></li>';
+        channelListHtml += '<li><a class="menuItem" href="index.html?channel=altadefinizione">Altadefinizione01</a></li>';
+    }
+    if (localStorage.seriehdmeUrl) {
+        channelListHtml += '<li><a class="menuItem" href="index.html?channel=seriehdme">SerieHDMe</a></li>';
     }
 
     $("#channelList").html(channelListHtml);
@@ -45,6 +48,9 @@ function loadChannelList(added) {
             }
             else if (localStorage.cineblogUrl) {
                 window.location.replace("index.html?channel=cineblog");
+            }
+            else if (localStorage.seriehdmeUrl) {
+                window.location.replace("index.html?channel=seriehdme");
             }
 
         }
@@ -170,7 +176,7 @@ function aggiungiCanale() {
         title: 'Inserisci l\'indirizzo del canale',
         input: 'text',
         showCancelButton: true,
-        customClass: 'top-60',
+        //customClass: 'top-60',
         confirmButtonColor: '#d9941e',
         cancelButtonText: 'Annulla',
         inputValidator: function(value) {
@@ -184,6 +190,7 @@ function aggiungiCanale() {
                     && value.indexOf("filmpertutti") == -1
                     && value.indexOf("cinemalibero") == -1
                     && value.indexOf("altadefinizione") == -1
+                    && value.indexOf("seriehd") == -1
                     ) {
                     reject('Il canale che hai inserito non e\' valido');
                 } else {
@@ -214,11 +221,14 @@ function aggiungiCanale() {
         else if (result.indexOf("altadefinizione") > -1) {
             localStorage.altadefinizioneUrl = result;
         }
+        else if (result.indexOf("seriehd") > -1) {
+            localStorage.seriehdmeUrl = result;
+        }
         loadChannelList(true);
     });
-    setTimeout(function() {
-        $('.dropdown-toggle').html('<span id="menuDropDownLabel" >Gestione canali </span><span class="caret"></span>');
-    }, 1);
+
+    $('.swal2-spacer').before('Il collegamento a siti web che contengono materiale video coperto da copyright e\' illegale. Aggiungendo un canale l\'utente si assume piena responsabilita\' dei contenuti che andra\' a visualizzare.<br>');
+    $('.swal2-spacer').hide();
 
 }
 
@@ -247,13 +257,16 @@ function eliminaCanale() {
     if (localStorage.altadefinizioneUrl) {
         channelList["altadefinizioneUrl"] = "Altadefinizione";
     }
+    if (localStorage.seriehdmeUrl) {
+        channelList["seriehdmeUrl"] = "SerieHDMe";
+    }
 
     swal({
         background: 'rgba(0, 0, 0, 1)',
         title: 'Quale canale vuoi eliminare?',
         input: 'select',
         inputOptions: channelList,
-        customClass: 'top-60',
+        //customClass: 'top-60',
         inputPlaceholder: 'Seleziona canale',
         showCancelButton: true,
         confirmButtonColor: '#d9941e',

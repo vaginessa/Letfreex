@@ -5,7 +5,28 @@ function extractVcrypt(url, host, download) {
 
     cordovaHTTP.get("https://vcrypt.pw/open/" + url, {}, {}, function (response) {
 
+        try {
+            var urlVideo = response.data;
+            switch (host) {
+                case 'nowvideo':
+                    url = urlVideo.match("/video/([a-zA-Z0-9]+)")[1];
+                    break;
+                case 'openload':
+                    url = urlVideo.match("openload.[a-z]{2,5}/f/([^\"]+)/?")[1];
+                    break;
+                case 'streaminto':
+                    url = urlVideo.match("streamin.[a-z]{2,5}/([a-zA-Z0-9]+)")[1];
+                    break;
+                case 'flashx':
+                    url = urlVideo.match("flashx.[a-z]{2,5}/([a-zA-Z0-9]+).html")[1];
+                    break;
+            }
+
+            console.log(url);
+            openVideo(host, url, download);
+        } catch (e) {
             error(e);
+        }
        
     }, function (response) {
         console.log(response.headers.Location);

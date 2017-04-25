@@ -87,6 +87,7 @@ function showCastTutorial() {
     });
     localStorage.castTutorialBlock = "true";
 }
+
 function showDownloadTutorial() {
     var html = "<p>Cliccando sull'icona download, puoi scaricare il video sul tuo dispositivo per guardarlo offline.</p>"
     + "<p>Per scaricarlo, ti basta aprirlo con un browser, oppure (<span class='colorWhite'>consigliato</span>) con un download manager come <a href='https://play.google.com/store/apps/details?id=com.dv.adm'>Advanced Download Manager</a>, grazie al quale aumenterai anche la velocita' del download.</p>";
@@ -106,6 +107,7 @@ function chooseHost(video) {
     localStorage.currentEpisode = video.attr("info");
 
     console.log(video);
+    var text = "<br><br>Puoi ancora aprire i video con un player esterno, basta cliccare sul tasto trasmetti.";
     swal({
         title: 'Guarda su',
         html: video.clone().find('[host]').removeClass('hidden'),
@@ -113,6 +115,15 @@ function chooseHost(video) {
         padding: 30,
         showConfirmButton: false
     });
+
+    if (window.cordova && device.platform == "iOS") {
+        //Nascondo pulsanti che non servono
+        $('.fa-download').addClass("fa-link");
+        $('.fa-link').removeClass("fa-download");
+        $('.castIcon').addClass("hidden");
+    }
+    $('#modalContentId').append(text);
+
     //if (window.cordova)
     //    removeLinkOffline(video);
 }
@@ -124,9 +135,10 @@ function openVideo(host, url, download) {
         return showCastTutorial();
     }
     if (download == 1 && localStorage.downloadTutorialBlock != "true") {
-        return showDownloadTutorial();
+        if (window.cordova && device.platform == "Android")
+            return showDownloadTutorial();
     }
-
+    
     swal.closeModal();
     $('#loading').removeClass('hidden');
 
@@ -164,6 +176,7 @@ function openVideo(host, url, download) {
             megahdExtract(url, success, error, download);
         else if (host[0] == 'fastvideo')
             fastvideoExtract(url, success, error, download);
+
     }, 100);
 }
 
@@ -174,34 +187,31 @@ function hideLoadingiOs() {
 
 //Riproduce il video
 var success = function (url, download) {
-    
+    retry = true;
     console.log(url);
-    
-    if (download == 0)
-        playWithOurPlayer(url);
-    else if (download == 1) {
-        window.open(url, "_system");
-    }
-    else if (download == 2) {
-        VideoPlayer.play(url);
-        markAsSeen();
-    }
- /*
-    if (device.platform == "iOS") {
-        if (url.indexOf("nowvideo") > -1) {
-            window.plugins.streamingMedia.playVideo(url);
-            $('#loading').addClass("hidden");
-        } else
-            $('#loading').html("<a style='position:relative; top:30%' href='vlc-x-callback://x-callback-url/stream?url=" + encodeURIComponent(url) + "' onclick='hideLoadingiOs()'><img class='poster play' src='img/play_button.png'></a>");
-
-    } else {
-        $('#loading').addClass('hidden');
-        if (!download)
-            VideoPlayer.play(url);
-        else 
+    if (window.cordova && device.platform == "iOS") {
+        //PLAYER INTEGRATO
+        if (download == 0 && url.indexOf('.flv') == -1)
+            playWithOurPlayer(url);
+        //BROWSER
+        else {
             window.open(url, "_system");
+        }
+    } else {
+
+        //PLAYER INTEGRATO
+        if (download == 0 && url.indexOf('.flv') == -1)
+            playWithOurPlayer(url);
+        //DOWNLOAD
+        else if (download == 1) {
+            window.open(url, "_system");
+        }
+        //PLAYER ESTERNO
+        else if (download == 2 || url.indexOf('.flv') > -1) {
+            VideoPlayer.play(url);
+            markAsSeen();
+        }
     }
-    */
     $('#loading').addClass("hidden");
     
 }
@@ -224,10 +234,10 @@ function playWithOurPlayer(url) {
     if (window.cordova) {
         screen.orientation.lock('landscape');
     }
-
+    
     $('#playerContainer').removeClass('hidden');
     $("#playerContainer").html('<video id="player" class="video-js" poster="null" style="outline: none;-webkit-tap-highlight-color: rgba(0, 0, 0, 0);-webkit-appearance: none;">' +
-        '<source id="source" type="video/mp4"></video>');
+        '<source type="video/mp4"><source type="audio/mp4; codecs=mp4a.40.2"></video>');
 
         var myPlayer = videojs('player', {
             controls: true,
@@ -235,7 +245,16 @@ function playWithOurPlayer(url) {
             preload: 'auto',
             fluid: true
         });
-        myPlayer.src(url);
+
+        if (url.indexOf('.m3u8') == -1) {
+            myPlayer.src(url);
+        } else {
+            myPlayer.src({
+                src: url,
+                type: 'application/x-mpegURL',
+                withCredentials: true
+            });
+        }
         myPlayer.ready(function () {
             $('#player').focus();
             this.hotkeys({
@@ -248,15 +267,54 @@ function playWithOurPlayer(url) {
                 }
             });
 
-            $('.vjs-modal-dialog').on('click',function() {
+            $('.vjs-modal-dialog').on('click', function() {
+                markAsSeen(myPlayer.currentTime());
                 myPlayer.dispose();
                 playWithOurPlayer(url);
-            })
+            });
+        });
+
+        myPlayer.on('error', function () {
+                markAsSeen(myPlayer.currentTime());
+                myPlayer.dispose();
+                playWithOurPlayer(url);
+        });
+
+        myPlayer.on('ended', function () {
+            markAsSeen(0);
+            if(window.cordova && device.platform != "iOS")
+                hidePlayer();
         });
 
         myPlayer.on('loadedmetadata', function () {
             myPlayer.currentTime(getLastTime());
+            
         });
+
+        var btna = addNewButton({
+            player: myPlayer,
+            icon: "fa-remove",
+            id: "closePlayer"
+        });
+        btna.onclick = function () {
+            hidePlayer();
+        };
 }
 
+
+function addNewButton(data) {
+
+    var pl = data.player,
+        newElement = document.createElement('div'),
+        newLink = document.createElement('a');
+
+    newElement.id = data.id;
+    newElement.className = 'closeBtnPlayer vjs-control';
+
+    newLink.innerHTML = "<i class='fa " + data.icon + " line-height' aria-hidden='true'></i>";
+    newElement.appendChild(newLink);
+    $(newElement).insertAfter('.vjs-fullscreen-control');
+    return newElement;
+
+}
 

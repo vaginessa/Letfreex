@@ -71,7 +71,7 @@
                 <i class="fa fa-television" style="padding-right: 8px"></i>Canali <i class="fa fa-caret-down"></i>
             </a>
             <ul id="channelList" class="collapse" style="list-style-type: none; background: #2e2d2d;"></ul>
-            <a tabindex="-1" onclick="playByUrl()" class="menuItem"><i class="fa fa-link" style="padding-right: 10px"></i>Riproduci da URL</a>
+            <a tabindex="-1" onclick="playByUrl()" class="menuItem"><i class="fa fa-link" style="padding-right: 10px; color:white"></i>Riproduci da URL</a>
             <a tabindex="-1" id="preferiti" class="hidden menuItem" onclick="goToFavourites()"><i class="fa fa-star" style="padding-right: 11px"></i>Preferiti</a>
             <a tabindex="-1" href="https://github.com/Be4t5/Netfreex/wiki" class="menuItem"><i class="fa fa-question" style="padding-right: 18px"></i>Guida</a>
 
@@ -85,8 +85,10 @@
 
 <div id="main">
 <div id="error" class="hidden">
-    <span id="errorMsg">Sembra ci sia un problema di rete. Controlla di essere connesso ad internet e riprova. <br />Potrebbe anche essere un problema del canale, prova a cambiarlo.</span>
-    <br/><br/><a class="btn btn-warning" href="index.html" id="errorBtn">Riprova</a>
+    <span id="errorMsg">Non riesco a contattare il canale. Assicurati che ci sia connessione<br />e di aver inserito il link al canale correttamente come indicato sulla guida.</span>
+    <br/><br/>
+    <a class="btn btn-warning" href="index.html" id="errorBtn">Riprova</a><br/><br/>
+    <a class="btn btn-warning" href="https://www.facebook.com/NetfreexItaly/posts/1665744727054123">Se continui ad avere problemi clicca qui</a>
 </div>
 
 <div id="welcome">
@@ -210,7 +212,7 @@
         <div class="container">
             <div class="pull-left fnav">
                 <p>
-                    NETFREEX 1.1.7 - © 2017. Developed by <a href="https://github.com/Be4t5">Be4t5</a>
+                    NETFREEX 1.8.1.3 - © 2017. Developed by <a href="https://github.com/Be4t5">Be4t5</a>
                 </p>
             </div>
         </div>
@@ -394,6 +396,7 @@
 <link href="js/lib/video-js-5.19.2/video-js.min.css" rel="stylesheet"/>
 <link href="js/lib/video-js-5.19.2/skin/skin.css" rel="stylesheet"/>
 <script src="js/lib/video-js-5.19.2/videojs.hotkeys.min.js"></script>
+<script src="js/lib/video-js-5.19.2/videojs-contrib-hls.js"></script>
 
 <!-- Core -->
 <script src="js/utility.js"></script>

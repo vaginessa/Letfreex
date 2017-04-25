@@ -175,6 +175,10 @@ var movieOneLinkHosts = [
     {
         host: 'fastvideo',
         regex: 'fastvideo\.[a-z]+/([0-9a-zA-Z]*)'
+    },
+    {
+        host: 'popcorntvDirect',
+        regex: 'embedUrl" href="([^"]*)"'
     }
 ];
 
@@ -217,6 +221,8 @@ function manageMovieLinks(html) {
         if (!host)
             host = movieHostsManyLink[i];
 
+
+
         while (res = patt.exec(html)) {
             count++;
             console.log('trovato ' + res[1]);
@@ -246,6 +252,7 @@ function manageMovieLinks(html) {
     for (var i = 0; i < movieOneLinkHosts.length; i++) {
         if (!isHostSupported(movieOneLinkHosts[i].host))
             continue;
+
 
         var patt = new RegExp(movieOneLinkHosts[i].regex, 'gi');
 
@@ -280,7 +287,7 @@ function manageMovieLinks(html) {
 }
 
 function manageSerieTvLinks(html, regexStagione) {
-    var link = "";
+    
     var listaLink = {};
     var currentStagioneLingua = "";
 
@@ -307,7 +314,8 @@ function manageSerieTvLinks(html, regexStagione) {
             var singleEpisode = {
                 stagioneEpisodio: res[1],
                 id: res[2],
-                host: serieTvHosts[i].host
+                host: serieTvHosts[i].host,
+                res: "SD"
             }
             var seasonNum = res[1].split(/(?:[^&0-9A-Za-z\.]+|&#[0-9]{3,4};)|x/)[0];
 
@@ -324,7 +332,14 @@ function manageSerieTvLinks(html, regexStagione) {
                 listaLink[label].push(singleEpisode);
         }
     }
+    prinSeasons(listaLink);
+}
 
+
+
+
+function prinSeasons(listaLink) {
+    var link = "";
     try {
         listaLink = sortStagioni(listaLink);
     } catch (e) {
@@ -377,16 +392,16 @@ function manageSerieTvLinks(html, regexStagione) {
                             "<div tabindex=\"0\" onclick=\"chooseHost($(this).parent())\">" +
                                 "<div class=\"playContainer\" style=\"background-position: center;background-repeat: no-repeat;\">" +
                                       "<img class=\"playSeries\" src=\"img/playSeries.png\" />" +
-                                      "<i info=\"" + stagioneNumero + "x" + episodioNumero + "\" class=\"fa fa-bookmark seenIcon "+ alreadySeenClass +"\" ></i>" +
+                                      "<i info=\"" + stagioneNumero + "x" + episodioNumero + "\" class=\"fa fa-bookmark seenIcon " + alreadySeenClass + "\" ></i>" +
                                 "</div><h4>" + stagioneNumero + "x" + episodioNumero + "</h4>" +
                             "</div>";
             }
 
             var hostImg = listaLink[stagione].value[j].host.split("|")[1] ? listaLink[stagione].value[j].host.split("|")[1] : listaLink[stagione].value[j].host;
             link += "<div class=\"hidden marginBottom10\" host >" +
-                "<img tabindex='0' onclick=\"openVideo('" + listaLink[stagione].value[j].host + "','" + listaLink[stagione].value[j].id + "', 0)\" width=\"200\" src=\"img/host/" + hostImg + ".png\">" +
-                "<i tabindex='0' class=\"fa fa-download\" aria-hidden=\"true\" onclick=\"openVideo('" + listaLink[stagione].value[j].host + "','" + listaLink[stagione].value[j].id + "', 1)\"></i>" +
-                "<img tabindex='0' onclick=\"openVideo('" + listaLink[stagione].value[j].host + "','" + listaLink[stagione].value[j].id + "', 2)\" class=\"castIcon\" src=\"img/cast.png\">" +
+                "<img tabindex='0' res=\"" + listaLink[stagione].value[j].res + "\" onclick=\"openVideo('" + listaLink[stagione].value[j].host + "','" + listaLink[stagione].value[j].id + "', 0)\" width=\"200\" src=\"img/host/" + hostImg + ".png\">" +
+                "<i tabindex='0'  class=\"fa fa-download\" aria-hidden=\"true\" onclick=\"openVideo('" + listaLink[stagione].value[j].host + "','" + listaLink[stagione].value[j].id + "', 1)\"></i>" +
+                "<img tabindex='0'  onclick=\"openVideo('" + listaLink[stagione].value[j].host + "','" + listaLink[stagione].value[j].id + "', 2)\" class=\"castIcon\" src=\"img/cast.png\">" +
                 "</div>";
         }
         link += "</div>";
@@ -402,11 +417,12 @@ function manageSerieTvLinks(html, regexStagione) {
         $('#playButton').html(link);
     }
 
+    //Segno link hd
+    $('img[res="HD"]').before("<img class='res' src='img/hd.png'>");
+    $('img[res="SD"]').before("<img class='res' src='img/sd.png'>");
+
     $('.guarda').removeClass('hidden');
     $('#loadingLink').addClass('hidden');
     $('#playButton').removeClass('hidden');
     $('#playButton').addClass('backgroundBlack');
-
 }
-
-

@@ -970,13 +970,17 @@ label {
     padding: 25px;
 }
 
-.fa-download, .fa-external-link {
+.fa-download, .fa-external-link, .fa-link {
     position: relative;
     top: 2px;
     color: #fcac45;
     padding-right: 20px;
 }
 
+.res {
+    position: relative;
+    width: 30px;
+}
 
 /*SIDE NAV*/
 .sidenav {

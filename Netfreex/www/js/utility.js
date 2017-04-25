@@ -77,6 +77,22 @@ function sortStagioni(obj) {
     return arr; // returns array
 }
 
+function sortProperties(obj) {
+    // convert object into array
+    var sortable = [];
+    for (var key in obj)
+        if (obj.hasOwnProperty(key))
+            sortable.push([key, obj[key]]); // each item is an array in format [key, value]
+
+    // sort items by value
+    sortable.sort(function (a, b) {
+        var x = a[1].toLowerCase(),
+			y = b[1].toLowerCase();
+        return x < y ? -1 : x > y ? 1 : 0;
+    });
+    return sortable; // array in format [ [ key1, val1 ], [ key2, val2 ], ... ]
+}
+
 Date.prototype.addDays = function (days) {
     var dat = new Date(this.valueOf());
     dat.setDate(dat.getDate() + days);
@@ -123,22 +139,27 @@ function depack(p) {
     return c;
 }
 
+function getYahooAPI(url, success, error) {
+    $.getJSON("http://query.yahooapis.com/v1/public/yql?" +
+        "q=select%20*%20from%20html%20where%20url%3D%22" +
+        encodeURIComponent(url) +
+        "%22&format=xml'&callback=?",
+        function (data) {
+            try {
+                success(data.results[0]);
+            } catch (e) {
+                error(e);
+            }
+        }, function (er) {
+            error(er);
+        }
+    );
+}
+
+
 //HTTP GET
 function get(url, success, error) {
     if (cineblog != true) {
-
-        //$.getJSON("http://query.yahooapis.com/v1/public/yql?" +
-        //    "q=select%20*%20from%20html%20where%20url%3D%22" +
-        //    encodeURIComponent(url) +
-        //    "%22&format=xml'&callback=?",
-        //    function (data) {
-        //        if (data.results[0]) {
-        //            success(data.results[0]);
-        //        }
-        //    }, function (er) {
-        //        error(er);
-        //    }
-        //);
         $.ajax({
             url: url,
             type: "GET",
@@ -167,6 +188,18 @@ function get(url, success, error) {
         }
 
     }
+}
+
+function asyncGet(url, success, error) {
+    return new Promise(function (resolve, reject) {
+        try {
+            get(url, success, error, resolve);
+        } catch (e) {
+            console.error(e);
+            resolve();
+            error();
+        }
+    });
 }
 
 function doGetCB(url, success, error) {

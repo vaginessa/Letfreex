@@ -2975,12 +2975,12 @@ var FullscreenToggle = function (_Button) {
 
 
   FullscreenToggle.prototype.handleClick = function handleClick(event) {
-    //if (!this.player_.isFullscreen()) {
-    //  this.player_.requestFullscreen();
-    //} else {
-    //  this.player_.exitFullscreen();
-      //}
-      hidePlayer();
+    if (!this.player_.isFullscreen()) {
+      this.player_.requestFullscreen();
+    } else {
+      this.player_.exitFullscreen();
+      }
+      //hidePlayer();
       //this.player_.dispose()
   };
 
