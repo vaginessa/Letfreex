@@ -33,4 +33,4 @@ Per maggiori informazioni visitate la guida http://letfreex.com/guida
 
 ### Disclaimer
 
-Ricordo che Letfreex è un progetto opensource, gratuito, non a scopo di lucro. Non ha server o database propri, non ospita materiale protetto da copyright. Svolge soltanto una funzione di url resolving e di browsing di contenuti presenti su altri siti web (inseriti dall'utente). Operando in tempo reale e non salvando informazioni al suo interno, nel momento in cui i siti web a cui si collega venissero messi offline, anche Netfreex smetterà di funzionare.
+Ricordo che Letfreex è un progetto opensource, gratuito, non a scopo di lucro. Non ha server o database propri, non ospita materiale protetto da copyright. Svolge soltanto una funzione di url resolving e di browsing di contenuti presenti su altri siti web (inseriti dall'utente). Operando in tempo reale e non salvando informazioni al suo interno, nel momento in cui i siti web a cui si collega venissero messi offline, anche Letfreex smetterà di funzionare.
