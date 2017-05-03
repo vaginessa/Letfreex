@@ -111,7 +111,9 @@ function parseMoviePage(html, url, isSerieTv) {
         if (html.indexOf('Download:<') > -1)
             html = html.split('Download:<')[0];
 
-        manageMovieLinks(html);
+        var quality = html.split("g>Streaming HD");
+
+        manageMovieLinks(quality[0], quality[1]);
 
         $('.guarda').removeClass('hidden');
         $('#playButton').removeClass('hidden');
@@ -180,10 +182,7 @@ function getCookieCF(callback) {
 
 $("#welcome").addClass("hidden");
 var sections = [
-    //"movieMostPopularSliderContainer",
-    //"serieTvMostPopularSliderContainer",
-    "movieSliderContainer",
-    //"serieTvSliderContainer"
+    addSection("movie", "Film - Ultime uscite"),
 ];
 
 var cineblog = true;

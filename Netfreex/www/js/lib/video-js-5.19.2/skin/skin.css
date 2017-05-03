@@ -196,7 +196,7 @@ bit of blue so it can still be seen on all-black video frames, which are common.
             border-radius: 1em;
             transition: top 150ms linear, opacity 150ms linear, transform 150ms linear, -webkit-transform 150ms linear, -moz-transform 150ms linear, -o-transform 150ms linear;
             z-index: 1;
-            opacity: 0;
+            opacity: 1;
         }
 
             .video-js .vjs-progress-control:hover .vjs-progress-holder {
@@ -347,4 +347,21 @@ smaller disconnected loaded time ranges */
         position: relative;
     top: 15px;
     width: 33px !important;
+}
+
+.player-dimensions.vjs-fluid {
+     padding-top: 0; 
+}
+
+.video-js .vjs-menu-button-inline {
+    width: 12em;
+}
+.vjs-volume-menu-button-horizontal .vjs-menu-content {
+    height: 2.9em;
+    width: 8em;
+}
+
+.vjs-menu-button-inline .vjs-menu {
+  display: block;
+  opacity: 1;
 }

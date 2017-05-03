@@ -87,22 +87,40 @@ function search() {
 }
 
 var sections = [
-    "movieMostPopularSliderContainer",
-    "serieTvMostPopularSliderContainer",
-    "movieSliderContainer",
-    "serieTvSliderContainer"
+addSection("movie", "Film - Ultime uscite"),
+addSection("serieTv", "Serie TV - Ultime uscite"),
+addSection("movieMostPopular", "Film - Piu' popolari"),
+addSection("serieTvMostPopular", "Serie TV - Piu' popolari"),
+addSection("movieAzione", "Film - Azione"),
+addSection("movieCommedia", "Film - Commedia"),
+addSection("movieDrammatico", "Film - Drammatico"),
+addSection("movieHorror", "Film - Horror"),
+addSection("movieRomantico", "Film - Romantico"),
+addSection("movieFantascienza", "Film - Fantascienza"),
+addSection("movieThriller", "Film - Thriller"),
+addSection("movieAnimazione", "Film - Animazione"),
+addSection("movieFantasy", "Film - Fantasy"),
 ];
 $("#welcome").addClass("hidden");
 
 $(document).on("ready", function () {
     Promise.all([
-         asyncOpenPage(localStorage.italiaFilmUrl + "/category/film-streaming-2017/", false, 'movieMostPopularSliderContainer', true, null),
-         asyncOpenPage(localStorage.italiaFilmUrl + "/category/film-streaming-2017/", true, 'serieTvMostPopularSliderContainer', true, null),
-         asyncOpenPage(localStorage.italiaFilmUrl + "/category/serie-tv/", true, 'serieTvSliderContainer', false, null),
-         asyncOpenPage(localStorage.italiaFilmUrl + "/category/film-streaming-2017/", false, 'movieSliderContainer', false, null),
+         asyncOpenPage(localStorage.italiaFilmUrl + "/category/film-streaming-2017/", false, 'movieMostPopular', true, null),
+         asyncOpenPage(localStorage.italiaFilmUrl + "/category/film-streaming-2017/", true, 'serieTvMostPopular', true, null),
+         asyncOpenPage(localStorage.italiaFilmUrl + "/category/serie-tv/", true, 'serieTv', false, null),
+         asyncOpenPage(localStorage.italiaFilmUrl + "/category/film-streaming-2017/", false, 'movie', false, null),
+         asyncOpenPage(localStorage.italiaFilmUrl + "/category/film-azione/", false, 'movieAzione', false, null),
+        asyncOpenPage(localStorage.italiaFilmUrl + "/category/film-commedia/", false, 'movieCommedia', false, null),
+        asyncOpenPage(localStorage.italiaFilmUrl + "/category/film-drammatici/", false, 'movieDrammatico', false, null),
+        asyncOpenPage(localStorage.italiaFilmUrl + "/category/film-horror/", false, 'movieHorror', false, null),
+        asyncOpenPage(localStorage.italiaFilmUrl + "/category/film-romantici/", false, 'movieRomantico', false, null),
+        asyncOpenPage(localStorage.italiaFilmUrl + "/category/film-fantascienza-2/", false, 'movieFantascienza', false, null),
+        asyncOpenPage(localStorage.italiaFilmUrl + "/category/genere-thriller/", false, 'movieThriller', false, null),
+        asyncOpenPage(localStorage.italiaFilmUrl + "/category/film-animazione/", false, 'movieAnimazione', false, null),
+        asyncOpenPage(localStorage.italiaFilmUrl + "/category/film-fantasy-1/", false, 'movieFantasy', false, null),
     ])
      .then(function () {
-            initViewChannelMode();
+         initViewChannelMode(sections);
         })
      .catch(function (e) {
             console.error(e);

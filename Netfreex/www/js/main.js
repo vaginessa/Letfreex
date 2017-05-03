@@ -42,6 +42,7 @@ var mySwiper;
 function asyncOpenPage(url, isSerieTv, section, mostPopular, nextPage) {
     return new Promise(function (resolve, reject) {
         try {
+            section += "SliderContainer";
             openPage(url, isSerieTv, section, mostPopular, nextPage, resolve);
         } catch (e) {
             console.error(e);
@@ -86,6 +87,24 @@ function scrapeMostPopular(url, isSerieTv, section, callback) {
     });
 }
 
+function addSection(sectionId, name) {
+    var html = '<div id="' + sectionId + '" class="fascia"><h1 class="sliderTitle ' + sectionId + 'Title">' + name + '</h1>' +
+    '<div  class="paddingUpDown40">' +
+        '<div class="container">'+
+            '<div class="row">'+
+                '<div class="col-md-12" id="' + sectionId + 'Slider">' +
+                    '<div class="swiper-container ' + sectionId + 'SliderContainer" style="width: 100%;">' +
+                        '<div id="' + sectionId + 'SliderContainer" class="swiper-wrapper "></div>' +
+                    '</div>'+
+                '</div>'+
+            '</div>'+
+        '</div>'+
+   '</div></div>';
+
+    $('#sliderFasce').append(html);
+    return sectionId;
+}
+
 function printPage(isSerieTv, section, nextPage, callback) {
     $('#loadingSearch').addClass('hidden');
 
@@ -96,18 +115,23 @@ function printPage(isSerieTv, section, nextPage, callback) {
 
     for (var i = 0; i < arrayFilm.length; i++) {
         if (arrayFilm[i].url != undefined)
-            htmlFilm = "<div  class=\"swiper-slide\" ><img class='posterImg' src='" + arrayFilm[i].img + "' tabindex=\"0\" onclick=\"openMovie('" + arrayFilm[i].url + "','" + arrayFilm[i].title + "','" + arrayFilm[i].img + "'," + arrayFilm[i].isSerieTv + ")\"></div>";
+            htmlFilm = "<div  class=\"swiper-slide\" ><img class='posterImg' src='" + arrayFilm[i].img + "' tabindex=\"0\" onclick=\"openMovie('" + arrayFilm[i].url + "','" + arrayFilm[i].title.trim().replaceAll("'", "\\'") + "','" + arrayFilm[i].img + "'," + arrayFilm[i].isSerieTv + ")\"></div>";
         else
             htmlFilm = "";
         if (i == arrayFilm.length - 1 && typeof arrayFilm[i] == "string")
             htmlFilm = "<div class=\"swiper-slide text-center nextPage" + section + "\" tabindex=\"0\" onclick=\"nextPage('" + arrayFilm[i] + "'," + isSerieTv + ",'" + section + "')\"><img class='posterImg arrow' src='img/arrow-right.png'></div>";
-        $("#" + section).html($("#" + section).html() + htmlFilm)
+        $("#" + section).html($("#" + section).html() + htmlFilm);
     }
 
     //Pusho nel carousel un oggetto random tra quelli nell'array
-    if (arrayFilm[0].carousel != "false") {
-        pushRandomItemInCarousel(isSerieTv);
+    try {
+        if (arrayFilm[0].carousel != "false") {
+            pushRandomItemInCarousel(isSerieTv);
+        }
+    } catch (e) {
+        console.error(e);
     }
+
 
     if (nextPage) {
         initializeSliderPoster(section);
@@ -129,11 +153,9 @@ function fillCarousel() {
         var title = isSerie ? arrayCarousel[i].results[0].name : arrayCarousel[i].results[0].title;
         var item = "<div data-p=\"225.00\"  style=\"display: none;\">" +
             '<img data-u="image" src="' + selectBackgroundSize() + arrayCarousel[i].results[0].backdrop_path + '"/>' +
-             "<img  onclick=\"openMovie('" + arrayCarousel[i].info.url + "','" + arrayCarousel[i].info.title + "','" + arrayCarousel[i].info.img + "', " + isSerie + ")\" style=\"position: absolute;top: 26%;left: 55%;\" src=\"img/play_button.png\" />" +
+             "<img  onclick=\"openMovie('" + arrayCarousel[i].info.url + "','" + arrayCarousel[i].info.title.trim() + "','" + arrayCarousel[i].info.img + "', " + isSerie + ")\" style=\"position: absolute;top: 26%;left: 55%;\" src=\"img/play_button.png\" />" +
             '<div id="carouselPoster" class="sfumato" style="height: 100%; padding-top: 6% ; padding: 55px;">' +
-                 //'<h2 style="color:white">' + title + '</h2>' +
                   '<img class="carouselImg" src="https://image.tmdb.org/t/p/w500' + arrayCarousel[i].results[0].poster_path + '">' +
-                  //'<div class="carouselPlot" class="scroll">' + truncate(arrayCarousel[i].results[0].overview) + '</div>' +
              '</div>' +
         '</div>';
 

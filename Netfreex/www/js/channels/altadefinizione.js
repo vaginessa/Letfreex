@@ -63,17 +63,34 @@ function search() {
 }
 
 var sections = [
-    "movieSliderContainer",
+    addSection("movie", "Film - Ultime uscite"),
+    addSection("movieAzione", "Film - Azione"),
+    addSection("movieCommedia", "Film - Commedia"),
+    addSection("movieDrammatico", "Film - Drammatico"),
+    addSection("movieHorror", "Film - Horror"),
+    addSection("movieRomantico", "Film - Romantico"),
+    addSection("movieFantascienza", "Film - Fantascienza"),
+    addSection("movieThriller", "Film - Thriller"),
+    addSection("movieAnimazione", "Film - Animazione"),
+    addSection("movieFantasy", "Film - Fantasy"),
 ];
-
 $("#welcome").addClass("hidden");
 
 $(document).on("ready", function () {
     Promise.all([
-            asyncOpenPage(localStorage.altadefinizioneUrl, false, 'movieSliderContainer', false, null),
+            asyncOpenPage(localStorage.altadefinizioneUrl, false, 'movie', false, null),
+            asyncOpenPage(localStorage.altadefinizioneUrl + "/genere/film/azione/", false, 'movieAzione', false, null),
+            asyncOpenPage(localStorage.altadefinizioneUrl + "/genere/film/commedia/", false, 'movieCommedia', false, null),
+            asyncOpenPage(localStorage.altadefinizioneUrl + "/genere/film/drammatico/", false, 'movieDrammatico', false, null),
+            asyncOpenPage(localStorage.altadefinizioneUrl + "/genere/film/horror/", false, 'movieHorror', false, null),
+            asyncOpenPage(localStorage.altadefinizioneUrl + "/genere/film/romantico/", false, 'movieRomantico', false, null),
+            asyncOpenPage(localStorage.altadefinizioneUrl + "/genere/film/fantascienza/", false, 'movieFantascienza', false, null),
+            asyncOpenPage(localStorage.altadefinizioneUrl + "/genere/film/thriller/", false, 'movieThriller', false, null),
+            asyncOpenPage(localStorage.altadefinizioneUrl + "/genere/film/animazione/", false, 'movieAnimazione', false, null),
+            asyncOpenPage(localStorage.altadefinizioneUrl + "/genere/film/fantasy/", false, 'movieFantasy', false, null),
     ])
     .then(function () {
-        initViewChannelMode();
+        initViewChannelMode(sections);
     })
     .catch(function (e) {
         console.error(e);

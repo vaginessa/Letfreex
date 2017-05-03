@@ -978,8 +978,10 @@ label {
 }
 
 .res {
-    position: relative;
+    position: absolute;
     width: 30px;
+    margin-top: 5px;
+    margin-left: -12px;
 }
 
 /*SIDE NAV*/

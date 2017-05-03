@@ -34,7 +34,7 @@
                 },
                 success: function (response) {
                     try {
-                        var content = response.split('"sources":')[1].split(' ,"displaydescription"')[0];
+                        var content = response.split('"sources":')[1].split('}); playerInstance')[0];
                         content = '{"sources":' + content + '}';
 
                         var links = JSON.parse(content)["sources"];

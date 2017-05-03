@@ -175,80 +175,15 @@ var movieOneLinkHosts = [
     {
         host: 'fastvideo',
         regex: 'fastvideo\.[a-z]+/([0-9a-zA-Z]*)'
-    },
-    {
-        host: 'popcorntvDirect',
-        regex: 'embedUrl" href="([^"]*)"'
     }
-];
-
-//Gestione host film (LINK IN PIU' PARTI)========================================================
-var movieHostsManyLink = [
-    'swzz|nowvideo',
-    //'swzz|openload',
-    'flashx',
-    'nowvideo'
-];
-
-var movieRegexHostsManyLink = [
-    //Nowvideo redirect swzz (cineblog)
-    'Nowvideo: .*xyz/link/([a-z0-9A-Z]*)/" target="_blank">(.. Tempo)</a>.*xyz/link/([a-z0-9A-Z]*)/" target="_blank">(.. Tempo)</a>(?:xyz/link/([a-z0-9A-Z]*)/" target="_blank">(.. Tempo)</a>)?',
-
-    //Nowvideo redirect swzz (cineblog)
-    //'Openload: .*xyz/link/([a-z0-9A-Z]*)/" target="_blank">(.. Tempo)</a>.*xyz/link/([a-z0-9A-Z]*)/" target="_blank">(.. Tempo)</a>(?:xyz/link/([a-z0-9A-Z]*)/" target="_blank">(.. Tempo)</a>)?',
-
-    //Flashx
-    'Flashx: .*flashx.[a-z]*/([a-z0-9A-Z]*).html" target="_blank">(.. Tempo)</a>.*flashx.tv/([a-z0-9A-Z]*).html" target="_blank">(.. Tempo)</a>(?:flashx.tv/([a-z0-9A-Z]*).html" target="_blank">(.. Tempo)</a>)?',
-
-    //Nowvideo (italiafilm)
-    'Nowvideo .*nowvideo.[a-z]*/video/([a-z0-9A-Z]*)" target="_blank">(Parte .).*nowvideo....?/video/([a-z0-9A-Z]*)" target="_blank">(Parte .)(?:.*nowvideo....?/video/([a-z0-9A-Z]*)" target="_blank">(Parte .)</a>)?'
 ];
 
 
 //Paginazione link ===============================================================================
 
-function manageMovieLinks(html) {
-    var count;
-    var link;
-
-    //Link in più parti  
-    for (var i = 0; i < movieHostsManyLink.length; i++) {
-        count = 0;
-        link = "";
-        var patt = new RegExp(movieRegexHostsManyLink[i], 'gi');
-
-        var host = movieHostsManyLink[i].split('|')[1];
-        if (!host)
-            host = movieHostsManyLink[i];
-
-
-
-        while (res = patt.exec(html)) {
-            count++;
-            console.log('trovato ' + res[1]);
-            console.log(res);
-
-            link += "<div tabindex='0' class=\"hidden marginBottom10\" host onclick=\"openVideo('" + movieHostsManyLink[i] + "','" + res[1] + "', false)\"><img class=\"poster play\" src=\"img/host/" + host + ".png\" /><p>" + res[2] + "</p></div>";
-            link += "<div tabindex='0' class=\"hidden marginBottom10\" host onclick=\"openVideo('" + movieHostsManyLink[i] + "','" + res[3] + "', false)\"><img class=\"poster play\" src=\"img/host/" + host + ".png\" /><p>" + res[4] + "</p></div>";
-
-            if (res[5])
-                link += "<div class=\"hidden marginBottom10\"tabindex='0' host onclick=\"openVideo('" + movieHostsManyLink[i] + "','" + res[5] + "', false)\"><img class=\"poster play\" src=\"img/host/" + host + ".png\" /><p>" + res[6] + "</p></div>";
-
-        }
-
-        if (count > 0) {
-            var head = "<div class=\"guarda hidden\"  >" +
-                            "<img tabindex='0' class=\"poster play\" onclick=\"chooseHost($(this).parent())\" src=\"img/play_button.png\" />";
-            $('#playButton').html($('#playButton').html() + head + link + "</div>");
-        }
-    }
-
-
-    //Link singolo
-
-    count = 0;
-    link = "";
-    
+function manageMovieLinks(html, hd) {
+    var count = 0;
+     var link = "";
     for (var i = 0; i < movieOneLinkHosts.length; i++) {
         if (!isHostSupported(movieOneLinkHosts[i].host))
             continue;
@@ -262,28 +197,34 @@ function manageMovieLinks(html) {
 
         while (res = patt.exec(html)) {
             console.log('trovato ' + res[1]);
-
-            //Se il link non l'ho già inserito prima, nei link multipli
             if ($('#playButton').html().indexOf(res[1]) == -1 && link.indexOf(res[1]) == -1 && res[1] != "embed") {
+                var resolution = ((host == 'megahd') || ($("#channelName").html() == "altadefinizione" && host == 'openload')) ? "HD" : "SD";
                 count++;
-                link += "<div  class=\"hidden marginBottom10\" host >" +
-                    "<img tabindex='0' onclick=\"openVideo('" + movieOneLinkHosts[i].host + "','" + res[1] + "', 0)\" width=\"200\" src=\"img/host/" + host + ".png\">" +
-                    "<i tabindex='0' class=\"fa fa-download\" aria-hidden=\"true\" onclick=\"openVideo('" + movieOneLinkHosts[i].host + "','" + res[1] + "', 1)\"></i>" +
-                    "<img tabindex='0' onclick=\"openVideo('" + movieOneLinkHosts[i].host + "','" + res[1] + "', 2)\" class=\"castIcon\" src=\"img/cast.png\">" +
-                    "</div>";
+                link += getHostsStringPrinted(resolution, movieOneLinkHosts[i].host, res[1], host);
             }
         }
+
+        if (hd) {
+            while (res = patt.exec(hd)) {
+                console.log('trovato ' + res[1]);
+                if ($('#playButton').html().indexOf(res[1]) == -1 && link.indexOf(res[1]) == -1 && res[1] != "embed") {
+                    count++;
+                    link += getHostsStringPrinted("HD", movieOneLinkHosts[i].host, res[1], host);
+                }
+            }
+        }
+
     }
 
     if (count > 0) {
         var head = "<div class=\"guarda hidden\"  >" +
                         "<img tabindex='0' class=\"poster play\" onclick=\"chooseHost($(this).parent())\" src=\"img/play_button.png\" />";
         $('#playButton').html($('#playButton').html() + head + link + "</div>");
+
+        //Segno link hd
+        $('img[res="HD"]').before("<img class='res' src='img/hd.png'>");
+        $('img[res="SD"]').before("<img class='res' src='img/sd.png'>");
     }
-
-
-
-
 }
 
 function manageSerieTvLinks(html, regexStagione) {
@@ -334,9 +275,6 @@ function manageSerieTvLinks(html, regexStagione) {
     }
     prinSeasons(listaLink);
 }
-
-
-
 
 function prinSeasons(listaLink) {
     var link = "";
@@ -398,11 +336,13 @@ function prinSeasons(listaLink) {
             }
 
             var hostImg = listaLink[stagione].value[j].host.split("|")[1] ? listaLink[stagione].value[j].host.split("|")[1] : listaLink[stagione].value[j].host;
-            link += "<div class=\"hidden marginBottom10\" host >" +
-                "<img tabindex='0' res=\"" + listaLink[stagione].value[j].res + "\" onclick=\"openVideo('" + listaLink[stagione].value[j].host + "','" + listaLink[stagione].value[j].id + "', 0)\" width=\"200\" src=\"img/host/" + hostImg + ".png\">" +
-                "<i tabindex='0'  class=\"fa fa-download\" aria-hidden=\"true\" onclick=\"openVideo('" + listaLink[stagione].value[j].host + "','" + listaLink[stagione].value[j].id + "', 1)\"></i>" +
-                "<img tabindex='0'  onclick=\"openVideo('" + listaLink[stagione].value[j].host + "','" + listaLink[stagione].value[j].id + "', 2)\" class=\"castIcon\" src=\"img/cast.png\">" +
-                "</div>";
+            link += getHostsStringPrinted(listaLink[stagione].value[j].res, listaLink[stagione].value[j].host, listaLink[stagione].value[j].id, hostImg);
+
+                //"<div class=\"hidden marginBottom10\" host >" +
+                //"<img tabindex='0' res=\"" + listaLink[stagione].value[j].res + "\" onclick=\"openVideo('" + listaLink[stagione].value[j].host + "','" + listaLink[stagione].value[j].id + "', 0)\" width=\"200\" src=\"img/host/" + hostImg + ".png\">" +
+                //"<i tabindex='0'  class=\"fa fa-download\" aria-hidden=\"true\" onclick=\"openVideo('" + listaLink[stagione].value[j].host + "','" + listaLink[stagione].value[j].id + "', 1)\"></i>" +
+                //"<img tabindex='0'  onclick=\"openVideo('" + listaLink[stagione].value[j].host + "','" + listaLink[stagione].value[j].id + "', 2)\" class=\"castIcon\" src=\"img/cast.png\">" +
+                //"</div>";
         }
         link += "</div>";
     }
@@ -425,4 +365,17 @@ function prinSeasons(listaLink) {
     $('#loadingLink').addClass('hidden');
     $('#playButton').removeClass('hidden');
     $('#playButton').addClass('backgroundBlack');
+}
+
+function getHostsStringPrinted(res, host, id, hostImg) {
+    var openDiv = $(window).width() > 338 ? "" : "<div>";
+    var closeDiv = $(window).width() > 338 ? "" : "</div>";
+
+    return "<div class=\"hidden marginBottom10\" host >" +
+        "<img tabindex='0' res=\"" + res + "\" onclick=\"openVideo('" + host + "','" + id + "', 0)\" width=\"200\" src=\"img/host/" + hostImg + ".png\">" +
+        openDiv +
+        "<i tabindex='0'  class=\"fa fa-download\" aria-hidden=\"true\" onclick=\"openVideo('" + host + "','" + id + "', 1)\"></i>" +
+        "<img tabindex='0'  onclick=\"openVideo('" + host + "','" + id + "', 2)\" class=\"castIcon\" src=\"img/cast.png\">" +
+        closeDiv +
+        "</div>";
 }

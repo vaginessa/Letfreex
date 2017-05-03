@@ -93,6 +93,8 @@ function sortProperties(obj) {
     return sortable; // array in format [ [ key1, val1 ], [ key2, val2 ], ... ]
 }
 
+jQuery.fn.exists = function () { return this.length > 0; }
+
 Date.prototype.addDays = function (days) {
     var dat = new Date(this.valueOf());
     dat.setDate(dat.getDate() + days);
@@ -231,6 +233,7 @@ function clearCache() {
         var italiafilm = localStorage.italiaFilmUrl;
         var piratestreaming = localStorage.pirateStreamingUrl;
         var altadefinizione = localStorage.altadefinizioneUrl;
+        var seriehdme = localStorage.seriehdmeUrl;
         var donation = localStorage.timeStampDonation;
         var cache = localStorage.timeStampClearCache;
 
@@ -241,6 +244,7 @@ function clearCache() {
         var downloadEpisodeInfo = localStorage.downloadEpisodeInfo;
         var castTutorialBlock = localStorage.castTutorialBlock;
         var downloadTutorialBlock = localStorage.downloadTutorialBlock;
+        
 
         localStorage.clear();
 
@@ -256,6 +260,8 @@ function clearCache() {
             localStorage.pirateStreamingUrl = piratestreaming;
         if (altadefinizione)
             localStorage.altadefinizioneUrl = altadefinizione;
+        if (seriehdme)
+            localStorage.seriehdmeUrl = seriehdme;
         if (bookmarks)
             localStorage.bookmarks = bookmarks;
         if (favourites)

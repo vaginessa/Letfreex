@@ -96,9 +96,8 @@ function parsePage(html, url, isSerieTv, section, nextPage, callback) {
         }
     }
 
-
     //Prossima pagina
-    var patt = new RegExp('<a href="([^<]*)">Pagina successiva', 'gi');
+    var patt = new RegExp('<a href="([^<]*)"[ ]*>Pagina successiva', 'gi');
     while (res = patt.exec(html)) {
         console.log(res[1])
         arrayFilm.push(res[1])
@@ -111,7 +110,14 @@ function parsePage(html, url, isSerieTv, section, nextPage, callback) {
 
 function parseMoviePage(html, url, isSerieTv) {
     if (!isSerieTv) {
-        manageMovieLinks(html);
+        html = html.split("Streaming:")[1];
+        try {
+            var quality = html.split("Streaming HD:");
+            manageMovieLinks(quality[0], quality[1].split("Download")[0]);
+        } catch (e) {
+            manageMovieLinks(html);
+        }
+
 
         $('.guarda').removeClass('hidden');
         $('#playButton').removeClass('hidden');
@@ -138,18 +144,36 @@ function search() {
 }
 
 var sections = [
-    "movieSliderContainer",
-    "serieTvSliderContainer"
+    addSection("movie", "Film - Ultime uscite"),
+    addSection("serieTv", "Serie TV - Ultime uscite"),
+    addSection("movieAzione", "Film - Azione"),
+    addSection("movieCommedia", "Film - Commedia"),
+    addSection("movieDrammatico", "Film - Drammatico"),
+    addSection("movieHorror", "Film - Horror"),
+    addSection("movieRomantico", "Film - Romantico"),
+    addSection("movieFantascienza", "Film - Fantascienza"),
+    addSection("movieThriller", "Film - Thriller"),
+    addSection("movieAnimazione", "Film - Animazione"),
+    addSection("movieFantasy", "Film - Fantasy"),
 ];
 $("#welcome").addClass("hidden");
 
 $(document).on("ready", function () {
     Promise.all([
-            asyncOpenPage(localStorage.filmPerTuttiUrl + "/category/film/", false, 'movieSliderContainer', false, null),
-            asyncOpenPage(localStorage.filmPerTuttiUrl + "/category/serie-tv/", true, 'serieTvSliderContainer', false, null),
+            asyncOpenPage(localStorage.filmPerTuttiUrl + "/category/film/", false, 'movie', false, null),
+            asyncOpenPage(localStorage.filmPerTuttiUrl + "/category/serie-tv/", true, 'serieTv', false, null),
+            asyncOpenPage(localStorage.filmPerTuttiUrl + "/category/film/azione/", false, 'movieAzione', false, null),
+            asyncOpenPage(localStorage.filmPerTuttiUrl + "/category/film/commedia/", false, 'movieCommedia', false, null),
+            asyncOpenPage(localStorage.filmPerTuttiUrl + "/category/film/drammatico/", false, 'movieDrammatico', false, null),
+            asyncOpenPage(localStorage.filmPerTuttiUrl + "/category/film/horror/", false, 'movieHorror', false, null),
+            asyncOpenPage(localStorage.filmPerTuttiUrl + "/category/film/romantico/", false, 'movieRomantico', false, null),
+            asyncOpenPage(localStorage.filmPerTuttiUrl + "/category/film/fantascienza/", false, 'movieFantascienza', false, null),
+            asyncOpenPage(localStorage.filmPerTuttiUrl + "/category/film/thriller/", false, 'movieThriller', false, null),
+            asyncOpenPage(localStorage.filmPerTuttiUrl + "/category/film/animazione/", false, 'movieAnimazione', false, null),
+            asyncOpenPage(localStorage.filmPerTuttiUrl + "/category/film/fantasy/", false, 'movieFantasy', false, null),
     ])
     .then(function () {
-        initViewChannelMode();
+        initViewChannelMode(sections);
     })
     .catch(function (e) {
         console.error(e);

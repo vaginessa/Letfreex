@@ -113,8 +113,12 @@ function parsePage(html, url, isSerieTv, section, nextPage, callback) {
 
 function parseMoviePage(html, url, isSerieTv) {
     if (!isSerieTv) {
-        html = html.split("<u>DOWNLOAD")[0];
-        manageMovieLinks(html);
+        html = html.split("STREAMING:")[1];
+
+        var quality = html.split("STREAMING HD:");
+
+        manageMovieLinks(quality[0], quality[1].split("<u>DOWNLOAD")[0]);
+
 
         $('.guarda').removeClass('hidden');
         $('#playButton').removeClass('hidden');
@@ -141,33 +145,37 @@ function search() {
 }
 
 var sections = [
-    "movieSliderContainer",
-    "serieTvSliderContainer"
+    addSection("movie", "Film - Ultime uscite"),
+    addSection("serieTv", "Serie TV - Ultime uscite"),
+    addSection("movieAzione", "Film - Azione"),
+    addSection("movieCommedia", "Film - Commedia"),
+    addSection("movieDrammatico", "Film - Drammatico"),
+    addSection("movieHorror", "Film - Horror"),
+    addSection("movieRomantico", "Film - Romantico"),
+    addSection("movieFantascienza", "Film - Fantascienza"),
+    addSection("movieThriller", "Film - Thriller"),
+    addSection("movieAnimazione", "Film - Animazione"),
+    addSection("movieFantasy", "Film - Fantasy"),
 ];
 $("#welcome").addClass("hidden");
-
-//Most popular
-    //$('.movieMostPopularTitle').addClass('hidden');
-    //$('.serieMostPopularTitle').addClass('hidden');
-    //$('#homeFilmMostPopular').addClass('hidden');
-    //$('#homeSerieTvMostPopular').addClass('hidden');
-
-    //Ultime uscite
-    //openPage("http://www.cinemalibero.tv/category/film/", false, 'movieSliderContainer', false);
-
-    //openPage("http://www.cinemalibero.tv/category/serie-tv/", true, 'serieTvSliderContainer', false);
-
-    //openPage("http://www.piratestreaming.news/serietv-aggiornamentii.php?pageNum_lista_film=2", true, 'serieTvSliderContainer', false);
-    //openPage("http://www.piratestreaming.news/film-aggiornamenti.php?pageNum_lista_film=2", false, 'movieSliderContainer', false);
 
     
 $(document).on("ready", function () {
     Promise.all([
-            asyncOpenPage(localStorage.cinemaLiberoUrl + "/category/film/", false, 'movieSliderContainer', false, null),
-            asyncOpenPage(localStorage.cinemaLiberoUrl + "/category/serie-tv/", true, 'serieTvSliderContainer', false, null),
+            asyncOpenPage(localStorage.cinemaLiberoUrl + "/category/film/", false, 'movie', false, null),
+            asyncOpenPage(localStorage.cinemaLiberoUrl + "/category/serie-tv/", true, 'serieTv', false, null),
+            asyncOpenPage(localStorage.cinemaLiberoUrl + "/category/film/azione/", false, 'movieAzione', false, null),
+            asyncOpenPage(localStorage.cinemaLiberoUrl + "/category/film/commedia/", false, 'movieCommedia', false, null),
+            asyncOpenPage(localStorage.cinemaLiberoUrl + "/category/film/drammatico/", false, 'movieDrammatico', false, null),
+            asyncOpenPage(localStorage.cinemaLiberoUrl + "/category/film/horror/", false, 'movieHorror', false, null),
+            asyncOpenPage(localStorage.cinemaLiberoUrl + "/category/film/sentimentale/", false, 'movieRomantico', false, null),
+            asyncOpenPage(localStorage.cinemaLiberoUrl + "/category/film/fantascienza/", false, 'movieFantascienza', false, null),
+            asyncOpenPage(localStorage.cinemaLiberoUrl + "/category/film/thriller/", false, 'movieThriller', false, null),
+            asyncOpenPage(localStorage.cinemaLiberoUrl + "/category/film/animazione/", false, 'movieAnimazione', false, null),
+            asyncOpenPage(localStorage.cinemaLiberoUrl + "/category/film/fantasyfantastico/", false, 'movieFantasy', false, null),
     ])
     .then(function () {
-        initViewChannelMode();
+        initViewChannelMode(sections);
     })
     .catch(function (e) {
         console.error(e);

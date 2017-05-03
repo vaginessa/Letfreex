@@ -1,24 +1,31 @@
 function loadChannelList(added) {
     var channelListHtml = '<li><a class="menuItem" onclick="aggiungiCanale();">Aggiungi canale</a></li><li class="borderBottomWhite"><a class="menuItem" onclick="eliminaCanale();">Elimina canale</a></li>';
     if (localStorage.cineblogUrl) {
+        localStorage.cineblogUrl = adjustURL(localStorage.cineblogUrl);
         channelListHtml += '<li><a class="menuItem" href="index.html?channel=cineblog">Cineblog</a></li>';
     }
     if (localStorage.italiaFilmUrl) {
+        localStorage.italiaFilmUrl = adjustURL(localStorage.italiaFilmUrl);
         channelListHtml += '<li><a class="menuItem" href="index.html?channel=italiafilm">ItaliaFilm</a></li>';
     }
     if (localStorage.pirateStreamingUrl) {
+        localStorage.pirateStreamingUrl = adjustURL(localStorage.pirateStreamingUrl);
         channelListHtml += '<li><a class="menuItem" href="index.html?channel=piratestreaming">Piratestreaming</a></li>';
     }
     if (localStorage.filmPerTuttiUrl) {
+        localStorage.filmPerTuttiUrl = adjustURL(localStorage.filmPerTuttiUrl);
         channelListHtml += '<li><a class="menuItem" href="index.html?channel=filmpertutti">FilmPerTutti</a></li>';
     }
     if (localStorage.cinemaLiberoUrl) {
+        localStorage.cinemaLiberoUrl = adjustURL(localStorage.cinemaLiberoUrl);
         channelListHtml += '<li><a class="menuItem" href="index.html?channel=cinemalibero">CinemaLibero</a></li>';
     }
     if (localStorage.altadefinizioneUrl) {
+        localStorage.altadefinizioneUrl = adjustURL(localStorage.altadefinizioneUrl);
         channelListHtml += '<li><a class="menuItem" href="index.html?channel=altadefinizione">Altadefinizione01</a></li>';
     }
     if (localStorage.seriehdmeUrl) {
+        localStorage.seriehdmeUrl = adjustURL(localStorage.seriehdmeUrl);
         channelListHtml += '<li><a class="menuItem" href="index.html?channel=seriehdme">SerieHDMe</a></li>';
     }
 
@@ -77,7 +84,7 @@ function changeChannel(name) {
 
     $('img').imageReloader();
 
-    clearCache();
+    //clearCache();
     $('#channel').html('<scr' + 'ipt type="text/javascript" src="js/channels/' + name + '.js"></scr' + 'ipt>');
 }
 
@@ -87,28 +94,20 @@ function initViewChannelMode() {
     $('#cerca').removeClass('hidden');
     $('#preferiti').removeClass('hidden');
 
-    //NASCONDO GLI SLIDER VUOTI
-    if (isEmpty($('#movieSliderContainer'))) {
-        $('.movieLastTitle').addClass('hidden');
-        $('#homeFilm').addClass('hidden');
-    }
-    if (isEmpty($('#serieTvSliderContainer'))) {
-        $('.serieLastTitle').addClass('hidden');
-        $('#homeSerieTv').addClass('hidden');
-    }
-    if (isEmpty($('#serieTvMostPopularSliderContainer'))) {
-        $('.serieMostPopularTitle').addClass('hidden');
-        $('#homeSerieTvMostPopular').addClass('hidden');
-    }
-    if (isEmpty($('#movieMostPopularSliderContainer'))) {
-        $('.movieMostPopularTitle').addClass('hidden');
-        $('#homeFilmMostPopular').addClass('hidden');
+    ////NASCONDO GLI SLIDER VUOTI
+    var hiddenSlider = 0;
+    for (var j = 0; j < sections.length; j++) {
+        if (isEmpty($('#' + sections[j] + 'SliderContainer'))) {
+            $('#' + sections[j]).addClass('hidden');
+            hiddenSlider++;
+        }
     }
 
-    ////SE SONO VUOTI TUTTI DO ERRORE DI RETE
-    if (isEmpty($('#movieSliderContainer')) && isEmpty($('#serieTvSliderContainer')) && isEmpty($('#serieTvMostPopularSliderContainer')) && isEmpty($('#movieMostPopularSliderContainer'))) {
+    //////SE SONO VUOTI TUTTI DO ERRORE DI RETE
+    if (hiddenSlider == sections.length) {
             $('#error').removeClass('hidden');
     }
+
     slidePerView = 4;
     //Inizializzo gli slider con le copertine
     var windowLength = $(window).width();
@@ -127,7 +126,7 @@ function initViewChannelMode() {
 
     slidersHomeArray = new Array();
     for (var i = 0; i < sections.length; i++) {
-        initializeSliderPoster(sections[i]);
+        initializeSliderPoster(sections[i]+"SliderContainer");
     }
 
     try {
@@ -147,16 +146,16 @@ function initViewChannelMode() {
 
 
     if (localStorage.timeStampDonation == undefined)
-        localStorage.timeStampDonation = new Date();
+        localStorage.timeStampDonation = new Date().addDays(1);
 
     if (new Date(localStorage.timeStampDonation).getTime() < new Date().getTime()) {
         var donation = '<p style="color: white"> Stiamo portando avanti questo progetto soltanto per passione.' +
             '<br><br> Se ti piace l\'app, vuoi dirci grazie e supportare il nostro lavoro, perche\' non offrirci un caffe\'?<br>Grazie!</p>' +
-            '<i style="color:orange">Il team di Netfreex</i><br><br>' +
+            '<i style="color:orange">Il team di Letfreex</i><br><br>' +
             '<a href="http://paypal.me/be4t5"> <img src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_donate_92x26.png" alt="Donate"></a>';
 
         swal({
-            title: 'Netfreex e\' gratis!',
+            title: 'Letfreex e\' gratis!',
             type: 'info',
             html: donation,
             background: 'rgba(0, 0, 0, 0.82)',
@@ -183,18 +182,17 @@ function aggiungiCanale() {
             return new Promise(function (resolve, reject) {
                 if (value == "")
                     reject();
-
-                if (value.indexOf("italia-film") == -1
-                    && value.indexOf("cb01") == -1
-                    && value.indexOf("piratestreaming") == -1
-                    && value.indexOf("filmpertutti") == -1
-                    && value.indexOf("cinemalibero") == -1
-                    && value.indexOf("altadefinizione") == -1
-                    && value.indexOf("seriehd") == -1
+                value = value.toLowerCase();
+                if (value.indexOf("italia-film.") == -1
+                    && value.indexOf("cb01.") == -1
+                    && value.indexOf("piratestreaming.") == -1
+                    && value.indexOf("filmpertutti.") == -1
+                    && value.indexOf("cinemalibero.") == -1
+                    && value.indexOf("altadefinizione01.") == -1
+                    && value.indexOf("seriehd.") == -1
                     ) {
                     reject('Il canale che hai inserito non e\' valido');
                 } else {
-
                     if (isChannelSupported(value))
                         resolve();
                     else
@@ -202,7 +200,10 @@ function aggiungiCanale() {
                 }
             });
         }
-    }).then(function(result) {
+    }).then(function (result) {
+
+        result = adjustURL(result);
+
         if (result.indexOf("italia-film") > -1) {
             localStorage.italiaFilmUrl = result;
         }
@@ -230,6 +231,25 @@ function aggiungiCanale() {
     $('.swal2-spacer').before('Il collegamento a siti web che contengono materiale video coperto da copyright e\' illegale. Aggiungendo un canale l\'utente si assume piena responsabilita\' dei contenuti che andra\' a visualizzare.<br>');
     $('.swal2-spacer').hide();
 
+}
+
+function adjustURL(result) {
+    result = result.toLowerCase();
+    //AGGIUSTO URL
+    var prefix = 'http://';
+    if (result.substr(0, prefix.length) !== prefix && result.indexOf("https://") == -1) {
+        result = prefix + result;
+    }
+    if (result.indexOf("http://https://") == -1) {
+        result = result.replace("http://https://", "https://");
+    }
+    if (result.indexOf("www") == -1) {
+        if (result.indexOf("http://") > -1)
+            result = result.replace("http://", "http://www.");
+        else
+            result = result.replace("https://", "https://www.");
+    }
+    return result;
 }
 
 function eliminaCanale() {

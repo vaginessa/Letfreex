@@ -171,10 +171,15 @@ function redesignView() {
     if (windowLength < 426)
         slidePerView = 3;
 
-    for (var i = 0; i < slidersHomeArray.length; i++) {
-        slidersHomeArray[i].params.slidesPerView = slidePerView;
-        slidersHomeArray[i].update();
+    try {
+        for (var i = 0; i < slidersHomeArray.length; i++) {
+            slidersHomeArray[i].params.slidesPerView = slidePerView;
+            slidersHomeArray[i].update();
+        }
+    } catch (e) {
+        console.log("No slide");
     }
+    
 
     //Reimposto la vista view movie
     $('#movieDetails').css('height', $(window).height() + 'px');
@@ -197,6 +202,7 @@ $(window).resize(function () {
 function hidePlayer() {
     if (window.cordova) {
         screen.orientation.unlock();
+        window.plugins.insomnia.allowSleepAgain();
     }
 
     $('#playerContainer').addClass('hidden');

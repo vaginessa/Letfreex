@@ -33,6 +33,9 @@ function searchMovieInfo(obj, isSerie, isCarousel) {
         contentType: 'application/json',
         dataType: 'jsonp',
         success: function (json) {
+
+            
+
             if (isCarousel) {
                 //Se le api non hanno trovato niente, cerco un altro elemento a caso finchè non ne trovo uno
                 if (json.total_results == 0 || json.results[0].backdrop_path == null) {
@@ -46,22 +49,36 @@ function searchMovieInfo(obj, isSerie, isCarousel) {
                 }
                     
             } else {
-                if (json.total_results == 0) {
-                    fillPageWithMovieDetails(json, isSerie, obj, false);
-                } else {
-                    console.dir(json);
-                    localStorage.setItem(input, JSON.stringify(json));
-                    fillPageWithMovieDetails(json, isSerie, obj, true);
+
+                //Se non c'è la trama in italiano, cerco in inglese
+                if (json.total_results > 0 && json.results[0].overview.length <= 1) {
+                    $.ajax({
+                        type: 'GET',
+                        url: url + mode + input + key + '&language=en' + year,
+                        contentType: 'application/json',
+                        dataType: 'jsonp',
+                        success: function(json) {
+                            parseSearchSuccess(json, input, isSerie, obj);
+                        }
+                    });
                 }
-            }
-            
-            
-            
+                parseSearchSuccess(json, input, isSerie, obj);
+            }   
         },
         error: function (e) {
             console.log(e.message);
         }
     });
+}
+
+function parseSearchSuccess(json, input, isSerie, obj) {
+    if (json.total_results == 0) {
+        fillPageWithMovieDetails(json, isSerie, obj, false);
+    } else {
+        console.dir(json);
+        localStorage.setItem(input, JSON.stringify(json));
+        fillPageWithMovieDetails(json, isSerie, obj, true);
+    }
 }
 
 function fillPageWithMovieDetails(json, isSerie, obj, foundByAPI) {

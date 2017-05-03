@@ -36,6 +36,7 @@ function openMovie(url,titolo, img, isSerieTv) {
 }
 
 var nessunLinkDisponibile = "<span class='marginTop10'>Nessun link disponibile, prova su un altro canale.</span>";
+
 function removeLinkOffline(video) {
     var arrayHost = $('div[host]:visible'); //video.find('[host]');
 
@@ -104,10 +105,18 @@ function showDownloadTutorial() {
 }
 
 function chooseHost(video) {
+    //Salto il popup se host è seriehdme
+    if (video.find('[host]').html().indexOf("seriehdme") > -1) {
+        video.find('.fa-download').click();
+        return;
+    }
+        
+
+    //Altrimenti faccio scegliere host
     localStorage.currentEpisode = video.attr("info");
 
     console.log(video);
-    var text = "<br><br>Puoi ancora aprire i video con un player esterno, basta cliccare sul tasto trasmetti.";
+    var text = "<br>Non vuoi usare il player integrato? Clicca sul tasto <img class=\"castIcon\" src=\"img/cast.png\"> e riproduci con il tuo player preferito.";
     swal({
         title: 'Guarda su',
         html: video.clone().find('[host]').removeClass('hidden'),
@@ -124,19 +133,24 @@ function chooseHost(video) {
     }
     $('#modalContentId').append(text);
 
-    //if (window.cordova)
-    //    removeLinkOffline(video);
+    
+
+    if (window.cordova)
+        removeLinkOffline(video);
 }
 
 var download = false;
 //Estrae il video di film/serie tv
 function openVideo(host, url, download) {
-    if(download == 2 && localStorage.castTutorialBlock != "true") {
-        return showCastTutorial();
-    }
-    if (download == 1 && localStorage.downloadTutorialBlock != "true") {
-        if (window.cordova && device.platform == "Android")
-            return showDownloadTutorial();
+    host = host.split('|');
+    if (host[0] != 'seriehdme') {
+        if (download == 2 && localStorage.castTutorialBlock != "true") {
+            return showCastTutorial();
+        }
+        if (download == 1 && localStorage.downloadTutorialBlock != "true") {
+            if (window.cordova && device.platform == "Android")
+                return showDownloadTutorial();
+        }
     }
     
     swal.closeModal();
@@ -144,7 +158,7 @@ function openVideo(host, url, download) {
 
     setTimeout(function () {
         console.log(url);
-        host = host.split('|');
+        
 
         //Redirect link criptati
         if (host[0] == 'swzz') {
@@ -152,6 +166,8 @@ function openVideo(host, url, download) {
         }      
         else if (host[0] == 'vcrypt') {
             extractVcrypt(url, host[1], download);
+        }else if (host[0] == 'seriehdme') {
+            scrapeEpisodio(url, host[1]);
         }
         //Link in chiaro
         else if (host[0] == 'vidlox')
@@ -227,94 +243,5 @@ var error = function (ex) {
         showConfirmButton: false,
         background: 'rgba(0, 0, 0, 1)'
     });
-}
-
-
-function playWithOurPlayer(url) {
-    if (window.cordova) {
-        screen.orientation.lock('landscape');
-    }
-    
-    $('#playerContainer').removeClass('hidden');
-    $("#playerContainer").html('<video id="player" class="video-js" poster="null" style="outline: none;-webkit-tap-highlight-color: rgba(0, 0, 0, 0);-webkit-appearance: none;">' +
-        '<source type="video/mp4"><source type="audio/mp4; codecs=mp4a.40.2"></video>');
-
-        var myPlayer = videojs('player', {
-            controls: true,
-            autoplay: true,
-            preload: 'auto',
-            fluid: true
-        });
-
-        if (url.indexOf('.m3u8') == -1) {
-            myPlayer.src(url);
-        } else {
-            myPlayer.src({
-                src: url,
-                type: 'application/x-mpegURL',
-                withCredentials: true
-            });
-        }
-        myPlayer.ready(function () {
-            $('#player').focus();
-            this.hotkeys({
-                volumeStep: 0.1,
-                seekStep: 30,
-                enableModifiersForNumbers: false,
-                alwaysCaptureHotkeys: true,
-                playPauseKey: function (event, player) {
-                    return ((event.which === 179) || (event.which === 13));
-                }
-            });
-
-            $('.vjs-modal-dialog').on('click', function() {
-                markAsSeen(myPlayer.currentTime());
-                myPlayer.dispose();
-                playWithOurPlayer(url);
-            });
-        });
-
-        myPlayer.on('error', function () {
-                markAsSeen(myPlayer.currentTime());
-                myPlayer.dispose();
-                playWithOurPlayer(url);
-        });
-
-        myPlayer.on('ended', function () {
-            markAsSeen(0);
-            if(window.cordova && device.platform != "iOS")
-                hidePlayer();
-        });
-
-        myPlayer.on('loadedmetadata', function () {
-            myPlayer.currentTime(getLastTime());
-            
-        });
-
-        var btna = addNewButton({
-            player: myPlayer,
-            icon: "fa-remove",
-            id: "closePlayer"
-        });
-        btna.onclick = function () {
-            hidePlayer();
-        };
-}
-
-
-function addNewButton(data) {
-
-    var pl = data.player,
-        newElement = document.createElement('div'),
-        newLink = document.createElement('a');
-
-    newElement.id = data.id;
-    newElement.className = 'closeBtnPlayer vjs-control';
-
-    newLink.innerHTML = "<i class='fa " + data.icon + " line-height' aria-hidden='true'></i>";
-    newElement.appendChild(newLink);
-    $(newElement).insertAfter('.vjs-fullscreen-control');
-    return newElement;
-
 }
 

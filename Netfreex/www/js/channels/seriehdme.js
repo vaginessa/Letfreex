@@ -50,7 +50,7 @@ function parseMoviePage(html, url, isSerieTv) {
 var idSerie = "";
 var listaStagioni = "";
 function getSeasonNumbers(html) {
-    
+    listaStagioni = "";
     //Prendo Le stagioni
     idSerie = html.split("idSerie=")[1].split("&")[0];
     var seasonHtml = html.split("<section id=\"series\">")[1].split("</ul>")[0];
@@ -61,86 +61,91 @@ function getSeasonNumbers(html) {
 
         if (i == 1) {
             $('#currentSeason').html('Stagione ' + numeroStagione + ' <span class="caret"></span>');
-            scrapeSerieTvSerieHDMe(idStagione, numeroStagione);
+            getEpisodiNum(numeroStagione, idStagione);
         }
 
         //Riempo menù tendina
-        listaStagioni += "<li><a tabindex=\"1\" onclick=\"scrapeSerieTvSerieHDMe('" + idStagione + "', '"+ numeroStagione+"')\">Stagione " + numeroStagione+ "</a></li>";
+        listaStagioni += "<li><a tabindex=\"1\" onclick=\"getEpisodiNum('" + numeroStagione + "','" + idStagione + "')\">Stagione " + numeroStagione + "</a></li>";
     }
     $('.listaStagioni').html(listaStagioni);
     $('#dropDownStagioni').removeClass('hidden');
 }
 
-
 var listaLink = {};
-function scrapeSerieTvSerieHDMe(idStagione, numeroStagione) {  
-    listaLink = {}
-    scrapeStagione("http://hdpass.net/serie.php?idSerie=" + idSerie + "&idStagioni=" + idStagione, numeroStagione, idStagione);
-}
+//PRENDE L'INTESTAZIONE DI TUTTI GLI EPISODI E RIEMPE HTML
+function getEpisodiNum(stagioneNum, idStagione) {
+    $('#dropDownStagioni').addClass('hidden');
+    var label = "STAGIONE " + stagioneNum + " - ITA";
+    var idDivStagione = "stagione" + label.replaceAll(" ", "_").replaceAll("STAGIONE", "");
 
-///CHIAMATE A CASCATA ////////////////////////////////////////////////////////
-
-function scrapeStagione(url, stagioneNum, idStagione) {
-    $('#currentSeason').html('Stagione ' + stagioneNum + ' <span class="caret"></span>');
-    $('#loadingLink').removeClass("hidden");
-    $('#playButton').addClass("hidden");
-    $('#playButton').html("");
-
-        get(url, function (response) {
-
-
+    //Se ho già la stagione la mostro
+    if ($("#" + idDivStagione).exists()) {
+        $('#currentSeason').html('Stagione ' + stagioneNum + ' <span class="caret"></span>');
+        showSeason(idDivStagione);
+        $('#dropDownStagioni').removeClass('hidden');
+    } else {
+        //Altrimenti la scarico
+        $('#loadingLink').removeClass("hidden");
+        $('#playButton').addClass("hidden");
+        listaLink = {};
+        get("http://hdpass.net/serie.php?idSerie=" + idSerie + "&idStagioni=" + idStagione, function (response) {
             var seasonHtml = response.split("<section id=\"seasons\">")[1].split("</ul>")[0];
-            var listaEpisodiGet = [];
             var episodiHtmlArray = seasonHtml.split("episode=");
             for (var i = 1; i < episodiHtmlArray.length; i++) {
-                listaEpisodiGet.push(
-                    asyncScrapeEpisodi("http://hdpass.net/serie.php?idSerie=" + idSerie + "&idStagioni=" + idStagione + "&episode=" + episodiHtmlArray[i].split('"')[0], stagioneNum, episodiHtmlArray[i].split('"')[0])
-                );
+
+                var episodeNum = episodiHtmlArray[i].split('"')[0];
+                if (episodeNum.length == 1)
+                    episodeNum = "0" + episodeNum;
+
+                var singleEpisode = {
+                    stagioneEpisodio: stagioneNum + "x" + episodeNum,
+                    id: "&idStagioni=" + idStagione + "&episode=" + episodiHtmlArray[i].split('"')[0],
+                    host: "seriehdme|" + stagioneNum,
+                    res: "SD"
+                }
+
+
+                if (!listaLink[label])
+                    listaLink[label] = [];
+
+
+                listaLink[label].push(singleEpisode);
             }
+            prinSeasons(listaLink);
+            $('#dropDownStagioni').removeClass('hidden');
+            $('.listaStagioni').html(listaStagioni);
+            $('#currentSeason').html('Stagione ' + stagioneNum + ' <span class="caret"></span>');
 
+            $('#loadingLink').addClass("hidden");
+            $('#playButton').removeClass("hidden");
 
-            Promise.all(listaEpisodiGet)
-            .then(function () {
-                prinSeasons(listaLink);
-                $('.listaStagioni').html(listaStagioni);
-                    //resolveStagioni();
-                })
-            .catch(function (e) {
-                console.error(e);
-                //resolveStagioni();
-            });
-
-        }, function(e) {
+            showSeason(idDivStagione);
+        }, function (e) {
             console.error(e);
-            //resolveStagioni();
         });
-
-        
-    //});
+    }
+    
 }
 
+///CHIAMATE A CASCATA PER EPISODIO ////////////////////////////////////////////////////////
+
 var fromOld = "";
-function asyncScrapeEpisodi(url, stagioneNum, episodeNum) {
-    return new Promise(function (resolveEpisodi, rejectEpisodi) {
-        getYahooAPI(url, function (res1) {
+function scrapeEpisodio(url, stagioneNum) {
+    arrayHost = [];
+    var episodeNum = url.split("episode=")[1];
+    debugger
+    getYahooAPI("http://hdpass.net/serie.php?idSerie=" + idSerie + url, function (res1) {
 
             url = res1.split('id="iframeVid" src="')[1].split('"')[0];
 
             getYahooAPI(url, function (response) {
                     var risoluzioniHtml = response.split("labRes")[1].split("</div>")[0];
-
                     var listaRisoluzioniGet = [];
-
                     var risoluzioniHtmlArray = risoluzioniHtml.split("value=\"");
-
-                    var from;
-
-                    from = response.split("from=")[1].split("\"")[0];
+                    var from = response.split("from=")[1].split("\"")[0];
                     if (from == "") {
                         from = fromOld;
                     }
-                        
-
                     if (fromOld == "")
                         fromOld = from;
 
@@ -154,21 +159,34 @@ function asyncScrapeEpisodi(url, stagioneNum, episodeNum) {
 
                 Promise.all(listaRisoluzioniGet)
                 .then(function () {
-                    resolveEpisodi();
-                })
+                    $("#loading").addClass("hidden");
+
+                        var links = "";
+                        for (var j = 0; j < arrayHost.length; j++) {
+                            links += getHostsStringPrinted(arrayHost[j].res, arrayHost[j].host, arrayHost[j].id, arrayHost[j].host);
+                        }
+
+                        if (episodeNum.length < 2)
+                            episodeNum = "0" + episodeNum;
+
+                        $("div[info='" + stagioneNum + "x"+ episodeNum+"'] > [host]").remove();
+                        $("div[info='" + stagioneNum + "x" + episodeNum + "']").append(links);
+
+                        //Segno link hd
+                        $('img[res="HD"]').before("<img class='res' src='img/hd.png'>");
+                        $('img[res="SD"]').before("<img class='res' src='img/sd.png'>");
+
+                        chooseHost($("div[info='" + stagioneNum + "x" + episodeNum + "']"));
+
+                    })
                 .catch(function (e) {
                     console.error(e);
-                    resolveEpisodi();
                 });
-            }, function (e) {
-                console.error(e);
-                resolveEpisodi();
-            });
         }, function (e) {
             console.error(e);
-            resolveEpisodi();
         });
-        
+    }, function (e) {
+        console.error(e);
     });
 }
 
@@ -222,9 +240,11 @@ function asyncScrapeRisoluzioni(url, stagioneNum, episodeNum) {
     });
 }
 
+var arrayHost = [];
 function asyncScrapeMirror(url, stagioneNum, episodeNum, res) {
     return new Promise(function (resolveMirror, rejectRisoluzioni) {
         getYahooAPI(url, function (response) {
+            
             var host = response.split("data-mirror=\"")[1].split("\"")[0];
 
             if (host == "openload" || host == "rapidvideo") {
@@ -249,13 +269,7 @@ function asyncScrapeMirror(url, stagioneNum, episodeNum, res) {
                     res: res
                 }
 
-                var label = "STAGIONE " + stagioneNum + " - ITA";
-
-                if (!listaLink[label])
-                    listaLink[label] = [];
-
-
-                listaLink[label].push(singleEpisode);
+                arrayHost.push(singleEpisode);
             }
             resolveMirror();
         }, function (e) {
@@ -315,16 +329,29 @@ function search() {
 }
 
 var sections = [
-    "serieTvSliderContainer"
+    addSection("serieTv", "Serie TV - Ultime uscite"),
+    addSection("serieTvAzione", "Serie TV - Azione"),
+    addSection("serieTvCommedia", "Serie TV - Commedia"),
+    addSection("serieTvDrammatico", "Serie TV - Drammatico"),
+    addSection("serieTvHorror", "Serie TV - Horror"),
+    addSection("serieTvFantascienza", "Serie TV - Fantascienza"),
+    addSection("serieTvThriller", "Serie TV - Thriller"),
+    addSection("serieTvFantasy", "Serie TV - Fantasy"),
 ];
 $("#welcome").addClass("hidden");
-    
 $(document).on("ready", function () {
     Promise.all([
-            asyncOpenPage(localStorage.seriehdmeUrl, true, 'serieTvSliderContainer', false, null),
+            asyncOpenPage(localStorage.seriehdmeUrl, true, 'serieTv', false, null),
+            asyncOpenPage(localStorage.seriehdmeUrl + "/serie-tv-streaming/azione/", true, 'serieTvAzione', false, null),
+            asyncOpenPage(localStorage.seriehdmeUrl + "/serie-tv-streaming/commedia/", true, 'serieTvCommedia', false, null),
+            asyncOpenPage(localStorage.seriehdmeUrl + "/serie-tv-streaming/drama/", true, 'serieTvDrammatico', false, null),
+            asyncOpenPage(localStorage.seriehdmeUrl + "/serie-tv-streaming/horror/", true, 'serieTvHorror', false, null),
+            asyncOpenPage(localStorage.seriehdmeUrl + "/serie-tv-streaming/fantascienza/", true, 'serieTvFantascienza', false, null),
+            asyncOpenPage(localStorage.seriehdmeUrl + "/serie-tv-streaming/thriller/", true, 'serieTvThriller', false, null),
+            asyncOpenPage(localStorage.seriehdmeUrl + "/serie-tv-streaming/fantasy/", true, 'serieTvFantasy', false, null),
     ])
     .then(function () {
-        initViewChannelMode();
+        initViewChannelMode(sections);
     })
     .catch(function (e) {
         console.error(e);

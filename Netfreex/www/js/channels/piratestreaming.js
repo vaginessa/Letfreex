@@ -58,19 +58,39 @@ function search() {
     openPage(url, $('#serieTv').prop('checked'), 'searchResultContainer', false, true);
 }
 
+//INIZIALIZZO LE FASCE
 var sections = [
-    "movieSliderContainer",
-    "serieTvSliderContainer"
+    addSection("movie", "Film - Ultime uscite"),
+    addSection("serieTv", "Serie TV - Ultime uscite"),
+    addSection("movieAzione", "Film - Azione"),
+    addSection("movieCommedia", "Film - Commedia"),
+    addSection("movieDrammatico", "Film - Drammatico"),
+    addSection("movieHorror", "Film - Horror"),
+    addSection("movieRomantico", "Film - Romantico"),
+    addSection("movieFantascienza", "Film - Fantascienza"),
+    addSection("movieThriller", "Film - Thriller"),
+    addSection("movieAnimazione", "Film - Animazione"),
+    addSection("movieFantasy", "Film - Fantasy"),
+
 ];
 $("#welcome").addClass("hidden");
     
 $(document).on("ready", function () {
     Promise.all([
-            asyncOpenPage(localStorage.pirateStreamingUrl + "/film-aggiornamenti.php?pageNum_lista_film=0", false, 'movieSliderContainer', false, null),
-            asyncOpenPage(localStorage.pirateStreamingUrl + "/serietv-aggiornamentii.php?pageNum_lista_film=1", true, 'serieTvSliderContainer', false, null),
+            asyncOpenPage(localStorage.pirateStreamingUrl + "/film-aggiornamenti.php?pageNum_lista_film=0", false, 'movie', false, null),
+            asyncOpenPage(localStorage.pirateStreamingUrl + "/categoria/film/azione.html?pageNum_lista_film=0", false, 'movieAzione', false, null),
+            asyncOpenPage(localStorage.pirateStreamingUrl + "/categoria/film/commedia.html?pageNum_lista_film=0", false, 'movieCommedia', false, null),
+            asyncOpenPage(localStorage.pirateStreamingUrl + "/categoria/film/drammatico.html?pageNum_lista_film=0", false, 'movieDrammatico', false, null),
+            asyncOpenPage(localStorage.pirateStreamingUrl + "/categoria/film/fantascienza.html?pageNum_lista_film=0", false, 'movieFantascienza', false, null),
+            asyncOpenPage(localStorage.pirateStreamingUrl + "/categoria/film/thriller.html?pageNum_lista_film=0", false, 'movieThriller', false, null),
+            asyncOpenPage(localStorage.pirateStreamingUrl + "/categoria/film/animazione.html?pageNum_lista_film=0", false, 'movieAnimazione', false, null),
+            asyncOpenPage(localStorage.pirateStreamingUrl + "/categoria/film/fantasy.html?pageNum_lista_film=0", false, 'movieFantasy', false, null),
+            asyncOpenPage(localStorage.pirateStreamingUrl + "/categoria/film/romantico.html?pageNum_lista_film=0", false, 'movieRomantico', false, null),
+            asyncOpenPage(localStorage.pirateStreamingUrl + "/categoria/film/horror.html?pageNum_lista_film=0", false, 'movieHorror', false, null),
+            asyncOpenPage(localStorage.pirateStreamingUrl + "/serietv-aggiornamentii.php?pageNum_lista_film=1", true, 'serieTv', false, null),
     ])
     .then(function () {
-        initViewChannelMode();
+        initViewChannelMode(sections);
     })
     .catch(function (e) {
         console.error(e);
