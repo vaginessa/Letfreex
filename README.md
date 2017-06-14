@@ -1,28 +1,10 @@
 ![alt tag](https://github.com/Be4t5/Netfreex/blob/master/screenshots/logo.png)
 
-Letfreex è una app ibrida open source sviluppata con il framework Apache Cordova, scritta principalmente in HTML5, Javascript e Java.
-Si tratta di una "versione gratis di Netflix" che raccoglie, cataloga e riproduce film e serie tv, che estrae dai principali siti di streaming. Nonostante il nome e la grafica ricordino molto quelle del vero Netflix, non è assolutamente collegato in alcun modo ad esso.
-Il progetto nasce dalla mia esigenza di avere una app da installare sulla mia tv Android per poter accedere ai siti di streaming in modo comodo e veloce (e figo), ma lo condivido volentieri col web, sperando che qualcuno abbia voglia di contribuire.
-
-![alt tag](https://github.com/Be4t5/Netfreex/blob/master/screenshots/netfreex1.png)
-
-![alt tag](https://github.com/Be4t5/Netfreex/blob/master/screenshots/netfreex2.png)
-
-![alt tag](https://github.com/Be4t5/Netfreex/blob/master/screenshots/netfreex3.png)
-
-![alt tag](https://github.com/Be4t5/Netfreex/blob/master/screenshots/netfreex4.png)
-
-![alt tag](https://github.com/Be4t5/Netfreex/blob/master/screenshots/netfreex5.png)
-
-![alt tag](https://github.com/Be4t5/Netfreex/blob/master/screenshots/netfreex6.png)
-
-![alt tag](https://github.com/Be4t5/Netfreex/blob/master/screenshots/netfreex7.png)
-
-![alt tag](https://github.com/Be4t5/Netfreex/blob/master/screenshots/netfreex8.png)
+Letfreex è una app ibrida open source per lo streaming video. Sviluppata con il framework Apache Cordova, scritta principalmente in HTML5, Javascript e Java.
 
 ## Piattaforme supportate
 
-Per adesso è disponibile per Android e iOS, ma è in preparazione anche la versione Windows.
+Per adesso è disponibile per Android e iOS, e via browser.
 L'interfaccia è responsive e si adatta facilmente sia agli schermi più piccoli degli smartphone e tablet che alle TV.
 
 ## Come funziona?
